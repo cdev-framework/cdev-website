@@ -1,0 +1,5 @@
+#!/bin/bash
+
+scripts/buildsite http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/
+
+aws s3 cp ./public s3://cdevwebsitestaging --recursive

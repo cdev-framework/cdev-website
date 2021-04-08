@@ -1,0 +1,135 @@
+################################### Default Configuration ############################
+baseURL = "https://exampleSite.com"
+languageCode = "en-us"
+title = "Cdev | Dynamic Serverless Framework"
+theme = "agen-hugo"
+
+#################################### Plugins ##########################################
+[params.plugins]
+
+  # CSS Plugins
+  [[params.plugins.css]]
+  URL = "plugins/bootstrap/bootstrap.min.css"
+  [[params.plugins.css]]
+  URL = "plugins/slick/slick.css"
+  [[params.plugins.css]]
+  URL = "plugins/themify-icons/themify-icons.css"
+  [[params.plugins.css]]
+  URL = "plugins/venobox/venobox.css"
+  [[params.plugins.css]]
+  URL = "plugins/card-slider/css/style.css"
+
+  # JS Plugins
+  [[params.plugins.js]]
+  URL = "plugins/jQuery/jquery.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/bootstrap/bootstrap.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/slick/slick.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/venobox/venobox.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/shuffle/shuffle.min.js"
+  [[params.plugins.js]]
+  URL = "plugins/counto/apear.js"
+  [[params.plugins.js]]
+  URL = "plugins/counto/counTo.js"
+  [[params.plugins.js]]
+  URL = "plugins/card-slider/js/card-slider-min.js"
+  [[params.plugins.js]]
+  URL = "plugins/google-map/gmap.js"
+
+  [[params.static.js]]
+  URL = "js/typer.js"
+
+  [[params.static.js]]
+  URL = "js/prism.js"
+
+  [[params.static.css]]
+  URL = "css/prism.css"
+
+  [[params.static.css]]
+  URL = "css/mystyles.css"
+
+###################################### Navigation ######################################
+[menu]
+    
+  [[menu.main]]
+  name = "About"
+  URL = "about"
+  weight = 2
+
+  ##[[menu.main]]
+  ##name = "Learn"
+  ##URL = "learn"
+  ##weight = 3
+  ##
+  ##[[menu.main]]
+  ##name = "Docs"
+  ##URL = "docs"
+  ##weight = 4
+
+
+  [[menu.main]]
+  name = "Contact"
+  URL = "contact"
+  weight = 5
+
+  ############################# Footer menu ################################
+  [[menu.footer]]
+  name = "About"
+  URL = "about"
+  weight = 2
+  
+  [[menu.footer]]
+  name = "Docs"
+  URL = "docs"
+  weight = 3
+
+  [[menu.footer]]
+  name = "Contact"
+  URL = "contact"
+  weight = 5
+
+
+
+########################### Default parameters ##########################
+[params]
+logo = "images/Logo.svg"
+home = "Home"
+# Google Analitycs
+googleAnalitycsID = "Your ID"
+
+  # Preloader
+  [params.preloader]
+  enable = true
+
+  ############################# Footer Start ###########################
+
+  # footer about
+  [params.footer.about]
+  about = "Cdev is still in development. To stay up to date on the latest progress of the framework, sign up for our newsletter."
+  
+  # contact form
+  [params.form]
+  formAction = "#"
+
+  # copyright
+  [params.copyright]
+  copyright = "Copyright &copy; 2019 a theme by [themefisher.com](https://themefisher.com)"
+
+  ######################### Social site ##############################
+  [[params.social]]
+  icon = "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+
+  [[params.social]]
+  icon = "ti-discord" 
+  link = "#"
+  
+
+  [[params.social]]
+  icon = "ti-github" # themify icon pack https://themify.me/themify-icons
+  link = "#"
+  
+

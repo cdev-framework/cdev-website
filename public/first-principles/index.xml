@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cdev First Principles on Cdev | Dynamic Serverless Framework</title>
+    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/first-principles/</link>
+    <description>Recent content in Cdev First Principles on Cdev | Dynamic Serverless Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/first-principles/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cdev package &mdash; cdev  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> cdev
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">cdev package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cdev.cdev_aws">cdev.cdev_aws module</a></li>
+<li><a class="reference internal" href="#module-cdev.cdev_decorators">cdev.cdev_decorators module</a></li>
+<li><a class="reference internal" href="#module-cdev.cdev_finder">cdev.cdev_finder module</a></li>
+<li><a class="reference internal" href="#module-cdev.cdev_objects">cdev.cdev_objects module</a></li>
+<li><a class="reference internal" href="#module-cdev.cdev_parser">cdev.cdev_parser module</a></li>
+<li><a class="reference internal" href="#module-cdev">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cdev</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>cdev package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/cdev.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cdev-package">
+<h1>cdev package<a class="headerlink" href="#cdev-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-cdev.cdev_aws">
+<span id="cdev-cdev-aws-module"></span><h2>cdev.cdev_aws module<a class="headerlink" href="#module-cdev.cdev_aws" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cdev.cdev_aws.OnUpload">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_aws.</code><code class="sig-name descname">OnUpload</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_aws.OnUpload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cdev_objects.EventModel</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_aws.S3">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_aws.</code><code class="sig-name descname">S3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_aws.S3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cdev_objects.Resource</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_aws.S3_Events">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_aws.</code><code class="sig-name descname">S3_Events</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_aws.S3_Events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cdev_objects.EventCollection</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_aws.SQS">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_aws.</code><code class="sig-name descname">SQS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_aws.SQS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cdev_objects.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="cdev.cdev_aws.SQS.events">
+<code class="sig-name descname">events</code><em class="property"> = ['OnMessagesReceived']</em><a class="headerlink" href="#cdev.cdev_aws.SQS.events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cdev.cdev_decorators">
+<span id="cdev-cdev-decorators-module"></span><h2>cdev.cdev_decorators module<a class="headerlink" href="#module-cdev.cdev_decorators" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cdev.cdev_decorators.serverless_function">
+<code class="sig-prename descclassname">cdev.cdev_decorators.</code><code class="sig-name descname">serverless_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_decorators.serverless_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator that is used to denote a serverless function</p>
+<dl>
+<dt>Pos Args:</dt><dd><p>name (str): name of the function</p>
+</dd>
+<dt>KW Args:</dt><dd><p>events (list(cdev_events)): list of events to bind this function to</p>
+<p>middleware (list(middleware)): list of middleware functions to attach to function.
+Middleware that are earlier in the list are executed as the outer layer.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A function that returns the info of the serverless function</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>wrap_create_function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cdev.cdev_finder">
+<span id="cdev-cdev-finder-module"></span><h2>cdev.cdev_finder module<a class="headerlink" href="#module-cdev.cdev_finder" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="cdev.cdev_finder.create_service">
+<code class="sig-prename descclassname">cdev.cdev_finder.</code><code class="sig-name descname">create_service</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">service</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_finder.create_service" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_finder.find_and_create_services">
+<code class="sig-prename descclassname">cdev.cdev_finder.</code><code class="sig-name descname">find_and_create_services</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_finder.find_and_create_services" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_finder.find_serverless_functions_in_module">
+<code class="sig-prename descclassname">cdev.cdev_finder.</code><code class="sig-name descname">find_serverless_functions_in_module</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">python_module</span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_finder.find_serverless_functions_in_module" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_finder.find_services">
+<code class="sig-prename descclassname">cdev.cdev_finder.</code><code class="sig-name descname">find_services</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_finder.find_services" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_finder.getpythonfiles">
+<code class="sig-prename descclassname">cdev.cdev_finder.</code><code class="sig-name descname">getpythonfiles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_finder.getpythonfiles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-cdev.cdev_objects">
+<span id="cdev-cdev-objects-module"></span><h2>cdev.cdev_objects module<a class="headerlink" href="#module-cdev.cdev_objects" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cdev.cdev_objects.EventCollection">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">EventCollection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">events</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.EventCollection.print">
+<code class="sig-name descname">print</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventCollection.print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.EventModel">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">EventModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class represents the form of an event that can trigger a serverless function</p>
+<p>Abstractly an event model is just a model of the data generated by a resource at
+some point in time.</p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.EventModel.add_function">
+<code class="sig-name descname">add_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serverless_function</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventModel.add_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binds a function to this event model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>serverless_function</strong> (<a class="reference internal" href="#cdev.cdev_objects.serverless_function" title="cdev.cdev_objects.serverless_function"><em>serverless_function</em></a>) – Function that reacts to this event</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.EventModel.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventModel.get_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.EventModel.get_resource">
+<code class="sig-name descname">get_resource</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.EventModel.get_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.MiddleWare">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">MiddleWare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">function_name</span></em>, <em class="sig-param"><span class="n">module_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.MiddleWare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.MiddleWare.create_import_statement_ast">
+<code class="sig-name descname">create_import_statement_ast</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.MiddleWare.create_import_statement_ast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.MiddleWare.get_full_symbol">
+<code class="sig-name descname">get_full_symbol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.MiddleWare.get_full_symbol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.MiddleWare.get_function_name">
+<code class="sig-name descname">get_function_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.MiddleWare.get_function_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.Resource">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">Resource</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">resource_type</span></em>, <em class="sig-param"><span class="n">events</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A resource is a representation of some kind of service of the cloud.</p>
+<p>Resources do not have to be provided by the cloud vendor and can be created by
+users to represent collections of things in the cloud.</p>
+<p>A resource must be able to be deployed to the cloud.</p>
+<p>A resource can have event models but does not have to.</p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.Resource.bind_function">
+<code class="sig-name descname">bind_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serverless_function</span></em>, <em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Resource.bind_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.Resource.get_events">
+<code class="sig-name descname">get_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Resource.get_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.Resource.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Resource.get_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.Resource.objs">
+<code class="sig-name descname">objs</code><em class="property"> = {}</em><a class="headerlink" href="#cdev.cdev_objects.Resource.objs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.Service">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">Service</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A service is a collection of resources and serverless functions</p>
+<p>A service should represent some logical/business collection of resources and
+serverless functions.</p>
+<p>Different deployment engines can configure how to deploy a service. For example
+a service can be considered an immutable obejct such that a change to any component
+constitutes a new version of the service or it can be configure to alow change of internal
+resources.</p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.Service.get_resources">
+<code class="sig-name descname">get_resources</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Service.get_resources" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.Service.get_serverless_functions">
+<code class="sig-name descname">get_serverless_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Service.get_serverless_functions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.Service.set_resources">
+<code class="sig-name descname">set_resources</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resources</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Service.set_resources" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.Service.set_serverless_functions">
+<code class="sig-name descname">set_serverless_functions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">functions</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.Service.set_serverless_functions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.cdev_module">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">cdev_module</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.cdev_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class the represents a python module that contains a serverless function</p>
+<p>A python module can represents a namespace, which means that functions in the same
+module can reference and depend on symbols from the module. Serverless functions will
+be a first level function within the module, so any symbol created at the global level
+of the module can effect the lambda. Thus we must parse the global symbols created in the
+module and compare that to the serverless functions to create a dependency tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to the module file on the file system</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="cdev.cdev_objects.cdev_module.add_global">
+<code class="sig-name descname">add_global</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.cdev_module.add_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a _global object to the module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> – The _global object to get from the module</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cdev.cdev_objects.cdev_module.get_all_symbols">
+<code class="sig-name descname">get_all_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.cdev_module.get_all_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the symbols in this module</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.cdev_module.global_objects">
+<code class="sig-name descname">global_objects</code><a class="headerlink" href="#cdev.cdev_objects.cdev_module.global_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of symbol to all dependent _global objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict(str to set(_global))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.cdev_module.path">
+<code class="sig-name descname">path</code><a class="headerlink" href="#cdev.cdev_objects.cdev_module.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>the python module name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.cdev_module.python_module">
+<code class="sig-name descname">python_module</code><a class="headerlink" href="#cdev.cdev_objects.cdev_module.python_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of _global objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list(_globals)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.cdev_module.symbols_to_globals">
+<code class="sig-name descname">symbols_to_globals</code><a class="headerlink" href="#cdev.cdev_objects.cdev_module.symbols_to_globals" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of _global objects to all symbols it effects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict(_global to set(str))</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cdev.cdev_objects.serverless_function">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_objects.</code><code class="sig-name descname">serverless_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">source_code</span></em>, <em class="sig-param"><span class="n">module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.serverless_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of a serverless function</p>
+<p>A serverless function is an event triggerable function. The function should take the
+event as some kind of input (either directly or from middleware).</p>
+<p>When a function is marked as a serverless function with the decorator, we must consider
+that the function can interact and depend on elements in its module. Therefore, to capture
+the entire context of a serverless function we must include any dependency it has in the module.
+A dependency can be thought of as a referencing a symbol from the symbol table. Once all dependecies
+are calculated, the function can be written into a seperate intermediate file that will be what is
+uploaded to the cloud service managing the function.</p>
+<p>This dynamic parsing out of function allows functions to be logically grouped like previous forms
+of development without dealing with previous problems of serverless function management
+(<a class="reference external" href="https://github.com/cdk-patterns/serverless/blob/master/the-lambda-trilogy/README.md">https://github.com/cdk-patterns/serverless/blob/master/the-lambda-trilogy/README.md</a>)</p>
+<dl class="py method">
+<dt id="cdev.cdev_objects.serverless_function.deploy">
+<code class="sig-name descname">deploy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_objects.serverless_function.deploy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_objects.serverless_function.functions">
+<code class="sig-name descname">functions</code><em class="property"> = {}</em><a class="headerlink" href="#cdev.cdev_objects.serverless_function.functions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cdev.cdev_parser">
+<span id="cdev-cdev-parser-module"></span><h2>cdev.cdev_parser module<a class="headerlink" href="#module-cdev.cdev_parser" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cdev.cdev_parser.FunctionArgsTypes">
+<em class="property">class </em><code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">FunctionArgsTypes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.FunctionArgsTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cdev.cdev_parser.FunctionArgsTypes.KwArgsOnly">
+<code class="sig-name descname">KwArgsOnly</code><em class="property"> = 3</em><a class="headerlink" href="#cdev.cdev_parser.FunctionArgsTypes.KwArgsOnly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_parser.FunctionArgsTypes.NoArgs">
+<code class="sig-name descname">NoArgs</code><em class="property"> = 1</em><a class="headerlink" href="#cdev.cdev_parser.FunctionArgsTypes.NoArgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_parser.FunctionArgsTypes.PosArgsOnly">
+<code class="sig-name descname">PosArgsOnly</code><em class="property"> = 2</em><a class="headerlink" href="#cdev.cdev_parser.FunctionArgsTypes.PosArgsOnly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cdev.cdev_parser.FunctionArgsTypes.PosKwArgs">
+<code class="sig-name descname">PosKwArgs</code><em class="property"> = 4</em><a class="headerlink" href="#cdev.cdev_parser.FunctionArgsTypes.PosKwArgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_annassign">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_annassign</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_annassign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_arg">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_arg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_arg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_arguments">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_arguments</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_assert">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_assert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_assert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_assign">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_assign</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_assign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_attribute_index">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_attribute_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_attribute_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_augassign">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_augassign</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_augassign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_await_yield_yieldfrom">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_await_yield_yieldfrom</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_await_yield_yieldfrom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_binop">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_binop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_binop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_boolop">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_boolop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_boolop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_call">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">call</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_classdef">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_classdef</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">context</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_classdef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_compare">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_compare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_compare" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_comprehension">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_comprehension</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_comprehension" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_dict">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_dict_comp">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_dict_comp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_dict_comp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_expr">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_expr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_expr_stmt">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_expr_stmt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_expr_stmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_extslice">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_extslice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_extslice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_for_asyncfor">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_for_asyncfor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_for_asyncfor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_functiondef_asyncfunctiondef">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_functiondef_asyncfunctiondef</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_functiondef_asyncfunctiondef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_ifexpr">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_ifexpr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_ifexpr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_list_set_generator_comp">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_list_set_generator_comp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_list_set_generator_comp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_list_set_tuple">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_list_set_tuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_list_set_tuple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_raise">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_raise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_raise" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_return">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_return</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_return" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_slice">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_slice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_slice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_starred">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_starred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_starred" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_stmt">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_stmt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmt</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_stmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_subcript">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_subcript</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_subcript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_try">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_try</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_try" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_unaryop">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_unaryop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_unaryop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_while_if">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_while_if</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_while_if" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_with_asyncwith">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_with_asyncwith</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_with_asyncwith" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_symbols_withitem">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_symbols_withitem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_symbols_withitem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.find_used_symbols_import_importfrom">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">find_used_symbols_import_importfrom</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.find_used_symbols_import_importfrom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.isexpr">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">isexpr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.isexpr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.isstmt">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">isstmt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.isstmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.parse_handler_info">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">parse_handler_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tree</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.parse_handler_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cdev.cdev_parser.parse_middleware_info">
+<code class="sig-prename descclassname">cdev.cdev_parser.</code><code class="sig-name descname">parse_middleware_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tree</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdev.cdev_parser.parse_middleware_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-cdev">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cdev" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Daniel Sanchez
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

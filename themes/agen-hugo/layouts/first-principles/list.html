@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+
+<div class="coding_section">
+    <p>{{.Params.key}}</p>
+    {{range .Params.instruction}}
+    {{if .iscode}}
+    <pre>
+        <code class="language-python">
+            {{.content}}
+        </code>
+    </pre>
+    {{else}}
+    <p>{{.content}}</p>
+    {{end}}
+    {{end}}
+</div>
+
+
+{{end}}

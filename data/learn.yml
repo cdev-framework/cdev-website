@@ -1,0 +1,12 @@
+methods:
+  - Build:
+    title: "Build"
+    description: "Learn the Cdev framework by recreating one of our sample projects"
+    icon: "ti-rocket"
+    url: /build
+  
+  - Principles:
+    title: "First Principles"
+    description: "Learn the Cdev framework by learning the primitives that make it"
+    icon: "ti-vector" 
+    url: /first-principles

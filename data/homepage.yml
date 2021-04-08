@@ -1,0 +1,30 @@
+############################## Banner ###################################
+banner:
+  bgImage : "images/banner/banner2.jpg"
+  title : "Cdev"
+  subtitle: "dynamic serverless framework,
+  build scaleable serveless applications,
+  or how i learned to stop worrying and love serverless"
+
+########################### services ##################################
+service:
+  enable : true
+  title : "The Cdev Framework"
+  subtitle : "A dynamic framework that enables scalability and managability for serverless projects 
+  of any size. By using powerful abstractions created in popular programming languages, cdev developers 
+  can focus on the parts of their application that make them unique."
+  # service item comes from 'service.yml'
+
+
+################################## call to action ###########################
+cta:
+  enable : false
+  title : "Give Cdev A Try!"
+  bgImage : "images/backgrounds/cta-bg.jpg"
+  content : "Create a small example project or start with the first principles"
+  button : 
+    enable : true
+    label : "Sample Projects"
+    link : "contact"
+    label2: "First Principles"
+    link2: "contact"
