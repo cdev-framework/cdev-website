@@ -4,7 +4,7 @@ banner:
   title : "Cdev"
   subtitle: "dynamic serverless framework,
   build scaleable serveless applications,
-  or how i learned to stop worrying and love serverless"
+  or how I learned to stop worrying and love serverless"
 
 ########################### services ##################################
 service:
