@@ -31,7 +31,9 @@
   border: 0;
 
   &:active,
-  &:hover,
+  &:hover{
+    color: $light;
+  }
   &.focus,
   &.active {
     background: $primary-gradient !important;

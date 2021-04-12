@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Latest News on Cdev | Dynamic Serverless Framework</title>
-    <link>https://exampleSite.com/blog/</link>
+    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/</link>
     <description>Recent content in Latest News on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="https://exampleSite.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>7 things I learned working at a user-centred design agency</title>
-      <link>https://exampleSite.com/blog/economics-meter/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/economics-meter/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/economics-meter/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/economics-meter/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</description>
     </item>
     
     <item>
       <title>Creating a New Hugo Post</title>
-      <link>https://exampleSite.com/blog/new-hugo-post/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/new-hugo-post/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/new-hugo-post/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/new-hugo-post/</guid>
       <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.
 Strong emphasis, aka bold, with asterisks or underscores.
 Combined emphasis with asterisks and underscores.
@@ -35,37 +35,37 @@ You can use numbers for reference-style link definitions</description>
     
     <item>
       <title>The agency is dead. Long live the agency.</title>
-      <link>https://exampleSite.com/blog/cool-the-audits/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/cool-the-audits/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/cool-the-audits/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/cool-the-audits/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</description>
     </item>
     
     <item>
       <title>The design workflow at a digital agency</title>
-      <link>https://exampleSite.com/blog/finance-my-business/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/finance-my-business/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/finance-my-business/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/finance-my-business/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</description>
     </item>
     
     <item>
       <title>What I Wish I’d Known Before Starting a Digital Agency</title>
-      <link>https://exampleSite.com/blog/money-and-money/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/money-and-money/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/money-and-money/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/money-and-money/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</description>
     </item>
     
     <item>
       <title>Why Talented Creatives Are Leaving Your Shitty Agency</title>
-      <link>https://exampleSite.com/blog/business-magnate/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/business-magnate/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/blog/business-magnate/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/business-magnate/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</description>
     </item>
     

@@ -18,6 +18,7 @@
               <input type="text" id="dob" name="date_of_birth" class="form-control mb-4 px-0 dob"  placeholder="date of birth">
               <button class="btn btn-primary" type="submit" id='email-submit'>Submit</button>
             </form>
+            <p class="email-message" id="email-message"></p>
           </div>
         </div>
       </div>
@@ -68,6 +69,26 @@
     email = $("#email").val()
     dob = $("#dob").val()
 
+    if (first_name === ""){
+      display_message("Please enter your first name", true)
+      return
+    }
+
+    if (last_name === ""){
+      display_message("Please enter your last name", true)
+      return
+    }
+    
+    if (email === ""){
+      display_message("Please enter your email", true)
+      return
+    }
+
+    if (!ValidateEmail(email)){
+      display_message("Please enter a valid email", true)
+      return
+    }
+
     data = {
       "first_name": first_name,
       "last_name": last_name,
@@ -75,21 +96,59 @@
       "dob": dob
     }
 
+    display_message("", true)
     $.ajax
     ({
         type: "POST",
         //the url where you want to sent the userName and password to
-        url: 'http://localhost:3000/mailing_list',
+        url: 'https://h02mgj826a.execute-api.us-east-1.amazonaws.com/Prod/mailing_list/',
         dataType: 'json',
         async: true,
         //json object to sent to the authentication url
         data: JSON.stringify(data),
         success: function (data) {
           console.log(data)
+
+          if (data.success){
+            display_message("Thank you for signing up!", false)
+          }
+          else {
+            display_message(data.message, true)
+          }
+        },
+        error: function(data, error){
+          console.log(error)
+          clear_email_input()
+          display_message("Server Error. Please try again or contact information@cdevframework.com.", true)
         }
     })
 
   });
+
+  function ValidateEmail(email) {
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
+        return (true)
+      }
+      else {
+        return (false)
+      }
+  }
+
+  function display_message(msg, isError){
+    color = isError ? "red" : "black"
+    $("#email-message").css("color", color)
+
+    $("#email-message").css("display", "initial")
+
+    $("#email-message").html(msg)
+  }
+
+  function clear_email_input(){
+    $("#first_name").val("")
+    $("#last_name").val("")
+    $("#email").val("")
+    $("#dob").val("")
+  }
 
 </script>
 

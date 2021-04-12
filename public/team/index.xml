@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Our Team on Cdev | Dynamic Serverless Framework</title>
-    <link>https://exampleSite.com/team/</link>
+    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/</link>
     <description>Recent content in Our Team on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="https://exampleSite.com/team/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Alone Mask</title>
-      <link>https://exampleSite.com/team/alon-mask/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/alon-mask/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/alon-mask/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/alon-mask/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Anna Walle</title>
-      <link>https://exampleSite.com/team/anna-walle/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/anna-walle/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/anna-walle/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/anna-walle/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Devid Json</title>
-      <link>https://exampleSite.com/team/devid-json/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/devid-json/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/devid-json/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/devid-json/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Jira Smith</title>
-      <link>https://exampleSite.com/team/jira-smith/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/jira-smith/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/jira-smith/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/jira-smith/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Luicy Jain</title>
-      <link>https://exampleSite.com/team/luicy-jain/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/luicy-jain/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/luicy-jain/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/luicy-jain/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Sara Adams</title>
-      <link>https://exampleSite.com/team/sara-adams/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/sara-adams/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/sara-adams/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/sara-adams/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Scarlet Kim</title>
-      <link>https://exampleSite.com/team/scarlet-kim/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/scarlet-kim/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/scarlet-kim/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/scarlet-kim/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Tom Bills</title>
-      <link>https://exampleSite.com/team/tom-bills/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/tom-bills/</link>
       <pubDate>Thu, 01 Aug 2019 16:19:26 +0600</pubDate>
       
-      <guid>https://exampleSite.com/team/tom-bills/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/tom-bills/</guid>
       <description>Work History &amp;amp; Feedback Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     

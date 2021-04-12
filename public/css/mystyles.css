@@ -14,3 +14,17 @@
 .dob{
     display: none
 }
+
+.email-message {
+    padding-top: 30px;
+    color: black;
+    display: none;
+}
+
+.btn-primary:hover{
+    background: linear-gradient( 37deg, rgb(180,62,121) 1%, rgb(182, 49, 40) 100%) !important;
+}
+
+.btn-primary:active{
+    background: linear-gradient( 37deg, rgb(180,62,121) 1%, rgb(134, 36, 29) 100%) !important;
+}
