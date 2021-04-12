@@ -16,7 +16,7 @@
               <input type="text" id="last_name" name="last_name" class="form-control mb-4 px-0 name" placeholder="Last name">
               <input type="text" id="email" name="email" class="form-control mb-4 px-0 email" placeholder="Email address">
               <input type="text" id="dob" name="date_of_birth" class="form-control mb-4 px-0 dob"  placeholder="date of birth">
-              <button class="btn btn-primary" type="submit">Submit</button>
+              <button class="btn btn-primary" type="submit" id='email-submit'>Submit</button>
             </form>
           </div>
         </div>
@@ -48,8 +48,6 @@
 <!-- /footer -->
 
 
-{{ "<!-- Google Map API -->" | safeHTML }}
-<script src="{{ .Site.Params.gmapAPI | absURL }}"></script>
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range .Site.Params.plugins.js}}
 <script src="{{ .URL | absURL }}"></script>
@@ -60,4 +58,38 @@
 {{ range .Site.Params.static.js}}
 <script src="{{ .URL | absURL }}"></script>
 {{end}}
+
+<script>
+  document.getElementById("email-submit").addEventListener('click', function(event) {
+    event.preventDefault();  // prevent page from refreshing
+
+    first_name = $("#first_name").val()
+    last_name = $("#last_name").val()
+    email = $("#email").val()
+    dob = $("#dob").val()
+
+    data = {
+      "first_name": first_name,
+      "last_name": last_name,
+      "email": email,
+      "dob": dob
+    }
+
+    $.ajax
+    ({
+        type: "POST",
+        //the url where you want to sent the userName and password to
+        url: 'http://localhost:3000/mailing_list',
+        dataType: 'json',
+        async: true,
+        //json object to sent to the authentication url
+        data: JSON.stringify(data),
+        success: function (data) {
+          console.log(data)
+        }
+    })
+
+  });
+
+</script>
 

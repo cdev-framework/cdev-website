@@ -1,177 +1,107 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/economics-meter/</loc>
+    <loc>https://exampleSite.com/blog/economics-meter/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/about/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/alon-mask/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/alon-mask/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/anna-walle/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/anna-walle/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/build/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/build/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/contact/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/contact/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/new-hugo-post/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/new-hugo-post/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/devid-json/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/devid-json/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/faqs/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/faqs/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/jira-smith/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/jira-smith/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/learn/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/learn/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/luicy-jain/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/luicy-jain/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/pricing/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/pricing/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/projects/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/projects/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/service/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/service/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/product-analyst/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/product-analyst/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/revenue-pricing-analyst.3/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/revenue-pricing-analyst.3/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/ruby-developer.1/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/ruby-developer.1/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/ruby-developer/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/ruby-developer/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/sara-adams/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/sara-adams/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/scarlet-kim/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/scarlet-kim/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/site-reliability-engineer.1/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/site-reliability-engineer.1/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/career/site-reliability-engineer/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/career/site-reliability-engineer/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/cool-the-audits/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/cool-the-audits/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/finance-my-business/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/finance-my-business/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/team/tom-bills/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/team/tom-bills/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/money-and-money/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/money-and-money/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/blog/business-magnate/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/blog/business-magnate/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
+  </url><url>
+    <loc>https://exampleSite.com/categories/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/first-principles/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/tags/</loc>
   </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/first-principles/</loc>
-  </url>
-  
-  <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/tags/</loc>
-  </url>
-  
 </urlset>
