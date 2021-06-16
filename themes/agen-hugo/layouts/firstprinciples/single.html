@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+    {{- partial "preloader.html" . -}}
+    {{- partial "static-header.html" . -}}
+
+
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container">
+    <div class="row">
+        <div class="col-lg-4" style="padding-left: 4%; overflow: hidden">
+            {{ partial "docs-side.html" .}}
+        </div>
+
+        <div class="col-lg-8">
+            {{.Content}}
+        </div>
+    </div>
+</div>
+
+{{- partial "footer.html" . -}}
+</body>
+</html>

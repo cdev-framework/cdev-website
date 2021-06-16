@@ -1,0 +1,33 @@
+<header class="static-navigation static-nav-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="{{ .Site.BaseURL }}"><img class='logo-img' src="{{ .Site.Params.logo | absURL }}" alt="{{.Site.Title}}"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }}
+            </a>
+            <div class="dropdown-menu" >
+              {{ range .Children }}
+              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </nav>
+  </header>

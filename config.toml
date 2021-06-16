@@ -56,39 +56,39 @@ theme = "agen-hugo"
     
   [[menu.main]]
   name = "About"
-  URL = "about"
-  weight = 2
+  URL = "about/index.html"
+  weight = 4
 
   ##[[menu.main]]
   ##name = "Learn"
   ##URL = "learn"
   ##weight = 3
   ##
-  ##[[menu.main]]
-  ##name = "Docs"
-  ##URL = "docs"
-  ##weight = 4
+  [[menu.main]]
+  name = "Docs"
+  URL = "docs"
+  weight = 2
 
 
   [[menu.main]]
   name = "Contact"
-  URL = "contact"
+  URL = "contact/index.html"
   weight = 5
 
   ############################# Footer menu ################################
   [[menu.footer]]
   name = "About"
-  URL = "about"
+  URL = "about/index.html"
   weight = 2
   
-  [[menu.footer]]
-  name = "Docs"
-  URL = "docs"
-  weight = 3
+  #[[menu.footer]]
+  #name = "Docs"
+  #URL = "docs"
+  #weight = 3
 
   [[menu.footer]]
   name = "Contact"
-  URL = "contact"
+  URL = "contact/index.html"
   weight = 5
 
 

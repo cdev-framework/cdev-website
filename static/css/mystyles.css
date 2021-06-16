@@ -28,3 +28,89 @@
 .btn-primary:active{
     background: linear-gradient( 37deg, rgb(180,62,121) 1%, rgb(134, 36, 29) 100%) !important;
 }
+
+.myspan{
+    visibility: hidden;
+}
+
+.myspan:hover{
+    visibility: visible;
+}
+
+.mybutton {
+    background-color: #c4c4c4;
+    border: none;
+    display: inline-block;
+
+}
+  
+.mybutton1 {border-radius: 5px;}
+
+.docs-content {
+    margin-left:25%
+}
+
+.coding_section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-right: 0%;
+    padding-left: 0%;
+
+    margin: 0%;
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    padding-top: 20px;
+    padding-left: 5%;
+    background-color: #07085d;
+    overflow-y: scroll
+}
+    
+.sidebar div {
+    padding: 8px;
+    font-size: 18px;
+    display: block;
+    color: white;
+}
+
+.body-text {
+    margin-left: 150px;
+    font-size: 18px;
+}
+
+
+.static-navigation {
+    padding: 20px 100px;
+    transition: .3s ease;
+}
+
+.static-nav-bg {
+    background-color: #07085d;
+    padding: 15px 100px;
+}
+
+
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+   
+    border-radius: 10px;
+    background: #f1f1f100;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient( 37deg, rgb(247,70,58) 1%, rgb(180,62,121) 80% );
+
+}
+
+.sublink{
+    color: #6c6c86;
+    font-size: 15px;
+}

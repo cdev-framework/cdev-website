@@ -25,27 +25,54 @@
       <div class="col-lg-10 mx-auto text-center">
         <h2>{{ .title | markdownify }}</h2>
         <p class="lead">{{ .subtitle | markdownify}}</p>
+      {{ end }}
+
         <div class="section-border"></div>
       </div>
-      {{ end }}
+      
     </div>
     <div class="row">
-      {{ range first 3 .Site.Data.service.services }}
+      <div class="col-lg-12 " style="padding-bottom: 5em; display: flex; justify-content: center; overflow: hidden; align-items: center;">
+        <img style='object-fit: cover; min-width: 70%; min-height: 100%; flex-shrink: 2;' src='images/coding.gif' alt="Example of cdev in use">
+      </div>
+      {{ with .Site.Data.homepage.pip}}
+      <div class="col-lg-8 mx-auto" style="background-color: #ecececb0; border-radius: 5px; padding-top: 1em; padding-bottom: 1em; text-align:center;">
+        <code class='col-11 mycode' style="color: black; font-size: large; padding-top: 5px; padding-bottom: 5px;">
+          <span>{{ .message | markdownify}}</span>
+          <!--<span class="myspan" style="float: right">
+            <button class="mybutton mybutton1">
+              <i class='ti-clipboard icon-xs' style="padding-top: 1em"></i>
+            </button>
+          </span>-->
+        </code>
+      </div>
+      {{end}}
+      
+    </div>
+    <div class="section-border"></div>
+    <div class= "col-12"><h1 style="text-align: center; padding-bottom: 1em;">Learn Cdev</h1></div>
+    <div class="row">
+     
+      {{ range first 3 .Site.Data.learn.methods }}
       <div class="col-lg-4 mb-4 mb-lg-0">
+        
         <div class="card hover-bg-secondary shadow py-4">
+          <a href="{{.url}}">
           <div class="card-body text-center">
             <div class="position-relative">
-              <i
-                class="icon-lg icon-box bg-gradient-primary rounded-circle {{ .icon }} mb-5 d-inline-block text-white"></i>
+              <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{ .icon }} mb-5 d-inline-block text-white"></i>
               <i class="icon-lg icon-watermark text-white {{ .icon }}"></i>
             </div>
             <h4 class="mb-4">{{ .title | markdownify }}</h4>
-            <p>{{ .content | markdownify }}</p>
+            <p>{{ .description | markdownify }}</p>
           </div>
+        </a>
         </div>
       </div>
       {{ end }}
     </div>
+  </div>
+
   </div>
 </section>
 <!-- /service -->

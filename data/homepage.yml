@@ -15,16 +15,5 @@ service:
   can focus on the parts of their application that make them unique."
   # service item comes from 'service.yml'
 
-
-################################## call to action ###########################
-cta:
-  enable : false
-  title : "Give Cdev A Try!"
-  bgImage : "images/backgrounds/cta-bg.jpg"
-  content : "Create a small example project or start with the first principles"
-  button : 
-    enable : true
-    label : "Sample Projects"
-    link : "contact"
-    label2: "First Principles"
-    link2: "contact"
+pip:
+  message: "pip install cdev"

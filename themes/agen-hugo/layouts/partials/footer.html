@@ -59,6 +59,8 @@
 {{ range .Site.Params.static.js}}
 <script src="{{ .URL | absURL }}"></script>
 {{end}}
+<script async defer data-domain="cdevframework.io" src="https://analytics.cdevframework.io/js/plausible.js"></script>
+
 
 <script>
   document.getElementById("email-submit").addEventListener('click', function(event) {
