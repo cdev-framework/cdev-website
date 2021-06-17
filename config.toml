@@ -45,6 +45,9 @@ theme = "agen-hugo"
   [[params.static.js]]
   URL = "js/prism.js"
 
+  [[params.static.js]]
+  URL = "js/sidenav.js"
+
   [[params.static.css]]
   URL = "css/prism.css"
 

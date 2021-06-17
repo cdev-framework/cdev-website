@@ -2,7 +2,8 @@
     "type": "firstprinciples",
     "layout": "type",
     "title": "First Principles",
-    "Name": "firstprinciples"
+    "Name": "firstprinciples",
+    "linktitle": "firstprinciples"
 }
 
 # Hi

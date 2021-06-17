@@ -114,3 +114,8 @@
     color: #6c6c86;
     font-size: 15px;
 }
+
+
+i.dropdown:hover{
+    color: #f7463a!important;
+}
