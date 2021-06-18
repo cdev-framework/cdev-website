@@ -126,6 +126,22 @@ i.dropdown:hover{
         visibility: hidden;
     }
 
+    .dropdown-mobile {
+        text-align: center;
+        background: none!important;
+        box-shadow: none!important;
+    }
+
+
+    .dropdown-item-mobile{
+        background: none!important;
+        color: white!important;
+    }
+
+    .dropdown-item-mobile:hover{
+        color: #f7463a!important;
+        background: none!important;
+    }
 }
 
 /*hide for small screens */

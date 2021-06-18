@@ -10,14 +10,14 @@
         <ul class="navbar-nav ml-auto">
           {{ range .Site.Menus.main }}
           {{ if .HasChildren }}
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="{{ .URL | absURL }}" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               {{ .Name }}
             </a>
-            <div class="dropdown-menu" >
+            <div class="dropdown-menu  dropdown-mobile" >
               {{ range .Children }}
-              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+              <a class="dropdown-item dropdown-item-mobile" href="{{ .URL | absURL }}">{{ .Name }}</a>
               {{ end }}
             </div>
           </li>

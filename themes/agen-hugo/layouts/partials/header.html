@@ -15,9 +15,9 @@
             aria-expanded="false">
             {{ .Name }}
           </a>
-          <div class="dropdown-menu" >
+          <div class="dropdown-menu dropdown-mobile" >
             {{ range .Children }}
-            <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+            <a class="dropdown-item dropdown-item-mobile" href="{{ .URL | absURL }}">{{ .Name }}</a>
             {{ end }}
           </div>
         </li>
