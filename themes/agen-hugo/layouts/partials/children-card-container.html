@@ -1,0 +1,19 @@
+<div class="row">
+    {{range .Pages}}
+    <div class="col-lg-4 mb-4 mb-lg-0">
+                
+        <div class="card hover-bg-secondary shadow py-4">
+          <a href="{{.Site.BaseURL}}{{.Dir}}{{.LinkTitle}}">
+          <div class="card-body text-center">
+            <div class="position-relative">
+              <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{.Params.card_icon}} mb-5 d-inline-block text-white"></i>
+              <i class="icon-lg icon-watermark text-white {{.Params.card_icon}}"></i>
+            </div>
+            <h4 class="mb-4">{{.Title}}</h4>
+            <p>{{.Params.card_body}}</p>
+          </div>
+        </a>
+        </div>
+      </div>
+    {{end}}
+</div>

@@ -119,3 +119,10 @@
 i.dropdown:hover{
     color: #f7463a!important;
 }
+
+/*hide for small screens */
+@media screen and (max-width: 1023px) { 
+    .sidebar {
+       display: none;
+    }
+}

@@ -10,16 +10,17 @@
 
 
 
-<div class="coding_section container">
-    <div class="row">
-        <div class="col-lg-4" style="padding-left: 4%; overflow: hidden">
+<div class="coding_section container" style="max-width: 90%;">
+    <div class="row" >
+        <div class="col-lg-4" style="padding-left: 4%; overflow: hidden; max-width: 25%;">
             {{ partial "docs-side.html" .}}
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-8" >
             {{.Content}}
         </div>
     </div>
+
 </div>
 
 {{- partial "footer.html" . -}}

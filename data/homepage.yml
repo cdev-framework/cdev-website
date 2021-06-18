@@ -11,8 +11,9 @@ service:
   enable : true
   title : "The Cdev Framework"
   subtitle : "A dynamic framework that enables scalability and managability for serverless projects 
-  of any size. By using powerful abstractions created in popular programming languages, cdev developers 
-  can focus on the parts of their application that make them unique."
+  of any size. By using abstractions created in high level programming languages, Cdev reduces boilerplate 
+  configuration and promotes composability. Cdev helps developers focus on the parts of their application 
+  that make them unique."
   # service item comes from 'service.yml'
 
 pip:

@@ -71,6 +71,25 @@ theme = "agen-hugo"
   name = "Docs"
   URL = "docs"
   weight = 2
+  hasChildren = true
+    
+    [[menu.main]]
+    parent = "Docs"
+    name = "Tuturials"
+    URL = "docs/tutorials"
+    weight = 1
+    
+    [[menu.main]]
+    parent = "Docs"
+    name = "First Principles"
+    URL = "docs/firstprinciples"
+    weight = 2
+
+    [[menu.main]]
+    parent = "Docs"
+    name = "Example Projects"
+    URL = "docs/example-projects"
+    weight = 3
 
 
   [[menu.main]]
