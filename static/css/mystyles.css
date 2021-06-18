@@ -90,7 +90,6 @@
 
 .static-nav-bg {
     background-color: #07085d;
-    padding: 15px 100px;
 }
 
 
@@ -121,8 +120,27 @@ i.dropdown:hover{
 }
 
 /*hide for small screens */
-@media screen and (max-width: 1023px) { 
-    .sidebar {
+@media only screen and (max-width: 690px) { 
+    div.sidebar {
        display: none;
+       visibility: hidden;
+    }
+
+    .desktop{
+        display: none;
+        visibility: hidden;
+    }
+
+}
+
+/*hide for small screens */
+@media  (max-width: 550px) { 
+
+    .navigation {
+        padding: 0;
+    }
+
+    .static-nav-bg {
+        padding: 0;
     }
 }

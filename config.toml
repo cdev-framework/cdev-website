@@ -59,7 +59,7 @@ theme = "agen-hugo"
     
   [[menu.main]]
   name = "About"
-  URL = "about/index.html"
+  URL = "about"
   weight = 4
 
   ##[[menu.main]]
@@ -94,7 +94,7 @@ theme = "agen-hugo"
 
   [[menu.main]]
   name = "Contact"
-  URL = "contact/index.html"
+  URL = "contact"
   weight = 5
 
   ############################# Footer menu ################################

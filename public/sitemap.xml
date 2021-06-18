@@ -2,22 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://exampleSite.com/blog/economics-meter/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
     <loc>https://exampleSite.com/about/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/alon-mask/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/anna-walle/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/build/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
     <loc>https://exampleSite.com/</loc>
@@ -26,82 +11,22 @@
     <loc>https://exampleSite.com/contact/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://exampleSite.com/blog/new-hugo-post/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/devid-json/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/faqs/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/jira-smith/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/blog/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/learn/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/luicy-jain/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/pricing/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/projects/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/service/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/product-analyst/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/revenue-pricing-analyst.3/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/ruby-developer.1/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/ruby-developer/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/sara-adams/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/scarlet-kim/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/site-reliability-engineer.1/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/career/site-reliability-engineer/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/blog/cool-the-audits/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/blog/finance-my-business/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/team/tom-bills/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/blog/money-and-money/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
-    <loc>https://exampleSite.com/blog/business-magnate/</loc>
-    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
-  </url><url>
     <loc>https://exampleSite.com/categories/</loc>
   </url><url>
-    <loc>https://exampleSite.com/first-principles/</loc>
+    <loc>https://exampleSite.com/docs/firstprinciples/coldstarts/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/firstprinciples/composability/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/example-projects/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/firstprinciples/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/firstprinciples/programminglanguage/</loc>
   </url><url>
     <loc>https://exampleSite.com/tags/</loc>
+  </url><url>
+    <loc>https://exampleSite.com/docs/tutorials/</loc>
   </url>
 </urlset>

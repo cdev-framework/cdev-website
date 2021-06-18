@@ -6,12 +6,7 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
  * @author Lea Verou
  */
 
- .coding_section {
-	padding-top: 50px;
-	padding-bottom: 50px;
-	padding-right: 5%;
-	padding-left: 5%;
-}
+
 
 code[class*="language-"],
 pre[class*="language-"] {

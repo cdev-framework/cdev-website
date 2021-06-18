@@ -1,12 +1,12 @@
 <div class="sidebar container">
-    <div style="font-weight:bold; padding-left: 18px;">Docs</div>
+    <div style="font-weight:bold; padding-left: 18px; display: inherit;">Docs</div>
     {{range .FirstSection.Sections}}
     
         
-            <div class="row" style="height: max-content; ">              
-                <i id="{{.LinkTitle}}" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
-                <a href="{{.Site.BaseURL}}{{.Dir}}">{{.Title}}</a>
-            </div>
+        <div class="row" style="height: max-content; ">              
+            <i id="{{.LinkTitle}}" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
+            <a href="{{.Site.BaseURL}}{{.Dir}}">{{.Title}}</a>
+        </div>
             
         {{ $ParentName := .LinkTitle }}
         {{range .Pages}}
