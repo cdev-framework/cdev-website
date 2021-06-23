@@ -154,4 +154,5 @@ googleAnalitycsID = "Your ID"
   icon = "ti-github" # themify icon pack https://themify.me/themify-icons
   link = "#"
   
-
+########################### API DOCS ######################################
+api_url="http://localhost:8080/cdev/"

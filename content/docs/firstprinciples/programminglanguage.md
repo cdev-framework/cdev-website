@@ -4,5 +4,6 @@
     "title": "Programming Language",
     "linktitle": "programminglanguage", 
     "card_icon": "ti-bolt",
-    "card_body": "Learn why Cdev uses full programming languages to build your project"
+    "card_body": "Learn why Cdev uses full programming languages to build your project",
+    "weight": "3"
 }

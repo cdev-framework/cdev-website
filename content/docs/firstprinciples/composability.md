@@ -4,7 +4,8 @@
     "title": "Reusability",
     "linktitle": "composability", 
     "card_icon": "ti-layers",
-    "card_body": "Learn Cdev helps teams create reusable components"
+    "card_body": "Learn Cdev helps teams create reusable components",
+    "weight": "4"
 }
 
 # Composability
