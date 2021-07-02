@@ -77,7 +77,7 @@ theme = "agen-hugo"
     
     [[menu.main]]
     parent = "Docs"
-    name = "Tuturials"
+    name = "Tutorials"
     URL = "docs/tutorials"
     weight = 1
     
@@ -92,6 +92,12 @@ theme = "agen-hugo"
     name = "Example Projects"
     URL = "docs/example-projects"
     weight = 3
+
+    [[menu.main]]
+    parent = "Docs"
+    name = "API"
+    URL = "docs/api"
+    weight = 4
 
 
   [[menu.main]]

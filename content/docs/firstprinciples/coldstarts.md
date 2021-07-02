@@ -50,7 +50,7 @@ As mentioned in our **[Why Serverless](/docs/firstprinciples/whyserverless)** po
 The current state of mitigating Cold Starts is best understood by looking at the three types of serverless functions people are creating described in ***[this great post by Matt Coulter](https://dev.to/cdkpatterns/learn-the-3-aws-lambda-states-today-the-single-purpose-function-the-fat-lambda-and-the-lambda-lith-361j)*** . 
 
 Reading this article, I could not help but feel like Goldilocks trying to find the right bed to sleep in: 
-- The single purpose function requiring to much of a change in how I think about software development. Being a mere mortal who is not a ninja at navigating my IDE, having to constantly switch to different files causes friction that interrupts the flow state of coding. 
+- The single purpose function requiring to much of a change in how I think about software development. Being a mere mortal who is not a ninja at navigating my IDE, having to constantly switch and create different files causes friction that interrupts the flow state of coding. 
 - The lambda-lith seemed to not take enough advantage of these new platforms, and the Cold Starts are killer. 
 - The Fat lambda seemed the most reasonable compromise, but if not constantly monitored it could spiral to having killer Cold Starts too. 
 
@@ -66,9 +66,9 @@ Leaving this as a fat lambda adds unnecessary time to each function's Cold Start
 
 The first instinct might be to move the **boto3.client** calls into the functions themselves, but this would actually make the issue worse because then the connection would be initialized on every function invocation instead of just when the code is first loaded. This inability of the fat lambda to handle adding different initialization steps is the driving force for using the single purpose function model. 
 
+The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the file are needed for each individual function. Using this new parsing technology, Cdev deploys intermediate files for each function that contains only the code needed for that function. When using Cdev, developers are able to structure and grow their project however makes sense for them, and Cdev handles optimizing each function. 
 
-The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the file are needed for each individual function. This means that developers get the benefits of being able to group their functions however makes sense for their project while also removing any unnecessary time from the Cold Starts. 
 
 ### Extra Notes
-Using the syntax tree to understand a function's dependencies covers a large majority of situations, but it is technically not able to handle all possible situations. To understand how Cdev provides tools to fill these gaps check out the **[tutorials for using the Cdev parser]()**
+Using the syntax tree to understand a function's dependencies covers a large majority of situations, but it is technically not able to handle all possible situations. To understand how Cdev provides tools to fill these gaps check out the **[API documentation for Lambda function annotations]()**
 

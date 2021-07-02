@@ -16,12 +16,32 @@
             {{ partial "docs-side.html" .}}
         </div>
 
-        <div class="col-lg-8" >
+        <div class="col-lg-8" style="padding-left: 2em;">
             {{.Content}}
+
+            <div class="row" style="padding-left: 1em; padding-right: 1em;">
+                {{ with .NextInSection }}
+                <div>
+                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                {{ end }}
+
+                {{ with .PrevInSection }}
+                <div style="margin-left: auto;">
+
+                  <a href="{{ .Permalink }}">{{ .Title }}</a>
+                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
+                </div>
+                {{ end }}
+            </div>
+
         </div>
     </div>
 
 </div>
+
+
 
 {{- partial "footer.html" . -}}
 </body>
