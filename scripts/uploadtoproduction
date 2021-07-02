@@ -1,5 +1,0 @@
-#!/bin/bash
-
-scripts/buildsite https://cdevframework.io/
-
-aws s3 cp ./public s3://cdevframework.io --recursive

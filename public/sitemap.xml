@@ -2,31 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://exampleSite.com/about/</loc>
+    <loc>https://cdevframework.io/docs/firstprinciples/whyserverless/</loc>
+  </url><url>
+    <loc>https://cdevframework.io/docs/firstprinciples/coldstarts/</loc>
+  </url><url>
+    <loc>https://cdevframework.io/docs/firstprinciples/programminglanguage/</loc>
+  </url><url>
+    <loc>https://cdevframework.io/docs/firstprinciples/composability/</loc>
+  </url><url>
+    <loc>https://cdevframework.io/about/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://exampleSite.com/</loc>
+    <loc>https://cdevframework.io/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://exampleSite.com/contact/</loc>
+    <loc>https://cdevframework.io/contact/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://exampleSite.com/categories/</loc>
+    <loc>https://cdevframework.io/categories/</loc>
   </url><url>
-    <loc>https://exampleSite.com/docs/firstprinciples/coldstarts/</loc>
+    <loc>https://cdevframework.io/docs/</loc>
   </url><url>
-    <loc>https://exampleSite.com/docs/firstprinciples/composability/</loc>
+    <loc>https://cdevframework.io/docs/example-projects/</loc>
   </url><url>
-    <loc>https://exampleSite.com/docs/</loc>
+    <loc>https://cdevframework.io/docs/firstprinciples/</loc>
   </url><url>
-    <loc>https://exampleSite.com/docs/example-projects/</loc>
+    <loc>https://cdevframework.io/tags/</loc>
   </url><url>
-    <loc>https://exampleSite.com/docs/firstprinciples/</loc>
-  </url><url>
-    <loc>https://exampleSite.com/docs/firstprinciples/programminglanguage/</loc>
-  </url><url>
-    <loc>https://exampleSite.com/tags/</loc>
-  </url><url>
-    <loc>https://exampleSite.com/docs/tutorials/</loc>
+    <loc>https://cdevframework.io/docs/tutorials/</loc>
   </url>
 </urlset>

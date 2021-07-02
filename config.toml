@@ -4,6 +4,8 @@ languageCode = "en-us"
 title = "Cdev | Dynamic Serverless Framework"
 theme = "agen-hugo"
 
+
+
 #################################### Plugins ##########################################
 [params.plugins]
 
@@ -122,6 +124,9 @@ home = "Home"
 # Google Analitycs
 googleAnalitycsID = "Your ID"
 
+########################### API DOCS ######################################
+ApiURL="http://localhost:8080/"
+
   # Preloader
   [params.preloader]
   enable = true
@@ -154,5 +159,4 @@ googleAnalitycsID = "Your ID"
   icon = "ti-github" # themify icon pack https://themify.me/themify-icons
   link = "#"
   
-########################### API DOCS ######################################
-api_url="http://localhost:8080/cdev/"
+

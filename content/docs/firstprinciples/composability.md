@@ -10,8 +10,6 @@
 
 # Composability
 
-Composability good
-
-{{<codesnippet `/source_code/sample.py`>}}
-
-{{<codesnippet `/source_code/sample2.py`>}}
+{{<blockqoute>}}
+    "What one programmer can do in one month, two programmers can do in two months." - Fred Brooks
+{{</blockqoute>}}

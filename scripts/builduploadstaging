@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "---------BUILD HUGO------------"
+hugo -b http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/ --environment staging
+
+echo "------PDOC DOCUMENTATION-------"
+here=$(pwd)
+cd $cdevprojectpath
+. ./scripts/activate
+./scripts/make_documentation
+cd $here
+
+echo "-------UPLOAD TO STAGE-----------"
+
+#aws s3 cp ./public s3://cdevwebsitestaging --recursive

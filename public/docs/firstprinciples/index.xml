@@ -2,37 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>First Principles on Cdev | Dynamic Serverless Framework</title>
-    <link>https://exampleSite.com/docs/firstprinciples/</link>
+    <link>https://cdevframework.io/docs/firstprinciples/</link>
     <description>Recent content in First Principles on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://exampleSite.com/docs/firstprinciples/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://cdevframework.io/docs/firstprinciples/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Cold Starts</title>
-      <link>https://exampleSite.com/docs/firstprinciples/coldstarts/</link>
+      <title>Why use Serverless?</title>
+      <link>https://cdevframework.io/docs/firstprinciples/whyserverless/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://exampleSite.com/docs/firstprinciples/coldstarts/</guid>
-      <description>Cold Starts Cold Starts are bad
-import os print(os) print(&amp;#34;Hi World&amp;#34;) print(&amp;#34;Another one&amp;#34;)   </description>
+      <guid>https://cdevframework.io/docs/firstprinciples/whyserverless/</guid>
+      <description>Why use Serverless?  “But there are still servers involved!” - Some person every time there is a discussion about serverless    What even is Serverless? Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering and it is just about who manages the servers. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on.</description>
     </item>
     
     <item>
-      <title>Reusability</title>
-      <link>https://exampleSite.com/docs/firstprinciples/composability/</link>
+      <title>Cold Starts</title>
+      <link>https://cdevframework.io/docs/firstprinciples/coldstarts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://exampleSite.com/docs/firstprinciples/composability/</guid>
-      <description>Composability Composability good
-import os print(os) print(&amp;#34;Hi World&amp;#34;) print(&amp;#34;Another one&amp;#34;)   import sys print(&amp;#34;New step&amp;#34;)   </description>
+      <guid>https://cdevframework.io/docs/firstprinciples/coldstarts/</guid>
+      <description>Cold Starts  &#34;A computer seems infinitely fast, until it doesn&#39;t!&#34;    Perhaps the most infamous problem in the serverless compute space is: The Cold Start. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to reduce the damage of Cold Starts.
+Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience.</description>
     </item>
     
     <item>
       <title>Programming Language</title>
-      <link>https://exampleSite.com/docs/firstprinciples/programminglanguage/</link>
+      <link>https://cdevframework.io/docs/firstprinciples/programminglanguage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://exampleSite.com/docs/firstprinciples/programminglanguage/</guid>
+      <guid>https://cdevframework.io/docs/firstprinciples/programminglanguage/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Reusability</title>
+      <link>https://cdevframework.io/docs/firstprinciples/composability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cdevframework.io/docs/firstprinciples/composability/</guid>
+      <description>Composability  &#34;What one programmer can do in one month, two programmers can do in two months.&#34; - Fred Brooks    </description>
     </item>
     
   </channel>

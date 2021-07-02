@@ -1,9 +1,0 @@
-#!/bin/bash
-
-rm -rf public
-
-if [[ -z $1 ]]; then
-  hugo 
-else
-  hugo -b $1
-fi

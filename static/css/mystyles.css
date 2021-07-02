@@ -155,3 +155,16 @@ i.dropdown:hover{
         padding: 0;
     }
 }
+
+
+.quote {
+    margin: 0;
+    background: #eee;
+    padding: 1em;
+    border-radius: 1em;
+  }
+.quote figcaption,
+.quote blockquote {
+  margin: 1em;
+  font-style: italic
+}

@@ -10,7 +10,10 @@
 
 # Cold Starts
 
-**A computer seems infinitely fast, until it doesn't!**
+{{<blockqoute>}}
+"A computer seems infinitely fast, until it doesn't!"
+{{</blockqoute>}}
+
 
 Perhaps the most infamous problem in the serverless compute space is: **The Cold Start**. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to reduce the damage of Cold Starts. 
 
@@ -35,7 +38,8 @@ Another time that people most likely notice the speed limitations of computers i
 
 For traditional applications, the Cold Start when adding another version of the application was in the range of powering on a computer (> 1 min) as the Cloud Provider was most likely providing a new Virtual Machine for that unit. This meant that the autoscaling trigger had to be set at a point that it was unlikely that the current machines would be overwhelmed before the new machine had finished the Cold Start. As long as the increase in traffic was not too rapid, the end users would not notice the cold start as the already provisioned machines would handle the requests. 
 
-![traditional server cold starts Diagram]()
+![load balancer image](/diagrams/server_cold_start.svg)
+
 
 ### Why is this a problem for Serverless compute?
 
