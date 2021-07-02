@@ -3,7 +3,8 @@
     "layout": "type",
     "title": "First Principles",
     "Name": "firstprinciples",
-    "linktitle": "firstprinciples"
+    "linktitle": "firstprinciples",
+    "weight": 2
 }
 
 # First Principles

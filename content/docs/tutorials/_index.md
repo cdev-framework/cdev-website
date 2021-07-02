@@ -1,4 +1,5 @@
 {
     "title": "Tutorials",
-    "LinkTitle": "tutorials"
+    "LinkTitle": "tutorials",
+    "weight": 1
 }

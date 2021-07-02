@@ -90,7 +90,7 @@ theme = "agen-hugo"
     [[menu.main]]
     parent = "Docs"
     name = "Example Projects"
-    URL = "docs/example-projects"
+    URL = "docs/examples"
     weight = 3
 
     [[menu.main]]
