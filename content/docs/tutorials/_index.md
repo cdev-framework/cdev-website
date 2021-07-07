@@ -1,5 +1,11 @@
 {
+    "type": "tutorials",
+    "layout": "type",
     "title": "Tutorials",
-    "LinkTitle": "tutorials",
+    "Name": "tutorials",
+    "linktitle": "tutorials",
     "weight": 1
 }
+
+
+# Tutorials
