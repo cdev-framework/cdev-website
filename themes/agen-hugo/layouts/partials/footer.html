@@ -103,16 +103,16 @@
     ({
         type: "POST",
         //the url where you want to sent the userName and password to
-        url: 'https://h02mgj826a.execute-api.us-east-1.amazonaws.com/Prod/mailing_list/',
-        dataType: 'json',
+        url: '{{ .Site.Params.footer.base_signup_url.url  }}/mailing_list',
+        contentType: "application/json",
         async: true,
         //json object to sent to the authentication url
         data: JSON.stringify(data),
         success: function (data) {
-          console.log(data)
-
+          data = JSON.parse(data)
           if (data.success){
             display_message("Thank you for signing up!", false)
+            console.log("SHOULD HAVE SHOWN")
           }
           else {
             display_message(data.message, true)

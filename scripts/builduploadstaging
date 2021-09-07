@@ -12,4 +12,4 @@ cd $here
 
 echo "-------UPLOAD TO STAGE-----------"
 
-#aws s3 cp ./public s3://cdevwebsitestaging --recursive
+aws s3 cp ./public s3://cdevwebsitestaging --recursive

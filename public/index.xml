@@ -2,45 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cdev | Dynamic Serverless Framework</title>
-    <link>https://cdevframework.io/</link>
+    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/</link>
     <description>Recent content on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="https://cdevframework.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why use Serverless?</title>
-      <link>https://cdevframework.io/docs/firstprinciples/whyserverless/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cdevframework.io/docs/firstprinciples/whyserverless/</guid>
-      <description>Why use Serverless?  “But there are still servers involved!” - Some person every time there is a discussion about serverless    What even is Serverless? Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering and it is just about who manages the servers. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on.</description>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</guid>
+      <description>What is Serverless?  “But there are still servers involved!” - Some person every time there is a discussion about serverless    Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering, and it is just about who manages the servers. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on.</description>
+    </item>
+    
+    <item>
+      <title>Basic API endpoints</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</guid>
+      <description></description>
     </item>
     
     <item>
       <title>Cold Starts</title>
-      <link>https://cdevframework.io/docs/firstprinciples/coldstarts/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cdevframework.io/docs/firstprinciples/coldstarts/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</guid>
       <description>Cold Starts  &#34;A computer seems infinitely fast, until it doesn&#39;t!&#34;    Perhaps the most infamous problem in the serverless compute space is: The Cold Start. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to reduce the damage of Cold Starts.
 Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience.</description>
     </item>
     
     <item>
-      <title>Programming Language</title>
-      <link>https://cdevframework.io/docs/firstprinciples/programminglanguage/</link>
+      <title>Integrate with a Dynamodb</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cdevframework.io/docs/firstprinciples/programminglanguage/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Schedule Lambdas</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks/</guid>
+      <description>ti-timer</description>
+    </item>
+    
+    <item>
+      <title>Email Signup</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming Language</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slack Bot</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Checkbook Balancer</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reusability</title>
-      <link>https://cdevframework.io/docs/firstprinciples/composability/</link>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cdevframework.io/docs/firstprinciples/composability/</guid>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</guid>
       <description>Composability  &#34;What one programmer can do in one month, two programmers can do in two months.&#34; - Fred Brooks    </description>
     </item>
     

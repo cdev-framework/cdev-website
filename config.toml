@@ -142,6 +142,9 @@ ApiURL="http://localhost:8080/"
   # footer about
   [params.footer.about]
   about = "Cdev is still in development. To stay up to date on the latest progress of the framework, sign up for our newsletter."
+
+  [params.footer.base_signup_url]
+  url = "https://9o4kug7075.execute-api.us-east-1.amazonaws.com/prod"
   
   # contact form
   [params.form]

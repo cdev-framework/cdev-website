@@ -2,33 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cdevframework.io/docs/firstprinciples/whyserverless/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/</loc>
   </url><url>
-    <loc>https://cdevframework.io/docs/firstprinciples/coldstarts/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</loc>
   </url><url>
-    <loc>https://cdevframework.io/docs/firstprinciples/programminglanguage/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</loc>
   </url><url>
-    <loc>https://cdevframework.io/docs/firstprinciples/composability/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</loc>
   </url><url>
-    <loc>https://cdevframework.io/about/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://cdevframework.io/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://cdevframework.io/contact/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/contact/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>https://cdevframework.io/categories/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/categories/</loc>
   </url><url>
-    <loc>https://cdevframework.io/docs/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/</loc>
   </url><url>
-    <loc>https://cdevframework.io/docs/example-projects/</loc>
-  </url><url>
-    <loc>https://cdevframework.io/docs/firstprinciples/</loc>
-  </url><url>
-    <loc>https://cdevframework.io/tags/</loc>
-  </url><url>
-    <loc>https://cdevframework.io/docs/tutorials/</loc>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/tags/</loc>
   </url>
 </urlset>
