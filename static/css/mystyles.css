@@ -57,6 +57,8 @@
     padding-left: 0%;
 
     margin: 0%;
+
+    max-width: 95%;
 }
 
 
@@ -105,7 +107,7 @@
 }
 
 .sublink{
-    color: #6c6c86;
+    color: #c4c4c4;
     font-size: 15px;
 }
 
@@ -167,4 +169,19 @@ i.dropdown:hover{
 .quote blockquote {
   margin: 1em;
   font-style: italic
+}
+
+
+
+
+.bode-btn-group {
+    margin-bottom: -8rem;
+    padding-top: 1rem;
+    margin-left: 90%;
+}
+
+pre code {
+    background-color: #eee;
+    display: block;
+    padding: 15px;
 }

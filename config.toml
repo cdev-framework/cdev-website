@@ -42,16 +42,13 @@ theme = "agen-hugo"
   URL = "plugins/google-map/gmap.js"
 
   [[params.static.js]]
+  URL = "js/clipboard.js"
+
+  [[params.static.js]]
   URL = "js/typer.js"
 
   [[params.static.js]]
-  URL = "js/prism.js"
-
-  [[params.static.js]]
   URL = "js/sidenav.js"
-
-  [[params.static.css]]
-  URL = "css/prism.css"
 
   [[params.static.css]]
   URL = "css/mystyles.css"
@@ -89,7 +86,7 @@ theme = "agen-hugo"
 
     [[menu.main]]
     parent = "Docs"
-    name = "Example Projects"
+    name = "Examples"
     URL = "docs/examples"
     weight = 3
 
@@ -130,6 +127,9 @@ home = "Home"
 # Google Analitycs
 googleAnalitycsID = "Your ID"
 
+[blackfriday]
+extensions = ["hardLineBreak"]
+
 ########################### API DOCS ######################################
 ApiURL="http://localhost:8080/"
 
@@ -144,7 +144,7 @@ ApiURL="http://localhost:8080/"
   about = "Cdev is still in development. To stay up to date on the latest progress of the framework, sign up for our newsletter."
 
   [params.footer.base_signup_url]
-  url = "https://9o4kug7075.execute-api.us-east-1.amazonaws.com/prod"
+  url = "https://a0xmrvzond.execute-api.us-east-1.amazonaws.com/prod"
   
   # contact form
   [params.form]

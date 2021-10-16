@@ -5,6 +5,9 @@
 <div class="section">
 <div class="row justify-content-center">
   {{ range .Site.Data.contact.methods}}
+  {{if (isset . "link" )}}
+  <a href={{.link}}>
+  {{end}}
     <div class="col-lg-5 col-sm-10 col-mb-8 contact-card">
       <div class="card hover-bg-secondary shadow py-4">
         <div class="card-body text-center">
@@ -23,10 +26,13 @@
             {{end}}
           </div>
           <h4 class="mb-4">{{.title}}</h4>
-          <p>{{.description}}</p>
+          <p>{{.description | safeHTML }}</p>
         </div>
       </div>
     </div>
+    {{if (isset . "link" )}}
+    </a>
+    {{end}}
   {{end}}
 </div>
 </div>

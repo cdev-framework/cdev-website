@@ -1,5 +1,5 @@
 {
-    "type": "example",
+    "type": "examples",
     "layout": "type",
     "title": "Schedule Lambdas",
     "linktitle": "scheduletasks",

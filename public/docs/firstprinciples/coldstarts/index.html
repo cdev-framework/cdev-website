@@ -409,16 +409,16 @@ def MyHandler3(event, context):
     ({
         type: "POST",
         
-        url: 'https:\/\/h02mgj826a.execute-api.us-east-1.amazonaws.com\/Prod/mailing_list/',
-        dataType: 'json',
+        url: 'https:\/\/j5ilob3c37.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
+        contentType: "application/json",
         async: true,
         
         data: JSON.stringify(data),
         success: function (data) {
-          console.log(data)
-
+          data = JSON.parse(data)
           if (data.success){
             display_message("Thank you for signing up!", false)
+            console.log("SHOULD HAVE SHOWN")
           }
           else {
             display_message(data.message, true)

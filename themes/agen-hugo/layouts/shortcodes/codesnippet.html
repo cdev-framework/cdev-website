@@ -1,5 +1,10 @@
+
 <pre style="padding-top: 0;">
-    <code class="language-python">
-        {{ readFile (.Get 0)}}
-    </code>
+    <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-dark copy-code">
+            <i class="icon-xs ti-clipboard text-white "></i>
+        </button>    
+    </div>
+    <code class="language-python code-block">{{ trim (readFile (.Get 0)) "\n"}}</code>
+
 </pre>

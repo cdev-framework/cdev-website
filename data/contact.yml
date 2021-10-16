@@ -1,25 +1,35 @@
 methods:
-  ##- Discord:
-  ##  title: "Discord"
-  ##  description: "Join our Discord channel to access a community of fellow Cdev developers"
-  ##  icon: "discord"
-  ##
+
   ##- Twitter:
   ##  title: "Twitter"
   ##  description: "Follow us on Twitter to stay up to date on all the discussion happening about Cdev"
   ##  icon: "ti-twitter" 
 ##
-  ##- Github:
-  ##  title: "Github"
-  ##  description: "Contribute on Github by raising an issue or opening a pull request"
-  ##  icon: "ti-github"
+
 ##
+  - Twitter:
+    title: "Twitter"
+    description: "Follow us on <a href='https://twitter.com/CdevFramework'>twitter</a>"
+    icon: "ti-twitter"
+    link: "https://twitter.com/CdevFramework"
+
+    
+  - Discord:
+    title: "Discord"
+    description: "Join our Discord channel to access a community of fellow Cdev developers"
+    icon: "discord"
+
+
   - Newsletter:
     title: "Newsletter"
     description: "Subscribe to our newsletter to get all the big updates about Cdev"
     icon: "ti-email"
 
-  - DirectContact:
-    title: "Email Us"
-    description: "Send us an email at information@cdevframework.com for more information"
-    icon: "ti-email"
+
+  - Github:
+    title: "Github"
+    description: "Contribute on Github by raising an issue or opening a pull request"
+    icon: "ti-github"
+
+
+
