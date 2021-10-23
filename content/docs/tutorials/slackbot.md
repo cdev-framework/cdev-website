@@ -7,3 +7,6 @@
     "card_body": "Learn how to create Slack bots",
     "weight": "3"
 }
+
+
+# Slack Bot
