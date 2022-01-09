@@ -4,6 +4,7 @@ $( document ).ready(function() {
     const codeBlocks = document.querySelectorAll('.code-block');
     const copyCodeButtons = document.querySelectorAll('.copy-code');
     
+    
     copyCodeButtons.forEach((copyCodeButton, index) => {
       const code = codeBlocks[index].innerText;
       const icon = copyCodeButtons[index].children[0]
