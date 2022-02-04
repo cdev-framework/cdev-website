@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.constructs.output_manager API documentation</title>
+<meta name="description" content="Utilities for displaying data in a unified and formatted manner" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.constructs.output_manager</code></h1>
+</header>
+<section id="section-intro">
+<p>Utilities for displaying data in a unified and formatted manner</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Utilities for displaying data in a unified and formatted manner
+
+
+
+&#34;&#34;&#34;
+
+from rich.console import Console
+from typing import Any, List, Tuple, Union
+
+from rich.progress import Progress, TaskID  
+
+from core.constructs.components import Component_Change_Type, ComponentModel, Component_Difference
+from core.constructs.resource import Resource_Change_Type, Resource_Difference, Resource_Reference_Change_Type, Resource_Reference_Difference
+
+class OutputManager():
+    def __init__(self, console: Console=None, progress: Progress=None) -&gt; None:
+
+        if console:
+            self._console = console
+        else:
+            self._console = Console()
+
+        if progress:
+            self._progress = progress
+        else:
+            self._progress = None
+
+
+    def print_header(self, resource_state_uuid: str):        
+        print(f&#34;Resource State: {resource_state_uuid}&#34;)
+
+        print(&#34;&#34;)
+
+
+    def print_local_state(self, rendered_components: List[ComponentModel]):
+
+        rendered_components.sort(key=lambda x: x.name)
+        
+        self._console.print(f&#34;Current State:&#34;)
+        for component in rendered_components:
+            self._console.print(f&#34;Component: [bold blue]{component.name}[/bold blue]&#34;)
+
+            if component.resources:
+                self._console.print(f&#34;    Resources:&#34;)
+                for resource in component.resources:
+                    self._console.print(f&#34;        [bold blue]{resource.name} ({resource.ruuid})[/bold blue]&#34;)
+
+
+            if component.references:
+                self._console.print(f&#34;    References:&#34;)
+                for reference in component.references:
+                    self._console.print(f&#34;        [bold blue]From {reference.component_name} reference {reference.name} ({reference.ruuid})[/bold blue]&#34;)
+
+        self._console.print(&#34;&#34;)
+
+
+    def print_components_to_diff_against(self, old_component_names: List[str]):
+
+        self._console.print(&#34;Components to diff against:&#34;)
+        for component_name in old_component_names:
+            self._console.print(f&#34;    {component_name}&#34;)
+
+
+        self._console.print(&#34;&#34;)
+
+
+    def print_state_differences(self, differences: Tuple[List[Component_Difference], List[Resource_Difference], List[Resource_Reference_Difference]]):
+        component_differences = differences[0]
+        resource_differences = differences[1]
+        reference_differences = differences[2]
+
+
+        self._console.print(f&#34;[bold white]Differences in State:[/bold white]&#34;)
+
+        for component_diff in component_differences:
+            if component_diff.action_type == Component_Change_Type.UPDATE_NAME:
+                self._console.print(f&#34;    [bold yellow]Update Name: [/bold yellow][bold blue]{component_diff.previous_name} to {component_diff.new_name} (component)[/bold blue]&#34;)
+                continue
+
+            elif component_diff.action_type == Component_Change_Type.UPDATE_IDENTITY:
+                self._console.print(f&#34;    [bold yellow]Update Identity: [/bold yellow][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+            elif component_diff.action_type == Component_Change_Type.CREATE:
+                self._console.print(f&#34;    [bold green]Create: [/bold green][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+            elif component_diff.action_type == Component_Change_Type.DELETE:
+                self._console.print(f&#34;    [bold red]Delete: [/bold red] [bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+
+            resource_changes = [x for x in resource_differences if x.component_name == component_diff.new_name]
+
+            if resource_changes:
+                for resource_diff in resource_changes:
+                    if resource_diff.action_type == Resource_Change_Type.CREATE:
+                        self._console.print(f&#34;        [bold green]Create:[/bold green][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.DELETE:
+                        self._console.print(f&#34;        [bold red]Delete:[/bold red][bold blue] {resource_diff.previous_resource.name} ({resource_diff.previous_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+                        self._console.print(f&#34;        [bold yellow]Update:[/bold yellow][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.UPDATE_NAME:
+                        self._console.print(f&#34;        [bold yellow]Update Name:[/bold yellow][bold blue] from {resource_diff.previous_resource.name} to {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+
+            reference_changes = [x for x in reference_differences if x.originating_component_name == component_diff.new_name]
+
+            if reference_changes:
+                for reference_diff in reference_changes:
+                    if reference_diff.action_type == Resource_Reference_Change_Type.CREATE:
+                        self._console.print(f&#34;        [bold green]Create reference:[/bold green][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)
+
+                    elif reference_diff.action_type == Resource_Reference_Change_Type.DELETE:
+                        self._console.print(f&#34;        [bold red]Delete reference:[/bold red][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)
+
+
+    def create_task(self, description: str, start: bool = True, total: int = 100, completed: int = 0, visible: bool = True, **fields: Any) -&gt; &#39;OutputTask&#39;:
+        &#34;&#34;&#34;Create a task for the progress object in this output manager. 
+
+        Raises:
+            Exception: [description]
+
+        Returns:
+            OutputTask: Object to use to track the progress of the event
+        &#34;&#34;&#34;
+
+
+        if not self._progress:
+            raise Exception
+
+
+        task_id = self._progress.add_task(description=description, start=start, total=total, completed=completed, visible=visible, **fields)
+
+        return OutputTask(self, task_id)
+
+
+    def create_output_description(self, node: Union[Resource_Difference, Resource_Reference_Difference, Component_Difference]) -&gt; str:
+        if isinstance(node, Resource_Difference):
+            if node.action_type == Resource_Change_Type.CREATE:
+                return f&#34;[bold green]Creating:[/bold green][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.DELETE:
+                return f&#34;[bold red]Deleting:[/bold red][bold blue] {node.previous_resource.name} ({node.previous_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+                return f&#34;[bold yellow]Updating:[/bold yellow][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.UPDATE_NAME:
+                return f&#34;[bold yellow]Updating Name:[/bold yellow][bold blue] from {node.previous_resource.name} to {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+        elif isinstance(node, Resource_Reference_Difference):
+            if node.action_type == Resource_Reference_Change_Type.CREATE:
+                return f&#34;[bold green]Create reference:[/bold green][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+            elif node.action_type == Resource_Reference_Change_Type.DELETE:
+                return f&#34;[bold red]Delete reference:[/bold red][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+        elif isinstance(node, Component_Difference):
+            if node.action_type == Component_Change_Type.UPDATE_NAME:
+                return f&#34;[bold yellow]Update Name: [/bold yellow][bold blue]{node.previous_name} to {node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.UPDATE_IDENTITY:
+                return f&#34;[bold yellow]Update Identity: [/bold yellow][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.CREATE:
+                return f&#34;[bold green]Create: [/bold green][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.DELETE:
+                return f&#34;[bold red]Delete: [/bold red] [bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+        else:
+            raise Exception(f&#34;Trying to deploy node {node} but it is not a correct type &#34;)
+
+
+class OutputTask():
+    &#34;&#34;&#34;
+    Wrapper around an output that can be used to track long running events. The implementation is as a wrapper around a &#39;progress task&#39; from the
+    rich library. Thus, the api for &#39;update&#39; and &#39;start&#39; follows the same pattern as that of a &#39;task&#39; in the rich library. The print method provides
+    access for sending messages to the parent console of this task. 
+    &#34;&#34;&#34;  
+
+    def __init__(self, output_manager: OutputManager, task_id: TaskID) -&gt; None:
+        self._output_manager = output_manager
+        self._task_id = task_id
+
+    
+    def print(self, msg: str):
+        &#34;&#34;&#34;Print a message to the parent output context.
+
+        Args:
+            msg (str): message to print
+        &#34;&#34;&#34;
+        self._output_manager._console.print(msg)
+
+
+    def print_error(self, msg: str):
+        &#34;&#34;&#34;
+        Print a message as an error
+
+        Args:
+            msg (str): error message
+        &#34;&#34;&#34;
+        self.print(f&#34;[bold red]{msg}[/bold red]&#34;)
+
+
+
+    def update(self, *args, total: float = None, completed: float = None, advance: None = None, description: str = None, visible: bool = None, refresh: bool = False, **fields: Any):
+        #self._output_manager._console.print(fields.get(&#39;comment&#39;))
+        self._output_manager._progress.update(self._task_id, *args, total=total, completed=completed, advance=advance, description=description, visible=visible, refresh=refresh, **fields)
+
+
+    def start_task(self):
+        self._output_manager._progress.start_task(self._task_id)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.constructs.output_manager.OutputManager"><code class="flex name class">
+<span>class <span class="ident">OutputManager</span></span>
+<span>(</span><span>console: rich.console.Console = None, progress: rich.progress.Progress = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OutputManager():
+    def __init__(self, console: Console=None, progress: Progress=None) -&gt; None:
+
+        if console:
+            self._console = console
+        else:
+            self._console = Console()
+
+        if progress:
+            self._progress = progress
+        else:
+            self._progress = None
+
+
+    def print_header(self, resource_state_uuid: str):        
+        print(f&#34;Resource State: {resource_state_uuid}&#34;)
+
+        print(&#34;&#34;)
+
+
+    def print_local_state(self, rendered_components: List[ComponentModel]):
+
+        rendered_components.sort(key=lambda x: x.name)
+        
+        self._console.print(f&#34;Current State:&#34;)
+        for component in rendered_components:
+            self._console.print(f&#34;Component: [bold blue]{component.name}[/bold blue]&#34;)
+
+            if component.resources:
+                self._console.print(f&#34;    Resources:&#34;)
+                for resource in component.resources:
+                    self._console.print(f&#34;        [bold blue]{resource.name} ({resource.ruuid})[/bold blue]&#34;)
+
+
+            if component.references:
+                self._console.print(f&#34;    References:&#34;)
+                for reference in component.references:
+                    self._console.print(f&#34;        [bold blue]From {reference.component_name} reference {reference.name} ({reference.ruuid})[/bold blue]&#34;)
+
+        self._console.print(&#34;&#34;)
+
+
+    def print_components_to_diff_against(self, old_component_names: List[str]):
+
+        self._console.print(&#34;Components to diff against:&#34;)
+        for component_name in old_component_names:
+            self._console.print(f&#34;    {component_name}&#34;)
+
+
+        self._console.print(&#34;&#34;)
+
+
+    def print_state_differences(self, differences: Tuple[List[Component_Difference], List[Resource_Difference], List[Resource_Reference_Difference]]):
+        component_differences = differences[0]
+        resource_differences = differences[1]
+        reference_differences = differences[2]
+
+
+        self._console.print(f&#34;[bold white]Differences in State:[/bold white]&#34;)
+
+        for component_diff in component_differences:
+            if component_diff.action_type == Component_Change_Type.UPDATE_NAME:
+                self._console.print(f&#34;    [bold yellow]Update Name: [/bold yellow][bold blue]{component_diff.previous_name} to {component_diff.new_name} (component)[/bold blue]&#34;)
+                continue
+
+            elif component_diff.action_type == Component_Change_Type.UPDATE_IDENTITY:
+                self._console.print(f&#34;    [bold yellow]Update Identity: [/bold yellow][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+            elif component_diff.action_type == Component_Change_Type.CREATE:
+                self._console.print(f&#34;    [bold green]Create: [/bold green][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+            elif component_diff.action_type == Component_Change_Type.DELETE:
+                self._console.print(f&#34;    [bold red]Delete: [/bold red] [bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+
+            resource_changes = [x for x in resource_differences if x.component_name == component_diff.new_name]
+
+            if resource_changes:
+                for resource_diff in resource_changes:
+                    if resource_diff.action_type == Resource_Change_Type.CREATE:
+                        self._console.print(f&#34;        [bold green]Create:[/bold green][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.DELETE:
+                        self._console.print(f&#34;        [bold red]Delete:[/bold red][bold blue] {resource_diff.previous_resource.name} ({resource_diff.previous_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+                        self._console.print(f&#34;        [bold yellow]Update:[/bold yellow][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                    elif resource_diff.action_type == Resource_Change_Type.UPDATE_NAME:
+                        self._console.print(f&#34;        [bold yellow]Update Name:[/bold yellow][bold blue] from {resource_diff.previous_resource.name} to {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+
+            reference_changes = [x for x in reference_differences if x.originating_component_name == component_diff.new_name]
+
+            if reference_changes:
+                for reference_diff in reference_changes:
+                    if reference_diff.action_type == Resource_Reference_Change_Type.CREATE:
+                        self._console.print(f&#34;        [bold green]Create reference:[/bold green][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)
+
+                    elif reference_diff.action_type == Resource_Reference_Change_Type.DELETE:
+                        self._console.print(f&#34;        [bold red]Delete reference:[/bold red][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)
+
+
+    def create_task(self, description: str, start: bool = True, total: int = 100, completed: int = 0, visible: bool = True, **fields: Any) -&gt; &#39;OutputTask&#39;:
+        &#34;&#34;&#34;Create a task for the progress object in this output manager. 
+
+        Raises:
+            Exception: [description]
+
+        Returns:
+            OutputTask: Object to use to track the progress of the event
+        &#34;&#34;&#34;
+
+
+        if not self._progress:
+            raise Exception
+
+
+        task_id = self._progress.add_task(description=description, start=start, total=total, completed=completed, visible=visible, **fields)
+
+        return OutputTask(self, task_id)
+
+
+    def create_output_description(self, node: Union[Resource_Difference, Resource_Reference_Difference, Component_Difference]) -&gt; str:
+        if isinstance(node, Resource_Difference):
+            if node.action_type == Resource_Change_Type.CREATE:
+                return f&#34;[bold green]Creating:[/bold green][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.DELETE:
+                return f&#34;[bold red]Deleting:[/bold red][bold blue] {node.previous_resource.name} ({node.previous_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+                return f&#34;[bold yellow]Updating:[/bold yellow][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+            elif node.action_type == Resource_Change_Type.UPDATE_NAME:
+                return f&#34;[bold yellow]Updating Name:[/bold yellow][bold blue] from {node.previous_resource.name} to {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+        elif isinstance(node, Resource_Reference_Difference):
+            if node.action_type == Resource_Reference_Change_Type.CREATE:
+                return f&#34;[bold green]Create reference:[/bold green][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+            elif node.action_type == Resource_Reference_Change_Type.DELETE:
+                return f&#34;[bold red]Delete reference:[/bold red][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+        elif isinstance(node, Component_Difference):
+            if node.action_type == Component_Change_Type.UPDATE_NAME:
+                return f&#34;[bold yellow]Update Name: [/bold yellow][bold blue]{node.previous_name} to {node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.UPDATE_IDENTITY:
+                return f&#34;[bold yellow]Update Identity: [/bold yellow][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.CREATE:
+                return f&#34;[bold green]Create: [/bold green][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+            elif node.action_type == Component_Change_Type.DELETE:
+                return f&#34;[bold red]Delete: [/bold red] [bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+        else:
+            raise Exception(f&#34;Trying to deploy node {node} but it is not a correct type &#34;)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.constructs.output_manager.OutputManager.create_output_description"><code class="name flex">
+<span>def <span class="ident">create_output_description</span></span>(<span>self, node: Union[<a class="" title="core.constructs.resource.Resource_Difference" href="resource.html#core.constructs.resource.Resource_Difference">Resource_Difference</a>, <a class="" title="core.constructs.resource.Resource_Reference_Difference" href="resource.html#core.constructs.resource.Resource_Reference_Difference">Resource_Reference_Difference</a>, <a class="" title="core.constructs.components.Component_Difference" href="components.html#core.constructs.components.Component_Difference">Component_Difference</a>]) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_output_description(self, node: Union[Resource_Difference, Resource_Reference_Difference, Component_Difference]) -&gt; str:
+    if isinstance(node, Resource_Difference):
+        if node.action_type == Resource_Change_Type.CREATE:
+            return f&#34;[bold green]Creating:[/bold green][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+        elif node.action_type == Resource_Change_Type.DELETE:
+            return f&#34;[bold red]Deleting:[/bold red][bold blue] {node.previous_resource.name} ({node.previous_resource.ruuid})[/bold blue]&#34;
+
+        elif node.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+            return f&#34;[bold yellow]Updating:[/bold yellow][bold blue] {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+        elif node.action_type == Resource_Change_Type.UPDATE_NAME:
+            return f&#34;[bold yellow]Updating Name:[/bold yellow][bold blue] from {node.previous_resource.name} to {node.new_resource.name} ({node.new_resource.ruuid})[/bold blue]&#34;
+
+    elif isinstance(node, Resource_Reference_Difference):
+        if node.action_type == Resource_Reference_Change_Type.CREATE:
+            return f&#34;[bold green]Create reference:[/bold green][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+        elif node.action_type == Resource_Reference_Change_Type.DELETE:
+            return f&#34;[bold red]Delete reference:[/bold red][bold blue] {node.resource_reference.name} ({node.resource_reference.ruuid}) from {node.originating_component_name}[/bold blue]&#34;
+
+    elif isinstance(node, Component_Difference):
+        if node.action_type == Component_Change_Type.UPDATE_NAME:
+            return f&#34;[bold yellow]Update Name: [/bold yellow][bold blue]{node.previous_name} to {node.new_name} (component)[/bold blue]&#34;
+
+        elif node.action_type == Component_Change_Type.UPDATE_IDENTITY:
+            return f&#34;[bold yellow]Update Identity: [/bold yellow][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+        elif node.action_type == Component_Change_Type.CREATE:
+            return f&#34;[bold green]Create: [/bold green][bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+        elif node.action_type == Component_Change_Type.DELETE:
+            return f&#34;[bold red]Delete: [/bold red] [bold blue]{node.new_name} (component)[/bold blue]&#34;
+
+    else:
+        raise Exception(f&#34;Trying to deploy node {node} but it is not a correct type &#34;)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputManager.create_task"><code class="name flex">
+<span>def <span class="ident">create_task</span></span>(<span>self, description: str, start: bool = True, total: int = 100, completed: int = 0, visible: bool = True, **fields: Any) ‑> <a class="" title="core.constructs.output_manager.OutputTask" href="#core.constructs.output_manager.OutputTask">OutputTask</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a task for the progress object in this output manager. </p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>[description]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a class="" title="core.constructs.output_manager.OutputTask" href="#core.constructs.output_manager.OutputTask">OutputTask</a></code></dt>
+<dd>Object to use to track the progress of the event</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_task(self, description: str, start: bool = True, total: int = 100, completed: int = 0, visible: bool = True, **fields: Any) -&gt; &#39;OutputTask&#39;:
+    &#34;&#34;&#34;Create a task for the progress object in this output manager. 
+
+    Raises:
+        Exception: [description]
+
+    Returns:
+        OutputTask: Object to use to track the progress of the event
+    &#34;&#34;&#34;
+
+
+    if not self._progress:
+        raise Exception
+
+
+    task_id = self._progress.add_task(description=description, start=start, total=total, completed=completed, visible=visible, **fields)
+
+    return OutputTask(self, task_id)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputManager.print_components_to_diff_against"><code class="name flex">
+<span>def <span class="ident">print_components_to_diff_against</span></span>(<span>self, old_component_names: List[str])</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_components_to_diff_against(self, old_component_names: List[str]):
+
+    self._console.print(&#34;Components to diff against:&#34;)
+    for component_name in old_component_names:
+        self._console.print(f&#34;    {component_name}&#34;)
+
+
+    self._console.print(&#34;&#34;)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputManager.print_header"><code class="name flex">
+<span>def <span class="ident">print_header</span></span>(<span>self, resource_state_uuid: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_header(self, resource_state_uuid: str):        
+    print(f&#34;Resource State: {resource_state_uuid}&#34;)
+
+    print(&#34;&#34;)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputManager.print_local_state"><code class="name flex">
+<span>def <span class="ident">print_local_state</span></span>(<span>self, rendered_components: List[<a class="" title="core.constructs.components.ComponentModel" href="components.html#core.constructs.components.ComponentModel">ComponentModel</a>])</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_local_state(self, rendered_components: List[ComponentModel]):
+
+    rendered_components.sort(key=lambda x: x.name)
+    
+    self._console.print(f&#34;Current State:&#34;)
+    for component in rendered_components:
+        self._console.print(f&#34;Component: [bold blue]{component.name}[/bold blue]&#34;)
+
+        if component.resources:
+            self._console.print(f&#34;    Resources:&#34;)
+            for resource in component.resources:
+                self._console.print(f&#34;        [bold blue]{resource.name} ({resource.ruuid})[/bold blue]&#34;)
+
+
+        if component.references:
+            self._console.print(f&#34;    References:&#34;)
+            for reference in component.references:
+                self._console.print(f&#34;        [bold blue]From {reference.component_name} reference {reference.name} ({reference.ruuid})[/bold blue]&#34;)
+
+    self._console.print(&#34;&#34;)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputManager.print_state_differences"><code class="name flex">
+<span>def <span class="ident">print_state_differences</span></span>(<span>self, differences: Tuple[List[<a class="" title="core.constructs.components.Component_Difference" href="components.html#core.constructs.components.Component_Difference">Component_Difference</a>], List[<a class="" title="core.constructs.resource.Resource_Difference" href="resource.html#core.constructs.resource.Resource_Difference">Resource_Difference</a>], List[<a class="" title="core.constructs.resource.Resource_Reference_Difference" href="resource.html#core.constructs.resource.Resource_Reference_Difference">Resource_Reference_Difference</a>]])</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_state_differences(self, differences: Tuple[List[Component_Difference], List[Resource_Difference], List[Resource_Reference_Difference]]):
+    component_differences = differences[0]
+    resource_differences = differences[1]
+    reference_differences = differences[2]
+
+
+    self._console.print(f&#34;[bold white]Differences in State:[/bold white]&#34;)
+
+    for component_diff in component_differences:
+        if component_diff.action_type == Component_Change_Type.UPDATE_NAME:
+            self._console.print(f&#34;    [bold yellow]Update Name: [/bold yellow][bold blue]{component_diff.previous_name} to {component_diff.new_name} (component)[/bold blue]&#34;)
+            continue
+
+        elif component_diff.action_type == Component_Change_Type.UPDATE_IDENTITY:
+            self._console.print(f&#34;    [bold yellow]Update Identity: [/bold yellow][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+        elif component_diff.action_type == Component_Change_Type.CREATE:
+            self._console.print(f&#34;    [bold green]Create: [/bold green][bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+        elif component_diff.action_type == Component_Change_Type.DELETE:
+            self._console.print(f&#34;    [bold red]Delete: [/bold red] [bold blue]{component_diff.new_name} (component)[/bold blue]&#34;)
+
+
+        resource_changes = [x for x in resource_differences if x.component_name == component_diff.new_name]
+
+        if resource_changes:
+            for resource_diff in resource_changes:
+                if resource_diff.action_type == Resource_Change_Type.CREATE:
+                    self._console.print(f&#34;        [bold green]Create:[/bold green][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                elif resource_diff.action_type == Resource_Change_Type.DELETE:
+                    self._console.print(f&#34;        [bold red]Delete:[/bold red][bold blue] {resource_diff.previous_resource.name} ({resource_diff.previous_resource.ruuid})[/bold blue]&#34;)
+
+                elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+                    self._console.print(f&#34;        [bold yellow]Update:[/bold yellow][bold blue] {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+                elif resource_diff.action_type == Resource_Change_Type.UPDATE_NAME:
+                    self._console.print(f&#34;        [bold yellow]Update Name:[/bold yellow][bold blue] from {resource_diff.previous_resource.name} to {resource_diff.new_resource.name} ({resource_diff.new_resource.ruuid})[/bold blue]&#34;)
+
+
+        reference_changes = [x for x in reference_differences if x.originating_component_name == component_diff.new_name]
+
+        if reference_changes:
+            for reference_diff in reference_changes:
+                if reference_diff.action_type == Resource_Reference_Change_Type.CREATE:
+                    self._console.print(f&#34;        [bold green]Create reference:[/bold green][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)
+
+                elif reference_diff.action_type == Resource_Reference_Change_Type.DELETE:
+                    self._console.print(f&#34;        [bold red]Delete reference:[/bold red][bold blue] {reference_diff.resource_reference.name} ({reference_diff.resource_reference.ruuid}) from {reference_diff.originating_component_name}[/bold blue]&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.output_manager.OutputTask"><code class="flex name class">
+<span>class <span class="ident">OutputTask</span></span>
+<span>(</span><span>output_manager: <a class="" title="core.constructs.output_manager.OutputManager" href="#core.constructs.output_manager.OutputManager">OutputManager</a>, task_id: TaskID)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Wrapper around an output that can be used to track long running events. The implementation is as a wrapper around a 'progress task' from the
+rich library. Thus, the api for 'update' and 'start' follows the same pattern as that of a 'task' in the rich library. The print method provides
+access for sending messages to the parent console of this task.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OutputTask():
+    &#34;&#34;&#34;
+    Wrapper around an output that can be used to track long running events. The implementation is as a wrapper around a &#39;progress task&#39; from the
+    rich library. Thus, the api for &#39;update&#39; and &#39;start&#39; follows the same pattern as that of a &#39;task&#39; in the rich library. The print method provides
+    access for sending messages to the parent console of this task. 
+    &#34;&#34;&#34;  
+
+    def __init__(self, output_manager: OutputManager, task_id: TaskID) -&gt; None:
+        self._output_manager = output_manager
+        self._task_id = task_id
+
+    
+    def print(self, msg: str):
+        &#34;&#34;&#34;Print a message to the parent output context.
+
+        Args:
+            msg (str): message to print
+        &#34;&#34;&#34;
+        self._output_manager._console.print(msg)
+
+
+    def print_error(self, msg: str):
+        &#34;&#34;&#34;
+        Print a message as an error
+
+        Args:
+            msg (str): error message
+        &#34;&#34;&#34;
+        self.print(f&#34;[bold red]{msg}[/bold red]&#34;)
+
+
+
+    def update(self, *args, total: float = None, completed: float = None, advance: None = None, description: str = None, visible: bool = None, refresh: bool = False, **fields: Any):
+        #self._output_manager._console.print(fields.get(&#39;comment&#39;))
+        self._output_manager._progress.update(self._task_id, *args, total=total, completed=completed, advance=advance, description=description, visible=visible, refresh=refresh, **fields)
+
+
+    def start_task(self):
+        self._output_manager._progress.start_task(self._task_id)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.constructs.output_manager.OutputTask.print"><code class="name flex">
+<span>def <span class="ident">print</span></span>(<span>self, msg: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print a message to the parent output context.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>msg</code></strong> :&ensp;<code>str</code></dt>
+<dd>message to print</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print(self, msg: str):
+    &#34;&#34;&#34;Print a message to the parent output context.
+
+    Args:
+        msg (str): message to print
+    &#34;&#34;&#34;
+    self._output_manager._console.print(msg)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputTask.print_error"><code class="name flex">
+<span>def <span class="ident">print_error</span></span>(<span>self, msg: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print a message as an error</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>msg</code></strong> :&ensp;<code>str</code></dt>
+<dd>error message</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_error(self, msg: str):
+    &#34;&#34;&#34;
+    Print a message as an error
+
+    Args:
+        msg (str): error message
+    &#34;&#34;&#34;
+    self.print(f&#34;[bold red]{msg}[/bold red]&#34;)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputTask.start_task"><code class="name flex">
+<span>def <span class="ident">start_task</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start_task(self):
+    self._output_manager._progress.start_task(self._task_id)</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.output_manager.OutputTask.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>self, *args, total: float = None, completed: float = None, advance: None = None, description: str = None, visible: bool = None, refresh: bool = False, **fields: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update(self, *args, total: float = None, completed: float = None, advance: None = None, description: str = None, visible: bool = None, refresh: bool = False, **fields: Any):
+    #self._output_manager._console.print(fields.get(&#39;comment&#39;))
+    self._output_manager._progress.update(self._task_id, *args, total=total, completed=completed, advance=advance, description=description, visible=visible, refresh=refresh, **fields)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.constructs" href="index.html">core.constructs</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.output_manager.OutputManager" href="#core.constructs.output_manager.OutputManager">OutputManager</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.create_output_description" href="#core.constructs.output_manager.OutputManager.create_output_description">create_output_description</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.create_task" href="#core.constructs.output_manager.OutputManager.create_task">create_task</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.print_components_to_diff_against" href="#core.constructs.output_manager.OutputManager.print_components_to_diff_against">print_components_to_diff_against</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.print_header" href="#core.constructs.output_manager.OutputManager.print_header">print_header</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.print_local_state" href="#core.constructs.output_manager.OutputManager.print_local_state">print_local_state</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputManager.print_state_differences" href="#core.constructs.output_manager.OutputManager.print_state_differences">print_state_differences</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.output_manager.OutputTask" href="#core.constructs.output_manager.OutputTask">OutputTask</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputTask.print" href="#core.constructs.output_manager.OutputTask.print">print</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputTask.print_error" href="#core.constructs.output_manager.OutputTask.print_error">print_error</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputTask.start_task" href="#core.constructs.output_manager.OutputTask.start_task">start_task</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.output_manager.OutputTask.update" href="#core.constructs.output_manager.OutputTask.update">update</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

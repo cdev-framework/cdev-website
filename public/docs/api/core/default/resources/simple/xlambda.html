@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.default.resources.simple.xlambda API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.default.resources.simple.xlambda</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import importlib
+import inspect
+import os
+from pydantic import FilePath
+from typing import Callable, Dict, FrozenSet, List, Optional, Union
+
+from core.constructs.cloud_output import Cloud_Output_Dynamic
+from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsGrantableMixin
+from core.constructs.models import frozendict, ImmutableModel
+from core.constructs.types import cdev_str_model, cdev_str
+
+from core.utils import hasher
+
+from core.default.resources.simple.iam import Permission, PermissionArn, permission_arn_model, permission_model
+from core.default.resources.simple.events import Event, event_model
+
+
+LAMBDA_LAYER_RUUID = &#34;cdev::simple::lambda_layer&#34;
+RUUID = &#34;cdev::simple::function&#34;
+
+################
+##### Dependencies 
+################
+class deployed_layer_model(ResourceModel):
+    arn: str
+    version: str
+
+
+class DeployedLayer():
+    pass
+
+
+class dependency_layer_model(ResourceModel):
+    artifact_path: str
+
+
+class DependencyLayer(Resource):
+
+    def __init__(self, cdev_name: str, artifact_path: FilePath = None) -&gt; None:
+        super().__init__(cdev_name)
+        self.artifact_path = artifact_path
+        self.output = DependencyLayerOutput(cdev_name)
+
+    def render(self) -&gt; dependency_layer_model:
+        return dependency_layer_model(
+            ruuid=LAMBDA_LAYER_RUUID,
+            name=self.name, 
+            hash=&#39;1&#39;,
+            artifact_path=self.artifact_path
+        )
+
+################
+##### Output
+################
+
+
+class DependencyLayerOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, LAMBDA_LAYER_RUUID)
+
+
+class FunctionOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)
+
+
+################
+##### Function
+################
+class simple_function_configuration_model(ImmutableModel):
+    handler: str
+    description: Optional[cdev_str_model]
+    environment_variables: frozendict
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True
+
+
+class SimpleFunctionConfiguration():
+    def __init__(self, handler: cdev_str, description: cdev_str = &#34;&#34;, environment_variables: Dict[str, cdev_str] = {} ) -&gt; None:
+        self.handler = handler
+        self.description = description
+        self.environment_variables = environment_variables
+
+
+    def render(self) -&gt; simple_function_configuration_model:
+        return simple_function_configuration_model(
+            handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
+            description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
+            environment_variables = frozendict(
+                {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+            ) if self.environment_variables else frozendict({})
+        )
+
+
+
+class simple_function_model(ResourceModel):
+    &#34;&#34;&#34;
+    Some Doc String
+
+    Args:
+        Filepath ([type]): [description]
+    &#34;&#34;&#34;
+    filepath: str  # Don&#39;t use FilePath because this will be a relative path and might not always point correctly to a file in all contexts
+    configuration: simple_function_configuration_model
+    events: FrozenSet[event_model]
+    permissions: FrozenSet[Union[permission_model, permission_arn_model]]
+    external_dependencies: FrozenSet[Union[deployed_layer_model, dependency_layer_model]]
+    src_code_hash: str
+
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True
+        extra = &#34;ignore&#34;
+
+
+class SimpleFunction(PermissionsGrantableMixin, Resource):
+    @update_hash
+    def __init__(
+        self,
+        cdev_name: str,
+        filepath: str,
+        configuration: SimpleFunctionConfiguration,
+        events: List[Event] = [],
+        function_permissions: List[Union[Permission, PermissionArn]] = [],
+        external_dependencies: List[Union[DeployedLayer, DependencyLayer]]=[],
+        src_code_hash: str = None,
+        nonce: str = &#34;&#34;,
+    ) -&gt; None:
+        &#34;&#34;&#34;[summary]
+
+        Args:
+            cdev_name (str): [description]
+            filepath (str): [description]
+            configuration (SimpleFunctionConfiguration): [description]. 
+            events (List[Event], optional): [description]. Defaults to [].
+            function_permissions (List[Union[Permission, PermissionArn]], optional): [description]. Defaults to [].
+            external_dependencies (List[Union[DeployedLayer, DependencyLayer]], optional): [description]. Defaults to [].
+            src_code_hash (str, optional): [description]. Defaults to None.
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self._filepath = filepath
+        self._events = events
+        self._configuration = configuration
+        self._external_dependencies = external_dependencies
+        self._granted_permissions: List[Union[Permission, PermissionArn]] = function_permissions
+
+        self.src_code_hash = src_code_hash if src_code_hash else hasher.hash_file(filepath)
+        
+
+    @property
+    def filepath(self):
+        return self._filepath
+
+    @filepath.setter
+    @update_hash
+    def filepath(self, value: str):
+        self._filepath = value
+
+    @property
+    def events(self):
+        return self._events
+
+    @events.setter
+    @update_hash
+    def events(self, value: List[Event]):
+        self._events = value
+
+    @property
+    def configuration(self):
+        return self._configuration
+
+    @configuration.setter
+    @update_hash
+    def configuration(self, value: SimpleFunctionConfiguration):
+        self._configuration = value
+
+    @property
+    def external_dependencies(self):
+        return self._external_dependencies
+
+    @external_dependencies.setter
+    @update_hash
+    def external_dependencies(self, value: List[Union[DeployedLayer, DependencyLayer]]):
+        self._external_dependencies = value
+
+    def compute_hash(self):
+        self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
+        self._config_hash = &#34;1&#34;
+        self._events_hash = hasher.hash_list([x.hash() for x in self.events])
+
+        self._hash = hasher.hash_list(
+            [
+                self.src_code_hash,
+                self._config_hash,
+                self._events_hash,
+                self._permissions_hash,
+                self._nonce
+            ]
+        )
+
+    def render(self) -&gt; simple_function_model:
+
+        premissions = [x.render() for x in self.granted_permissions]
+        
+        return simple_function_model(
+            name=self.name,
+            ruuid=self.ruuid,
+            hash=self.hash,
+            configuration=self.configuration.render(),
+            filepath=self.filepath,
+            events=frozenset([x.render() for x in self.events]),
+            permissions=frozenset(premissions),
+            external_dependencies=self.external_dependencies,
+            src_code_hash=self.src_code_hash
+        )
+
+
+def simple_function_annotation(
+    name: str,
+    events: List[Event] = [],
+    environment={},
+    permissions: List[Union[Permission, PermissionArn]] = [],
+    includes: List[str] = [],
+    nonce: str=&#34;&#34;
+) -&gt; Callable[[Callable], SimpleFunction]:
+    &#34;&#34;&#34;This annotation is used to designate that a function should be deployed as a Serverless function. 
+    
+    Functions that are designated using this annotation should have a signature that takes two inputs (event,context) 
+    to conform to the aws lambda handler signature.
+
+    Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
+    to only contain global statements needed for this function. For more information on this process read &lt;link&gt;.
+
+    &#34;&#34;&#34;
+
+    def create_function(func: Callable) -&gt; SimpleFunction:
+
+        if inspect.isfunction(func):
+            for item in inspect.getmembers(func):
+
+                if item[0] == &#34;__name__&#34;:
+                    handler_name = item[1]
+                elif item[0] == &#34;__doc__&#34;:
+                    description = item[1] if item[1] else &#34;&#34;
+                elif item[0] == &#34;__module__&#34;:
+                    mod_name = item[1]
+
+
+        final_config = SimpleFunctionConfiguration(
+            handler=handler_name,
+            description=description,
+            environment_variables=environment
+        )
+
+        mod = importlib.import_module(mod_name)
+
+        full_filepath = os.path.abspath(mod.__file__)
+
+        return SimpleFunction(
+            cdev_name=name,
+            filepath=full_filepath,
+            events=events,
+            configuration=final_config,
+            function_permissions=permissions,
+            nonce=nonce
+        )
+
+    return create_function</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.default.resources.simple.xlambda.simple_function_annotation"><code class="name flex">
+<span>def <span class="ident">simple_function_annotation</span></span>(<span>name: str, events: List[<a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a>] = [], environment={}, permissions: List[Union[<a class="" title="core.default.resources.simple.iam.Permission" href="iam.html#core.default.resources.simple.iam.Permission">Permission</a>, <a class="" title="core.default.resources.simple.iam.PermissionArn" href="iam.html#core.default.resources.simple.iam.PermissionArn">PermissionArn</a>]] = [], includes: List[str] = [], nonce: str = '') ‑> Callable[[Callable], <a class="" title="core.default.resources.simple.xlambda.SimpleFunction" href="#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This annotation is used to designate that a function should be deployed as a Serverless function. </p>
+<p>Functions that are designated using this annotation should have a signature that takes two inputs (event,context)
+to conform to the aws lambda handler signature.</p>
+<p>Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
+to only contain global statements needed for this function. For more information on this process read <link>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def simple_function_annotation(
+    name: str,
+    events: List[Event] = [],
+    environment={},
+    permissions: List[Union[Permission, PermissionArn]] = [],
+    includes: List[str] = [],
+    nonce: str=&#34;&#34;
+) -&gt; Callable[[Callable], SimpleFunction]:
+    &#34;&#34;&#34;This annotation is used to designate that a function should be deployed as a Serverless function. 
+    
+    Functions that are designated using this annotation should have a signature that takes two inputs (event,context) 
+    to conform to the aws lambda handler signature.
+
+    Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
+    to only contain global statements needed for this function. For more information on this process read &lt;link&gt;.
+
+    &#34;&#34;&#34;
+
+    def create_function(func: Callable) -&gt; SimpleFunction:
+
+        if inspect.isfunction(func):
+            for item in inspect.getmembers(func):
+
+                if item[0] == &#34;__name__&#34;:
+                    handler_name = item[1]
+                elif item[0] == &#34;__doc__&#34;:
+                    description = item[1] if item[1] else &#34;&#34;
+                elif item[0] == &#34;__module__&#34;:
+                    mod_name = item[1]
+
+
+        final_config = SimpleFunctionConfiguration(
+            handler=handler_name,
+            description=description,
+            environment_variables=environment
+        )
+
+        mod = importlib.import_module(mod_name)
+
+        full_filepath = os.path.abspath(mod.__file__)
+
+        return SimpleFunction(
+            cdev_name=name,
+            filepath=full_filepath,
+            events=events,
+            configuration=final_config,
+            function_permissions=permissions,
+            nonce=nonce
+        )
+
+    return create_function</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.resources.simple.xlambda.DependencyLayer"><code class="flex name class">
+<span>class <span class="ident">DependencyLayer</span></span>
+<span>(</span><span>cdev_name: str, artifact_path: pydantic.types.FilePath = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DependencyLayer(Resource):
+
+    def __init__(self, cdev_name: str, artifact_path: FilePath = None) -&gt; None:
+        super().__init__(cdev_name)
+        self.artifact_path = artifact_path
+        self.output = DependencyLayerOutput(cdev_name)
+
+    def render(self) -&gt; dependency_layer_model:
+        return dependency_layer_model(
+            ruuid=LAMBDA_LAYER_RUUID,
+            name=self.name, 
+            hash=&#39;1&#39;,
+            artifact_path=self.artifact_path
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.DependencyLayer.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.xlambda.dependency_layer_model" href="#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; dependency_layer_model:
+    return dependency_layer_model(
+        ruuid=LAMBDA_LAYER_RUUID,
+        name=self.name, 
+        hash=&#39;1&#39;,
+        artifact_path=self.artifact_path
+    )</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.Resource.hash" href="../../../constructs/resource.html#core.constructs.resource.Resource.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.name" href="../../../constructs/resource.html#core.constructs.resource.Resource.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.nonce" href="../../../constructs/resource.html#core.constructs.resource.Resource.nonce">nonce</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.ruuid" href="../../../constructs/resource.html#core.constructs.resource.Resource.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.DependencyLayerOutput"><code class="flex name class">
+<span>class <span class="ident">DependencyLayerOutput</span></span>
+<span>(</span><span>name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container object for the returned values from the cloud after the resource has been deployed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DependencyLayerOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, LAMBDA_LAYER_RUUID)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceOutputs" href="../../../constructs/resource.html#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.DeployedLayer"><code class="flex name class">
+<span>class <span class="ident">DeployedLayer</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DeployedLayer():
+    pass</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.xlambda.FunctionOutput"><code class="flex name class">
+<span>class <span class="ident">FunctionOutput</span></span>
+<span>(</span><span>name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container object for the returned values from the cloud after the resource has been deployed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FunctionOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceOutputs" href="../../../constructs/resource.html#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction"><code class="flex name class">
+<span>class <span class="ident">SimpleFunction</span></span>
+<span>(</span><span>*func_posargs, **func_kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SimpleFunction(PermissionsGrantableMixin, Resource):
+    @update_hash
+    def __init__(
+        self,
+        cdev_name: str,
+        filepath: str,
+        configuration: SimpleFunctionConfiguration,
+        events: List[Event] = [],
+        function_permissions: List[Union[Permission, PermissionArn]] = [],
+        external_dependencies: List[Union[DeployedLayer, DependencyLayer]]=[],
+        src_code_hash: str = None,
+        nonce: str = &#34;&#34;,
+    ) -&gt; None:
+        &#34;&#34;&#34;[summary]
+
+        Args:
+            cdev_name (str): [description]
+            filepath (str): [description]
+            configuration (SimpleFunctionConfiguration): [description]. 
+            events (List[Event], optional): [description]. Defaults to [].
+            function_permissions (List[Union[Permission, PermissionArn]], optional): [description]. Defaults to [].
+            external_dependencies (List[Union[DeployedLayer, DependencyLayer]], optional): [description]. Defaults to [].
+            src_code_hash (str, optional): [description]. Defaults to None.
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self._filepath = filepath
+        self._events = events
+        self._configuration = configuration
+        self._external_dependencies = external_dependencies
+        self._granted_permissions: List[Union[Permission, PermissionArn]] = function_permissions
+
+        self.src_code_hash = src_code_hash if src_code_hash else hasher.hash_file(filepath)
+        
+
+    @property
+    def filepath(self):
+        return self._filepath
+
+    @filepath.setter
+    @update_hash
+    def filepath(self, value: str):
+        self._filepath = value
+
+    @property
+    def events(self):
+        return self._events
+
+    @events.setter
+    @update_hash
+    def events(self, value: List[Event]):
+        self._events = value
+
+    @property
+    def configuration(self):
+        return self._configuration
+
+    @configuration.setter
+    @update_hash
+    def configuration(self, value: SimpleFunctionConfiguration):
+        self._configuration = value
+
+    @property
+    def external_dependencies(self):
+        return self._external_dependencies
+
+    @external_dependencies.setter
+    @update_hash
+    def external_dependencies(self, value: List[Union[DeployedLayer, DependencyLayer]]):
+        self._external_dependencies = value
+
+    def compute_hash(self):
+        self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
+        self._config_hash = &#34;1&#34;
+        self._events_hash = hasher.hash_list([x.hash() for x in self.events])
+
+        self._hash = hasher.hash_list(
+            [
+                self.src_code_hash,
+                self._config_hash,
+                self._events_hash,
+                self._permissions_hash,
+                self._nonce
+            ]
+        )
+
+    def render(self) -&gt; simple_function_model:
+
+        premissions = [x.render() for x in self.granted_permissions]
+        
+        return simple_function_model(
+            name=self.name,
+            ruuid=self.ruuid,
+            hash=self.hash,
+            configuration=self.configuration.render(),
+            filepath=self.filepath,
+            events=frozenset([x.render() for x in self.events]),
+            permissions=frozenset(premissions),
+            external_dependencies=self.external_dependencies,
+            src_code_hash=self.src_code_hash
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.PermissionsGrantableMixin" href="../../../constructs/resource.html#core.constructs.resource.PermissionsGrantableMixin">PermissionsGrantableMixin</a></li>
+<li><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.configuration"><code class="name">var <span class="ident">configuration</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def configuration(self):
+    return self._configuration</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.events"><code class="name">var <span class="ident">events</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def events(self):
+    return self._events</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.external_dependencies"><code class="name">var <span class="ident">external_dependencies</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def external_dependencies(self):
+    return self._external_dependencies</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.filepath"><code class="name">var <span class="ident">filepath</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def filepath(self):
+    return self._filepath</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.compute_hash"><code class="name flex">
+<span>def <span class="ident">compute_hash</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_hash(self):
+    self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
+    self._config_hash = &#34;1&#34;
+    self._events_hash = hasher.hash_list([x.hash() for x in self.events])
+
+    self._hash = hasher.hash_list(
+        [
+            self.src_code_hash,
+            self._config_hash,
+            self._events_hash,
+            self._permissions_hash,
+            self._nonce
+        ]
+    )</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.xlambda.simple_function_model" href="#core.default.resources.simple.xlambda.simple_function_model">simple_function_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; simple_function_model:
+
+    premissions = [x.render() for x in self.granted_permissions]
+    
+    return simple_function_model(
+        name=self.name,
+        ruuid=self.ruuid,
+        hash=self.hash,
+        configuration=self.configuration.render(),
+        filepath=self.filepath,
+        events=frozenset([x.render() for x in self.events]),
+        permissions=frozenset(premissions),
+        external_dependencies=self.external_dependencies,
+        src_code_hash=self.src_code_hash
+    )</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.Resource.hash" href="../../../constructs/resource.html#core.constructs.resource.Resource.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.name" href="../../../constructs/resource.html#core.constructs.resource.Resource.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.nonce" href="../../../constructs/resource.html#core.constructs.resource.Resource.nonce">nonce</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.ruuid" href="../../../constructs/resource.html#core.constructs.resource.Resource.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunctionConfiguration"><code class="flex name class">
+<span>class <span class="ident">SimpleFunctionConfiguration</span></span>
+<span>(</span><span>handler: ~cdev_str, description: ~cdev_str = '', environment_variables: Dict[str, ~cdev_str] = {})</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SimpleFunctionConfiguration():
+    def __init__(self, handler: cdev_str, description: cdev_str = &#34;&#34;, environment_variables: Dict[str, cdev_str] = {} ) -&gt; None:
+        self.handler = handler
+        self.description = description
+        self.environment_variables = environment_variables
+
+
+    def render(self) -&gt; simple_function_configuration_model:
+        return simple_function_configuration_model(
+            handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
+            description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
+            environment_variables = frozendict(
+                {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+            ) if self.environment_variables else frozendict({})
+        )</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.xlambda.simple_function_configuration_model" href="#core.default.resources.simple.xlambda.simple_function_configuration_model">simple_function_configuration_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; simple_function_configuration_model:
+    return simple_function_configuration_model(
+        handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
+        description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
+        environment_variables = frozendict(
+            {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+        ) if self.environment_variables else frozendict({})
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.xlambda.dependency_layer_model"><code class="flex name class">
+<span>class <span class="ident">dependency_layer_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class with basic information about a defined resource.</p>
+<p>All classes derived from this should contain additional information about the state of a resource.
+Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+configuration; hence the need to make these immutable data
+classes. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
+within a namespace</dd>
+<dt><strong><code>ruuid</code></strong></dt>
+<dd>The identifier of this resource type.</dd>
+<dt><strong><code>hash</code></strong></dt>
+<dd>A string that is the hash of this object. This hash must be computed such that it changes
+only if a change in the state is desired.</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class dependency_layer_model(ResourceModel):
+    artifact_path: str</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.dependency_layer_model.artifact_path"><code class="name">var <span class="ident">artifact_path</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.deployed_layer_model"><code class="flex name class">
+<span>class <span class="ident">deployed_layer_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class with basic information about a defined resource.</p>
+<p>All classes derived from this should contain additional information about the state of a resource.
+Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+configuration; hence the need to make these immutable data
+classes. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
+within a namespace</dd>
+<dt><strong><code>ruuid</code></strong></dt>
+<dd>The identifier of this resource type.</dd>
+<dt><strong><code>hash</code></strong></dt>
+<dd>A string that is the hash of this object. This hash must be computed such that it changes
+only if a change in the state is desired.</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class deployed_layer_model(ResourceModel):
+    arn: str
+    version: str</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.deployed_layer_model.arn"><code class="name">var <span class="ident">arn</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.deployed_layer_model.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_configuration_model"><code class="flex name class">
+<span>class <span class="ident">simple_function_configuration_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class simple_function_configuration_model(ImmutableModel):
+    handler: str
+    description: Optional[cdev_str_model]
+    environment_variables: frozendict
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.simple_function_configuration_model.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_configuration_model.description"><code class="name">var <span class="ident">description</span> : Optional[~cdev_str_model]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_configuration_model.environment_variables"><code class="name">var <span class="ident">environment_variables</span> : <a class="" title="core.constructs.models.frozendict" href="../../../constructs/models.html#core.constructs.models.frozendict">frozendict</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_configuration_model.handler"><code class="name">var <span class="ident">handler</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model"><code class="flex name class">
+<span>class <span class="ident">simple_function_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Some Doc String</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>Filepath</code></strong> :&ensp;<code>[type]</code></dt>
+<dd>[description]</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class simple_function_model(ResourceModel):
+    &#34;&#34;&#34;
+    Some Doc String
+
+    Args:
+        Filepath ([type]): [description]
+    &#34;&#34;&#34;
+    filepath: str  # Don&#39;t use FilePath because this will be a relative path and might not always point correctly to a file in all contexts
+    configuration: simple_function_configuration_model
+    events: FrozenSet[event_model]
+    permissions: FrozenSet[Union[permission_model, permission_arn_model]]
+    external_dependencies: FrozenSet[Union[deployed_layer_model, dependency_layer_model]]
+    src_code_hash: str
+
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True
+        extra = &#34;ignore&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.configuration"><code class="name">var <span class="ident">configuration</span> : <a class="" title="core.default.resources.simple.xlambda.simple_function_configuration_model" href="#core.default.resources.simple.xlambda.simple_function_configuration_model">simple_function_configuration_model</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.events"><code class="name">var <span class="ident">events</span> : FrozenSet[<a class="" title="core.default.resources.simple.events.event_model" href="events.html#core.default.resources.simple.events.event_model">event_model</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.external_dependencies"><code class="name">var <span class="ident">external_dependencies</span> : FrozenSet[Union[<a class="" title="core.default.resources.simple.xlambda.deployed_layer_model" href="#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a>, <a class="" title="core.default.resources.simple.xlambda.dependency_layer_model" href="#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.filepath"><code class="name">var <span class="ident">filepath</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.permissions"><code class="name">var <span class="ident">permissions</span> : FrozenSet[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.src_code_hash"><code class="name">var <span class="ident">src_code_hash</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.default.resources.simple" href="index.html">core.default.resources.simple</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_annotation" href="#core.default.resources.simple.xlambda.simple_function_annotation">simple_function_annotation</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.DependencyLayer" href="#core.default.resources.simple.xlambda.DependencyLayer">DependencyLayer</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.DependencyLayer.render" href="#core.default.resources.simple.xlambda.DependencyLayer.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.DependencyLayerOutput" href="#core.default.resources.simple.xlambda.DependencyLayerOutput">DependencyLayerOutput</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.DeployedLayer" href="#core.default.resources.simple.xlambda.DeployedLayer">DeployedLayer</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.FunctionOutput" href="#core.default.resources.simple.xlambda.FunctionOutput">FunctionOutput</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction" href="#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.compute_hash" href="#core.default.resources.simple.xlambda.SimpleFunction.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.configuration" href="#core.default.resources.simple.xlambda.SimpleFunction.configuration">configuration</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.events" href="#core.default.resources.simple.xlambda.SimpleFunction.events">events</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.external_dependencies" href="#core.default.resources.simple.xlambda.SimpleFunction.external_dependencies">external_dependencies</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.filepath" href="#core.default.resources.simple.xlambda.SimpleFunction.filepath">filepath</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.render" href="#core.default.resources.simple.xlambda.SimpleFunction.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration">SimpleFunctionConfiguration</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.dependency_layer_model" href="#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.dependency_layer_model.artifact_path" href="#core.default.resources.simple.xlambda.dependency_layer_model.artifact_path">artifact_path</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model" href="#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model.arn" href="#core.default.resources.simple.xlambda.deployed_layer_model.arn">arn</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model.version" href="#core.default.resources.simple.xlambda.deployed_layer_model.version">version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_configuration_model" href="#core.default.resources.simple.xlambda.simple_function_configuration_model">simple_function_configuration_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_configuration_model.Config" href="#core.default.resources.simple.xlambda.simple_function_configuration_model.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_configuration_model.description" href="#core.default.resources.simple.xlambda.simple_function_configuration_model.description">description</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_configuration_model.environment_variables" href="#core.default.resources.simple.xlambda.simple_function_configuration_model.environment_variables">environment_variables</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_configuration_model.handler" href="#core.default.resources.simple.xlambda.simple_function_configuration_model.handler">handler</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model" href="#core.default.resources.simple.xlambda.simple_function_model">simple_function_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.Config" href="#core.default.resources.simple.xlambda.simple_function_model.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.configuration" href="#core.default.resources.simple.xlambda.simple_function_model.configuration">configuration</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.events" href="#core.default.resources.simple.xlambda.simple_function_model.events">events</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.external_dependencies" href="#core.default.resources.simple.xlambda.simple_function_model.external_dependencies">external_dependencies</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.filepath" href="#core.default.resources.simple.xlambda.simple_function_model.filepath">filepath</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.permissions" href="#core.default.resources.simple.xlambda.simple_function_model.permissions">permissions</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.src_code_hash" href="#core.default.resources.simple.xlambda.simple_function_model.src_code_hash">src_code_hash</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.default.mappers.simple.lambda_deployer API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.default.mappers.simple.lambda_deployer</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from time import sleep
+from typing import Any, Dict, Union
+from uuid import uuid4
+
+from core.constructs.resource import Resource_Difference, Resource_Change_Type
+from core.constructs.output_manager import OutputTask
+from core.default.resources.simple import xlambda as simple_xlambda
+from core.default.resources.simple.iam import permission_arn_model, permission_model
+
+from core.utils import paths as core_paths, hasher
+from core.constructs.models import frozendict
+
+
+from .. import aws_client 
+from boto3.s3.transfer import TransferConfig
+
+
+#from .lambda_event_deployer import EVENT_TO_HANDLERS
+from .role_deployer import (
+    create_role_with_permissions,
+    delete_role_and_permissions,
+    add_policy,
+    delete_policy,
+)
+
+
+from .event_deployer import (
+    EVENT_TO_HANDLERS
+)
+
+import os
+
+
+AssumeRolePolicyDocumentJSON = &#34;&#34;&#34;{
+  &#34;Version&#34;: &#34;2012-10-17&#34;,
+  &#34;Statement&#34;: [
+    {
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Principal&#34;: {
+        &#34;Service&#34;: &#34;lambda.amazonaws.com&#34;
+      },
+      &#34;Action&#34;: &#34;sts:AssumeRole&#34;
+    }
+  ]
+}&#34;&#34;&#34;
+
+
+BUCKET = &#34;cdev-demo-project-artifacts&#34;
+
+###########################
+###### Main Handlers
+###########################
+def _create_simple_lambda(
+        transaction_token: str, 
+        namespace_token: str, 
+        resource: simple_xlambda.simple_function_model, 
+        output_task: OutputTask
+    ) -&gt; Dict:
+    # Steps for creating a deployed lambda function
+    # 1. Create IAM Role with needed permissions (note this is first to give aws more time to create the role in all regions and be available for use)
+    # 2. Upload the artifact to S3 as the archive location
+    # 3. Upload dependencies if needed
+    # 4. Create the function
+    # 5. Create any integrations that are need based on Events passed in
+
+    full_namespace_suffix = hasher.hash_list([namespace_token, str(uuid4())])
+
+    function_name = f&#34;cdev_function_{full_namespace_suffix}&#34;
+    output_task.update(
+        comment=f&#34;Creating lambda function resources for lambda {function_name}&#34;
+    )
+
+    final_info = {
+        &#39;function_name&#39;: function_name
+    }
+
+    output_task.update(
+        comment=f&#34;Creating IAM Role w/ permissions {resource.permissions}&#34;
+    )
+    # Step 1
+    role_name = f&#34;role_{function_name}&#34;
+    role_arn, permission_info = create_role_with_permissions(role_name, resource.permissions, AssumeRolePolicyDocumentJSON)
+
+    output_task.update(
+        comment=f&#34;Create role for lambda function {resource.name}&#34;
+    )
+
+    final_info[&#34;role_id&#34;] = role_arn
+    final_info[&#34;permissions&#34;] = permission_info
+
+    # Step 2
+    output_task.update(
+        comment=f&#34;Uploading code for lambda function {resource.name}&#34;
+    )
+
+    keyname = _upload_s3_code_artifact(function_name, resource)
+    
+
+    final_info[&#34;artifact_bucket&#34;] = BUCKET
+    final_info[&#34;artifact_key&#34;] = keyname
+
+    # Step 3
+    if resource.external_dependencies:
+        output_task.update(
+            comment=f&#34;Creating dependencies for lambda function {resource.name}&#34;
+        )
+
+        cloud_dependency_info = [_create_dependency(x) for x in resource.external_dependencies]
+
+        final_info[&#34;layers&#34;] = cloud_dependency_info
+
+    # Step 4
+    # TODO
+    output_task.update(
+        comment=f&#34;[blink]Waiting for role to finish creating (~10s)[/blink]&#34;
+    )
+    sleep(10)
+    # ughhhh add a retry wrapper because it takes time to generate the IAM roles across all regions so we need to wait a few seconds to create this
+    
+    output_task.update(
+        comment=f&#34;Create Lambda function&#34;
+    )
+
+    lambda_function_args = {
+        &#34;FunctionName&#34;: function_name,
+        &#34;Runtime&#34;: &#34;python3.7&#34;,
+        &#34;Role&#34;: role_arn,
+        &#34;Handler&#34;: resource.configuration.handler,
+        &#34;Code&#34;: {&#34;S3Bucket&#34;: BUCKET, &#34;S3Key&#34;: keyname},
+        &#34;Environment&#34;: {
+            &#34;Variables&#34;:resource.configuration.environment_variables._d
+        }
+        if resource.configuration.environment_variables
+        else {},
+        &#34;Layers&#34;: [
+            f&#39;{x.get(&#34;arn&#34;)}:{x.get(&#34;version&#34;)}&#39; for x in final_info.get(&#34;layers&#34;)
+        ]
+        if final_info.get(&#34;layers&#34;)
+        else [],
+    }
+
+    lambda_function_rv = aws_client.run_client_function(
+        &#34;lambda&#34;, &#34;create_function&#34;, lambda_function_args
+    )
+
+    final_info[&#34;cloud_id&#34;] = lambda_function_rv.get(&#34;FunctionArn&#34;)
+
+    # Step 5
+    
+    if resource.events:
+        available_event_handlers = EVENT_TO_HANDLERS.get(simple_xlambda.RUUID)
+        function_cloud_id = final_info.get(&#34;cloud_id&#34;)
+
+        event_to_output = {}
+        for event in resource.events:
+
+            if not event.originating_resource_type in available_event_handlers:
+                raise Exception(f&#39;No handlers for {event.originating_resource_type} to {simple_xlambda.RUUID} events&#39;)            
+
+
+            output = EVENT_TO_HANDLERS.get(simple_xlambda.RUUID).get(event.originating_resource_type).get(&#34;CREATE&#34;)(
+                event, function_cloud_id
+            )
+
+
+            event_to_output[event.hash] = output
+            
+
+        final_info[&#34;events&#34;] = event_to_output
+
+    return final_info
+
+
+def _remove_simple_lambda(
+    transaction_token: str,  
+    previous_resource: simple_xlambda.simple_function_model, 
+    previous_output: Dict,
+    output_task: OutputTask
+) -&gt; bool:
+    # Steps:
+    # Remove and event that is on the function to make sure resources are properly cleaned up
+    # Remove the actual function
+    # Remove the role associated with the function
+    
+    cloud_id = previous_output.get(&#39;cloud_id&#39;)
+
+
+    if previous_resource.events:
+        output_task.update(
+            comment=f&#34;Removing Events&#34;
+        )
+        event_hashes_to_events = {
+            x.get(&#39;hash&#39;):x for x in [dict(y) for y in previous_resource.events]
+        }
+
+
+        for event_id, event_output in previous_output.get(&#39;events&#39;).items():        
+            originating_resource_type = event_hashes_to_events.get(event_id).get(&#39;originating_resource_type&#39;)
+
+            EVENT_TO_HANDLERS.get(simple_xlambda.RUUID).get(originating_resource_type).get(&#34;REMOVE&#34;)(
+                event_output,  cloud_id
+            )
+        
+
+    output_task.update(
+        comment=f&#34;Deleting function resource for {cloud_id}&#34;
+    )
+
+
+    aws_client.run_client_function(
+        &#34;lambda&#34;, &#34;delete_function&#34;, {&#34;FunctionName&#34;: cloud_id}
+    )
+
+    #role_name = previous_output.get(&#34;role_name&#34;)
+    #permissions =  previous_output.get(&#34;permissions&#34;)
+#
+    #delete_role_and_permissions(role_name, permissions)
+
+    output_task.update(
+        comment=f&#34;Deleting permissions for the resource ({cloud_id})&#34;
+    )
+
+    dependencies_info = previous_output.get(&#34;layers&#34;)
+    
+    if dependencies_info:
+        for dependency_info in dependencies_info:
+            _remove_dependency(dependency_info)
+
+        output_task.update(
+            comment=f&#34;Deleting dependencies for the resource ({cloud_id})&#34;
+        )
+
+   
+    output_task.update(
+        comment=f&#34;Removed resources for lambda {cloud_id}&#34;
+    )
+
+
+def _update_simple_lambda(
+    transaction_token: str, 
+    namespace_token: str,
+    previous_resource: simple_xlambda.simple_function_model,
+    new_resource: simple_xlambda.simple_function_model,
+    previous_output: Dict,
+    output_task: OutputTask
+) -&gt; bool:
+    # Updates can be of:
+    # Update source code or dependencies
+    # Update configuration
+    # Update events
+    output_task.update(
+        comment=f&#34;Updating lambda function {new_resource.name}&#34;
+    )
+
+    cloud_id = previous_output[&#39;cloud_id&#39;]
+
+    did_update_permission = False
+
+    mutable_previous_output = dict(previous_output)
+    
+    # TODO all configurations
+    if not previous_resource.configuration == new_resource.configuration:
+        if (
+            not previous_resource.configuration.environment_variables
+            == new_resource.configuration.environment_variables
+        ):
+            output_task.update(
+                comment=f&#34;Updating Environment Variables&#34;
+            )
+            aws_client.run_client_function(
+                &#34;lambda&#34;,
+                &#34;update_function_configuration&#34;,
+                {
+                    &#34;FunctionName&#34;: cloud_id,
+                    &#34;Environment&#34;: {
+                        &#34;Variables&#34;:new_resource.configuration.environment_variables._d
+                    }
+                },
+            )
+
+    if not previous_resource.permissions == new_resource.permissions:
+        output_task.update(
+            comment=f&#34;Updating Policies&#34;
+        )
+        permission_output: Dict[Union[permission_model, permission_arn_model], str] = previous_output.get(&#34;permissions&#34;)
+        role_name_output = previous_output.get(&#34;role_name&#34;)
+
+        
+        remove_permissions = previous_resource.permissions.difference(new_resource.permissions)
+        create_permissions = new_resource.permissions.difference(previous_resource.permissions)
+
+
+        for permission in create_permissions:
+            
+            rv = add_policy(role_name_output, permission)
+            permission_output[permission] = rv
+
+        for permission in remove_permissions:
+
+            delete_policy(
+                role_name_output,
+                permission_output.get(permission),
+            )
+            permission_output.pop(permission)
+
+
+        mutable_previous_output[&#39;permissions&#39;] = permission_output
+        
+        did_update_permission = True
+
+
+    if not previous_resource.src_code_hash == new_resource.src_code_hash:
+        output_task.update(
+            comment=f&#34;Update Source Code&#34;
+        )
+
+        keyname = _upload_s3_code_artifact(previous_output.get(&#39;function_name&#39;), new_resource)
+        
+        aws_client.run_client_function(
+            &#34;lambda&#34;,
+            &#34;update_function_code&#34;,
+            {
+                &#34;FunctionName&#34;: cloud_id,
+                &#34;S3Key&#34;: keyname,
+                &#34;S3Bucket&#34;: BUCKET,
+                &#34;Publish&#34;: True,
+            },
+        )
+
+        mutable_previous_output[&#34;artifact_key&#34;] = keyname
+
+    if (
+        not previous_resource.external_dependencies
+        == new_resource.external_dependencies
+    ):
+        output_task.update(
+            comment=f&#34;Update Dependencies&#34;
+        )
+        
+        remove_dependencies = previous_resource.external_dependencies.difference(new_resource.external_dependencies)
+        create_dependencies = new_resource.external_dependencies.difference(previous_resource.external_dependencies)
+        
+        previous_dependency_output: Dict =  mutable_previous_output.get(&#34;layers&#34;)
+
+        for dependency in create_dependencies:
+            new_layer_rv = _create_dependency(
+                dependency
+            )
+
+            previous_dependency_output[dependency] = new_layer_rv
+
+        for dependency in remove_dependencies:
+            _remove_dependency(dependency)
+
+            previous_dependency_output.pop(dependency)
+
+        sleep(5)
+
+        aws_client.run_client_function(
+            &#34;lambda&#34;,
+            &#34;update_function_configuration&#34;,
+            {
+                &#34;FunctionName&#34;: cloud_id,
+            
+                &#34;Layers&#34;: [
+                    f&#39;{x.get(&#34;arn&#34;)}:{x.get(&#34;version&#34;)}&#39; for x in previous_dependency_output
+                ],
+            },
+        )
+
+        mutable_previous_output[&#39;layers&#39;] = previous_dependency_output
+
+    if not previous_resource.events == new_resource.events:
+        if did_update_permission:
+            # Wait because the updated permission can effect if the event can be bound. 
+            output_task.update(
+                comment=f&#34;[blink]Waiting for policies to complete. ~10s[/blink]&#34;
+            )
+            sleep(10)
+
+        output_task.update(
+                comment=f&#34;Updating Events&#34;
+            )
+
+        create_events = new_resource.events.difference(previous_resource.events)
+        remove_events = previous_resource.events.difference(new_resource.events)
+
+        available_event_handlers = EVENT_TO_HANDLERS.get(simple_xlambda.RUUID)
+
+        previous_event_output: dict = dict(mutable_previous_output.get(&#39;events&#39;)) if mutable_previous_output.get(&#39;events&#39;) else {}
+
+       
+        for _event in create_events:
+            if not _event.originating_resource_type in available_event_handlers:
+                raise Exception(f&#39;No handlers for {_event.originating_resource_type} to {simple_xlambda.RUUID} events&#39;)            
+
+
+            output_task.update(
+                comment=f&#34;Create Event {_event}&#34;
+            )
+
+            output = EVENT_TO_HANDLERS.get(simple_xlambda.RUUID).get(_event.originating_resource_type).get(&#34;CREATE&#34;)(
+                _event, cloud_id
+            )
+
+
+            previous_event_output[_event.hash] = output
+
+        previous_event_hashes_to_output = {
+            hash:output for hash, output in [ (y.hash, dict(previous_event_output.get(y.hash))) for y in remove_events if previous_event_output.get(y.hash)]
+        }
+
+        previous_hashes_to_events = {
+            x.get(&#39;hash&#39;):x for x in [dict(y) for y in remove_events]
+        }
+
+        for event_id, event_output in previous_event_hashes_to_output.items():        
+            originating_resource_type = previous_hashes_to_events.get(event_id).get(&#39;originating_resource_type&#39;)
+
+            output_task.update(
+                comment=f&#34;Delete Event {event_id}&#34;
+            )
+
+            EVENT_TO_HANDLERS.get(simple_xlambda.RUUID).get(originating_resource_type).get(&#34;REMOVE&#34;)(
+                event_output,  cloud_id
+            )
+
+            previous_event_output.pop(event_id)
+
+        mutable_previous_output[&#39;events&#39;] = previous_event_output
+        
+    
+    return mutable_previous_output
+
+
+
+##########################
+##### Dependencies
+##########################
+def _create_dependency(
+    dependency: Union[simple_xlambda.dependency_layer_model, simple_xlambda.deployed_layer_model],
+) -&gt; Dict:
+
+    if isinstance(dependency, simple_xlambda.deployed_layer_model):
+        return dependency.arn
+
+    key_name = _upload_s3_dependency(dependency)
+
+    # key name will always include .zip so remove that part and change &#39;-&#39; into &#39;_&#39;
+    layer_name = key_name.replace(&#34;-&#34;, &#34;_&#34;)[:-4]
+    dependency_rv = aws_client.run_client_function(
+        &#34;lambda&#34;,
+        &#34;publish_layer_version&#34;,
+        {
+            &#34;Content&#34;: {&#34;S3Bucket&#34;: BUCKET, &#34;S3Key&#34;: key_name},
+            &#34;LayerName&#34;: layer_name,
+            &#34;CompatibleRuntimes&#34;: [
+                &#34;python3.6&#34;,
+                &#34;python3.7&#34;,
+                &#34;python3.8&#34;,
+            ],
+        },
+    )
+
+    return {
+        &#34;arn&#34;: dependency_rv.get(&#34;LayerArn&#34;),
+        &#34;S3bucket&#34;: BUCKET,
+        &#34;S3key&#34;: key_name,
+        &#34;version&#34;: dependency_rv.get(&#34;Version&#34;),
+        &#34;name&#34;: layer_name,
+        &#34;hash&#34;: dependency.get(&#34;hash&#34;),
+    }
+
+
+def _remove_dependency(dependency_cloud_info: Dict):
+    aws_client.run_client_function(
+        &#34;lambda&#34;,
+        &#34;delete_layer_version&#34;,
+        {
+            &#34;LayerName&#34;: dependency_cloud_info.get(&#34;name&#34;),
+            &#34;VersionNumber&#34;: dependency_cloud_info.get(&#34;version&#34;),
+        },
+    )
+
+
+
+###############################
+###### Upload Artifacts to S3
+###############################
+
+def _upload_s3_code_artifact(
+    function_name: str, 
+    resource: simple_xlambda.simple_function_model,
+) -&gt; str:
+    # Takes in a resource and create an s3 artifact that can be use as src code for lambda deployment
+    keyname = function_name + f&#34;-{resource.hash}&#34; + &#34;.zip&#34;
+    # original_zipname = resource.configuration.Handler.split(&#34;.&#34;)[0] + &#34;.zip&#34;
+    zip_location =  core_paths.get_full_path_from_workspace_base(resource.filepath)
+
+    if not os.path.isfile(zip_location):
+        # TODO better exception
+        raise Exception
+
+    with open(zip_location, &#34;rb&#34;) as fh:
+        object_args = {
+            &#34;Bucket&#34;: BUCKET,
+            &#34;Key&#34;: keyname,
+            &#34;Body&#34;: fh.read(),
+        }
+        aws_client.run_client_function(&#34;s3&#34;, &#34;put_object&#34;, object_args)
+
+    return keyname
+
+def _upload_s3_dependency(
+    dependency: simple_xlambda.dependency_layer_model
+) -&gt; str:
+    # Takes in a resource and create an s3 artifact that can be use as src code for lambda deployment
+    keyname = dependency.name + f&#34;-{dependency.hash}&#34; + &#34;.zip&#34;
+    # original_zipname = resource.configuration.Handler.split(&#34;.&#34;)[0] + &#34;.zip&#34;
+    zip_location = core_paths.get_full_path_from_workspace_base(dependency.artifact_path)
+
+    if not os.path.isfile(zip_location):
+        # TODO better exception
+        raise Exception
+
+    config = TransferConfig(
+        multipart_threshold=1024 * 25,
+        max_concurrency=10,
+        multipart_chunksize=1024 * 25,
+        use_threads=True,
+    )
+
+    object_args = {
+        &#34;Bucket&#34;: BUCKET,
+        &#34;Key&#34;: keyname,
+        &#34;Filename&#34;: zip_location,
+        &#34;Callback&#34;: lambda x: print(x),
+        &#34;Config&#34;: config,
+    }
+    aws_client.run_client_function(&#34;s3&#34;, &#34;upload_file&#34;, object_args)
+
+    return keyname
+
+
+#######################
+##### Main Entry Point
+#######################
+
+def handle_simple_lambda_function_deployment( 
+        transaction_token: str, 
+        namespace_token: str, 
+        resource_diff: Resource_Difference, 
+        previous_output: Dict[str, Any],
+        output_task: OutputTask
+    ) -&gt; Dict:
+    try:
+        if resource_diff.action_type == Resource_Change_Type.CREATE:
+            return _create_simple_lambda(
+                transaction_token,
+                namespace_token,
+                resource_diff.new_resource,  
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+
+            return _update_simple_lambda(
+                transaction_token,
+                namespace_token,
+                simple_xlambda.simple_function_model(**resource_diff.previous_resource.dict()),
+                resource_diff.new_resource,
+                previous_output,
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.DELETE:
+
+            return _remove_simple_lambda(
+                transaction_token,
+                resource_diff.previous_resource,
+                previous_output,
+                output_task
+            )
+
+    except Exception as e:
+        print(e)
+        raise Exception(&#34;COULD NOT DEPLOY&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.default.mappers.simple.lambda_deployer.handle_simple_lambda_function_deployment"><code class="name flex">
+<span>def <span class="ident">handle_simple_lambda_function_deployment</span></span>(<span>transaction_token: str, namespace_token: str, resource_diff: <a class="" title="core.constructs.resource.Resource_Difference" href="../../../constructs/resource.html#core.constructs.resource.Resource_Difference">Resource_Difference</a>, previous_output: Dict[str, Any], output_task: <a class="" title="core.constructs.output_manager.OutputTask" href="../../../constructs/output_manager.html#core.constructs.output_manager.OutputTask">OutputTask</a>) ‑> Dict[~KT, ~VT]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def handle_simple_lambda_function_deployment( 
+        transaction_token: str, 
+        namespace_token: str, 
+        resource_diff: Resource_Difference, 
+        previous_output: Dict[str, Any],
+        output_task: OutputTask
+    ) -&gt; Dict:
+    try:
+        if resource_diff.action_type == Resource_Change_Type.CREATE:
+            return _create_simple_lambda(
+                transaction_token,
+                namespace_token,
+                resource_diff.new_resource,  
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+
+            return _update_simple_lambda(
+                transaction_token,
+                namespace_token,
+                simple_xlambda.simple_function_model(**resource_diff.previous_resource.dict()),
+                resource_diff.new_resource,
+                previous_output,
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.DELETE:
+
+            return _remove_simple_lambda(
+                transaction_token,
+                resource_diff.previous_resource,
+                previous_output,
+                output_task
+            )
+
+    except Exception as e:
+        print(e)
+        raise Exception(&#34;COULD NOT DEPLOY&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.default.mappers.simple" href="index.html">core.default.mappers.simple</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.default.mappers.simple.lambda_deployer.handle_simple_lambda_function_deployment" href="#core.default.mappers.simple.lambda_deployer.handle_simple_lambda_function_deployment">handle_simple_lambda_function_deployment</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

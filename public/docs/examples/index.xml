@@ -7,21 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Basic API endpoints</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</link>
+      <title>HTTP API endpoints</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</guid>
-      <description></description>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints/</guid>
+      <description>Build an HTTP API Endpoint HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple interface for creating HTTP Apis on the cloud and connecting them to serverless functions.
+Create an Api    from cdev.resources.simple.api import Api myApi = Api(&amp;#34;cdev_api_name&amp;#34;, &amp;#34;api_name&amp;#34;)  Create a GET route    from cdev.resources.simple.api import Api myApi = Api(&amp;#34;cdev_api_name&amp;#34;, &amp;#34;api_name&amp;#34;) hello_world_get_route = myApi.</description>
     </item>
     
     <item>
-      <title>Integrate with a Dynamodb</title>
+      <title>Integrate with Dynamodb</title>
       <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</guid>
-      <description></description>
+      <description>Integrating with Dynamodb Most applications will need a database for storing persistent data, and Dynamodb is the flagship aws nosql database. It is the easiest to get setup and integrated with serverless functions. For more information about how use the database effectively visit the aws documentation.
+Create a Dynamodb table for storing emails    from cdev.resources.simple.table import Table, key_type, attribute_type MyAttributes = [ {&amp;#34;AttributeName&amp;#34;: &amp;#34;email&amp;#34;, &amp;#34;AttributeType&amp;#34;: attribute_type.S}, {&amp;#34;AttributeName&amp;#34;: &amp;#34;date_created&amp;#34;, &amp;#34;AttributeType&amp;#34;: attribute_type.</description>
     </item>
     
     <item>

@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints/</loc>
+  </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/</loc>
   </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints/</loc>
   </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</loc>
   </url><url>
@@ -16,17 +16,15 @@
   </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks/</loc>
   </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</loc>
+  </url><url>
+    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</loc>
+  </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</loc>
   </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/</loc>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</loc>
-  </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</loc>
   </url><url>
     <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>

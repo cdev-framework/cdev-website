@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.constructs.resource API documentation</title>
+<meta name="description" content="Structures for representing cloud resources and references within the framework" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.constructs.resource</code></h1>
+</header>
+<section id="section-intro">
+<p>Structures for representing cloud resources and references within the framework</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Structures for representing cloud resources and references within the framework
+
+&#34;&#34;&#34;
+from typing import Dict, TypeVar, Union, List, Optional, Set, Callable, Any
+
+from enum import Enum
+
+from core.constructs.models import ImmutableModel
+from core.constructs.cloud_output import OutputType, Cloud_Output_Str
+
+from ..utils.hasher import hash_list
+    
+##################
+##### Resource
+##################
+class ResourceModel(ImmutableModel):
+    &#34;&#34;&#34;Base class with basic information about a defined resource.
+    
+    All classes derived from this should contain additional information about the state of a resource. 
+    Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+    configuration; hence the need to make these immutable data
+    classes. 
+
+    Attributes:
+        name: The name of the resource. Note that the combination of a name and ruuid should be unique 
+          within a namespace
+        ruuid: The identifier of this resource type.
+        hash: A string that is the hash of this object. This hash must be computed such that it changes 
+          only if a change in the state is desired.
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+    (i.e. the concat value of &lt;ruuid&gt;:&lt;name&gt; must be unique)
+
+    This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+    ruuid: str
+    &#34;&#34;&#34;
+    Name space identifier that is used to pass this resource to a downstream mapper
+
+    Form: (top-level-namespace)::(resource-type-id)
+    &#34;&#34;&#34;
+
+    hash: str
+    &#34;&#34;&#34;
+    This is a hash that is used to identify if changes in the resources have occurred.
+    &#34;&#34;&#34;
+
+    class Config:
+        arbitrary_types_allowed = True
+
+
+class Resource_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    UPDATE_IDENTITY = &#34;UPDATE_IDENTITY&#34;
+    UPDATE_NAME = &#34;UPDATE_NAME&#34;
+    DELETE = &#34;DELETE&#34;
+
+
+class Resource_Difference(ImmutableModel):
+    action_type: Resource_Change_Type
+    component_name: str
+    previous_resource: Optional[ResourceModel]
+    new_resource: Optional[ResourceModel]
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Resource_Change_Type,
+        component_name: str,
+        previous_resource: ResourceModel = None,
+        new_resource: ResourceModel = None,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;component_name&#34;: component_name,
+                &#34;previous_resource&#34;: previous_resource,
+                &#34;new_resource&#34;: new_resource,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True
+
+# Helper type to denoted any callable
+F = TypeVar(&#34;F&#34;, bound=Callable[..., Any])
+
+def update_hash(func: F) -&gt; F:
+    &#34;&#34;&#34;Wrap a function that modifies the state of a Resource so that the hash is properly updated when a change occurs.
+
+    Args:
+        func (F): State modifying method.
+
+    Returns:
+        F: Wrapped function to compute new hash after changes have been made
+    &#34;&#34;&#34;
+    def wrapped_func(resource: &#34;Resource&#34;, *func_posargs, **func_kwargs):
+        rv = func(resource, *func_posargs, **func_kwargs)
+        resource.compute_hash()
+        return rv
+
+    return wrapped_func
+
+
+class Resource:
+    def __init__(self, name: str, ruuid: str, nonce: str = &#34;&#34;):
+        self._name = name
+        self._ruuid = ruuid
+        self._hash = None
+        self._nonce = nonce
+
+    def render(self) -&gt; ResourceModel:
+        raise NotImplementedError
+
+    @property
+    def name(self):
+        &#34;&#34;&#34;The name of the created resource&#34;&#34;&#34;
+        return self._name
+
+    @name.setter
+    def name(self, value: str):
+        raise Exception(&#34;The Name of a resource can only be set when initialized.&#34;)
+
+    @property
+    def ruuid(self):
+        &#34;&#34;&#34;The ruuid of the created resource&#34;&#34;&#34;
+        return self._ruuid
+
+    @ruuid.setter
+    def ruuid(self, value: str):
+        raise Exception(&#34;The Ruuid of a resource can only be set when initialized.&#34;)
+
+    @property
+    def nonce(self):
+        &#34;&#34;&#34;The nonce of the created resource&#34;&#34;&#34;
+        return self._nonce
+
+    @nonce.setter
+    def nonce(self, value: str):
+        raise Exception(&#34;The nonce of a resource can only be set when initialized.&#34;)
+
+    @property
+    def hash(self):
+        &#34;&#34;&#34;The cdev hash of the resource&#34;&#34;&#34;
+        if self._hash is None:
+            raise Exception
+
+        return self._hash
+
+    @hash.setter
+    def hash(self, value: str):
+        raise Exception(&#34;The `hash` of a Resource can only be set by the `compute_hash` method&#34;)
+
+    def compute_hash(self):
+        raise NotImplementedError
+
+
+class ResourceOutputs():
+    &#34;&#34;&#34;Container object for the returned values from the cloud after the resource has been deployed.&#34;&#34;&#34;
+    OUTPUT_TYPE = OutputType.RESOURCE
+
+    def __init__(self, name: str, ruuid: str) -&gt; None:
+        self._name = name
+        self._ruuid = ruuid
+
+    @property
+    def cloud_id(self) -&gt; &#39;Cloud_Output_Str&#39;:
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=self._ruuid,
+            key=&#39;cloud_id&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @cloud_id.setter
+    def cloud_id(self, value: Any):
+        raise Exception
+
+##################
+##### Reference
+##################
+
+class ResourceReferenceModel(ImmutableModel):
+    &#34;&#34;&#34;
+    This is the information needed to reference a resource that is defined outside this component
+
+    --- Attributes ---
+
+    - ruuid -&gt;  a string that represents the resource identifier (provider::resource-type)
+
+    - hash  -&gt;  a string that is the hash of this object. This hash must be computed such that
+                it changes only if a change in the state is desired.
+    &#34;&#34;&#34;
+
+    component_name: str
+    &#34;&#34;&#34;
+    Name of the component that this resources resides in
+    &#34;&#34;&#34;
+
+    ruuid: str
+    &#34;&#34;&#34;
+    Name space identifier that is used to pass this resource to a downstream mapper
+
+    Form: (top-level-namespace)::(resource-type-id)
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+    (i.e. the concat value of &lt;ruuid&gt;:&lt;name&gt; must be unique)
+
+    This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+    is_in_parent_resource_state: Optional[bool]
+    &#34;&#34;&#34;
+    Boolean to determine if the reference should be resolved in the same resource state or from the parent resource state.
+    &#34;&#34;&#34;
+
+    def __init__(
+        __pydantic_self__,
+        component_name: str,
+        ruuid: str,
+        name: str,
+        is_in_parent_resource_state: bool = False,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;component_name&#34;: component_name,
+                &#34;ruuid&#34;: ruuid,
+                &#34;name&#34;: name,
+                &#34;is_in_parent_resource_state&#34;: is_in_parent_resource_state,
+            }
+        )
+
+    class Config:
+        extra = &#34;allow&#34;
+        frozen = True
+
+
+class Resource_Reference_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    DELETE = &#34;DELETE&#34;
+
+
+class Resource_Reference_Difference(ImmutableModel):
+    action_type: Resource_Reference_Change_Type
+    originating_component_name: str
+    resource_reference: ResourceReferenceModel
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Resource_Reference_Change_Type,
+        originating_component_name: str,
+        resource_reference: ResourceReferenceModel,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;originating_component_name&#34;: originating_component_name,
+                &#34;resource_reference&#34;: resource_reference,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        frozen = True
+
+
+class Resource_Reference:
+    RUUID: str = None
+
+    def __init__(
+        self, component_name: str, name: str, is_in_parent_resource_state: bool = False
+    ):
+        self.component_name = component_name
+        self.name = name
+        self.is_in_parent_resource_state = is_in_parent_resource_state
+
+    def render(self) -&gt; ResourceReferenceModel:
+        raise NotImplementedError
+
+    def compute_hash(self) -&gt; str:
+        return hash_list(
+            [
+                self.component_name,
+                self.RUUID,
+                self.name,
+                str(self.is_in_parent_resource_state),
+            ]
+        )
+
+
+
+####################
+##### Mixins
+####################
+class PermissionsAvailableMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)  # forwards all unused arguments
+        self._available_permissions = None # Needs to be set later in the calling subclass
+
+    @property
+    def available_permissions(self):
+        &#34;&#34;&#34;The available permissions of the created resource&#34;&#34;&#34;
+        return self._available_permissions
+
+    @available_permissions.setter
+    def available_permissions(self, permissions: Any):
+        self._available_permissions = permissions
+
+
+
+class PermissionsGrantableMixin:
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)  # forwards all unused arguments
+        self._granted_permissions = [] # Needs to be set later in the calling subclass
+
+
+    @property
+    def granted_permissions(self):
+        return self._granted_permissions
+
+    @granted_permissions.setter
+    @update_hash
+    def granted_permissions(self, value: List):
+        self._granted_permissions = value</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.constructs.resource.update_hash"><code class="name flex">
+<span>def <span class="ident">update_hash</span></span>(<span>func: ~F) ‑> ~F</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Wrap a function that modifies the state of a Resource so that the hash is properly updated when a change occurs.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>func</code></strong> :&ensp;<code>F</code></dt>
+<dd>State modifying method.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>F</code></dt>
+<dd>Wrapped function to compute new hash after changes have been made</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_hash(func: F) -&gt; F:
+    &#34;&#34;&#34;Wrap a function that modifies the state of a Resource so that the hash is properly updated when a change occurs.
+
+    Args:
+        func (F): State modifying method.
+
+    Returns:
+        F: Wrapped function to compute new hash after changes have been made
+    &#34;&#34;&#34;
+    def wrapped_func(resource: &#34;Resource&#34;, *func_posargs, **func_kwargs):
+        rv = func(resource, *func_posargs, **func_kwargs)
+        resource.compute_hash()
+        return rv
+
+    return wrapped_func</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.constructs.resource.PermissionsAvailableMixin"><code class="flex name class">
+<span>class <span class="ident">PermissionsAvailableMixin</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PermissionsAvailableMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)  # forwards all unused arguments
+        self._available_permissions = None # Needs to be set later in the calling subclass
+
+    @property
+    def available_permissions(self):
+        &#34;&#34;&#34;The available permissions of the created resource&#34;&#34;&#34;
+        return self._available_permissions
+
+    @available_permissions.setter
+    def available_permissions(self, permissions: Any):
+        self._available_permissions = permissions</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.object_store.SimpleBucket" href="../default/resources/simple/object_store.html#core.default.resources.simple.object_store.SimpleBucket">SimpleBucket</a></li>
+<li><a class="" title="core.default.resources.simple.queue.Queue" href="../default/resources/simple/queue.html#core.default.resources.simple.queue.Queue">Queue</a></li>
+<li><a class="" title="core.default.resources.simple.relational_db.RelationalDB" href="../default/resources/simple/relational_db.html#core.default.resources.simple.relational_db.RelationalDB">RelationalDB</a></li>
+<li><a class="" title="core.default.resources.simple.table.Table" href="../default/resources/simple/table.html#core.default.resources.simple.table.Table">Table</a></li>
+<li><a class="" title="core.default.resources.simple.topic.Topic" href="../default/resources/simple/topic.html#core.default.resources.simple.topic.Topic">Topic</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.constructs.resource.PermissionsAvailableMixin.available_permissions"><code class="name">var <span class="ident">available_permissions</span></code></dt>
+<dd>
+<div class="desc"><p>The available permissions of the created resource</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def available_permissions(self):
+    &#34;&#34;&#34;The available permissions of the created resource&#34;&#34;&#34;
+    return self._available_permissions</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.PermissionsGrantableMixin"><code class="flex name class">
+<span>class <span class="ident">PermissionsGrantableMixin</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PermissionsGrantableMixin:
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)  # forwards all unused arguments
+        self._granted_permissions = [] # Needs to be set later in the calling subclass
+
+
+    @property
+    def granted_permissions(self):
+        return self._granted_permissions
+
+    @granted_permissions.setter
+    @update_hash
+    def granted_permissions(self, value: List):
+        self._granted_permissions = value</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.xlambda.SimpleFunction" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.constructs.resource.PermissionsGrantableMixin.granted_permissions"><code class="name">var <span class="ident">granted_permissions</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def granted_permissions(self):
+    return self._granted_permissions</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource"><code class="flex name class">
+<span>class <span class="ident">Resource</span></span>
+<span>(</span><span>name: str, ruuid: str, nonce: str = '')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource:
+    def __init__(self, name: str, ruuid: str, nonce: str = &#34;&#34;):
+        self._name = name
+        self._ruuid = ruuid
+        self._hash = None
+        self._nonce = nonce
+
+    def render(self) -&gt; ResourceModel:
+        raise NotImplementedError
+
+    @property
+    def name(self):
+        &#34;&#34;&#34;The name of the created resource&#34;&#34;&#34;
+        return self._name
+
+    @name.setter
+    def name(self, value: str):
+        raise Exception(&#34;The Name of a resource can only be set when initialized.&#34;)
+
+    @property
+    def ruuid(self):
+        &#34;&#34;&#34;The ruuid of the created resource&#34;&#34;&#34;
+        return self._ruuid
+
+    @ruuid.setter
+    def ruuid(self, value: str):
+        raise Exception(&#34;The Ruuid of a resource can only be set when initialized.&#34;)
+
+    @property
+    def nonce(self):
+        &#34;&#34;&#34;The nonce of the created resource&#34;&#34;&#34;
+        return self._nonce
+
+    @nonce.setter
+    def nonce(self, value: str):
+        raise Exception(&#34;The nonce of a resource can only be set when initialized.&#34;)
+
+    @property
+    def hash(self):
+        &#34;&#34;&#34;The cdev hash of the resource&#34;&#34;&#34;
+        if self._hash is None:
+            raise Exception
+
+        return self._hash
+
+    @hash.setter
+    def hash(self, value: str):
+        raise Exception(&#34;The `hash` of a Resource can only be set by the `compute_hash` method&#34;)
+
+    def compute_hash(self):
+        raise NotImplementedError</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.api.Api" href="../default/resources/simple/api.html#core.default.resources.simple.api.Api">Api</a></li>
+<li><a class="" title="core.default.resources.simple.object_store.SimpleBucket" href="../default/resources/simple/object_store.html#core.default.resources.simple.object_store.SimpleBucket">SimpleBucket</a></li>
+<li><a class="" title="core.default.resources.simple.queue.Queue" href="../default/resources/simple/queue.html#core.default.resources.simple.queue.Queue">Queue</a></li>
+<li><a class="" title="core.default.resources.simple.relational_db.RelationalDB" href="../default/resources/simple/relational_db.html#core.default.resources.simple.relational_db.RelationalDB">RelationalDB</a></li>
+<li><a class="" title="core.default.resources.simple.static_site.StaticSite" href="../default/resources/simple/static_site.html#core.default.resources.simple.static_site.StaticSite">StaticSite</a></li>
+<li><a class="" title="core.default.resources.simple.table.Table" href="../default/resources/simple/table.html#core.default.resources.simple.table.Table">Table</a></li>
+<li><a class="" title="core.default.resources.simple.topic.Topic" href="../default/resources/simple/topic.html#core.default.resources.simple.topic.Topic">Topic</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.DependencyLayer" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.DependencyLayer">DependencyLayer</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.SimpleFunction" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource.hash"><code class="name">var <span class="ident">hash</span></code></dt>
+<dd>
+<div class="desc"><p>The cdev hash of the resource</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def hash(self):
+    &#34;&#34;&#34;The cdev hash of the resource&#34;&#34;&#34;
+    if self._hash is None:
+        raise Exception
+
+    return self._hash</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.Resource.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dd>
+<div class="desc"><p>The name of the created resource</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def name(self):
+    &#34;&#34;&#34;The name of the created resource&#34;&#34;&#34;
+    return self._name</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.Resource.nonce"><code class="name">var <span class="ident">nonce</span></code></dt>
+<dd>
+<div class="desc"><p>The nonce of the created resource</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def nonce(self):
+    &#34;&#34;&#34;The nonce of the created resource&#34;&#34;&#34;
+    return self._nonce</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.Resource.ruuid"><code class="name">var <span class="ident">ruuid</span></code></dt>
+<dd>
+<div class="desc"><p>The ruuid of the created resource</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def ruuid(self):
+    &#34;&#34;&#34;The ruuid of the created resource&#34;&#34;&#34;
+    return self._ruuid</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.constructs.resource.Resource.compute_hash"><code class="name flex">
+<span>def <span class="ident">compute_hash</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_hash(self):
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.Resource.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; ResourceModel:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.ResourceModel"><code class="flex name class">
+<span>class <span class="ident">ResourceModel</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class with basic information about a defined resource.</p>
+<p>All classes derived from this should contain additional information about the state of a resource.
+Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+configuration; hence the need to make these immutable data
+classes. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
+within a namespace</dd>
+<dt><strong><code>ruuid</code></strong></dt>
+<dd>The identifier of this resource type.</dd>
+<dt><strong><code>hash</code></strong></dt>
+<dd>A string that is the hash of this object. This hash must be computed such that it changes
+only if a change in the state is desired.</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ResourceModel(ImmutableModel):
+    &#34;&#34;&#34;Base class with basic information about a defined resource.
+    
+    All classes derived from this should contain additional information about the state of a resource. 
+    Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+    configuration; hence the need to make these immutable data
+    classes. 
+
+    Attributes:
+        name: The name of the resource. Note that the combination of a name and ruuid should be unique 
+          within a namespace
+        ruuid: The identifier of this resource type.
+        hash: A string that is the hash of this object. This hash must be computed such that it changes 
+          only if a change in the state is desired.
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+    (i.e. the concat value of &lt;ruuid&gt;:&lt;name&gt; must be unique)
+
+    This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+    ruuid: str
+    &#34;&#34;&#34;
+    Name space identifier that is used to pass this resource to a downstream mapper
+
+    Form: (top-level-namespace)::(resource-type-id)
+    &#34;&#34;&#34;
+
+    hash: str
+    &#34;&#34;&#34;
+    This is a hash that is used to identify if changes in the resources have occurred.
+    &#34;&#34;&#34;
+
+    class Config:
+        arbitrary_types_allowed = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.api.simple_api_model" href="../default/resources/simple/api.html#core.default.resources.simple.api.simple_api_model">simple_api_model</a></li>
+<li><a class="" title="core.default.resources.simple.object_store.simple_bucket_model" href="../default/resources/simple/object_store.html#core.default.resources.simple.object_store.simple_bucket_model">simple_bucket_model</a></li>
+<li><a class="" title="core.default.resources.simple.queue.simple_queue_model" href="../default/resources/simple/queue.html#core.default.resources.simple.queue.simple_queue_model">simple_queue_model</a></li>
+<li><a class="" title="core.default.resources.simple.relational_db.simple_relational_db_model" href="../default/resources/simple/relational_db.html#core.default.resources.simple.relational_db.simple_relational_db_model">simple_relational_db_model</a></li>
+<li><a class="" title="core.default.resources.simple.static_site.simple_static_site_model" href="../default/resources/simple/static_site.html#core.default.resources.simple.static_site.simple_static_site_model">simple_static_site_model</a></li>
+<li><a class="" title="core.default.resources.simple.table.simple_table_model" href="../default/resources/simple/table.html#core.default.resources.simple.table.simple_table_model">simple_table_model</a></li>
+<li><a class="" title="core.default.resources.simple.topic.simple_topic_model" href="../default/resources/simple/topic.html#core.default.resources.simple.topic.simple_topic_model">simple_topic_model</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.dependency_layer_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.deployed_layer_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.simple_function_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.simple_function_model">simple_function_model</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.ResourceModel.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.ResourceModel.hash"><code class="name">var <span class="ident">hash</span> : str</code></dt>
+<dd>
+<div class="desc"><p>This is a hash that is used to identify if changes in the resources have occurred.</p></div>
+</dd>
+<dt id="core.constructs.resource.ResourceModel.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+(i.e. the concat value of <ruuid>:<name> must be unique)</p>
+<p>This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the
+name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create
+instead of update.</p></div>
+</dd>
+<dt id="core.constructs.resource.ResourceModel.ruuid"><code class="name">var <span class="ident">ruuid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Name space identifier that is used to pass this resource to a downstream mapper</p>
+<p>Form: (top-level-namespace)::(resource-type-id)</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.ResourceOutputs"><code class="flex name class">
+<span>class <span class="ident">ResourceOutputs</span></span>
+<span>(</span><span>name: str, ruuid: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container object for the returned values from the cloud after the resource has been deployed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ResourceOutputs():
+    &#34;&#34;&#34;Container object for the returned values from the cloud after the resource has been deployed.&#34;&#34;&#34;
+    OUTPUT_TYPE = OutputType.RESOURCE
+
+    def __init__(self, name: str, ruuid: str) -&gt; None:
+        self._name = name
+        self._ruuid = ruuid
+
+    @property
+    def cloud_id(self) -&gt; &#39;Cloud_Output_Str&#39;:
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=self._ruuid,
+            key=&#39;cloud_id&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @cloud_id.setter
+    def cloud_id(self, value: Any):
+        raise Exception</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.api.ApiOutput" href="../default/resources/simple/api.html#core.default.resources.simple.api.ApiOutput">ApiOutput</a></li>
+<li><a class="" title="core.default.resources.simple.object_store.BucketOutput" href="../default/resources/simple/object_store.html#core.default.resources.simple.object_store.BucketOutput">BucketOutput</a></li>
+<li><a class="" title="core.default.resources.simple.queue.QueueOutput" href="../default/resources/simple/queue.html#core.default.resources.simple.queue.QueueOutput">QueueOutput</a></li>
+<li><a class="" title="core.default.resources.simple.relational_db.RelationalDBOutput" href="../default/resources/simple/relational_db.html#core.default.resources.simple.relational_db.RelationalDBOutput">RelationalDBOutput</a></li>
+<li><a class="" title="core.default.resources.simple.static_site.StaticSiteOutput" href="../default/resources/simple/static_site.html#core.default.resources.simple.static_site.StaticSiteOutput">StaticSiteOutput</a></li>
+<li><a class="" title="core.default.resources.simple.table.TableOutput" href="../default/resources/simple/table.html#core.default.resources.simple.table.TableOutput">TableOutput</a></li>
+<li><a class="" title="core.default.resources.simple.topic.TopicOutput" href="../default/resources/simple/topic.html#core.default.resources.simple.topic.TopicOutput">TopicOutput</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.DependencyLayerOutput" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.DependencyLayerOutput">DependencyLayerOutput</a></li>
+<li><a class="" title="core.default.resources.simple.xlambda.FunctionOutput" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.FunctionOutput">FunctionOutput</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.ResourceOutputs.OUTPUT_TYPE"><code class="name">var <span class="ident">OUTPUT_TYPE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.constructs.resource.ResourceOutputs.cloud_id"><code class="name">var <span class="ident">cloud_id</span> : <a class="" title="core.constructs.cloud_output.Cloud_Output_Str" href="cloud_output.html#core.constructs.cloud_output.Cloud_Output_Str">Cloud_Output_Str</a></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def cloud_id(self) -&gt; &#39;Cloud_Output_Str&#39;:
+    return Cloud_Output_Str(
+        name=self._name,
+        ruuid=self._ruuid,
+        key=&#39;cloud_id&#39;,
+        type=self.OUTPUT_TYPE
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.ResourceReferenceModel"><code class="flex name class">
+<span>class <span class="ident">ResourceReferenceModel</span></span>
+<span>(</span><span>component_name: str, ruuid: str, name: str, is_in_parent_resource_state: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is the information needed to reference a resource that is defined outside this component</p>
+<p>&mdash; Attributes &mdash;</p>
+<ul>
+<li>
+<p>ruuid -&gt;
+a string that represents the resource identifier (provider::resource-type)</p>
+</li>
+<li>
+<p>hash
+-&gt;
+a string that is the hash of this object. This hash must be computed such that
+it changes only if a change in the state is desired.</p>
+</li>
+</ul>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ResourceReferenceModel(ImmutableModel):
+    &#34;&#34;&#34;
+    This is the information needed to reference a resource that is defined outside this component
+
+    --- Attributes ---
+
+    - ruuid -&gt;  a string that represents the resource identifier (provider::resource-type)
+
+    - hash  -&gt;  a string that is the hash of this object. This hash must be computed such that
+                it changes only if a change in the state is desired.
+    &#34;&#34;&#34;
+
+    component_name: str
+    &#34;&#34;&#34;
+    Name of the component that this resources resides in
+    &#34;&#34;&#34;
+
+    ruuid: str
+    &#34;&#34;&#34;
+    Name space identifier that is used to pass this resource to a downstream mapper
+
+    Form: (top-level-namespace)::(resource-type-id)
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+    (i.e. the concat value of &lt;ruuid&gt;:&lt;name&gt; must be unique)
+
+    This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+    is_in_parent_resource_state: Optional[bool]
+    &#34;&#34;&#34;
+    Boolean to determine if the reference should be resolved in the same resource state or from the parent resource state.
+    &#34;&#34;&#34;
+
+    def __init__(
+        __pydantic_self__,
+        component_name: str,
+        ruuid: str,
+        name: str,
+        is_in_parent_resource_state: bool = False,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;component_name&#34;: component_name,
+                &#34;ruuid&#34;: ruuid,
+                &#34;name&#34;: name,
+                &#34;is_in_parent_resource_state&#34;: is_in_parent_resource_state,
+            }
+        )
+
+    class Config:
+        extra = &#34;allow&#34;
+        frozen = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.ResourceReferenceModel.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.ResourceReferenceModel.component_name"><code class="name">var <span class="ident">component_name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Name of the component that this resources resides in</p></div>
+</dd>
+<dt id="core.constructs.resource.ResourceReferenceModel.is_in_parent_resource_state"><code class="name">var <span class="ident">is_in_parent_resource_state</span> : Optional[bool]</code></dt>
+<dd>
+<div class="desc"><p>Boolean to determine if the reference should be resolved in the same resource state or from the parent resource state.</p></div>
+</dd>
+<dt id="core.constructs.resource.ResourceReferenceModel.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>This is a human readable logical name for the resource. This must be unique for the resource within the namespace and resource type
+(i.e. the concat value of <ruuid>:<name> must be unique)</p>
+<p>This value is important for allow human level refactoring of resources. To update a resources name once created, you must edit only the
+name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create
+instead of update.</p></div>
+</dd>
+<dt id="core.constructs.resource.ResourceReferenceModel.ruuid"><code class="name">var <span class="ident">ruuid</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Name space identifier that is used to pass this resource to a downstream mapper</p>
+<p>Form: (top-level-namespace)::(resource-type-id)</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource_Change_Type"><code class="flex name class">
+<span>class <span class="ident">Resource_Change_Type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    UPDATE_IDENTITY = &#34;UPDATE_IDENTITY&#34;
+    UPDATE_NAME = &#34;UPDATE_NAME&#34;
+    DELETE = &#34;DELETE&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Change_Type.CREATE"><code class="name">var <span class="ident">CREATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Change_Type.DELETE"><code class="name">var <span class="ident">DELETE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Change_Type.UPDATE_IDENTITY"><code class="name">var <span class="ident">UPDATE_IDENTITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Change_Type.UPDATE_NAME"><code class="name">var <span class="ident">UPDATE_NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource_Difference"><code class="flex name class">
+<span>class <span class="ident">Resource_Difference</span></span>
+<span>(</span><span>action_type: <a class="" title="core.constructs.resource.Resource_Change_Type" href="#core.constructs.resource.Resource_Change_Type">Resource_Change_Type</a>, component_name: str, previous_resource: <a class="" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a> = None, new_resource: <a class="" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a> = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource_Difference(ImmutableModel):
+    action_type: Resource_Change_Type
+    component_name: str
+    previous_resource: Optional[ResourceModel]
+    new_resource: Optional[ResourceModel]
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Resource_Change_Type,
+        component_name: str,
+        previous_resource: ResourceModel = None,
+        new_resource: ResourceModel = None,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;component_name&#34;: component_name,
+                &#34;previous_resource&#34;: previous_resource,
+                &#34;new_resource&#34;: new_resource,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Difference.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Difference.action_type"><code class="name">var <span class="ident">action_type</span> : <a class="" title="core.constructs.resource.Resource_Change_Type" href="#core.constructs.resource.Resource_Change_Type">Resource_Change_Type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Difference.component_name"><code class="name">var <span class="ident">component_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Difference.new_resource"><code class="name">var <span class="ident">new_resource</span> : Optional[<a class="" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Difference.previous_resource"><code class="name">var <span class="ident">previous_resource</span> : Optional[<a class="" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference"><code class="flex name class">
+<span>class <span class="ident">Resource_Reference</span></span>
+<span>(</span><span>component_name: str, name: str, is_in_parent_resource_state: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource_Reference:
+    RUUID: str = None
+
+    def __init__(
+        self, component_name: str, name: str, is_in_parent_resource_state: bool = False
+    ):
+        self.component_name = component_name
+        self.name = name
+        self.is_in_parent_resource_state = is_in_parent_resource_state
+
+    def render(self) -&gt; ResourceReferenceModel:
+        raise NotImplementedError
+
+    def compute_hash(self) -&gt; str:
+        return hash_list(
+            [
+                self.component_name,
+                self.RUUID,
+                self.name,
+                str(self.is_in_parent_resource_state),
+            ]
+        )</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Reference.RUUID"><code class="name">var <span class="ident">RUUID</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Reference.compute_hash"><code class="name flex">
+<span>def <span class="ident">compute_hash</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_hash(self) -&gt; str:
+    return hash_list(
+        [
+            self.component_name,
+            self.RUUID,
+            self.name,
+            str(self.is_in_parent_resource_state),
+        ]
+    )</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.constructs.resource.ResourceReferenceModel" href="#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; ResourceReferenceModel:
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Change_Type"><code class="flex name class">
+<span>class <span class="ident">Resource_Reference_Change_Type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource_Reference_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    DELETE = &#34;DELETE&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Reference_Change_Type.CREATE"><code class="name">var <span class="ident">CREATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Change_Type.DELETE"><code class="name">var <span class="ident">DELETE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Difference"><code class="flex name class">
+<span>class <span class="ident">Resource_Reference_Difference</span></span>
+<span>(</span><span>action_type: <a class="" title="core.constructs.resource.Resource_Reference_Change_Type" href="#core.constructs.resource.Resource_Reference_Change_Type">Resource_Reference_Change_Type</a>, originating_component_name: str, resource_reference: <a class="" title="core.constructs.resource.ResourceReferenceModel" href="#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Resource_Reference_Difference(ImmutableModel):
+    action_type: Resource_Reference_Change_Type
+    originating_component_name: str
+    resource_reference: ResourceReferenceModel
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Resource_Reference_Change_Type,
+        originating_component_name: str,
+        resource_reference: ResourceReferenceModel,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;originating_component_name&#34;: originating_component_name,
+                &#34;resource_reference&#34;: resource_reference,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        frozen = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.resource.Resource_Reference_Difference.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Difference.action_type"><code class="name">var <span class="ident">action_type</span> : <a class="" title="core.constructs.resource.Resource_Reference_Change_Type" href="#core.constructs.resource.Resource_Reference_Change_Type">Resource_Reference_Change_Type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Difference.originating_component_name"><code class="name">var <span class="ident">originating_component_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.resource.Resource_Reference_Difference.resource_reference"><code class="name">var <span class="ident">resource_reference</span> : <a class="" title="core.constructs.resource.ResourceReferenceModel" href="#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.constructs" href="index.html">core.constructs</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.update_hash" href="#core.constructs.resource.update_hash">update_hash</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.PermissionsAvailableMixin" href="#core.constructs.resource.PermissionsAvailableMixin">PermissionsAvailableMixin</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.PermissionsAvailableMixin.available_permissions" href="#core.constructs.resource.PermissionsAvailableMixin.available_permissions">available_permissions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.PermissionsGrantableMixin" href="#core.constructs.resource.PermissionsGrantableMixin">PermissionsGrantableMixin</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.PermissionsGrantableMixin.granted_permissions" href="#core.constructs.resource.PermissionsGrantableMixin.granted_permissions">granted_permissions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource" href="#core.constructs.resource.Resource">Resource</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.compute_hash" href="#core.constructs.resource.Resource.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.hash" href="#core.constructs.resource.Resource.hash">hash</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.name" href="#core.constructs.resource.Resource.name">name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.nonce" href="#core.constructs.resource.Resource.nonce">nonce</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.render" href="#core.constructs.resource.Resource.render">render</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource.ruuid" href="#core.constructs.resource.Resource.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.ResourceModel" href="#core.constructs.resource.ResourceModel">ResourceModel</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceModel.Config" href="#core.constructs.resource.ResourceModel.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceModel.hash" href="#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceModel.name" href="#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceModel.ruuid" href="#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs" href="#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs.OUTPUT_TYPE" href="#core.constructs.resource.ResourceOutputs.OUTPUT_TYPE">OUTPUT_TYPE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs.cloud_id" href="#core.constructs.resource.ResourceOutputs.cloud_id">cloud_id</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel" href="#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel.Config" href="#core.constructs.resource.ResourceReferenceModel.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel.component_name" href="#core.constructs.resource.ResourceReferenceModel.component_name">component_name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel.is_in_parent_resource_state" href="#core.constructs.resource.ResourceReferenceModel.is_in_parent_resource_state">is_in_parent_resource_state</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel.name" href="#core.constructs.resource.ResourceReferenceModel.name">name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceReferenceModel.ruuid" href="#core.constructs.resource.ResourceReferenceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource_Change_Type" href="#core.constructs.resource.Resource_Change_Type">Resource_Change_Type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Change_Type.CREATE" href="#core.constructs.resource.Resource_Change_Type.CREATE">CREATE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Change_Type.DELETE" href="#core.constructs.resource.Resource_Change_Type.DELETE">DELETE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Change_Type.UPDATE_IDENTITY" href="#core.constructs.resource.Resource_Change_Type.UPDATE_IDENTITY">UPDATE_IDENTITY</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Change_Type.UPDATE_NAME" href="#core.constructs.resource.Resource_Change_Type.UPDATE_NAME">UPDATE_NAME</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource_Difference" href="#core.constructs.resource.Resource_Difference">Resource_Difference</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Difference.Config" href="#core.constructs.resource.Resource_Difference.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Difference.action_type" href="#core.constructs.resource.Resource_Difference.action_type">action_type</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Difference.component_name" href="#core.constructs.resource.Resource_Difference.component_name">component_name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Difference.new_resource" href="#core.constructs.resource.Resource_Difference.new_resource">new_resource</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Difference.previous_resource" href="#core.constructs.resource.Resource_Difference.previous_resource">previous_resource</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource_Reference" href="#core.constructs.resource.Resource_Reference">Resource_Reference</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference.RUUID" href="#core.constructs.resource.Resource_Reference.RUUID">RUUID</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference.compute_hash" href="#core.constructs.resource.Resource_Reference.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference.render" href="#core.constructs.resource.Resource_Reference.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Change_Type" href="#core.constructs.resource.Resource_Reference_Change_Type">Resource_Reference_Change_Type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Change_Type.CREATE" href="#core.constructs.resource.Resource_Reference_Change_Type.CREATE">CREATE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Change_Type.DELETE" href="#core.constructs.resource.Resource_Reference_Change_Type.DELETE">DELETE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Difference" href="#core.constructs.resource.Resource_Reference_Difference">Resource_Reference_Difference</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Difference.Config" href="#core.constructs.resource.Resource_Reference_Difference.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Difference.action_type" href="#core.constructs.resource.Resource_Reference_Difference.action_type">action_type</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Difference.originating_component_name" href="#core.constructs.resource.Resource_Reference_Difference.originating_component_name">originating_component_name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.Resource_Reference_Difference.resource_reference" href="#core.constructs.resource.Resource_Reference_Difference.resource_reference">resource_reference</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

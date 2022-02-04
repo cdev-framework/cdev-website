@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.default.workspace API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.default.workspace</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import os
+from typing import Callable, List, Dict, Optional, Any, Tuple, Union
+from pydantic.main import BaseModel
+
+from pydantic.types import DirectoryPath, FilePath
+
+from ..constructs.backend import Backend, Backend_Configuration, load_backend
+from ..constructs.mapper import CloudMapper
+from ..constructs.components import Component
+from ..constructs.workspace import (
+    Workspace_State,
+    Workspace_Info,
+    Workspace,
+    WorkspaceManager,
+    wrap_phase,
+)
+
+from ..utils import file_manager, module_loader
+
+
+DEFAULT_COMMAND_LOCATIONS = [
+    &#39;core.resources.simple&#39;
+]
+
+ROOT_FOLDER_NAME = &#34;.cdev&#34;
+WORKSPACE_FILE_NAME = &#34;workspace_info.json&#34;
+
+class local_workspace_configuration(BaseModel):
+    initialization_module: str
+    backend_configuration: Backend_Configuration
+    resource_state_uuid: Optional[str]
+
+
+class local_workspace(Workspace):
+    &#34;&#34;&#34;
+    A singleton that encapsulates the configuration of a workspace that is implemented on the local filesystem. The singleton can be accessed during different
+    parts of the lifecycle of a cdev core command execution. When this singleton is created, it is registered as the global workspace for that execution.
+    &#34;&#34;&#34;
+
+    _instance = None
+
+    _COMMANDS = DEFAULT_COMMAND_LOCATIONS
+    _MAPPERS = []
+    _COMPONENTS = []
+
+    _resource_state_uuid: str = None
+
+    _backend: Backend = None
+
+    _state: Workspace_State = Workspace_State.UNINITIALIZED
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Workspace, cls).__new__(cls)
+            # Put any initialization here.
+
+            cls._instance.set_state(Workspace_State.UNINITIALIZED)
+
+            # Load the backend
+            cls._instance._backend = None
+
+            cls._instance._COMMANDS = DEFAULT_COMMAND_LOCATIONS
+            cls._instance._MAPPERS = []
+            cls._instance._COMPONENTS = []
+            cls._instance._resource_state_uuid = None
+
+            Workspace.set_global_instance(cls._instance)
+
+        return cls._instance
+
+    @classmethod
+    def terminate_singleton(cls):
+        cls._instance = None
+
+    def initialize_workspace(
+        self, workspace_configuration_dict: local_workspace_configuration
+    ):
+
+        # It is the responsibility of the higher up callers to set the correct states for initialization.
+        # This allows the flexibility of higher up frameworks injecting initialization steps into the process.
+        workspace_configuration = local_workspace_configuration(
+            **workspace_configuration_dict
+        )
+        
+        try:
+            backend_config = workspace_configuration.backend_configuration
+            self.set_backend(load_backend(backend_config))
+        except Exception as e:
+            print(f&#34;Could not load the load backend&#34;)
+            raise e
+
+        module_loader.import_module(workspace_configuration.initialization_module, denote_output=True)
+        
+        if workspace_configuration.resource_state_uuid:
+            if not workspace_configuration.resource_state_uuid in set(
+                [x.uuid for x in self._backend.get_top_level_resource_states()]
+            ):
+                raise Exception(
+                    f&#34;{workspace_configuration.resource_state_uuid} not in loaded backend ({self._backend.get_top_level_resource_states()})&#34;
+                )
+
+        self.set_resource_state_uuid(workspace_configuration.resource_state_uuid)
+        
+        
+
+    def destroy_workspace(self):
+        Workspace.destroy_workspace(self)
+        local_workspace.terminate_singleton()
+
+    ################
+    ##### State
+    ################
+    def set_state(self, value: Workspace_State):
+        self._state = value
+
+    def get_state(self) -&gt; Workspace_State:
+        return self._state
+
+    #################
+    ##### Mappers
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_mapper(self, mapper: CloudMapper) -&gt; None:
+        if not isinstance(mapper, CloudMapper):
+            # TODO Throw error
+            print(f&#34;BAD CLOUD MAPPER {mapper}&#34;)
+            return
+
+        self._MAPPERS.append(mapper)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_mappers(self, mappers: List[CloudMapper]) -&gt; None:
+        for mapper in mappers:
+            self.add_mapper(mapper)
+
+        self._MAPPERS.append(mapper)
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_BACKEND])
+    def get_mappers(self) -&gt; List[CloudMapper]:
+        return self._MAPPERS
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_BACKEND])
+    def get_mapper_namespace(self) -&gt; Dict:
+        rv = {}
+        mappers: List[CloudMapper] = self.get_mappers()
+
+        for mapper in mappers:
+            for namespace in mapper.get_namespaces():
+                rv[namespace] = mapper
+
+        return rv
+
+    #################
+    ##### Commands
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_command(self, command_location: str):
+        self._COMMANDS.append(command_location)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_commands(self, command_locations: List[str]):
+        for command_location in command_locations:
+            self.add_command(command_location)
+
+    @wrap_phase([Workspace_State.INITIALIZED])
+    def get_commands(self) -&gt; List[str]:
+        return self._COMMANDS
+
+    #################
+    ##### Components
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_component(self, component: Component):
+        self._COMPONENTS.append(component)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_components(self, components: List[Component]):
+        for component in components:
+            self.add_component(component)
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND])
+    def get_components(self) -&gt; List[Component]:
+        return self._COMPONENTS
+
+    #################
+    ##### Backend
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def set_backend(self, backend: Backend):
+        if not isinstance(backend, Backend):
+            raise Exception(&#34;Not a backend object&#34;)
+
+        self._backend = backend
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND, Workspace_State.EXECUTING_BACKEND])
+    def get_backend(self) -&gt; Backend:
+        return self._backend
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def set_resource_state_uuid(self, resource_state_uuid: str):
+        self._resource_state_uuid = resource_state_uuid
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND,  Workspace_State.EXECUTING_BACKEND])
+    def get_resource_state_uuid(self) -&gt; str:
+        return self._resource_state_uuid
+
+
+class local_workspace_manager(WorkspaceManager):
+    def __init__(
+        self,
+        base_dir: DirectoryPath,
+        workspace_dir: str = None,
+        workspace_filename: str = None,
+    ) -&gt; None:
+        self.base_dir = base_dir
+        self.workspace_dir = (
+            workspace_dir if workspace_dir else ROOT_FOLDER_NAME
+        )
+        self.workspace_filename = (
+            workspace_filename
+            if workspace_filename
+            else WORKSPACE_FILE_NAME
+        )
+
+    def create_new_workspace(self, workspace_info: Workspace_Info):
+        &#34;&#34;&#34;
+        Create a new workspace based on the information provided.
+
+        Args:
+            workspace_info (Workspace_Info): information about the backend configuration
+
+        Raises:
+            WorkSpaceAlreadyCreated
+        &#34;&#34;&#34;
+        base_cdev_dir = os.path.join(self.base_dir, self.workspace_dir)
+        if not os.path.isdir(base_cdev_dir):
+            os.mkdir(base_cdev_dir)
+
+        file_manager.safe_json_write(
+            workspace_info.dict(), os.path.join(base_cdev_dir, self.workspace_filename)
+        )
+
+    def check_if_workspace_exists(self) -&gt; bool:
+        return os.path.isfile(
+            os.path.join(self.base_dir, self.workspace_dir, self.workspace_filename)
+        )
+
+    def load_workspace_configuration(self) -&gt; Workspace_Info:
+        file_location = os.path.join(
+            self.base_dir, self.workspace_dir, self.workspace_filename
+        )
+
+        with open(file_location, &#34;r&#34;) as fh:
+            raw_data = json.load(fh)
+
+        try:
+            rv = Workspace_Info(**raw_data)
+
+            return rv
+        except Exception as e:
+            print(e)
+            raise e</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.workspace.local_workspace"><code class="flex name class">
+<span>class <span class="ident">local_workspace</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A singleton that encapsulates the configuration of a workspace that is implemented on the local filesystem. The singleton can be accessed during different
+parts of the lifecycle of a cdev core command execution. When this singleton is created, it is registered as the global workspace for that execution.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class local_workspace(Workspace):
+    &#34;&#34;&#34;
+    A singleton that encapsulates the configuration of a workspace that is implemented on the local filesystem. The singleton can be accessed during different
+    parts of the lifecycle of a cdev core command execution. When this singleton is created, it is registered as the global workspace for that execution.
+    &#34;&#34;&#34;
+
+    _instance = None
+
+    _COMMANDS = DEFAULT_COMMAND_LOCATIONS
+    _MAPPERS = []
+    _COMPONENTS = []
+
+    _resource_state_uuid: str = None
+
+    _backend: Backend = None
+
+    _state: Workspace_State = Workspace_State.UNINITIALIZED
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Workspace, cls).__new__(cls)
+            # Put any initialization here.
+
+            cls._instance.set_state(Workspace_State.UNINITIALIZED)
+
+            # Load the backend
+            cls._instance._backend = None
+
+            cls._instance._COMMANDS = DEFAULT_COMMAND_LOCATIONS
+            cls._instance._MAPPERS = []
+            cls._instance._COMPONENTS = []
+            cls._instance._resource_state_uuid = None
+
+            Workspace.set_global_instance(cls._instance)
+
+        return cls._instance
+
+    @classmethod
+    def terminate_singleton(cls):
+        cls._instance = None
+
+    def initialize_workspace(
+        self, workspace_configuration_dict: local_workspace_configuration
+    ):
+
+        # It is the responsibility of the higher up callers to set the correct states for initialization.
+        # This allows the flexibility of higher up frameworks injecting initialization steps into the process.
+        workspace_configuration = local_workspace_configuration(
+            **workspace_configuration_dict
+        )
+        
+        try:
+            backend_config = workspace_configuration.backend_configuration
+            self.set_backend(load_backend(backend_config))
+        except Exception as e:
+            print(f&#34;Could not load the load backend&#34;)
+            raise e
+
+        module_loader.import_module(workspace_configuration.initialization_module, denote_output=True)
+        
+        if workspace_configuration.resource_state_uuid:
+            if not workspace_configuration.resource_state_uuid in set(
+                [x.uuid for x in self._backend.get_top_level_resource_states()]
+            ):
+                raise Exception(
+                    f&#34;{workspace_configuration.resource_state_uuid} not in loaded backend ({self._backend.get_top_level_resource_states()})&#34;
+                )
+
+        self.set_resource_state_uuid(workspace_configuration.resource_state_uuid)
+        
+        
+
+    def destroy_workspace(self):
+        Workspace.destroy_workspace(self)
+        local_workspace.terminate_singleton()
+
+    ################
+    ##### State
+    ################
+    def set_state(self, value: Workspace_State):
+        self._state = value
+
+    def get_state(self) -&gt; Workspace_State:
+        return self._state
+
+    #################
+    ##### Mappers
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_mapper(self, mapper: CloudMapper) -&gt; None:
+        if not isinstance(mapper, CloudMapper):
+            # TODO Throw error
+            print(f&#34;BAD CLOUD MAPPER {mapper}&#34;)
+            return
+
+        self._MAPPERS.append(mapper)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_mappers(self, mappers: List[CloudMapper]) -&gt; None:
+        for mapper in mappers:
+            self.add_mapper(mapper)
+
+        self._MAPPERS.append(mapper)
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_BACKEND])
+    def get_mappers(self) -&gt; List[CloudMapper]:
+        return self._MAPPERS
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_BACKEND])
+    def get_mapper_namespace(self) -&gt; Dict:
+        rv = {}
+        mappers: List[CloudMapper] = self.get_mappers()
+
+        for mapper in mappers:
+            for namespace in mapper.get_namespaces():
+                rv[namespace] = mapper
+
+        return rv
+
+    #################
+    ##### Commands
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_command(self, command_location: str):
+        self._COMMANDS.append(command_location)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_commands(self, command_locations: List[str]):
+        for command_location in command_locations:
+            self.add_command(command_location)
+
+    @wrap_phase([Workspace_State.INITIALIZED])
+    def get_commands(self) -&gt; List[str]:
+        return self._COMMANDS
+
+    #################
+    ##### Components
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_component(self, component: Component):
+        self._COMPONENTS.append(component)
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def add_components(self, components: List[Component]):
+        for component in components:
+            self.add_component(component)
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND])
+    def get_components(self) -&gt; List[Component]:
+        return self._COMPONENTS
+
+    #################
+    ##### Backend
+    #################
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def set_backend(self, backend: Backend):
+        if not isinstance(backend, Backend):
+            raise Exception(&#34;Not a backend object&#34;)
+
+        self._backend = backend
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND, Workspace_State.EXECUTING_BACKEND])
+    def get_backend(self) -&gt; Backend:
+        return self._backend
+
+    @wrap_phase([Workspace_State.INITIALIZING])
+    def set_resource_state_uuid(self, resource_state_uuid: str):
+        self._resource_state_uuid = resource_state_uuid
+
+    @wrap_phase([Workspace_State.INITIALIZED, Workspace_State.EXECUTING_FRONTEND,  Workspace_State.EXECUTING_BACKEND])
+    def get_resource_state_uuid(self) -&gt; str:
+        return self._resource_state_uuid</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.workspace.Workspace" href="../constructs/workspace.html#core.constructs.workspace.Workspace">Workspace</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="core.default.workspace.local_workspace.terminate_singleton"><code class="name flex">
+<span>def <span class="ident">terminate_singleton</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def terminate_singleton(cls):
+    cls._instance = None</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.workspace.local_workspace.destroy_workspace"><code class="name flex">
+<span>def <span class="ident">destroy_workspace</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def destroy_workspace(self):
+    Workspace.destroy_workspace(self)
+    local_workspace.terminate_singleton()</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.workspace.Workspace" href="../constructs/workspace.html#core.constructs.workspace.Workspace">Workspace</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_command" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_command">add_command</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_commands" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_commands">add_commands</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_component" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_component">add_component</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_components" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_components">add_components</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_mapper" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_mapper">add_mapper</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.add_mappers" href="../constructs/workspace.html#core.constructs.workspace.Workspace.add_mappers">add_mappers</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_backend" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_backend">get_backend</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_commands" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_commands">get_commands</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_components" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_components">get_components</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_mapper_namespace" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_mapper_namespace">get_mapper_namespace</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_mappers" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_mappers">get_mappers</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_resource_state_uuid" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_resource_state_uuid">get_resource_state_uuid</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.get_state" href="../constructs/workspace.html#core.constructs.workspace.Workspace.get_state">get_state</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.initialize_workspace" href="../constructs/workspace.html#core.constructs.workspace.Workspace.initialize_workspace">initialize_workspace</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.remove_global_instance" href="../constructs/workspace.html#core.constructs.workspace.Workspace.remove_global_instance">remove_global_instance</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.set_backend" href="../constructs/workspace.html#core.constructs.workspace.Workspace.set_backend">set_backend</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.set_resource_state_uuid" href="../constructs/workspace.html#core.constructs.workspace.Workspace.set_resource_state_uuid">set_resource_state_uuid</a></code></li>
+<li><code><a class="" title="core.constructs.workspace.Workspace.set_state" href="../constructs/workspace.html#core.constructs.workspace.Workspace.set_state">set_state</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.workspace.local_workspace_configuration"><code class="flex name class">
+<span>class <span class="ident">local_workspace_configuration</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class local_workspace_configuration(BaseModel):
+    initialization_module: str
+    backend_configuration: Backend_Configuration
+    resource_state_uuid: Optional[str]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.workspace.local_workspace_configuration.backend_configuration"><code class="name">var <span class="ident">backend_configuration</span> : <a class="" title="core.constructs.backend.Backend_Configuration" href="../constructs/backend.html#core.constructs.backend.Backend_Configuration">Backend_Configuration</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.workspace.local_workspace_configuration.initialization_module"><code class="name">var <span class="ident">initialization_module</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.workspace.local_workspace_configuration.resource_state_uuid"><code class="name">var <span class="ident">resource_state_uuid</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.workspace.local_workspace_manager"><code class="flex name class">
+<span>class <span class="ident">local_workspace_manager</span></span>
+<span>(</span><span>base_dir: pydantic.types.DirectoryPath, workspace_dir: str = None, workspace_filename: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class local_workspace_manager(WorkspaceManager):
+    def __init__(
+        self,
+        base_dir: DirectoryPath,
+        workspace_dir: str = None,
+        workspace_filename: str = None,
+    ) -&gt; None:
+        self.base_dir = base_dir
+        self.workspace_dir = (
+            workspace_dir if workspace_dir else ROOT_FOLDER_NAME
+        )
+        self.workspace_filename = (
+            workspace_filename
+            if workspace_filename
+            else WORKSPACE_FILE_NAME
+        )
+
+    def create_new_workspace(self, workspace_info: Workspace_Info):
+        &#34;&#34;&#34;
+        Create a new workspace based on the information provided.
+
+        Args:
+            workspace_info (Workspace_Info): information about the backend configuration
+
+        Raises:
+            WorkSpaceAlreadyCreated
+        &#34;&#34;&#34;
+        base_cdev_dir = os.path.join(self.base_dir, self.workspace_dir)
+        if not os.path.isdir(base_cdev_dir):
+            os.mkdir(base_cdev_dir)
+
+        file_manager.safe_json_write(
+            workspace_info.dict(), os.path.join(base_cdev_dir, self.workspace_filename)
+        )
+
+    def check_if_workspace_exists(self) -&gt; bool:
+        return os.path.isfile(
+            os.path.join(self.base_dir, self.workspace_dir, self.workspace_filename)
+        )
+
+    def load_workspace_configuration(self) -&gt; Workspace_Info:
+        file_location = os.path.join(
+            self.base_dir, self.workspace_dir, self.workspace_filename
+        )
+
+        with open(file_location, &#34;r&#34;) as fh:
+            raw_data = json.load(fh)
+
+        try:
+            rv = Workspace_Info(**raw_data)
+
+            return rv
+        except Exception as e:
+            print(e)
+            raise e</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.workspace.WorkspaceManager" href="../constructs/workspace.html#core.constructs.workspace.WorkspaceManager">WorkspaceManager</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.workspace.local_workspace_manager.check_if_workspace_exists"><code class="name flex">
+<span>def <span class="ident">check_if_workspace_exists</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_if_workspace_exists(self) -&gt; bool:
+    return os.path.isfile(
+        os.path.join(self.base_dir, self.workspace_dir, self.workspace_filename)
+    )</code></pre>
+</details>
+</dd>
+<dt id="core.default.workspace.local_workspace_manager.load_workspace_configuration"><code class="name flex">
+<span>def <span class="ident">load_workspace_configuration</span></span>(<span>self) ‑> <a class="" title="core.constructs.workspace.Workspace_Info" href="../constructs/workspace.html#core.constructs.workspace.Workspace_Info">Workspace_Info</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_workspace_configuration(self) -&gt; Workspace_Info:
+    file_location = os.path.join(
+        self.base_dir, self.workspace_dir, self.workspace_filename
+    )
+
+    with open(file_location, &#34;r&#34;) as fh:
+        raw_data = json.load(fh)
+
+    try:
+        rv = Workspace_Info(**raw_data)
+
+        return rv
+    except Exception as e:
+        print(e)
+        raise e</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.workspace.WorkspaceManager" href="../constructs/workspace.html#core.constructs.workspace.WorkspaceManager">WorkspaceManager</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.workspace.WorkspaceManager.create_new_workspace" href="../constructs/workspace.html#core.constructs.workspace.WorkspaceManager.create_new_workspace">create_new_workspace</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.default" href="index.html">core.default</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.workspace.local_workspace" href="#core.default.workspace.local_workspace">local_workspace</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace.destroy_workspace" href="#core.default.workspace.local_workspace.destroy_workspace">destroy_workspace</a></code></li>
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace.terminate_singleton" href="#core.default.workspace.local_workspace.terminate_singleton">terminate_singleton</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.workspace.local_workspace_configuration" href="#core.default.workspace.local_workspace_configuration">local_workspace_configuration</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace_configuration.backend_configuration" href="#core.default.workspace.local_workspace_configuration.backend_configuration">backend_configuration</a></code></li>
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace_configuration.initialization_module" href="#core.default.workspace.local_workspace_configuration.initialization_module">initialization_module</a></code></li>
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace_configuration.resource_state_uuid" href="#core.default.workspace.local_workspace_configuration.resource_state_uuid">resource_state_uuid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.workspace.local_workspace_manager" href="#core.default.workspace.local_workspace_manager">local_workspace_manager</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace_manager.check_if_workspace_exists" href="#core.default.workspace.local_workspace_manager.check_if_workspace_exists">check_if_workspace_exists</a></code></li>
+<li><code><a class="sidebar" title="core.default.workspace.local_workspace_manager.load_workspace_configuration" href="#core.default.workspace.local_workspace_manager.load_workspace_configuration">load_workspace_configuration</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

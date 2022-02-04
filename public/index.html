@@ -31,16 +31,18 @@
   
   <!-- plugins -->
   
-  <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/prism.css ">
-  
   <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/mystyles.css ">
   
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
-  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.svg">
+  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.png " type="image/x-icon" sizes="16x16">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/lioshi.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
 </head>
 <body>
 <!-- preloader start -->
@@ -71,9 +73,9 @@
             
             <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples">First Principles</a>
             
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Example Projects</a>
+            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Examples</a>
             
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api">API</a>
+            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
             
           </div>
         </li>
@@ -128,9 +130,9 @@
     </div>
     <div class="section-border"></div>
     <div class="row">
-      <div><p>**STILL PLACE HOLDER VIDEO**</p></div>
+      <div><p>**Will be demo gif**</p></div>
       <div class="col-lg-12 " style="padding-bottom: 5em; display: flex; justify-content: center; overflow: hidden; align-items: center;">
-        <img style='object-fit: cover; min-width: 70%; min-height: 100%; flex-shrink: 2;' src='images/demo.gif' alt="Example of cdev in use">
+        <img style='object-fit: cover; min-width: 70%; min-height: 100%; flex-shrink: 2;'  alt="Example of cdev in use">
         
       </div>
      
@@ -263,9 +265,9 @@
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/script.min.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/clipboard.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/prism.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/sidenav.js"></script>
 
@@ -313,7 +315,7 @@
     ({
         type: "POST",
         
-        url: 'https:\/\/j5ilob3c37.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
+        url: 'https:\/\/a0xmrvzond.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
         contentType: "application/json",
         async: true,
         

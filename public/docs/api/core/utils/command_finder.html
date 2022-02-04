@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.utils.command_finder API documentation</title>
+<meta name="description" content="Utilities for working with user defined commands …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.utils.command_finder</code></h1>
+</header>
+<section id="section-intro">
+<p>Utilities for working with user defined commands</p>
+<p>[detailed description]</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Utilities for working with user defined commands
+
+[detailed description]
+
+&#34;&#34;&#34;
+import importlib
+import inspect
+import os
+import sys
+from typing import List, Tuple, Union
+
+from core.constructs.commands import BaseCommand, BaseCommandContainer
+
+
+
+
+
+COMMANDS_DIR = &#34;commands&#34;
+
+
+class AmbiguousCommandName(Exception):
+    pass
+
+
+class NoCommandFound(Exception):
+    pass
+
+
+class TooManyCommandClasses(Exception):
+    pass
+
+
+def find_specified_command(
+    command_list: List[str], all_search_locations_list: List[str]
+) -&gt; Tuple[Union[BaseCommand, BaseCommandContainer], str, str, bool]:
+    for search_location in all_search_locations_list:
+        # All start locations should have a &#39;&lt;commands_dir&gt;&#39; folder that is a valid python module
+        actual_search_start = f&#34;{search_location}.{COMMANDS_DIR}&#34;
+
+        # This a specified command, so it must be in the described searched path
+        search_location_list = search_location.split(&#34;.&#34;)
+
+        if not command_list[0] == search_location_list[-1]:
+            # top level names do not match so don&#39;t even try recursively looking
+            print(
+                f&#34;Top level name do not match -&gt; {command_list}; {search_location_list}&#34;
+            )
+            continue
+
+        # Try to find the location recursively
+        did_find, location, is_command = _recursive_find_specified_command(
+            command_list[1:], actual_search_start
+        )
+
+        if is_command:
+            try:
+                initialized_object = initialize_command_module(
+                    f&#34;{location}.{command_list[-1]}&#34;
+                )
+            except Exception as e:
+                print(e)
+                print(&#34;ERROR1&#34;)
+                return
+
+        else:
+            try:
+                print(f&#34;calling with {location}; {command_list}&#34;)
+                initialized_object = initialize_command_container_module(
+                    f&#34;{location}.{command_list[-1]}&#34;
+                )
+            except Exception as e:
+                print(e)
+                print(&#34;ERROR2&#34;)
+                return
+
+        if did_find:
+            return initialized_object, location, command_list[-1], is_command
+        else:
+            raise NoCommandFound
+
+
+def find_unspecified_command(
+    command: str, all_search_locations_list: List[str]
+) -&gt; Tuple[Union[BaseCommand, BaseCommandContainer], str, str, bool]:
+
+    _all_potential_locations = []  # List[(location, is_command)]
+    _found_at_least_one_possible = False
+    for search_location in all_search_locations_list:
+
+        # All start locations should have a &#39;&lt;commands_dir&gt;&#39; folder that is a valid python module
+        actual_search_start = f&#34;{search_location}.{COMMANDS_DIR}&#34;
+
+        if command == search_location.split(&#34;.&#34;)[-1]:
+            # Command is equal to the top level package so it is a valid match to the location as a Command Container
+            _all_potential_locations.extend([(actual_search_start, False)])
+            _found_at_least_one_possible = True
+            continue
+
+        # recursively look through the actual start location for potential matches
+        did_find, locations = _recursive_find_unspecified_command(
+            command, actual_search_start, []
+        )
+
+        if did_find:
+            # The recursive search could have yielded multiple possible matches
+            _found_at_least_one_possible = True
+            _all_potential_locations.extend([(x, True) for x in locations])
+
+    if not _found_at_least_one_possible:
+        print(&#34;ERROR3&#34;)
+        raise NoCommandFound
+
+    valid_command_locations = []
+    is_command = True
+
+    potential_objects = []
+    for potential_location, is_command_local in _all_potential_locations:
+        if is_command_local:
+            try:
+                potential_objects.append(
+                    initialize_command_container_module(
+                        f&#34;{potential_location}.{command}&#34;
+                    )
+                )
+                valid_command_locations.append(potential_location)
+            except Exception as e:
+                
+                print(&#34;ERROR4&#34;)
+                continue
+
+            is_command = is_command_local
+        else:
+            try:
+                potential_objects.append(
+                    initialize_command_container_module(f&#34;{potential_location}&#34;)
+                )
+                valid_command_locations.append(potential_location)
+            except Exception as e:
+                
+                print(&#34;ERROR5&#34;)
+                continue
+
+            is_command = is_command_local
+
+    if len(potential_objects) &gt; 1:
+        print(&#34;ERROR6&#34;)
+        raise AmbiguousCommandName
+
+    if len(potential_objects) == 0:
+        print(&#34;ERROR7&#34;)
+        raise NoCommandFound
+
+    final_command = None if not is_command else command
+
+    return potential_objects[0], valid_command_locations[0], final_command, is_command
+
+
+def initialize_command_module(mod_path: str) -&gt; BaseCommand:
+    # sometime the module is already loaded so just reload it to capture any changes
+    if sys.modules.get(mod_path):
+        importlib.reload(sys.modules.get(mod_path))
+
+    mod = importlib.import_module(mod_path)
+
+    # Check for the class that derives from BaseCommand... if there is more then one class then throw error (note this is a current implementation detail)
+    # because it is easier if their is only one command per file so that we can use the file name as the command name
+    _has_found_a_valid_command = False
+    initialized_obj = None
+    for item in dir(mod):
+        potential_obj = getattr(mod, item)
+        if (
+            inspect.isclass(potential_obj)
+            and issubclass(potential_obj, BaseCommand)
+            and not (potential_obj == BaseCommand)
+        ):
+            if _has_found_a_valid_command:
+                
+                raise TooManyCommandClasses
+
+            _has_found_a_valid_command = True
+
+            # initialize an instance of the class
+            initialized_obj = potential_obj()
+
+    if not initialized_obj:
+        raise NoCommandFound
+
+    return initialized_obj
+
+
+def initialize_command_container_module(mod_path: str) -&gt; BaseCommandContainer:
+    mod = importlib.import_module(mod_path)
+    
+
+    # Check for the class that derives from BaseCommandContainer... if there is more then one class then throw error (note this is a current implementation detail)
+    # because it is easier if their is only one command per file so that we can use the file name as the command name
+    _has_found_a_valid_command_container = False
+    initialized_obj = None
+    for item in dir(mod):
+        potential_obj = getattr(mod, item)
+        if (
+            inspect.isclass(potential_obj)
+            and issubclass(potential_obj, BaseCommandContainer)
+            and not (potential_obj == BaseCommandContainer)
+        ):
+            if _has_found_a_valid_command_container:
+                # TODO better exception
+                
+                return
+
+            _has_found_a_valid_command_container = True
+
+            initialized_obj = potential_obj()
+
+    if not initialized_obj:
+        raise NoCommandFound(f&#34;Could not find command Container&#34;)
+
+    print(f&#34;final rv {initialized_obj}&#34;)
+    return initialized_obj
+
+
+def _recursive_find_specified_command(
+    command_list: List[str], search_path: str
+) -&gt; Tuple[bool, Union[str, None]]:
+    SKIPS = set([&#34;__init__.py&#34;, &#34;__pycache__&#34;])
+    try:
+
+        mod = importlib.import_module(search_path)
+
+        current_location_attempt = os.path.dirname(mod.__file__)
+
+        for potential_location in os.listdir(current_location_attempt):
+            is_dir = os.path.isdir(
+                os.path.join(current_location_attempt, potential_location)
+            )
+            if (
+                potential_location[-3:] == &#34;.py&#34; or is_dir
+            ) and not potential_location in SKIPS:
+
+                if len(command_list) == 1:
+                    # A location was specified and we are the final part of the command so the command must be a py file in this dir
+                    # of be a directory that has a command container
+                    if is_dir:
+                        if os.path.isfile(
+                            os.path.join(
+                                current_location_attempt, command_list[0], &#34;__init__.py&#34;
+                            )
+                        ):
+                            return (True, search_path, False)
+                        else:
+                            continue
+                    else:
+                        if potential_location[:-3] == command_list[0]:
+                            # print(f&#34;Found Command at -&gt; {os.path.join(current_location_attempt, potential_location)}&#34;)
+                            return (True, search_path, True)
+                        else:
+                            continue
+
+                else:
+                    # A location was specified and we are still have paths to search down for the command so if this element is not a dir and if it is recursively keep searching
+                    if not is_dir:
+                        continue
+                    else:
+                        if command_list[0] == potential_location:
+                            # print(f&#34;Recursively look in -&gt; {os.path.join(current_location_attempt, potential_location)} for {command_list[1:]}&#34;)
+                            return _recursive_find_specified_command(
+                                command_list[1:], f&#34;{search_path}.{potential_location}&#34;
+                            )
+                        else:
+                            continue
+
+        return (False, &#34;&#34;, False)
+
+    except Exception as e:
+        print(f&#34;Could not do {search_path}&#34;)
+        print(e)
+        # log.debug(f&#34;{search_path} did not have a file commands that was importable&#34;)
+        # return Tuple(False, &#34;&#34;)
+
+
+def _recursive_find_unspecified_command(
+    command: str, search_path: str, found_locations: List
+):
+    SKIPS = set([&#34;__init__.py&#34;, &#34;__pycache__&#34;])
+
+    try:
+        mod = importlib.import_module(search_path)
+        current_location_attempt = os.path.dirname(mod.__file__)
+
+        new_locations = found_locations
+        found_any_matches = False
+
+        if not os.listdir(current_location_attempt):
+            return
+
+        for potential_location in os.listdir(current_location_attempt):
+            is_dir = os.path.isdir(
+                os.path.join(current_location_attempt, potential_location)
+            )
+
+            if (
+                potential_location[-3:] == &#34;.py&#34; or is_dir
+            ) and not potential_location in SKIPS:
+                # A location was specified and we are still have paths to search down for the command so if this element is not a dir and if it is recursively keep searching
+                if not is_dir:
+                    if potential_location[:-3] == command:
+                        # print(f&#34;Found Command at -&gt; {os.path.join(current_location_attempt, potential_location)}&#34;)
+                        return (True, [search_path])
+                    else:
+                        continue
+                else:
+                    # print(f&#34;Recursively look in -&gt; {os.path.join(current_location_attempt, potential_location)} for {command}&#34;)
+                    did_find, locations = _recursive_find_unspecified_command(
+                        command, f&#34;{search_path}.{potential_location}&#34;, new_locations
+                    )
+
+                    if did_find:
+                        new_locations = new_locations + locations
+                        found_any_matches = True
+
+        return (found_any_matches, new_locations)
+
+    except Exception as e:
+        
+        return (False, [&#34;&#34;])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.utils.command_finder.find_specified_command"><code class="name flex">
+<span>def <span class="ident">find_specified_command</span></span>(<span>command_list: List[str], all_search_locations_list: List[str]) ‑> Tuple[Union[<a class="" title="core.constructs.commands.BaseCommand" href="../constructs/commands.html#core.constructs.commands.BaseCommand">BaseCommand</a>, <a class="" title="core.constructs.commands.BaseCommandContainer" href="../constructs/commands.html#core.constructs.commands.BaseCommandContainer">BaseCommandContainer</a>], str, str, bool]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_specified_command(
+    command_list: List[str], all_search_locations_list: List[str]
+) -&gt; Tuple[Union[BaseCommand, BaseCommandContainer], str, str, bool]:
+    for search_location in all_search_locations_list:
+        # All start locations should have a &#39;&lt;commands_dir&gt;&#39; folder that is a valid python module
+        actual_search_start = f&#34;{search_location}.{COMMANDS_DIR}&#34;
+
+        # This a specified command, so it must be in the described searched path
+        search_location_list = search_location.split(&#34;.&#34;)
+
+        if not command_list[0] == search_location_list[-1]:
+            # top level names do not match so don&#39;t even try recursively looking
+            print(
+                f&#34;Top level name do not match -&gt; {command_list}; {search_location_list}&#34;
+            )
+            continue
+
+        # Try to find the location recursively
+        did_find, location, is_command = _recursive_find_specified_command(
+            command_list[1:], actual_search_start
+        )
+
+        if is_command:
+            try:
+                initialized_object = initialize_command_module(
+                    f&#34;{location}.{command_list[-1]}&#34;
+                )
+            except Exception as e:
+                print(e)
+                print(&#34;ERROR1&#34;)
+                return
+
+        else:
+            try:
+                print(f&#34;calling with {location}; {command_list}&#34;)
+                initialized_object = initialize_command_container_module(
+                    f&#34;{location}.{command_list[-1]}&#34;
+                )
+            except Exception as e:
+                print(e)
+                print(&#34;ERROR2&#34;)
+                return
+
+        if did_find:
+            return initialized_object, location, command_list[-1], is_command
+        else:
+            raise NoCommandFound</code></pre>
+</details>
+</dd>
+<dt id="core.utils.command_finder.find_unspecified_command"><code class="name flex">
+<span>def <span class="ident">find_unspecified_command</span></span>(<span>command: str, all_search_locations_list: List[str]) ‑> Tuple[Union[<a class="" title="core.constructs.commands.BaseCommand" href="../constructs/commands.html#core.constructs.commands.BaseCommand">BaseCommand</a>, <a class="" title="core.constructs.commands.BaseCommandContainer" href="../constructs/commands.html#core.constructs.commands.BaseCommandContainer">BaseCommandContainer</a>], str, str, bool]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_unspecified_command(
+    command: str, all_search_locations_list: List[str]
+) -&gt; Tuple[Union[BaseCommand, BaseCommandContainer], str, str, bool]:
+
+    _all_potential_locations = []  # List[(location, is_command)]
+    _found_at_least_one_possible = False
+    for search_location in all_search_locations_list:
+
+        # All start locations should have a &#39;&lt;commands_dir&gt;&#39; folder that is a valid python module
+        actual_search_start = f&#34;{search_location}.{COMMANDS_DIR}&#34;
+
+        if command == search_location.split(&#34;.&#34;)[-1]:
+            # Command is equal to the top level package so it is a valid match to the location as a Command Container
+            _all_potential_locations.extend([(actual_search_start, False)])
+            _found_at_least_one_possible = True
+            continue
+
+        # recursively look through the actual start location for potential matches
+        did_find, locations = _recursive_find_unspecified_command(
+            command, actual_search_start, []
+        )
+
+        if did_find:
+            # The recursive search could have yielded multiple possible matches
+            _found_at_least_one_possible = True
+            _all_potential_locations.extend([(x, True) for x in locations])
+
+    if not _found_at_least_one_possible:
+        print(&#34;ERROR3&#34;)
+        raise NoCommandFound
+
+    valid_command_locations = []
+    is_command = True
+
+    potential_objects = []
+    for potential_location, is_command_local in _all_potential_locations:
+        if is_command_local:
+            try:
+                potential_objects.append(
+                    initialize_command_container_module(
+                        f&#34;{potential_location}.{command}&#34;
+                    )
+                )
+                valid_command_locations.append(potential_location)
+            except Exception as e:
+                
+                print(&#34;ERROR4&#34;)
+                continue
+
+            is_command = is_command_local
+        else:
+            try:
+                potential_objects.append(
+                    initialize_command_container_module(f&#34;{potential_location}&#34;)
+                )
+                valid_command_locations.append(potential_location)
+            except Exception as e:
+                
+                print(&#34;ERROR5&#34;)
+                continue
+
+            is_command = is_command_local
+
+    if len(potential_objects) &gt; 1:
+        print(&#34;ERROR6&#34;)
+        raise AmbiguousCommandName
+
+    if len(potential_objects) == 0:
+        print(&#34;ERROR7&#34;)
+        raise NoCommandFound
+
+    final_command = None if not is_command else command
+
+    return potential_objects[0], valid_command_locations[0], final_command, is_command</code></pre>
+</details>
+</dd>
+<dt id="core.utils.command_finder.initialize_command_container_module"><code class="name flex">
+<span>def <span class="ident">initialize_command_container_module</span></span>(<span>mod_path: str) ‑> <a class="" title="core.constructs.commands.BaseCommandContainer" href="../constructs/commands.html#core.constructs.commands.BaseCommandContainer">BaseCommandContainer</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_command_container_module(mod_path: str) -&gt; BaseCommandContainer:
+    mod = importlib.import_module(mod_path)
+    
+
+    # Check for the class that derives from BaseCommandContainer... if there is more then one class then throw error (note this is a current implementation detail)
+    # because it is easier if their is only one command per file so that we can use the file name as the command name
+    _has_found_a_valid_command_container = False
+    initialized_obj = None
+    for item in dir(mod):
+        potential_obj = getattr(mod, item)
+        if (
+            inspect.isclass(potential_obj)
+            and issubclass(potential_obj, BaseCommandContainer)
+            and not (potential_obj == BaseCommandContainer)
+        ):
+            if _has_found_a_valid_command_container:
+                # TODO better exception
+                
+                return
+
+            _has_found_a_valid_command_container = True
+
+            initialized_obj = potential_obj()
+
+    if not initialized_obj:
+        raise NoCommandFound(f&#34;Could not find command Container&#34;)
+
+    print(f&#34;final rv {initialized_obj}&#34;)
+    return initialized_obj</code></pre>
+</details>
+</dd>
+<dt id="core.utils.command_finder.initialize_command_module"><code class="name flex">
+<span>def <span class="ident">initialize_command_module</span></span>(<span>mod_path: str) ‑> <a class="" title="core.constructs.commands.BaseCommand" href="../constructs/commands.html#core.constructs.commands.BaseCommand">BaseCommand</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_command_module(mod_path: str) -&gt; BaseCommand:
+    # sometime the module is already loaded so just reload it to capture any changes
+    if sys.modules.get(mod_path):
+        importlib.reload(sys.modules.get(mod_path))
+
+    mod = importlib.import_module(mod_path)
+
+    # Check for the class that derives from BaseCommand... if there is more then one class then throw error (note this is a current implementation detail)
+    # because it is easier if their is only one command per file so that we can use the file name as the command name
+    _has_found_a_valid_command = False
+    initialized_obj = None
+    for item in dir(mod):
+        potential_obj = getattr(mod, item)
+        if (
+            inspect.isclass(potential_obj)
+            and issubclass(potential_obj, BaseCommand)
+            and not (potential_obj == BaseCommand)
+        ):
+            if _has_found_a_valid_command:
+                
+                raise TooManyCommandClasses
+
+            _has_found_a_valid_command = True
+
+            # initialize an instance of the class
+            initialized_obj = potential_obj()
+
+    if not initialized_obj:
+        raise NoCommandFound
+
+    return initialized_obj</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.utils.command_finder.AmbiguousCommandName"><code class="flex name class">
+<span>class <span class="ident">AmbiguousCommandName</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AmbiguousCommandName(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="core.utils.command_finder.NoCommandFound"><code class="flex name class">
+<span>class <span class="ident">NoCommandFound</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NoCommandFound(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="core.utils.command_finder.TooManyCommandClasses"><code class="flex name class">
+<span>class <span class="ident">TooManyCommandClasses</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TooManyCommandClasses(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.utils" href="index.html">core.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.utils.command_finder.find_specified_command" href="#core.utils.command_finder.find_specified_command">find_specified_command</a></code></li>
+<li><code><a class="sidebar" title="core.utils.command_finder.find_unspecified_command" href="#core.utils.command_finder.find_unspecified_command">find_unspecified_command</a></code></li>
+<li><code><a class="sidebar" title="core.utils.command_finder.initialize_command_container_module" href="#core.utils.command_finder.initialize_command_container_module">initialize_command_container_module</a></code></li>
+<li><code><a class="sidebar" title="core.utils.command_finder.initialize_command_module" href="#core.utils.command_finder.initialize_command_module">initialize_command_module</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.utils.command_finder.AmbiguousCommandName" href="#core.utils.command_finder.AmbiguousCommandName">AmbiguousCommandName</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.utils.command_finder.NoCommandFound" href="#core.utils.command_finder.NoCommandFound">NoCommandFound</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.utils.command_finder.TooManyCommandClasses" href="#core.utils.command_finder.TooManyCommandClasses">TooManyCommandClasses</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

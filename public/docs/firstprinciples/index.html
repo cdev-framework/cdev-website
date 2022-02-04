@@ -31,16 +31,18 @@
   
   <!-- plugins -->
   
-  <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/prism.css ">
-  
   <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/mystyles.css ">
   
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
-  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.svg">
+  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.png " type="image/x-icon" sizes="16x16">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/lioshi.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
 </head>
 <body>
 <!-- preloader start -->
@@ -71,9 +73,9 @@
               
               <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples">First Principles</a>
               
-              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Example Projects</a>
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Examples</a>
               
-              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api">API</a>
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
               
             </div>
           </li>
@@ -115,17 +117,17 @@
         
             <div class="row sub-tutorials" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer" class='sublink'>Checkbook Balancer</a>
+            </div>
+        
+            <div class="row sub-tutorials" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
                 <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup" class='sublink'>Email Signup</a>
             </div>
         
             <div class="row sub-tutorials" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
                 <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot" class='sublink'>Slack Bot</a>
-            </div>
-        
-            <div class="row sub-tutorials" style="height: max-content; display: none;">
-                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/tutorials" class='sublink'>Checkbook Balancer</a>
             </div>
         
     
@@ -150,12 +152,7 @@
         
             <div class="row sub-firstprinciples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage" class='sublink'>Programming Language</a>
-            </div>
-        
-            <div class="row sub-firstprinciples" style="height: max-content; display: none;">
-                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability" class='sublink'>Reusability</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience" class='sublink'>Developer Experience</a>
             </div>
         
     
@@ -170,12 +167,12 @@
         
             <div class="row sub-examples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints" class='sublink'>Basic API endpoints</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints" class='sublink'>HTTP API endpoints</a>
             </div>
         
             <div class="row sub-examples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb" class='sublink'>Integrate with a Dynamodb</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb" class='sublink'>Integrate with Dynamodb</a>
             </div>
         
             <div class="row sub-examples" style="height: max-content; display: none;">
@@ -187,7 +184,7 @@
 
     <div class="row" style="height: max-content; ">              
         <i id="API" class="icon-xs ti-angle-down text-white" style="padding-top: 10%; vertical-align: text-bottom; visibility: hidden;"></i>
-        <a href="/docs/api">API</a>
+        <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
     </div>
 
 </div>
@@ -237,30 +234,14 @@
     <div class="col-lg-4 col-md-6" style="padding-top: 1em;">
                 
         <div class="card hover-bg-secondary shadow py-4" style="box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)!important;">
-          <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage">
+          <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience">
           <div class="card-body text-center">
             <div class="position-relative">
-              <i class="icon-lg icon-box bg-gradient-primary rounded-circle ti-bolt mb-5 d-inline-block text-white"></i>
-              <i class="icon-lg icon-watermark text-white ti-bolt"></i>
+              <i class="icon-lg icon-box bg-gradient-primary rounded-circle ti-desktop mb-5 d-inline-block text-white"></i>
+              <i class="icon-lg icon-watermark text-white ti-desktop"></i>
             </div>
-            <h4 class="mb-4">Programming Language</h4>
-            <p>Learn why Cdev uses full programming languages to build your project</p>
-          </div>
-        </a>
-        </div>
-      </div>
-    
-    <div class="col-lg-4 col-md-6" style="padding-top: 1em;">
-                
-        <div class="card hover-bg-secondary shadow py-4" style="box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)!important;">
-          <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability">
-          <div class="card-body text-center">
-            <div class="position-relative">
-              <i class="icon-lg icon-box bg-gradient-primary rounded-circle ti-layers mb-5 d-inline-block text-white"></i>
-              <i class="icon-lg icon-watermark text-white ti-layers"></i>
-            </div>
-            <h4 class="mb-4">Reusability</h4>
-            <p>Learn Cdev helps teams create reusable components</p>
+            <h4 class="mb-4">Developer Experience</h4>
+            <p>Learn about the developer experience using Cdev</p>
           </div>
         </a>
         </div>
@@ -328,9 +309,9 @@
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/script.min.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/clipboard.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/prism.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/sidenav.js"></script>
 
@@ -378,7 +359,7 @@
     ({
         type: "POST",
         
-        url: 'https:\/\/j5ilob3c37.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
+        url: 'https:\/\/a0xmrvzond.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
         contentType: "application/json",
         async: true,
         

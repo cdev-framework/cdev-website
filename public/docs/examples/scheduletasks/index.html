@@ -31,16 +31,18 @@
   
   <!-- plugins -->
   
-  <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/prism.css ">
-  
   <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/mystyles.css ">
   
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
-  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.svg">
+  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.png " type="image/x-icon" sizes="16x16">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/lioshi.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
 </head>
 <body>
 <!-- preloader start -->
@@ -48,86 +50,166 @@
   
 </div>
 <!-- preloader end -->
-<header class="navigation fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/"><img class='logo-img' src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/Logo.svg" alt="Cdev | Dynamic Serverless Framework"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-      aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse text-center" id="navigation">
-      <ul class="navbar-nav ml-auto">
-        
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            Docs
-          </a>
-          <div class="dropdown-menu dropdown-mobile" >
-            
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials">Tutorials</a>
-            
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples">First Principles</a>
-            
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Example Projects</a>
-            
-            <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api">API</a>
-            
-          </div>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-          <a class="nav-link" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about">About</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-          <a class="nav-link" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/contact">Contact</a>
-        </li>
-        
-        
-      </ul>
-    </div>
-  </nav>
-</header>
-
-
-<section class="page-title bg-cover" data-background="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1 class="text-white font-primary">Schedule Lambdas</h1>
+<header class="static-nav-bg navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/"><img class='logo-img' src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/Logo.svg" alt="Cdev | Dynamic Serverless Framework"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Docs
+            </a>
+            <div class="dropdown-menu  dropdown-mobile" >
+              
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials">Tutorials</a>
+              
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples">First Principles</a>
+              
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Examples</a>
+              
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
+              
+            </div>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about">About</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/contact">Contact</a>
+          </li>
+          
+          
+        </ul>
       </div>
+    </nav>
+  </header>
+
+
+
+<div class="coding_section container">
+    <div class="row" >
+        <div class="col-lg-4" style="padding-left: 4%; overflow: hidden; max-width: 25%;">
+            <div class="sidebar container">
+    <div style="font-weight:bold; padding-left: 18px; display: inherit;">Docs</div>
+    
+    
+        
+        <div class="row" style="height: max-content; ">              
+            <i id="tutorials" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
+            <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/">Tutorials</a>
+        </div>
+            
+        
+        
+            <div class="row sub-tutorials" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer" class='sublink'>Checkbook Balancer</a>
+            </div>
+        
+            <div class="row sub-tutorials" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup" class='sublink'>Email Signup</a>
+            </div>
+        
+            <div class="row sub-tutorials" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot" class='sublink'>Slack Bot</a>
+            </div>
+        
+    
+    
+        
+        <div class="row" style="height: max-content; ">              
+            <i id="firstprinciples" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
+            <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/">First Principles</a>
+        </div>
+            
+        
+        
+            <div class="row sub-firstprinciples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless" class='sublink'>Why use Serverless?</a>
+            </div>
+        
+            <div class="row sub-firstprinciples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts" class='sublink'>Cold Starts</a>
+            </div>
+        
+            <div class="row sub-firstprinciples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience" class='sublink'>Developer Experience</a>
+            </div>
+        
+    
+    
+        
+        <div class="row" style="height: max-content; ">              
+            <i id="examples" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
+            <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/">Examples</a>
+        </div>
+            
+        
+        
+            <div class="row sub-examples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints" class='sublink'>HTTP API endpoints</a>
+            </div>
+        
+            <div class="row sub-examples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb" class='sublink'>Integrate with Dynamodb</a>
+            </div>
+        
+            <div class="row sub-examples" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks" class='sublink'>Schedule Lambdas</a>
+            </div>
+        
+    
+
+    <div class="row" style="height: max-content; ">              
+        <i id="API" class="icon-xs ti-angle-down text-white" style="padding-top: 10%; vertical-align: text-bottom; visibility: hidden;"></i>
+        <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
     </div>
-  </div>
-</section>
 
-
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h3 class="font-tertiary mb-5">Schedule Lambdas</h3>
-        <img src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/" alt="post-thumb" class="img-fluid w-100 mb-3">
-        <p class="d-inline-block">Post by </p>
-        <time class="float-right">January 01, 0001</time>
-        <div class="content">
-          <p>ti-timer</p>
-
-          yyyy
+</div>
+  
         </div>
 
-      </div>
+        <div class="col-lg-8" style="padding-left: 2em;">
+            <p>ti-timer</p>
+
+
+            <div class="row" style="padding-left: 1em; padding-right: 1em;">
+                
+                <div>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/"><i class=" ti-arrow-left text-black"></i></a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/">Integrate with Dynamodb</a>
+                </div>
+                
+
+                
+            </div>
+
+        </div>
     </div>
-  </div>
-</section>
 
-
+</div>
 <footer class="bg-secondary position-relative">
   <img src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/backgrounds/map.png" class="img-fluid overlay-image" alt="">
   <div class="section">
@@ -182,9 +264,9 @@
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/script.min.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/clipboard.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/prism.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/sidenav.js"></script>
 
@@ -232,7 +314,7 @@
     ({
         type: "POST",
         
-        url: 'https:\/\/j5ilob3c37.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
+        url: 'https:\/\/a0xmrvzond.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
         contentType: "application/json",
         async: true,
         

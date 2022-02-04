@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.constructs.components API documentation</title>
+<meta name="description" content="Structure that encapsulates a namespace of deploy resources …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.constructs.components</code></h1>
+</header>
+<section id="section-intro">
+<p>Structure that encapsulates a namespace of deploy resources</p>
+<p>Properties of a component:
+[]</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Structure that encapsulates a namespace of deploy resources
+
+Properties of a component:
+[]
+&#34;&#34;&#34;
+
+from enum import Enum
+from typing import Dict, Union, List, Optional, Set
+
+
+from pydantic import BaseModel
+
+from .resource import ResourceReferenceModel, ResourceModel
+
+
+class ComponentModel(BaseModel):
+    &#34;&#34;&#34;
+
+    This is the most basic information needed to describe a rendered component.
+
+    --- Attributes ---
+
+    - resources -&gt;  a list of rendered resources that make up this resource
+
+    - hash  -&gt;  a string that is the hash of this component. This hash must be computed such that
+                it changes only if a change in the state is desired.
+
+    - name  -&gt;  a string that is the human readable name for this component
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    A human readable logical name for the component. 
+
+    This value is important for allow human level refactoring of components. To update a component name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+
+    hash: str
+    &#34;&#34;&#34;
+    A hash that is used to identify if changes in the resources have occurred. It should have the property:
+    - This value changes only if a there is a change in the resource. 
+    &#34;&#34;&#34;
+
+    resources: Optional[List[ResourceModel]]
+    &#34;&#34;&#34;
+    List of Rendered Resources that make up the current state of this component
+    &#34;&#34;&#34;
+
+    references: Optional[List[ResourceReferenceModel]]
+    &#34;&#34;&#34;
+    A list of the referenced resources used by this component
+    &#34;&#34;&#34;
+
+    cloud_output: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Output values from the cloud provider of deployed resources
+    &#34;&#34;&#34;
+
+    previous_resolved_cloud_values: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Previously resolved cloud output
+    &#34;&#34;&#34;
+
+    external_references: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Dictionary of the resources to information about references to them from other components
+    &#34;&#34;&#34;
+
+    def __init__(
+        __pydantic_self__,
+        name: str,
+        hash: str = &#34;0&#34;,
+        resources: List[ResourceModel] = [],
+        references: List[ResourceReferenceModel] = [],
+        cloud_output: Dict[str, Dict] = {},
+        previous_resolved_cloud_values: Dict[str, Dict]={},
+        external_references: Dict[str, Dict] = {},
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;name&#34;: name,
+                &#34;hash&#34;: hash,
+                &#34;resources&#34;: list(resources),
+                &#34;references&#34;: list(references),
+                &#34;cloud_output&#34;: dict(cloud_output),
+                &#34;previous_resolved_cloud_values&#34;: dict(previous_resolved_cloud_values),
+                &#34;external_references&#34;: dict(external_references),
+
+            }
+        )
+
+
+class Component_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    UPDATE_NAME = &#34;UPDATE_NAME&#34;
+    DELETE = &#34;DELETE&#34;
+    UPDATE_IDENTITY = &#34;UPDATE_IDENTITY&#34;
+
+
+class Component_Difference(BaseModel):
+    action_type: Component_Change_Type
+    previous_name: Optional[str]
+    new_name: Optional[str]
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Component_Change_Type,
+        previous_name: str = None,
+        new_name: str = None,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;previous_name&#34;: previous_name,
+                &#34;new_name&#34;: new_name,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True
+
+
+
+class Component:
+    &#34;&#34;&#34;
+    A component is a logical collection of resources. This simple definition is intended to allow flexibility for different
+    styles of setup. It is up to the end user to decide on how they group the resources.
+
+    A component must override the `render` method, which returns the desired resources with configuration as a component model.
+    The `render` method does not take any input parameters, therefore all configuration for the component should be done via the `__init__`
+    method or other defined methods.
+    &#34;&#34;&#34;
+
+    def __init__(self, name: str):
+        self.name = name
+
+    def render(self) -&gt; ComponentModel:
+        &#34;&#34;&#34;Abstract Class that must be implemented by the descendant that returns a component model&#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_name(self) -&gt; str:
+        return self.name</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.constructs.components.Component"><code class="flex name class">
+<span>class <span class="ident">Component</span></span>
+<span>(</span><span>name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A component is a logical collection of resources. This simple definition is intended to allow flexibility for different
+styles of setup. It is up to the end user to decide on how they group the resources.</p>
+<p>A component must override the <code>render</code> method, which returns the desired resources with configuration as a component model.
+The <code>render</code> method does not take any input parameters, therefore all configuration for the component should be done via the <code>__init__</code>
+method or other defined methods.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Component:
+    &#34;&#34;&#34;
+    A component is a logical collection of resources. This simple definition is intended to allow flexibility for different
+    styles of setup. It is up to the end user to decide on how they group the resources.
+
+    A component must override the `render` method, which returns the desired resources with configuration as a component model.
+    The `render` method does not take any input parameters, therefore all configuration for the component should be done via the `__init__`
+    method or other defined methods.
+    &#34;&#34;&#34;
+
+    def __init__(self, name: str):
+        self.name = name
+
+    def render(self) -&gt; ComponentModel:
+        &#34;&#34;&#34;Abstract Class that must be implemented by the descendant that returns a component model&#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_name(self) -&gt; str:
+        return self.name</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.components.Cdev_FileSystem_Component" href="../default/components.html#core.default.components.Cdev_FileSystem_Component">Cdev_FileSystem_Component</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.constructs.components.Component.get_name"><code class="name flex">
+<span>def <span class="ident">get_name</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_name(self) -&gt; str:
+    return self.name</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.components.Component.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.constructs.components.ComponentModel" href="#core.constructs.components.ComponentModel">ComponentModel</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract Class that must be implemented by the descendant that returns a component model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; ComponentModel:
+    &#34;&#34;&#34;Abstract Class that must be implemented by the descendant that returns a component model&#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.components.ComponentModel"><code class="flex name class">
+<span>class <span class="ident">ComponentModel</span></span>
+<span>(</span><span>name: str, hash: str = '0', resources: List[<a class="" title="core.constructs.resource.ResourceModel" href="resource.html#core.constructs.resource.ResourceModel">ResourceModel</a>] = [], references: List[<a class="" title="core.constructs.resource.ResourceReferenceModel" href="resource.html#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a>] = [], cloud_output: Dict[str, Dict[~KT, ~VT]] = {}, previous_resolved_cloud_values: Dict[str, Dict[~KT, ~VT]] = {}, external_references: Dict[str, Dict[~KT, ~VT]] = {})</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is the most basic information needed to describe a rendered component.</p>
+<p>&mdash; Attributes &mdash;</p>
+<ul>
+<li>
+<p>resources -&gt;
+a list of rendered resources that make up this resource</p>
+</li>
+<li>
+<p>hash
+-&gt;
+a string that is the hash of this component. This hash must be computed such that
+it changes only if a change in the state is desired.</p>
+</li>
+<li>
+<p>name
+-&gt;
+a string that is the human readable name for this component</p>
+</li>
+</ul>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ComponentModel(BaseModel):
+    &#34;&#34;&#34;
+
+    This is the most basic information needed to describe a rendered component.
+
+    --- Attributes ---
+
+    - resources -&gt;  a list of rendered resources that make up this resource
+
+    - hash  -&gt;  a string that is the hash of this component. This hash must be computed such that
+                it changes only if a change in the state is desired.
+
+    - name  -&gt;  a string that is the human readable name for this component
+    &#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;
+    A human readable logical name for the component. 
+
+    This value is important for allow human level refactoring of components. To update a component name once created, you must edit only the 
+    name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create 
+    instead of update. 
+    &#34;&#34;&#34;
+
+
+    hash: str
+    &#34;&#34;&#34;
+    A hash that is used to identify if changes in the resources have occurred. It should have the property:
+    - This value changes only if a there is a change in the resource. 
+    &#34;&#34;&#34;
+
+    resources: Optional[List[ResourceModel]]
+    &#34;&#34;&#34;
+    List of Rendered Resources that make up the current state of this component
+    &#34;&#34;&#34;
+
+    references: Optional[List[ResourceReferenceModel]]
+    &#34;&#34;&#34;
+    A list of the referenced resources used by this component
+    &#34;&#34;&#34;
+
+    cloud_output: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Output values from the cloud provider of deployed resources
+    &#34;&#34;&#34;
+
+    previous_resolved_cloud_values: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Previously resolved cloud output
+    &#34;&#34;&#34;
+
+    external_references: Optional[Dict[str, Dict]]
+    &#34;&#34;&#34;
+    Dictionary of the resources to information about references to them from other components
+    &#34;&#34;&#34;
+
+    def __init__(
+        __pydantic_self__,
+        name: str,
+        hash: str = &#34;0&#34;,
+        resources: List[ResourceModel] = [],
+        references: List[ResourceReferenceModel] = [],
+        cloud_output: Dict[str, Dict] = {},
+        previous_resolved_cloud_values: Dict[str, Dict]={},
+        external_references: Dict[str, Dict] = {},
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;name&#34;: name,
+                &#34;hash&#34;: hash,
+                &#34;resources&#34;: list(resources),
+                &#34;references&#34;: list(references),
+                &#34;cloud_output&#34;: dict(cloud_output),
+                &#34;previous_resolved_cloud_values&#34;: dict(previous_resolved_cloud_values),
+                &#34;external_references&#34;: dict(external_references),
+
+            }
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.components.ComponentModel.cloud_output"><code class="name">var <span class="ident">cloud_output</span> : Optional[Dict[str, Dict[~KT, ~VT]]]</code></dt>
+<dd>
+<div class="desc"><p>Output values from the cloud provider of deployed resources</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.external_references"><code class="name">var <span class="ident">external_references</span> : Optional[Dict[str, Dict[~KT, ~VT]]]</code></dt>
+<dd>
+<div class="desc"><p>Dictionary of the resources to information about references to them from other components</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.hash"><code class="name">var <span class="ident">hash</span> : str</code></dt>
+<dd>
+<div class="desc"><p>A hash that is used to identify if changes in the resources have occurred. It should have the property:
+- This value changes only if a there is a change in the resource.</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>A human readable logical name for the component. </p>
+<p>This value is important for allow human level refactoring of components. To update a component name once created, you must edit only the
+name and not change the hash. If you change both the hash and name in the same deployment, it will register this as a delete and create
+instead of update.</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.previous_resolved_cloud_values"><code class="name">var <span class="ident">previous_resolved_cloud_values</span> : Optional[Dict[str, Dict[~KT, ~VT]]]</code></dt>
+<dd>
+<div class="desc"><p>Previously resolved cloud output</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.references"><code class="name">var <span class="ident">references</span> : Optional[List[<a class="" title="core.constructs.resource.ResourceReferenceModel" href="resource.html#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a>]]</code></dt>
+<dd>
+<div class="desc"><p>A list of the referenced resources used by this component</p></div>
+</dd>
+<dt id="core.constructs.components.ComponentModel.resources"><code class="name">var <span class="ident">resources</span> : Optional[List[<a class="" title="core.constructs.resource.ResourceModel" href="resource.html#core.constructs.resource.ResourceModel">ResourceModel</a>]]</code></dt>
+<dd>
+<div class="desc"><p>List of Rendered Resources that make up the current state of this component</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.components.Component_Change_Type"><code class="flex name class">
+<span>class <span class="ident">Component_Change_Type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Component_Change_Type(str, Enum):
+    CREATE = &#34;CREATE&#34;
+    UPDATE_NAME = &#34;UPDATE_NAME&#34;
+    DELETE = &#34;DELETE&#34;
+    UPDATE_IDENTITY = &#34;UPDATE_IDENTITY&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.components.Component_Change_Type.CREATE"><code class="name">var <span class="ident">CREATE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Change_Type.DELETE"><code class="name">var <span class="ident">DELETE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Change_Type.UPDATE_IDENTITY"><code class="name">var <span class="ident">UPDATE_IDENTITY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Change_Type.UPDATE_NAME"><code class="name">var <span class="ident">UPDATE_NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.constructs.components.Component_Difference"><code class="flex name class">
+<span>class <span class="ident">Component_Difference</span></span>
+<span>(</span><span>action_type: <a class="" title="core.constructs.components.Component_Change_Type" href="#core.constructs.components.Component_Change_Type">Component_Change_Type</a>, previous_name: str = None, new_name: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Component_Difference(BaseModel):
+    action_type: Component_Change_Type
+    previous_name: Optional[str]
+    new_name: Optional[str]
+
+    def __init__(
+        __pydantic_self__,
+        action_type: Component_Change_Type,
+        previous_name: str = None,
+        new_name: str = None,
+    ) -&gt; None:
+        super().__init__(
+            **{
+                &#34;action_type&#34;: action_type,
+                &#34;previous_name&#34;: previous_name,
+                &#34;new_name&#34;: new_name,
+            }
+        )
+
+    class Config:
+        use_enum_values = True
+        # Beta Feature but should be fine since this is simple data 
+        frozen = True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.constructs.components.Component_Difference.Config"><code class="name">var <span class="ident">Config</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Difference.action_type"><code class="name">var <span class="ident">action_type</span> : <a class="" title="core.constructs.components.Component_Change_Type" href="#core.constructs.components.Component_Change_Type">Component_Change_Type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Difference.new_name"><code class="name">var <span class="ident">new_name</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.constructs.components.Component_Difference.previous_name"><code class="name">var <span class="ident">previous_name</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.constructs" href="index.html">core.constructs</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.components.Component" href="#core.constructs.components.Component">Component</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.components.Component.get_name" href="#core.constructs.components.Component.get_name">get_name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component.render" href="#core.constructs.components.Component.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.components.ComponentModel" href="#core.constructs.components.ComponentModel">ComponentModel</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.cloud_output" href="#core.constructs.components.ComponentModel.cloud_output">cloud_output</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.external_references" href="#core.constructs.components.ComponentModel.external_references">external_references</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.hash" href="#core.constructs.components.ComponentModel.hash">hash</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.name" href="#core.constructs.components.ComponentModel.name">name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.previous_resolved_cloud_values" href="#core.constructs.components.ComponentModel.previous_resolved_cloud_values">previous_resolved_cloud_values</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.references" href="#core.constructs.components.ComponentModel.references">references</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.ComponentModel.resources" href="#core.constructs.components.ComponentModel.resources">resources</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.components.Component_Change_Type" href="#core.constructs.components.Component_Change_Type">Component_Change_Type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.components.Component_Change_Type.CREATE" href="#core.constructs.components.Component_Change_Type.CREATE">CREATE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Change_Type.DELETE" href="#core.constructs.components.Component_Change_Type.DELETE">DELETE</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Change_Type.UPDATE_IDENTITY" href="#core.constructs.components.Component_Change_Type.UPDATE_IDENTITY">UPDATE_IDENTITY</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Change_Type.UPDATE_NAME" href="#core.constructs.components.Component_Change_Type.UPDATE_NAME">UPDATE_NAME</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.constructs.components.Component_Difference" href="#core.constructs.components.Component_Difference">Component_Difference</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.constructs.components.Component_Difference.Config" href="#core.constructs.components.Component_Difference.Config">Config</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Difference.action_type" href="#core.constructs.components.Component_Difference.action_type">action_type</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Difference.new_name" href="#core.constructs.components.Component_Difference.new_name">new_name</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.components.Component_Difference.previous_name" href="#core.constructs.components.Component_Difference.previous_name">previous_name</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.default.resources.simple.table API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.default.resources.simple.table</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+from typing import Any, FrozenSet, List
+
+from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsAvailableMixin
+from core.constructs.cloud_output import  Cloud_Output_Str, OutputType
+from core.utils import hasher
+from core.constructs.models import ImmutableModel
+
+from core.default.resources.simple.events import Event, event_model
+from core.default.resources.simple.iam import Permission
+
+RUUID = &#34;cdev::simple::table&#34;
+
+
+#################
+##### Events
+#################
+class stream_type(str, Enum):
+    &#34;&#34;&#34;Type of streams for a table. 
+    
+    attributes:
+        KEYS_ONLY: Only the key attributes of the modified item.
+        NEW_IMAGE: The entire item, as it appears after it was modified.
+        OLD_IMAGE: The entire item, as it appeared before it was modified.
+        NEW_AND_OLD_IMAGES: Both the new and the old item images of the item.
+    &#34;&#34;&#34;
+
+    KEYS_ONLY = &#34;KEYS_ONLY&#34;
+    NEW_IMAGE = &#34;NEW_IMAGE&#34;
+    OLD_IMAGE = &#34;OLD_IMAGE&#34;
+    NEW_AND_OLD_IMAGES = &#34;NEW_AND_OLD_IMAGES&#34;
+
+
+class stream_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        original_resource_name: str
+        original_resource_type: str
+        event_type: EventTypes
+        view_type: stream_type
+        batch_size: int
+    &#34;&#34;&#34;
+    view_type: stream_type
+    batch_size: int
+
+
+class StreamEvent(Event):
+    RUUID = &#34;cdev::simple::table&#34;
+
+    def __init__(self, table_name: str, view_type: stream_type, batch_size: int) -&gt; None:
+        self.table_name=table_name
+        self.view_type=view_type
+        self.batch_size=batch_size
+        
+
+
+    def render(self) -&gt; stream_event_model:
+        return stream_event_model(
+            original_resource_name=self.table_name,
+            original_resource_type=self.RUUID,
+            batch_size=self.batch_size,
+            view_type=self.view_type.value,
+            granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+        )
+
+
+#####################
+###### Permission
+######################
+class TablePermissions:
+    RUUID = &#34;cdev::simple::table&#34;
+
+    def __init__(self, resource_name) -&gt; None:
+
+        self.READ_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.WRITE_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:BatchWriteItem&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+                &#34;dynamodb:PutItem&#34;,
+                &#34;dynamodb:DescribeTable&#34;,
+                &#34;dynamodb:DeleteItem&#34;,
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:UpdateItem&#34;,
+                &#34;dynamodb:DescribeLimits&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_AND_WRITE_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:BatchWriteItem&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+                &#34;dynamodb:DeleteItem&#34;,
+                &#34;dynamodb:DescribeLimits&#34;,
+                &#34;dynamodb:DescribeTable&#34;,
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:PutItem&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:UpdateItem&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_STREAM = Permission(
+            actions=[
+                &#34;dynamodb:DescribeStream&#34;,
+                &#34;dynamodb:GetRecords&#34;,
+                &#34;dynamodb:GetShardIterator&#34;,
+                &#34;dynamodb:ListShards&#34;,
+                &#34;dynamodb:ListStreams&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+##############
+##### Output
+##############
+class TableOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)
+
+    @property
+    def table_name(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The name of the generated table&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=RUUID,
+            key=&#39;table_name&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @table_name.setter
+    def table_name(self, value: Any):
+        raise Exception
+
+
+###############
+##### Table
+###############
+class attribute_type(str, Enum):
+    &#34;&#34;&#34;Attributes of a table.
+
+    These values will be used by the table to do type checks on data for the defined attribute.
+
+    visit https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table for more details
+
+    Values:
+        S: String
+        N: Number
+        B: Binary
+    &#34;&#34;&#34;
+
+    S = &#34;S&#34;
+    N = &#34;N&#34;
+    B = &#34;B&#34;
+
+
+class key_type(str, Enum):
+    &#34;&#34;&#34;Type of key for a defined key on a table.
+    
+    These value will be used by the primary key to determine how the data is stored in the table.
+    visit https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey for more details.
+
+    Values:
+        HASH: Partion Key
+        RANGE: Sort key
+    &#34;&#34;&#34;
+
+    HASH = &#34;HASH&#34;
+    RANGE = &#34;RANGE&#34;
+
+
+class attribute_definition_model(ImmutableModel):
+    attribute_name: str 
+    attribute_type: attribute_type
+
+    
+class AttributeDefinition:
+    def __init__(self, name:str, type: attribute_type) -&gt; None:
+        self.name = name
+        self.type = type
+
+
+    def render(self) -&gt; attribute_definition_model:
+        return attribute_definition_model(
+            attribute_name=self.name,
+            attribute_type=self.type
+        )
+
+
+class key_definition_model(ImmutableModel):
+    attribute_name: str 
+    key_type: key_type
+
+
+class KeyDefinition:
+    def __init__(self, name:str, type: key_type) -&gt; None:
+        self.name = name
+        self.type = type
+
+
+    def render(self) -&gt; key_definition_model:
+        return key_definition_model(
+            attribute_name=self.name,
+            key_type=self.type
+        )
+
+
+class simple_table_model(ResourceModel):
+    attributes: FrozenSet[attribute_definition_model]
+    keys: FrozenSet[key_definition_model]
+
+
+class Table(PermissionsAvailableMixin, Resource):
+
+    @update_hash
+    def __init__(
+        self,
+        cdev_name: str,
+        attributes: List[AttributeDefinition],
+        keys: List[KeyDefinition],
+        nonce: str = &#34;&#34;,
+    ) -&gt; None:
+        &#34;&#34;&#34;[summary]
+
+        Args:
+            cdev_name (str): [description]
+            attributes (List[AttributeDefinition]): [description]
+            keys (List[KeyDefinition]): [description]
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self._attributes = attributes
+        self._keys = keys
+        self._stream = None
+
+        self.available_permissions = TablePermissions(cdev_name)
+
+    @property
+    def attributes(self):
+        return self._attributes
+
+    @attributes.setter
+    @update_hash
+    def attributes(self, value: List[AttributeDefinition]):
+        self._attributes = value
+
+    @property
+    def keys(self):
+        return self._keys
+
+    @keys.setter
+    @update_hash
+    def keys(self, value: List[KeyDefinition]):
+        self._keys = value
+
+    def create_stream(
+        self, view_type: stream_type, batch_size: int = 100
+    ) -&gt; StreamEvent:
+        if self._stream:
+            print(
+                f&#34;Already created stream on this table. Use `get_stream()` to get the current stream.&#34;
+            )
+            raise Exception
+
+        event = StreamEvent(
+            table_name=self.name,
+            view_type=view_type,
+            batch_size=batch_size
+        )
+
+        self._stream = event
+        return event
+
+    def get_stream(self) -&gt; StreamEvent:
+        if not self._stream:
+            print(
+                &#34;Stream has not been created. Create a stream for this table using the `create_stream` function.&#34;
+            )
+            raise Exception
+
+        return self._stream
+
+
+    def _check_attributes_and_keys(
+        self
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Check key constraints based on https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table
+        &#34;&#34;&#34;
+        if len(self.keys) &gt; 2:
+            raise Exception(&#34;Only two primary keys can be used&#34;)
+
+        primary_key = self.keys[0]
+
+        if not primary_key:
+            raise Exception(&#34;No Hash key provided&#34;)
+
+        if not primary_key.type == key_type.HASH:
+            raise Exception(&#34;First key is not Hash key&#34;)
+
+        if not primary_key.name in set(
+            [x.name for x in self.attributes]
+        ):
+            raise Exception(
+                f&#34;Hash key &#39;AttributeName&#39; ({primary_key.name}) not defined in attributes&#34;,
+            )
+
+        if len(self.keys) == 1:
+            return 
+
+        range_key = self.keys[1]
+
+        if not range_key.type == key_type.RANGE:
+            raise Exception(&#34;Second key is not a Range key&#34;)
+
+        if not range_key.name in set(
+            [x.name for x in self.attributes]
+        ):
+            raise Exception(
+                f&#34;Range key &#39;AttributeName&#39; ({range_key.name}) not defined in attributes&#34;,
+            )
+
+    def compute_hash(self):
+        self._hash = hasher.hash_list(
+            [
+                [x.render() for x in self.attributes], 
+                [x.render() for x in self.keys], 
+                self.nonce
+            ]
+        )
+
+    def render(self) -&gt; simple_table_model:
+        self._check_attributes_and_keys()
+        
+        return simple_table_model(
+            ruuid=RUUID,
+            name=self.name,
+            hash=self.hash,
+            attributes=[x.render() for x in self.attributes],
+            keys=[x.render() for x in self.keys],
+        )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.resources.simple.table.AttributeDefinition"><code class="flex name class">
+<span>class <span class="ident">AttributeDefinition</span></span>
+<span>(</span><span>name: str, type: <a class="" title="core.default.resources.simple.table.attribute_type" href="#core.default.resources.simple.table.attribute_type">attribute_type</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AttributeDefinition:
+    def __init__(self, name:str, type: attribute_type) -&gt; None:
+        self.name = name
+        self.type = type
+
+
+    def render(self) -&gt; attribute_definition_model:
+        return attribute_definition_model(
+            attribute_name=self.name,
+            attribute_type=self.type
+        )</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.table.AttributeDefinition.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.attribute_definition_model" href="#core.default.resources.simple.table.attribute_definition_model">attribute_definition_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; attribute_definition_model:
+    return attribute_definition_model(
+        attribute_name=self.name,
+        attribute_type=self.type
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.KeyDefinition"><code class="flex name class">
+<span>class <span class="ident">KeyDefinition</span></span>
+<span>(</span><span>name: str, type: <a class="" title="core.default.resources.simple.table.key_type" href="#core.default.resources.simple.table.key_type">key_type</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class KeyDefinition:
+    def __init__(self, name:str, type: key_type) -&gt; None:
+        self.name = name
+        self.type = type
+
+
+    def render(self) -&gt; key_definition_model:
+        return key_definition_model(
+            attribute_name=self.name,
+            key_type=self.type
+        )</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.table.KeyDefinition.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.key_definition_model" href="#core.default.resources.simple.table.key_definition_model">key_definition_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; key_definition_model:
+    return key_definition_model(
+        attribute_name=self.name,
+        key_type=self.type
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.StreamEvent"><code class="flex name class">
+<span>class <span class="ident">StreamEvent</span></span>
+<span>(</span><span>table_name: str, view_type: <a class="" title="core.default.resources.simple.table.stream_type" href="#core.default.resources.simple.table.stream_type">stream_type</a>, batch_size: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class StreamEvent(Event):
+    RUUID = &#34;cdev::simple::table&#34;
+
+    def __init__(self, table_name: str, view_type: stream_type, batch_size: int) -&gt; None:
+        self.table_name=table_name
+        self.view_type=view_type
+        self.batch_size=batch_size
+        
+
+
+    def render(self) -&gt; stream_event_model:
+        return stream_event_model(
+            original_resource_name=self.table_name,
+            original_resource_type=self.RUUID,
+            batch_size=self.batch_size,
+            view_type=self.view_type.value,
+            granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.StreamEvent.RUUID"><code class="name">var <span class="ident">RUUID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.table.StreamEvent.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.stream_event_model" href="#core.default.resources.simple.table.stream_event_model">stream_event_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; stream_event_model:
+    return stream_event_model(
+        original_resource_name=self.table_name,
+        original_resource_type=self.RUUID,
+        batch_size=self.batch_size,
+        view_type=self.view_type.value,
+        granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.Table"><code class="flex name class">
+<span>class <span class="ident">Table</span></span>
+<span>(</span><span>*func_posargs, **func_kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Table(PermissionsAvailableMixin, Resource):
+
+    @update_hash
+    def __init__(
+        self,
+        cdev_name: str,
+        attributes: List[AttributeDefinition],
+        keys: List[KeyDefinition],
+        nonce: str = &#34;&#34;,
+    ) -&gt; None:
+        &#34;&#34;&#34;[summary]
+
+        Args:
+            cdev_name (str): [description]
+            attributes (List[AttributeDefinition]): [description]
+            keys (List[KeyDefinition]): [description]
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self._attributes = attributes
+        self._keys = keys
+        self._stream = None
+
+        self.available_permissions = TablePermissions(cdev_name)
+
+    @property
+    def attributes(self):
+        return self._attributes
+
+    @attributes.setter
+    @update_hash
+    def attributes(self, value: List[AttributeDefinition]):
+        self._attributes = value
+
+    @property
+    def keys(self):
+        return self._keys
+
+    @keys.setter
+    @update_hash
+    def keys(self, value: List[KeyDefinition]):
+        self._keys = value
+
+    def create_stream(
+        self, view_type: stream_type, batch_size: int = 100
+    ) -&gt; StreamEvent:
+        if self._stream:
+            print(
+                f&#34;Already created stream on this table. Use `get_stream()` to get the current stream.&#34;
+            )
+            raise Exception
+
+        event = StreamEvent(
+            table_name=self.name,
+            view_type=view_type,
+            batch_size=batch_size
+        )
+
+        self._stream = event
+        return event
+
+    def get_stream(self) -&gt; StreamEvent:
+        if not self._stream:
+            print(
+                &#34;Stream has not been created. Create a stream for this table using the `create_stream` function.&#34;
+            )
+            raise Exception
+
+        return self._stream
+
+
+    def _check_attributes_and_keys(
+        self
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Check key constraints based on https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table
+        &#34;&#34;&#34;
+        if len(self.keys) &gt; 2:
+            raise Exception(&#34;Only two primary keys can be used&#34;)
+
+        primary_key = self.keys[0]
+
+        if not primary_key:
+            raise Exception(&#34;No Hash key provided&#34;)
+
+        if not primary_key.type == key_type.HASH:
+            raise Exception(&#34;First key is not Hash key&#34;)
+
+        if not primary_key.name in set(
+            [x.name for x in self.attributes]
+        ):
+            raise Exception(
+                f&#34;Hash key &#39;AttributeName&#39; ({primary_key.name}) not defined in attributes&#34;,
+            )
+
+        if len(self.keys) == 1:
+            return 
+
+        range_key = self.keys[1]
+
+        if not range_key.type == key_type.RANGE:
+            raise Exception(&#34;Second key is not a Range key&#34;)
+
+        if not range_key.name in set(
+            [x.name for x in self.attributes]
+        ):
+            raise Exception(
+                f&#34;Range key &#39;AttributeName&#39; ({range_key.name}) not defined in attributes&#34;,
+            )
+
+    def compute_hash(self):
+        self._hash = hasher.hash_list(
+            [
+                [x.render() for x in self.attributes], 
+                [x.render() for x in self.keys], 
+                self.nonce
+            ]
+        )
+
+    def render(self) -&gt; simple_table_model:
+        self._check_attributes_and_keys()
+        
+        return simple_table_model(
+            ruuid=RUUID,
+            name=self.name,
+            hash=self.hash,
+            attributes=[x.render() for x in self.attributes],
+            keys=[x.render() for x in self.keys],
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.PermissionsAvailableMixin" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin">PermissionsAvailableMixin</a></li>
+<li><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.Table.attributes"><code class="name">var <span class="ident">attributes</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def attributes(self):
+    return self._attributes</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.table.Table.keys"><code class="name">var <span class="ident">keys</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def keys(self):
+    return self._keys</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.table.Table.compute_hash"><code class="name flex">
+<span>def <span class="ident">compute_hash</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_hash(self):
+    self._hash = hasher.hash_list(
+        [
+            [x.render() for x in self.attributes], 
+            [x.render() for x in self.keys], 
+            self.nonce
+        ]
+    )</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.table.Table.create_stream"><code class="name flex">
+<span>def <span class="ident">create_stream</span></span>(<span>self, view_type: <a class="" title="core.default.resources.simple.table.stream_type" href="#core.default.resources.simple.table.stream_type">stream_type</a>, batch_size: int = 100) ‑> <a class="" title="core.default.resources.simple.table.StreamEvent" href="#core.default.resources.simple.table.StreamEvent">StreamEvent</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_stream(
+    self, view_type: stream_type, batch_size: int = 100
+) -&gt; StreamEvent:
+    if self._stream:
+        print(
+            f&#34;Already created stream on this table. Use `get_stream()` to get the current stream.&#34;
+        )
+        raise Exception
+
+    event = StreamEvent(
+        table_name=self.name,
+        view_type=view_type,
+        batch_size=batch_size
+    )
+
+    self._stream = event
+    return event</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.table.Table.get_stream"><code class="name flex">
+<span>def <span class="ident">get_stream</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.StreamEvent" href="#core.default.resources.simple.table.StreamEvent">StreamEvent</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_stream(self) -&gt; StreamEvent:
+    if not self._stream:
+        print(
+            &#34;Stream has not been created. Create a stream for this table using the `create_stream` function.&#34;
+        )
+        raise Exception
+
+    return self._stream</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.table.Table.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.simple_table_model" href="#core.default.resources.simple.table.simple_table_model">simple_table_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; simple_table_model:
+    self._check_attributes_and_keys()
+    
+    return simple_table_model(
+        ruuid=RUUID,
+        name=self.name,
+        hash=self.hash,
+        attributes=[x.render() for x in self.attributes],
+        keys=[x.render() for x in self.keys],
+    )</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.PermissionsAvailableMixin" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin">PermissionsAvailableMixin</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.PermissionsAvailableMixin.available_permissions" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin.available_permissions">available_permissions</a></code></li>
+</ul>
+</li>
+<li><code><b><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.Resource.hash" href="../../../constructs/resource.html#core.constructs.resource.Resource.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.name" href="../../../constructs/resource.html#core.constructs.resource.Resource.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.nonce" href="../../../constructs/resource.html#core.constructs.resource.Resource.nonce">nonce</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.ruuid" href="../../../constructs/resource.html#core.constructs.resource.Resource.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.table.TableOutput"><code class="flex name class">
+<span>class <span class="ident">TableOutput</span></span>
+<span>(</span><span>name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container object for the returned values from the cloud after the resource has been deployed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TableOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)
+
+    @property
+    def table_name(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The name of the generated table&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=RUUID,
+            key=&#39;table_name&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @table_name.setter
+    def table_name(self, value: Any):
+        raise Exception</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceOutputs" href="../../../constructs/resource.html#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.TableOutput.table_name"><code class="name">var <span class="ident">table_name</span> : <a class="" title="core.constructs.cloud_output.Cloud_Output_Str" href="../../../constructs/cloud_output.html#core.constructs.cloud_output.Cloud_Output_Str">Cloud_Output_Str</a></code></dt>
+<dd>
+<div class="desc"><p>The name of the generated table</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def table_name(self) -&gt; Cloud_Output_Str:
+    &#34;&#34;&#34;The name of the generated table&#34;&#34;&#34;
+    return Cloud_Output_Str(
+        name=self._name,
+        ruuid=RUUID,
+        key=&#39;table_name&#39;,
+        type=self.OUTPUT_TYPE
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.TablePermissions"><code class="flex name class">
+<span>class <span class="ident">TablePermissions</span></span>
+<span>(</span><span>resource_name)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TablePermissions:
+    RUUID = &#34;cdev::simple::table&#34;
+
+    def __init__(self, resource_name) -&gt; None:
+
+        self.READ_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.WRITE_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:BatchWriteItem&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+                &#34;dynamodb:PutItem&#34;,
+                &#34;dynamodb:DescribeTable&#34;,
+                &#34;dynamodb:DeleteItem&#34;,
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:UpdateItem&#34;,
+                &#34;dynamodb:DescribeLimits&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_AND_WRITE_TABLE = Permission(
+            actions=[
+                &#34;dynamodb:BatchGetItem&#34;,
+                &#34;dynamodb:BatchWriteItem&#34;,
+                &#34;dynamodb:ConditionCheckItem&#34;,
+                &#34;dynamodb:DeleteItem&#34;,
+                &#34;dynamodb:DescribeLimits&#34;,
+                &#34;dynamodb:DescribeTable&#34;,
+                &#34;dynamodb:GetItem&#34;,
+                &#34;dynamodb:PutItem&#34;,
+                &#34;dynamodb:Query&#34;,
+                &#34;dynamodb:Scan&#34;,
+                &#34;dynamodb:UpdateItem&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_STREAM = Permission(
+            actions=[
+                &#34;dynamodb:DescribeStream&#34;,
+                &#34;dynamodb:GetRecords&#34;,
+                &#34;dynamodb:GetShardIterator&#34;,
+                &#34;dynamodb:ListShards&#34;,
+                &#34;dynamodb:ListStreams&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.TablePermissions.RUUID"><code class="name">var <span class="ident">RUUID</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.attribute_definition_model"><code class="flex name class">
+<span>class <span class="ident">attribute_definition_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class attribute_definition_model(ImmutableModel):
+    attribute_name: str 
+    attribute_type: attribute_type</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.attribute_definition_model.attribute_name"><code class="name">var <span class="ident">attribute_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.attribute_definition_model.attribute_type"><code class="name">var <span class="ident">attribute_type</span> : <a class="" title="core.default.resources.simple.table.attribute_type" href="#core.default.resources.simple.table.attribute_type">attribute_type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.attribute_type"><code class="flex name class">
+<span>class <span class="ident">attribute_type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Attributes of a table.</p>
+<p>These values will be used by the table to do type checks on data for the defined attribute.</p>
+<p>visit <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table">https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table</a> for more details</p>
+<h2 id="values">Values</h2>
+<p>S: String
+N: Number
+B: Binary</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class attribute_type(str, Enum):
+    &#34;&#34;&#34;Attributes of a table.
+
+    These values will be used by the table to do type checks on data for the defined attribute.
+
+    visit https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.create_table for more details
+
+    Values:
+        S: String
+        N: Number
+        B: Binary
+    &#34;&#34;&#34;
+
+    S = &#34;S&#34;
+    N = &#34;N&#34;
+    B = &#34;B&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.attribute_type.B"><code class="name">var <span class="ident">B</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.attribute_type.N"><code class="name">var <span class="ident">N</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.attribute_type.S"><code class="name">var <span class="ident">S</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.key_definition_model"><code class="flex name class">
+<span>class <span class="ident">key_definition_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class key_definition_model(ImmutableModel):
+    attribute_name: str 
+    key_type: key_type</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.key_definition_model.attribute_name"><code class="name">var <span class="ident">attribute_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.key_definition_model.key_type"><code class="name">var <span class="ident">key_type</span> : <a class="" title="core.default.resources.simple.table.key_type" href="#core.default.resources.simple.table.key_type">key_type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.key_type"><code class="flex name class">
+<span>class <span class="ident">key_type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Type of key for a defined key on a table.</p>
+<p>These value will be used by the primary key to determine how the data is stored in the table.
+visit <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey">https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey</a> for more details.</p>
+<h2 id="values">Values</h2>
+<p>HASH: Partion Key
+RANGE: Sort key</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class key_type(str, Enum):
+    &#34;&#34;&#34;Type of key for a defined key on a table.
+    
+    These value will be used by the primary key to determine how the data is stored in the table.
+    visit https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey for more details.
+
+    Values:
+        HASH: Partion Key
+        RANGE: Sort key
+    &#34;&#34;&#34;
+
+    HASH = &#34;HASH&#34;
+    RANGE = &#34;RANGE&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.key_type.HASH"><code class="name">var <span class="ident">HASH</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.key_type.RANGE"><code class="name">var <span class="ident">RANGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.simple_table_model"><code class="flex name class">
+<span>class <span class="ident">simple_table_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class with basic information about a defined resource.</p>
+<p>All classes derived from this should contain additional information about the state of a resource.
+Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+configuration; hence the need to make these immutable data
+classes. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
+within a namespace</dd>
+<dt><strong><code>ruuid</code></strong></dt>
+<dd>The identifier of this resource type.</dd>
+<dt><strong><code>hash</code></strong></dt>
+<dd>A string that is the hash of this object. This hash must be computed such that it changes
+only if a change in the state is desired.</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class simple_table_model(ResourceModel):
+    attributes: FrozenSet[attribute_definition_model]
+    keys: FrozenSet[key_definition_model]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.simple_table_model.attributes"><code class="name">var <span class="ident">attributes</span> : FrozenSet[<a class="" title="core.default.resources.simple.table.attribute_definition_model" href="#core.default.resources.simple.table.attribute_definition_model">attribute_definition_model</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.simple_table_model.keys"><code class="name">var <span class="ident">keys</span> : FrozenSet[<a class="" title="core.default.resources.simple.table.key_definition_model" href="#core.default.resources.simple.table.key_definition_model">key_definition_model</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.table.stream_event_model"><code class="flex name class">
+<span>class <span class="ident">stream_event_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>something</p>
+<h2 id="arguments">Arguments</h2>
+<p>original_resource_name: str
+original_resource_type: str
+event_type: EventTypes
+view_type: stream_type
+batch_size: int</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class stream_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        original_resource_name: str
+        original_resource_type: str
+        event_type: EventTypes
+        view_type: stream_type
+        batch_size: int
+    &#34;&#34;&#34;
+    view_type: stream_type
+    batch_size: int</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.event_model" href="events.html#core.default.resources.simple.events.event_model">event_model</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.stream_event_model.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.stream_event_model.view_type"><code class="name">var <span class="ident">view_type</span> : <a class="" title="core.default.resources.simple.table.stream_type" href="#core.default.resources.simple.table.stream_type">stream_type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.table.stream_type"><code class="flex name class">
+<span>class <span class="ident">stream_type</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Type of streams for a table. </p>
+<p>attributes:
+KEYS_ONLY: Only the key attributes of the modified item.
+NEW_IMAGE: The entire item, as it appears after it was modified.
+OLD_IMAGE: The entire item, as it appeared before it was modified.
+NEW_AND_OLD_IMAGES: Both the new and the old item images of the item.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class stream_type(str, Enum):
+    &#34;&#34;&#34;Type of streams for a table. 
+    
+    attributes:
+        KEYS_ONLY: Only the key attributes of the modified item.
+        NEW_IMAGE: The entire item, as it appears after it was modified.
+        OLD_IMAGE: The entire item, as it appeared before it was modified.
+        NEW_AND_OLD_IMAGES: Both the new and the old item images of the item.
+    &#34;&#34;&#34;
+
+    KEYS_ONLY = &#34;KEYS_ONLY&#34;
+    NEW_IMAGE = &#34;NEW_IMAGE&#34;
+    OLD_IMAGE = &#34;OLD_IMAGE&#34;
+    NEW_AND_OLD_IMAGES = &#34;NEW_AND_OLD_IMAGES&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.table.stream_type.KEYS_ONLY"><code class="name">var <span class="ident">KEYS_ONLY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.stream_type.NEW_AND_OLD_IMAGES"><code class="name">var <span class="ident">NEW_AND_OLD_IMAGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.stream_type.NEW_IMAGE"><code class="name">var <span class="ident">NEW_IMAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.stream_type.OLD_IMAGE"><code class="name">var <span class="ident">OLD_IMAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.default.resources.simple" href="index.html">core.default.resources.simple</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.AttributeDefinition" href="#core.default.resources.simple.table.AttributeDefinition">AttributeDefinition</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.AttributeDefinition.render" href="#core.default.resources.simple.table.AttributeDefinition.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.KeyDefinition" href="#core.default.resources.simple.table.KeyDefinition">KeyDefinition</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.KeyDefinition.render" href="#core.default.resources.simple.table.KeyDefinition.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent" href="#core.default.resources.simple.table.StreamEvent">StreamEvent</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent.RUUID" href="#core.default.resources.simple.table.StreamEvent.RUUID">RUUID</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent.render" href="#core.default.resources.simple.table.StreamEvent.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.Table" href="#core.default.resources.simple.table.Table">Table</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.attributes" href="#core.default.resources.simple.table.Table.attributes">attributes</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.compute_hash" href="#core.default.resources.simple.table.Table.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.create_stream" href="#core.default.resources.simple.table.Table.create_stream">create_stream</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.get_stream" href="#core.default.resources.simple.table.Table.get_stream">get_stream</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.keys" href="#core.default.resources.simple.table.Table.keys">keys</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.Table.render" href="#core.default.resources.simple.table.Table.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.TableOutput" href="#core.default.resources.simple.table.TableOutput">TableOutput</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.TableOutput.table_name" href="#core.default.resources.simple.table.TableOutput.table_name">table_name</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.TablePermissions" href="#core.default.resources.simple.table.TablePermissions">TablePermissions</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.TablePermissions.RUUID" href="#core.default.resources.simple.table.TablePermissions.RUUID">RUUID</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.attribute_definition_model" href="#core.default.resources.simple.table.attribute_definition_model">attribute_definition_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.attribute_definition_model.attribute_name" href="#core.default.resources.simple.table.attribute_definition_model.attribute_name">attribute_name</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.attribute_definition_model.attribute_type" href="#core.default.resources.simple.table.attribute_definition_model.attribute_type">attribute_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.attribute_type" href="#core.default.resources.simple.table.attribute_type">attribute_type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.attribute_type.B" href="#core.default.resources.simple.table.attribute_type.B">B</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.attribute_type.N" href="#core.default.resources.simple.table.attribute_type.N">N</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.attribute_type.S" href="#core.default.resources.simple.table.attribute_type.S">S</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.key_definition_model" href="#core.default.resources.simple.table.key_definition_model">key_definition_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.key_definition_model.attribute_name" href="#core.default.resources.simple.table.key_definition_model.attribute_name">attribute_name</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.key_definition_model.key_type" href="#core.default.resources.simple.table.key_definition_model.key_type">key_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.key_type" href="#core.default.resources.simple.table.key_type">key_type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.key_type.HASH" href="#core.default.resources.simple.table.key_type.HASH">HASH</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.key_type.RANGE" href="#core.default.resources.simple.table.key_type.RANGE">RANGE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.simple_table_model" href="#core.default.resources.simple.table.simple_table_model">simple_table_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.simple_table_model.attributes" href="#core.default.resources.simple.table.simple_table_model.attributes">attributes</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.simple_table_model.keys" href="#core.default.resources.simple.table.simple_table_model.keys">keys</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model" href="#core.default.resources.simple.table.stream_event_model">stream_event_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model.batch_size" href="#core.default.resources.simple.table.stream_event_model.batch_size">batch_size</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model.view_type" href="#core.default.resources.simple.table.stream_event_model.view_type">view_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.table.stream_type" href="#core.default.resources.simple.table.stream_type">stream_type</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_type.KEYS_ONLY" href="#core.default.resources.simple.table.stream_type.KEYS_ONLY">KEYS_ONLY</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_type.NEW_AND_OLD_IMAGES" href="#core.default.resources.simple.table.stream_type.NEW_AND_OLD_IMAGES">NEW_AND_OLD_IMAGES</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_type.NEW_IMAGE" href="#core.default.resources.simple.table.stream_type.NEW_IMAGE">NEW_IMAGE</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_type.OLD_IMAGE" href="#core.default.resources.simple.table.stream_type.OLD_IMAGE">OLD_IMAGE</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

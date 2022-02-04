@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.utils.fs_manager.docker_package_builder API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.utils.fs_manager.docker_package_builder</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from shutil import ExecError
+import docker
+import json
+import os
+from pkg_resources import Distribution
+import re
+from typing import List
+
+
+
+from .utils import (
+    PackageTypes,
+    ModulePackagingInfo,
+    lambda_python_environments,
+    parse_requirement_line,
+)
+
+# TODO: Set these as settings
+DEPLOYMENT_PLATFORM = &#34;arm64&#34;
+DEPLOYMENT_PYTHON_VERSION = &#34;python3.7&#34;
+
+
+def docker_available() -&gt; bool:
+    return True
+
+
+# TODO Set as a settings
+CACHE_LOCATION = os.path.join(
+    os.getcwd(), &#34;.cdev&#34;, &#34;dockercache.json&#34;
+)
+
+has_run_container = False
+build_container = None
+
+
+class DockerDownloadCache:
+    &#34;&#34;&#34;
+    Naive cache implentation for know which files have been downloaded.
+    &#34;&#34;&#34;
+
+    def __init__(self) -&gt; None:
+
+        if not os.path.isfile(CACHE_LOCATION):
+            self._cache = {
+                lambda_python_environments.py36: {},
+                lambda_python_environments.py37: {},
+                lambda_python_environments.py38_x86_64: {},
+                lambda_python_environments.py38_arm64: {},
+                lambda_python_environments.py39_x86_64: {},
+                lambda_python_environments.py39_arm64: {},
+                lambda_python_environments.py3_x86_64: {},
+                lambda_python_environments.py3_arm64: {},
+            }
+
+        else:
+            with open(CACHE_LOCATION) as fh:
+                self._cache = json.load(fh)
+
+        self._cache_dirs = {
+            lambda_python_environments.py36: &#34;py36&#34;,
+            lambda_python_environments.py37: &#34;py37&#34;,
+            lambda_python_environments.py38_x86_64: &#34;py38x8664&#34;,
+            lambda_python_environments.py38_arm64: &#34;py38arm64&#34;,
+            lambda_python_environments.py39_x86_64: &#34;py39x8664&#34;,
+            lambda_python_environments.py39_arm64: &#34;py39arm64&#34;,
+            lambda_python_environments.py3_x86_64: &#34;py3x8664&#34;,
+            lambda_python_environments.py3_arm64: &#34;py3arm64&#34;,
+        }
+
+    def find_item(self, environment: lambda_python_environments, id: str):
+        raw_data = self._cache.get(environment).get(id)
+        if raw_data:
+            return [ModulePackagingInfo(**x) for x in raw_data]
+        else:
+            None
+
+    def add_item(
+        self,
+        environment: lambda_python_environments,
+        id: str,
+        item: ModulePackagingInfo,
+    ):
+        self._cache[environment][id] = item
+
+        with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+            json.dump(self._cache, fh, indent=4)
+
+    def get_packaging_dir(self, environment: lambda_python_environments):
+        raise Exception
+        BASE_PACKAGING_DIR = os.path.abspath(
+            os.path.join(
+                CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
+            )
+        )
+
+        if not os.path.isdir(BASE_PACKAGING_DIR):
+            os.mkdir(BASE_PACKAGING_DIR)
+
+        FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+
+        if not os.path.isdir(FULL_DIR):
+            os.mkdir(FULL_DIR)
+
+        return FULL_DIR
+
+
+DOWNLOAD_CACHE = DockerDownloadCache()
+
+
+def download_package_and_create_moduleinfo(
+    project: Distribution, environment: lambda_python_environments, module_name: str
+) -&gt; ModulePackagingInfo:
+    &#34;&#34;&#34;
+    Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
+    a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
+    to this function will not have to actually download the project.
+
+    Args:
+        project (Distribution): The distribution object that contains the metadata for the package
+        environment (lambda_python_environments): Deployment environment the project needs to support
+        module_name (str): The top level module from this project that we want
+
+    Returns:
+        info (ModulePackagingInfo): Object for the information on packaging this module
+    &#34;&#34;&#34;
+
+    package_information = _download_package(project, environment)
+
+    potential_modules = [x for x in package_information if x.module_name == module_name]
+
+    if not len(potential_modules) == 1:
+        raise Exception
+
+    final_module = potential_modules[0]
+
+    return final_module
+
+
+def _download_package(
+    project: Distribution, environment: lambda_python_environments
+) -&gt; List[ModulePackagingInfo]:
+    &#34;&#34;&#34;
+    Perform the actual downloading of the package and then parse out the needed information about the top level modules made available
+    from the project. Uses the cache to make sure that way we only download the project when actually needed. Also reuses the same container
+    when downloading packages so that it uses pip&#39;s cache to not redownload the same package.
+
+    Args:
+        project (Distribution): The distribution object that contains the metadata for the package
+        environment (lambda_python_environments): Deployment environment the project needs to support
+
+    Returns:
+        info (List[ModulePackagingInfo]): ModulePackagingInfo for all the top level modules in the project
+
+    &#34;&#34;&#34;
+    global has_run_container
+    global build_container
+
+    cache_item = DOWNLOAD_CACHE.find_item(environment, project.project_name)
+    if cache_item:
+        return cache_item
+
+    packaging_dir = DOWNLOAD_CACHE.get_packaging_dir(environment)
+
+    print(f&#34;DOWNLOADING {project} FROM DOCKER ({project.project_name})&#34;)
+    client = docker.from_env()
+
+    client.images.pull(&#34;public.ecr.aws/lambda/python:3.8-arm64&#34;)
+
+    print(f&#34;PULLED IMAGE&#34;)
+
+    if not has_run_container:
+        build_container = client.containers.run(
+            &#34;public.ecr.aws/lambda/python:3.8-arm64&#34;,
+            entrypoint=&#34;/var/lang/bin/pip&#34;,
+            command=f&#34;install {project.project_name}=={project.version} --target /tmp&#34;,
+            volumes=[f&#34;{packaging_dir}:/tmp&#34;],
+            detach=True,
+        )
+
+        has_run_container = True
+
+    else:
+        build_container.restart()
+
+        build_container.exec_run(
+            cmd=f&#34;/var/lang/bin/pip install {project.project_name}=={project.version} --target /tmp&#34;,
+            detach=True,
+        )
+
+    for x in build_container.logs(stream=True):
+        msg = x.decode(&#34;ascii&#34;)
+        # print(f&#34;Building Package -&gt; {msg}&#34;)
+
+    info = _create_package_info(project.project_name, environment)
+
+    return info
+
+
+def _create_package_info(
+    project_name: str, environment: lambda_python_environments
+) -&gt; List[ModulePackagingInfo]:
+    &#34;&#34;&#34;
+    Creates a list of ModulePackagingInfo objects that represent the top level modules made available from this
+    package. It uses the information from the &#39;dist-info&#39; that was downloaded for the projects by PIP This function
+    recursively calls itself to compute the information for dependant projects that were downloaded.
+
+    Arg:
+        project_name (str): Name of the project to create the information for
+        environment (lambda_python_environments): Deployment environment the project needs to support
+
+    Returns:
+        info (List[ModulePackagingInfo]): ModulePackagingInfo objects for each of the top level modules in this project
+
+    &#34;&#34;&#34;
+
+    # We check and add to the cache at this layer because we recursively call this function to compute the
+    # information about dependencies of a project. Since projects can share dependencies it saves time from recomputing
+    # this info
+    cache_item = DOWNLOAD_CACHE.find_item(environment, project_name)
+    if cache_item:
+        return cache_item
+
+    packaging_dir = DOWNLOAD_CACHE.get_packaging_dir(environment)
+
+    dist_info_dir = None
+
+    for _, dir_names, _ in os.walk(packaging_dir):
+        # We need to look through the packaging dir to find the dist-info folder for the project.
+        # Note the dist-info folder is &lt;project_name&gt;-&lt;version&gt;.dist-info
+        # https://www.python.org/dev/peps/pep-0376/#one-dist-info-directory-per-installed-distribution
+        regex_dist_info = &#34;(.*).dist-info&#34;
+
+        for dir_name in dir_names:
+            m = re.match(regex_dist_info, dir_name)
+            if not m:
+                # print(f&#34;No regex match {dir_name} -&gt; {regex_dist_info}&#34;)
+                continue
+
+            # [&lt;project_name&gt;-&lt;version&gt;, dist-info]
+            dir_name_split = m.groups()
+
+            # project_name
+            split_name_version = dir_name_split[0].split(&#34;-&#34;)
+
+            name = split_name_version[0]
+            version = split_name_version[1]
+
+            # Note that if a project contains &#39;-&#39; they are converted to &#39;_&#39; so that the above regex/string parsing works, so convert any &#39;-&#39;
+            # into &#39;_&#39; when looking for the correct directory
+            if name == project_name.replace(&#34;-&#34;, &#34;_&#34;):
+                dist_info_dir = os.path.join(
+                    packaging_dir, f&#34;{name}-{version}.dist-info&#34;
+                )
+                break
+
+        break
+
+    if not dist_info_dir:
+        print(f&#34;Could not find dist info for {project_name} -&gt; {dist_info_dir}&#34;)
+        raise Exception
+
+    if not os.path.isdir(os.path.join(packaging_dir, dist_info_dir)):
+        print(f&#34;COULD NOT FIND {os.path.join(packaging_dir, dist_info_dir)}&#34;)
+        raise Exception
+
+    # If no top level file is found then assume the only top level module is the same as the project name
+    if not os.path.isfile(os.path.join(packaging_dir, dist_info_dir, &#34;top_level.txt&#34;)):
+        top_level_module_names = [project_name]
+
+    else:
+        with open(os.path.join(packaging_dir, dist_info_dir, &#34;top_level.txt&#34;)) as fh:
+            top_level_module_names = [x.strip() for x in fh.readlines()]
+
+    tmp_flat_requirements: List[ModulePackagingInfo] = []
+    tmp_tree_requirements: List[ModulePackagingInfo] = []
+    rv = []
+
+    if not os.path.isfile(os.path.join(packaging_dir, dist_info_dir, &#34;METADATA&#34;)):
+        # If not metadata file is found then assume no dependencies
+        print(
+            f&#34;COULD NOT FIND {os.path.join(packaging_dir, dist_info_dir, &#39;METADATA&#39;)}&#34;
+        )
+
+    else:
+        required_packages = set()
+        current_package_version = &#34;&#34;
+        with open(os.path.join(packaging_dir, dist_info_dir, &#34;METADATA&#34;)) as fh:
+            lines = fh.readlines()
+
+            for line in lines:
+
+                if not line:
+                    break
+
+                if line.split(&#34;:&#34;)[0] == &#34;Version&#34;:
+                    current_package_version = line.split(&#34;:&#34;)[1].strip()
+
+                if line.split(&#34;:&#34;)[0] == &#34;Requires-Dist&#34;:
+                    # ex:
+                    # Requires-Dist: pytz (&gt;=2017.3)
+                    stripped_information = line.split(&#34;:&#34;)[1].strip()
+                    requirement_project_name = parse_requirement_line(
+                        stripped_information
+                    )
+                    if requirement_project_name:
+                        required_packages.add(requirement_project_name)
+
+        for required_package in required_packages:
+
+            dependent_pkg_infos = _create_package_info(required_package, environment)
+            for dependent_pkg_info in dependent_pkg_infos:
+                tmp_flat_requirements.extend(dependent_pkg_info.flat)
+                tmp_flat_requirements.append(dependent_pkg_info)
+
+                tmp_tree_requirements.append(dependent_pkg_info)
+
+    for top_level_module_name in top_level_module_names:
+        # The package could be either a folder (normal case) or a single python file (ex: &#39;six&#39; package)
+        # If it can not be found as either than there is an issue
+        potential_dir = os.path.join(packaging_dir, top_level_module_name)
+        potential_file = os.path.join(packaging_dir, top_level_module_name + &#34;.py&#34;)
+
+        if os.path.isdir(potential_dir):
+            tmp_fp = potential_dir
+
+        elif os.path.isfile(potential_file):
+            tmp_fp = potential_file
+
+        else:
+            # TODO just continue cause things like numpy have __dummy__ in their top level pkg names but dont provide it
+            continue
+
+        info = ModulePackagingInfo(
+            **{
+                &#34;module_name&#34;: top_level_module_name,
+                &#34;type&#34;: PackageTypes.PIP,
+                &#34;version_id&#34;: current_package_version,
+                &#34;fp&#34;: tmp_fp,
+                &#34;flat&#34;: tmp_flat_requirements,
+                &#34;tree&#34;: tmp_tree_requirements,
+            }
+        )
+
+        rv.append(info)
+
+    # Add the information to the cache
+    DOWNLOAD_CACHE.add_item(environment, project_name, [x.dict() for x in rv])
+
+    return rv</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.utils.fs_manager.docker_package_builder.docker_available"><code class="name flex">
+<span>def <span class="ident">docker_available</span></span>(<span>) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def docker_available() -&gt; bool:
+    return True</code></pre>
+</details>
+</dd>
+<dt id="core.utils.fs_manager.docker_package_builder.download_package_and_create_moduleinfo"><code class="name flex">
+<span>def <span class="ident">download_package_and_create_moduleinfo</span></span>(<span>project: pkg_resources.Distribution, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, module_name: str) ‑> <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
+a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
+to this function will not have to actually download the project.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>project</code></strong> :&ensp;<code>Distribution</code></dt>
+<dd>The distribution object that contains the metadata for the package</dd>
+<dt><strong><code>environment</code></strong> :&ensp;<code>lambda_python_environments</code></dt>
+<dd>Deployment environment the project needs to support</dd>
+<dt><strong><code>module_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The top level module from this project that we want</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>info (ModulePackagingInfo): Object for the information on packaging this module</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def download_package_and_create_moduleinfo(
+    project: Distribution, environment: lambda_python_environments, module_name: str
+) -&gt; ModulePackagingInfo:
+    &#34;&#34;&#34;
+    Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
+    a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
+    to this function will not have to actually download the project.
+
+    Args:
+        project (Distribution): The distribution object that contains the metadata for the package
+        environment (lambda_python_environments): Deployment environment the project needs to support
+        module_name (str): The top level module from this project that we want
+
+    Returns:
+        info (ModulePackagingInfo): Object for the information on packaging this module
+    &#34;&#34;&#34;
+
+    package_information = _download_package(project, environment)
+
+    potential_modules = [x for x in package_information if x.module_name == module_name]
+
+    if not len(potential_modules) == 1:
+        raise Exception
+
+    final_module = potential_modules[0]
+
+    return final_module</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache"><code class="flex name class">
+<span>class <span class="ident">DockerDownloadCache</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Naive cache implentation for know which files have been downloaded.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DockerDownloadCache:
+    &#34;&#34;&#34;
+    Naive cache implentation for know which files have been downloaded.
+    &#34;&#34;&#34;
+
+    def __init__(self) -&gt; None:
+
+        if not os.path.isfile(CACHE_LOCATION):
+            self._cache = {
+                lambda_python_environments.py36: {},
+                lambda_python_environments.py37: {},
+                lambda_python_environments.py38_x86_64: {},
+                lambda_python_environments.py38_arm64: {},
+                lambda_python_environments.py39_x86_64: {},
+                lambda_python_environments.py39_arm64: {},
+                lambda_python_environments.py3_x86_64: {},
+                lambda_python_environments.py3_arm64: {},
+            }
+
+        else:
+            with open(CACHE_LOCATION) as fh:
+                self._cache = json.load(fh)
+
+        self._cache_dirs = {
+            lambda_python_environments.py36: &#34;py36&#34;,
+            lambda_python_environments.py37: &#34;py37&#34;,
+            lambda_python_environments.py38_x86_64: &#34;py38x8664&#34;,
+            lambda_python_environments.py38_arm64: &#34;py38arm64&#34;,
+            lambda_python_environments.py39_x86_64: &#34;py39x8664&#34;,
+            lambda_python_environments.py39_arm64: &#34;py39arm64&#34;,
+            lambda_python_environments.py3_x86_64: &#34;py3x8664&#34;,
+            lambda_python_environments.py3_arm64: &#34;py3arm64&#34;,
+        }
+
+    def find_item(self, environment: lambda_python_environments, id: str):
+        raw_data = self._cache.get(environment).get(id)
+        if raw_data:
+            return [ModulePackagingInfo(**x) for x in raw_data]
+        else:
+            None
+
+    def add_item(
+        self,
+        environment: lambda_python_environments,
+        id: str,
+        item: ModulePackagingInfo,
+    ):
+        self._cache[environment][id] = item
+
+        with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+            json.dump(self._cache, fh, indent=4)
+
+    def get_packaging_dir(self, environment: lambda_python_environments):
+        raise Exception
+        BASE_PACKAGING_DIR = os.path.abspath(
+            os.path.join(
+                CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
+            )
+        )
+
+        if not os.path.isdir(BASE_PACKAGING_DIR):
+            os.mkdir(BASE_PACKAGING_DIR)
+
+        FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+
+        if not os.path.isdir(FULL_DIR):
+            os.mkdir(FULL_DIR)
+
+        return FULL_DIR</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.add_item"><code class="name flex">
+<span>def <span class="ident">add_item</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, id: str, item: <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_item(
+    self,
+    environment: lambda_python_environments,
+    id: str,
+    item: ModulePackagingInfo,
+):
+    self._cache[environment][id] = item
+
+    with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+        json.dump(self._cache, fh, indent=4)</code></pre>
+</details>
+</dd>
+<dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.find_item"><code class="name flex">
+<span>def <span class="ident">find_item</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_item(self, environment: lambda_python_environments, id: str):
+    raw_data = self._cache.get(environment).get(id)
+    if raw_data:
+        return [ModulePackagingInfo(**x) for x in raw_data]
+    else:
+        None</code></pre>
+</details>
+</dd>
+<dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.get_packaging_dir"><code class="name flex">
+<span>def <span class="ident">get_packaging_dir</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_packaging_dir(self, environment: lambda_python_environments):
+    raise Exception
+    BASE_PACKAGING_DIR = os.path.abspath(
+        os.path.join(
+            CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
+        )
+    )
+
+    if not os.path.isdir(BASE_PACKAGING_DIR):
+        os.mkdir(BASE_PACKAGING_DIR)
+
+    FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+
+    if not os.path.isdir(FULL_DIR):
+        os.mkdir(FULL_DIR)
+
+    return FULL_DIR</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.utils.fs_manager" href="index.html">core.utils.fs_manager</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.docker_available" href="#core.utils.fs_manager.docker_package_builder.docker_available">docker_available</a></code></li>
+<li><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.download_package_and_create_moduleinfo" href="#core.utils.fs_manager.docker_package_builder.download_package_and_create_moduleinfo">download_package_and_create_moduleinfo</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.DockerDownloadCache" href="#core.utils.fs_manager.docker_package_builder.DockerDownloadCache">DockerDownloadCache</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.add_item" href="#core.utils.fs_manager.docker_package_builder.DockerDownloadCache.add_item">add_item</a></code></li>
+<li><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.find_item" href="#core.utils.fs_manager.docker_package_builder.DockerDownloadCache.find_item">find_item</a></code></li>
+<li><code><a class="sidebar" title="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.get_packaging_dir" href="#core.utils.fs_manager.docker_package_builder.DockerDownloadCache.get_packaging_dir">get_packaging_dir</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

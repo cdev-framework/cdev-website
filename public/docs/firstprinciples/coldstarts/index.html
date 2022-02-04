@@ -31,16 +31,18 @@
   
   <!-- plugins -->
   
-  <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/prism.css ">
-  
   <link rel="stylesheet" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/css/mystyles.css ">
   
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
-  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/cdev_logo.png " type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.svg">
+  <link rel="icon" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/images/BrowserFavicon.png " type="image/x-icon" sizes="16x16">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/lioshi.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
 </head>
 <body>
 <!-- preloader start -->
@@ -71,9 +73,9 @@
               
               <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples">First Principles</a>
               
-              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Example Projects</a>
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples">Examples</a>
               
-              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api">API</a>
+              <a class="dropdown-item dropdown-item-mobile" href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
               
             </div>
           </li>
@@ -98,7 +100,7 @@
 
 
 
-<div class="coding_section container" style="max-width: 90%;">
+<div class="coding_section container">
     <div class="row" >
         <div class="col-lg-4" style="padding-left: 4%; overflow: hidden; max-width: 25%;">
             <div class="sidebar container">
@@ -115,17 +117,17 @@
         
             <div class="row sub-tutorials" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer" class='sublink'>Checkbook Balancer</a>
+            </div>
+        
+            <div class="row sub-tutorials" style="height: max-content; display: none;">
+                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
                 <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup" class='sublink'>Email Signup</a>
             </div>
         
             <div class="row sub-tutorials" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
                 <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot" class='sublink'>Slack Bot</a>
-            </div>
-        
-            <div class="row sub-tutorials" style="height: max-content; display: none;">
-                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/tutorials" class='sublink'>Checkbook Balancer</a>
             </div>
         
     
@@ -150,12 +152,7 @@
         
             <div class="row sub-firstprinciples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage" class='sublink'>Programming Language</a>
-            </div>
-        
-            <div class="row sub-firstprinciples" style="height: max-content; display: none;">
-                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability" class='sublink'>Reusability</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience" class='sublink'>Developer Experience</a>
             </div>
         
     
@@ -170,12 +167,12 @@
         
             <div class="row sub-examples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/apiendpoints" class='sublink'>Basic API endpoints</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints" class='sublink'>HTTP API endpoints</a>
             </div>
         
             <div class="row sub-examples" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb" class='sublink'>Integrate with a Dynamodb</a>
+                <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb" class='sublink'>Integrate with Dynamodb</a>
             </div>
         
             <div class="row sub-examples" style="height: max-content; display: none;">
@@ -187,7 +184,7 @@
 
     <div class="row" style="height: max-content; ">              
         <i id="API" class="icon-xs ti-angle-down text-white" style="padding-top: 10%; vertical-align: text-bottom; visibility: hidden;"></i>
-        <a href="/docs/api">API</a>
+        <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/api/cdev">API</a>
     </div>
 
 </div>
@@ -206,20 +203,44 @@
     </figure>
 
 </div>
-<p>Perhaps the most infamous problem in the serverless compute space is: <strong>The Cold Start</strong>. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to reduce the damage of Cold Starts.</p>
+
+
+<br>
+
+
+<p>Perhaps the most infamous problem in the serverless compute space is: <strong>The Cold Start</strong>. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to lower Cold Starts to an acceptable level on serverless compute platforms.</p>
 <p>Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience.</p>
+
+
+<br>
+
+
 <h3 id="horizontal-scaling">Horizontal Scaling</h3>
 <p>For a lot of people the limits of computers are most noticed when a server hosting an application is overloaded from an increase in traffic that causes the site to crash. As a site grows in popularity, it eventually reaches a point that no single computer is big or fast enough to handle all the traffic, so the only way to handle all the traffic is to use multiple computers.</p>
 <p>Horizontal scaling is when a copy of an application is run on multiple different computers, and another computer runs a load balancing program to split the traffic to the different application computers. As traffic increases, more servers can be added to handle the traffic, and inversely if traffic decreases, unneeded servers can be removed.</p>
 <p><img src="/diagrams/load_balancer.svg" alt="load balancer image"></p>
-<p>Before the public cloud providers, developers had to buy and rack these servers themselves, which meant they had to attempt to forecast their future traffic. One of the early big impacts the public cloud providers was offering programmatic autoscaling, so that instead of having to physically rack a new server, developers only needed to either click a few buttons on a website. Then cloud providers went step further and created products that could monitor your application and add new instances based on customized triggers on different metrics such as cpu utilization, memory usage, network bandwidth or a range of other metrics so that scaling happened automatically.</p>
+<p>Before the public cloud providers, developers had to buy and rack these servers themselves, which meant they had to attempt to forecast their future traffic. One of the early big impacts the public cloud providers was offering programmatic autoscaling, so that instead of having to physically rack a new server, developers only needed to click a few buttons on a website. Then cloud providers went a step further and created products that could monitor your application and add new instances based on customized triggers on different metrics such as cpu utilization, memory usage, network bandwidth or a range of other metrics so that scaling happened automatically.</p>
+
+
+<br>
+
+
 <h3 id="so-what-is-a-cold-start">So what is a Cold Start?</h3>
 <p>Another time that people most likely notice the speed limitations of computers is when turning one on. We must sit waiting for the computer to power on and return to a usable state. Servers have a similar phenomenon where they must run initialization steps before they are ready to handle traffic. Some of this initialization is from the underlying system and some is code written by the developer.</p>
-<p><strong>A Cold Start is the time that is takes for an autoscalled unit to be initialized and reach the state that it can begin handling requests.</strong></p>
+<p><strong>A Cold Start is the time that is takes for an autoscalled computing unit to be initialized and reach the state that it can begin handling requests.</strong></p>
 <p>For traditional applications, the Cold Start when adding another version of the application was in the range of powering on a computer (&gt; 1 min) as the Cloud Provider was most likely providing a new Virtual Machine for that unit. This meant that the autoscaling trigger had to be set at a point that it was unlikely that the current machines would be overwhelmed before the new machine had finished the Cold Start. As long as the increase in traffic was not too rapid, the end users would not notice the cold start as the already provisioned machines would handle the requests.</p>
-<p><img src="/diagrams/server_cold_start.svg" alt="load balancer image"></p>
+
+
+<br>
+
+
 <h3 id="why-is-this-a-problem-for-serverless-compute">Why is this a problem for Serverless compute?</h3>
 <p>As mentioned in our <strong><a href="/docs/firstprinciples/whyserverless">Why Serverless</a></strong> post, serverless compute platforms changed the unit of deployment for software projects from applications to single functions in an attempt to have finer grained horizontal scaling abilities. These platforms are set up so that when a request comes in and no available function is available, a new function is provisioned to handle the request, but now that request must wait for the function&rsquo;s Cold Start to finish before being handled. These platforms have exposed a previously hidden latency to end users. Developers want their applications to feel fast and not have unneeded latency, and since Cold Starts are partially dependent on the developers own initialization code, developers must now optimize their code to reduce Cold Starts.</p>
+
+
+<br>
+
+
 <h3 id="what-are-the-current-ways-to-mitigate-cold-starts">What are the current ways to mitigate Cold Starts?</h3>
 <p>The current state of mitigating Cold Starts is best understood by looking at the three types of serverless functions people are creating described in <em><strong><a href="https://dev.to/cdkpatterns/learn-the-3-aws-lambda-states-today-the-single-purpose-function-the-fat-lambda-and-the-lambda-lith-361j">this great post by Matt Coulter</a></strong></em> .</p>
 <p>Reading this article, I could not help but feel like Goldilocks trying to find the right bed to sleep in:</p>
@@ -229,12 +250,26 @@
 <li>The Fat lambda seemed the most reasonable compromise, but if not constantly monitored it could spiral to having killer Cold Starts too.</li>
 </ul>
 <p>Can we have the benefits of serverless compute platforms while not having to constantly worry about Cold Starts?</p>
+
+
+<br>
+
+
 <h3 id="how-cdev-helps-mitigate-cold-starts">How Cdev helps mitigate Cold Starts</h3>
 <p>To understand Cdev&rsquo;s parsing technology it helps to start with a fat lambda example and understand all the parts that can add time to Cold Start. In the following example you will see three handler functions that each interact with a different external AWS service, but they are part of the same backend and make sense to be kept in the same file.</p>
+
+
+<br>
+
+
+
 <pre style="padding-top: 0;">
-    <code class="language-python">
-        
-import boto3
+    <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-dark copy-code">
+            <i class="icon-xs ti-clipboard text-white "></i>
+        </button>    
+    </div>
+    <code class="language-python code-block">import boto3
 
 dynamodb_client = boto3.client(&#34;dynamodb&#34;)
 
@@ -274,12 +309,130 @@ def MyHandler3(event, context):
     # This function creates an item in an sqs queue that triggers downstream tasks
 
     sqs_client.put_item(event.get(&#34;sqs_event&#34;))
-    return {}
-    </code>
+    return {}</code>
+
 </pre>
+
+
+
+<br>
+
+
 <p>Leaving this as a fat lambda adds unnecessary time to each function&rsquo;s Cold Start because each function only uses a single external AWS service, but when the function is loaded, a connection is made to each of the external AWS services. When a python module is loaded, all the code in the top level namespace is executed, which means for our function, it executes all three <strong>boto3.client</strong> calls. Connections to external systems add extra latency because the low level protocols were designed to create long standing connections that can be reused later in applications, but the initial creation of the connection requires a few rounds trips between the systems before communication can start.</p>
+
+
+<br>
+
+
 <p>The first instinct might be to move the <strong>boto3.client</strong> calls into the functions themselves, but this would actually make the issue worse because then the connection would be initialized on every function invocation instead of just when the code is first loaded. This inability of the fat lambda to handle adding different initialization steps is the driving force for using the single purpose function model.</p>
-<p>The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the file are needed for each individual function. Using this new parsing technology, Cdev deploys intermediate files for each function that contains only the code needed for that function. When using Cdev, developers are able to structure and grow their project however makes sense for them, and Cdev handles optimizing each function.</p>
+
+
+<br>
+
+
+<p>The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the file are needed for each individual function. Using this new parsing technology, Cdev deploys
+intermediate files for each function that contains only the code needed for that function. The final deployment artifacts using Cdev would be:</p>
+<p>
+
+<br>
+
+
+myhandler1.py
+
+<pre style="padding-top: 0;">
+    <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-dark copy-code">
+            <i class="icon-xs ti-clipboard text-white "></i>
+        </button>    
+    </div>
+    <code class="language-python code-block">import boto3
+
+dynamodb_client = boto3.client(&#34;dynamodb&#34;)
+
+
+def MyHandler1(event, context):
+    # This function connects to a dynamodb table to look
+    # up information and return it to the user
+
+
+    #
+    info = dynamodb_client.lookup(event.get(&#34;user_id&#34;))
+
+    # Other code 
+    #
+    #
+    #
+
+    return info </code>
+
+</pre>
+</p>
+<p>
+
+<br>
+
+
+myhandler2.py
+
+<pre style="padding-top: 0;">
+    <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-dark copy-code">
+            <i class="icon-xs ti-clipboard text-white "></i>
+        </button>    
+    </div>
+    <code class="language-python code-block">import boto3
+
+
+s3_client = boto3.client(&#34;s3&#34;)
+
+
+def MyHandler2(event, context):
+    # This function gets an object from s3 and returns it to the user
+
+    object = s3_client.get_object(event.get(&#34;item_key&#34;))
+
+    # Other Code
+    #
+    #
+    #
+
+    return object</code>
+
+</pre>
+</p>
+<p>
+
+<br>
+
+
+myhandler3.py
+
+<pre style="padding-top: 0;">
+    <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-dark copy-code">
+            <i class="icon-xs ti-clipboard text-white "></i>
+        </button>    
+    </div>
+    <code class="language-python code-block">import boto3
+
+
+sqs_client = boto3.client(&#34;sqs&#34;)
+
+
+def MyHandler3(event, context):
+    # This function creates an item in an sqs queue that triggers downstream tasks
+
+    sqs_client.put_item(event.get(&#34;sqs_event&#34;))
+    return {}</code>
+
+</pre>
+</p>
+<p>
+
+<br>
+
+
+When using Cdev, developers are able to structure and grow their project however makes sense for them, and Cdev handles parsing each function into a &lsquo;single purpose function&rsquo; per file structure.</p>
 <h3 id="extra-notes">Extra Notes</h3>
 <p>Using the syntax tree to understand a function&rsquo;s dependencies covers a large majority of situations, but it is technically not able to handle all possible situations. To understand how Cdev provides tools to fill these gaps check out the <strong><a href="">API documentation for Lambda function annotations</a></strong></p>
 
@@ -295,8 +448,8 @@ def MyHandler3(event, context):
                 
                 <div style="margin-left: auto;">
 
-                  <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/">Programming Language</a>
-                  <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/"><i class=" ti-arrow-right text-black"></i></a>
+                  <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/">Developer Experience</a>
+                  <a href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/"><i class=" ti-arrow-right text-black"></i></a>
                 </div>
                 
             </div>
@@ -359,9 +512,9 @@ def MyHandler3(event, context):
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/script.min.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/clipboard.js"></script>
 
-<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/prism.js"></script>
+<script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/typer.js"></script>
 
 <script src="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/js/sidenav.js"></script>
 
@@ -409,7 +562,7 @@ def MyHandler3(event, context):
     ({
         type: "POST",
         
-        url: 'https:\/\/j5ilob3c37.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
+        url: 'https:\/\/a0xmrvzond.execute-api.us-east-1.amazonaws.com\/prod/mailing_list',
         contentType: "application/json",
         async: true,
         

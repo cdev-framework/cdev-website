@@ -93,7 +93,7 @@ theme = "agen-hugo"
     [[menu.main]]
     parent = "Docs"
     name = "API"
-    URL = "docs/api"
+    URL = "docs/api/cdev"
     weight = 4
 
 
@@ -126,18 +126,18 @@ logo = "images/Logo.svg"
 home = "Home"
 # Google Analitycs
 googleAnalitycsID = "Your ID"
+ApiURL="docs/api/cdev"
 
 [blackfriday]
 extensions = ["hardLineBreak"]
 
-########################### API DOCS ######################################
-ApiURL="http://localhost:8080/"
+############################# Footer Start ###########################
 
   # Preloader
   [params.preloader]
   enable = true
 
-  ############################# Footer Start ###########################
+
 
   # footer about
   [params.footer.about]

@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.utils.file_manager API documentation</title>
+<meta name="description" content="Utilities to help the framework manage writing and loading files …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.utils.file_manager</code></h1>
+</header>
+<section id="section-intro">
+<p>Utilities to help the framework manage writing and loading files</p>
+<p>These utilities are used within the default implementation of the <code>Backend</code> construct
+to help manage the writing and loading of resource states.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Utilities to help the framework manage writing and loading files
+
+These utilities are used within the default implementation of the `Backend` construct
+to help manage the writing and loading of resource states.
+
+&#34;&#34;&#34;
+
+import json
+from pydantic import FilePath
+import os
+import shutil
+from typing import Dict, List, Tuple
+
+from core.constructs.resource_state import Resource_State
+from core.utils.exceptions import Cdev_Error  
+from ..constructs.models import frozendict
+
+class CustomEncoder(json.JSONEncoder):
+    &#34;&#34;&#34;Custom JSON encoder for handling immutable data
+
+    Since we want to store state as immutable structures to make direct comparisons easier within the framework, 
+    we need to provide this encoder to denote how we want those structures stored as json. Using this encoder means
+    that there is some information loss when making the obj a json (i.e. cant tell the difference between a frozenset vs
+    list), therefor when loading the json back into the system, a custom utility should be used that reintroduces the
+    immutable structures back into the data. 
+
+    Args:
+        json ([type]): [description]
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+
+        if isinstance(obj, frozenset):
+            return list(obj)
+
+        if isinstance(obj, frozendict):
+            return dict(obj)
+
+        return json.JSONEncoder.default(self, obj)
+
+
+def safe_json_write(obj: Dict, fp: FilePath):
+    &#34;&#34;&#34;
+    Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
+    partially written thus leaving a file in an unrecoverable state.
+
+    Arguments:
+        obj (Dict): The dictionary that should be written
+        fp (FilePath): The path the file should be written at
+
+    &#34;&#34;&#34;
+
+    tmp_fp = f&#34;{fp}.tmp&#34;
+
+    if os.path.isfile(tmp_fp):
+        os.remove(tmp_fp)
+
+    try:
+        with open(tmp_fp, &#34;w&#34;) as fh:
+            json.dump(obj, fh, indent=4, cls=CustomEncoder)
+
+    except Exception as e:
+        raise Cdev_Error(f&#34;Could not write data as a json into tmp file; {obj}&#34;, e)
+
+    try:
+        shutil.copyfile(tmp_fp, fp)
+    except Exception as e:
+        raise Cdev_Error(f&#34;Could not copy tmp file into actual location; {tmp_fp} -&gt; {fp}&#34;, e)
+
+    os.remove(tmp_fp)
+
+
+def load_resource_state(fp: FilePath) -&gt; Resource_State:
+    &#34;&#34;&#34;Load the Resource State correctly from the json file.
+
+    Since the resource state is store as a json, it is important that it is loaded correctly from the file. This
+    means that some of the nested structures need to be converted. Json only stores list and maps, so without
+    custom handling of some structures, it would be impossible to load the resource state correctly.
+
+    For the `resources`, all the structures in the list container should be loaded as immutable objects
+    because they are `resource_models`.
+
+    For the `references`, all the structures in the list container should be loaded as immutable objects
+    because they are `references_models`.
+
+    for the `cloud_output`, all the structures in the list container should be loaded as immutable objects
+    because they are `cloud_output`models`. They have a special structure that needs to be preserved so that
+    the exectution order of the operations are preserved. 
+
+    Args:
+        fp (FilePath): Path to the file storing the resource state
+
+    Returns:
+        Resource_State
+
+    Raises:
+        Cdev_Error
+    &#34;&#34;&#34;
+
+    if not os.path.isfile(fp):
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but it does not exist&#34;)
+
+    try:
+        with open(fp, &#34;r&#34;) as fh:
+            _mutable_json = json.load(fh)
+    
+    except Exception as e:
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not load the file as a json&#34;)
+
+    for component in _mutable_json[&#39;components&#39;]:
+        # The actual resource and reference models need to be immutable data structures so that they can have a 
+        # __hash__ value.
+
+        try:
+            if component.get(&#39;resources&#39;):
+                component[&#39;resources&#39;] = [_recursive_make_immutable(x) for x in component.get(&#39;resources&#39;)]
+
+            if component.get(&#39;references&#39;):
+                component[&#39;references&#39;] = [_recursive_make_immutable(x) for x in component.get(&#39;references&#39;)]
+
+            if component.get(&#39;cloud_output&#39;):
+                component[&#39;cloud_output&#39;] = _recursive_make_immutable(component.get(&#39;cloud_output&#39;))
+
+        except Exception as e:
+            raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not make dict immutable&#34;, e)
+
+
+    try:
+        rv = Resource_State(**_mutable_json)
+    except Exception as e:
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not serialized Dict into Resource_State&#34;, e)
+
+    return rv
+    
+def _recursive_make_immutable(o):
+    &#34;&#34;&#34;Recursively transform an object into an immutable form
+
+    This is a cdev core specific transformation that is used to convert Dict and List and other native python
+    types into frozendict, frozenset, etc. The purpose is that the later set of objects are immutable in python
+    and therefor can be used to directly compare against eachother and be used as __hash__ able objects in
+    things like dicts and `networkx` DAGs.
+
+    Note the special case of handling Cloud Output Dict. These are identified as a dict with the key `id` that has 
+    a value `cdev_cloud_output`. 
+
+    Args:
+        o (Any): original object
+
+    Returns:
+        transformed_os
+    &#34;&#34;&#34;
+
+    # Note this is designed to be specifically used within the loading of a resource state. Therefor,
+    # we do not much error handling and let an error in the structure of the data be passed up all the
+    # way to `load_resource_state`
+
+
+    if isinstance(o, list):
+        return frozenset([_recursive_make_immutable(x) for x in o])
+    elif isinstance(o, dict):
+
+        if &#34;id&#34; in o:
+            if o.get(&#39;id&#39;) == &#39;cdev_cloud_output&#39;:
+                
+                tmp = {k: _recursive_make_immutable(v) for k, v in o.items()}
+                if not o.get(&#39;output_operations&#39;):
+                    return frozendict(tmp)
+
+                correctly_loaded_output_operations = _load_cloud_output_operations(o.get(&#39;output_operations&#39;))
+
+                tmp[&#39;output_operations&#39;] = correctly_loaded_output_operations
+                
+
+                return frozendict(tmp)
+
+
+        return frozendict({k: _recursive_make_immutable(v) for k, v in o.items()})
+    return o
+
+
+def _load_cloud_output_operations(cloud_output_operations: List[List]) -&gt; Tuple[Tuple,...]:
+    &#34;&#34;&#34;Load data in structure to conform to being a `cloud_output_operation`
+
+    Note this is designed to be specifically used within the loading of a resource state. Therefor,
+    we do not much error handling and let an error in the structure of the data be passed up all the
+    way to `load_resource_state`
+
+    Args:
+        cloud_output_operations (List[List]): List version of the operations
+
+    Returns:
+        Operations: Tuple(Tuple(func_name, args, kwarg),...)
+    &#34;&#34;&#34;
+
+    # Note this is designed to be specifically used within the loading of a resource state. Therefor,
+    # we do not much error handling and let an error in the structure of the data be passed up all the
+    # way to `load_resource_state`
+    
+    return tuple(
+        [
+            (x[0], tuple(x[1]), frozendict(x[2])) for x in cloud_output_operations
+        ]
+    )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.utils.file_manager.load_resource_state"><code class="name flex">
+<span>def <span class="ident">load_resource_state</span></span>(<span>fp: pydantic.types.FilePath) ‑> <a class="" title="core.constructs.resource_state.Resource_State" href="../constructs/resource_state.html#core.constructs.resource_state.Resource_State">Resource_State</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load the Resource State correctly from the json file.</p>
+<p>Since the resource state is store as a json, it is important that it is loaded correctly from the file. This
+means that some of the nested structures need to be converted. Json only stores list and maps, so without
+custom handling of some structures, it would be impossible to load the resource state correctly.</p>
+<p>For the <code>resources</code>, all the structures in the list container should be loaded as immutable objects
+because they are <code>resource_models</code>.</p>
+<p>For the <code>references</code>, all the structures in the list container should be loaded as immutable objects
+because they are <code>references_models</code>.</p>
+<p>for the <code>cloud_output</code>, all the structures in the list container should be loaded as immutable objects
+because they are <code>cloud_output</code>models`. They have a special structure that needs to be preserved so that
+the exectution order of the operations are preserved. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>fp</code></strong> :&ensp;<code>FilePath</code></dt>
+<dd>Path to the file storing the resource state</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Resource_State</p>
+<h2 id="raises">Raises</h2>
+<p>Cdev_Error</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_resource_state(fp: FilePath) -&gt; Resource_State:
+    &#34;&#34;&#34;Load the Resource State correctly from the json file.
+
+    Since the resource state is store as a json, it is important that it is loaded correctly from the file. This
+    means that some of the nested structures need to be converted. Json only stores list and maps, so without
+    custom handling of some structures, it would be impossible to load the resource state correctly.
+
+    For the `resources`, all the structures in the list container should be loaded as immutable objects
+    because they are `resource_models`.
+
+    For the `references`, all the structures in the list container should be loaded as immutable objects
+    because they are `references_models`.
+
+    for the `cloud_output`, all the structures in the list container should be loaded as immutable objects
+    because they are `cloud_output`models`. They have a special structure that needs to be preserved so that
+    the exectution order of the operations are preserved. 
+
+    Args:
+        fp (FilePath): Path to the file storing the resource state
+
+    Returns:
+        Resource_State
+
+    Raises:
+        Cdev_Error
+    &#34;&#34;&#34;
+
+    if not os.path.isfile(fp):
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but it does not exist&#34;)
+
+    try:
+        with open(fp, &#34;r&#34;) as fh:
+            _mutable_json = json.load(fh)
+    
+    except Exception as e:
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not load the file as a json&#34;)
+
+    for component in _mutable_json[&#39;components&#39;]:
+        # The actual resource and reference models need to be immutable data structures so that they can have a 
+        # __hash__ value.
+
+        try:
+            if component.get(&#39;resources&#39;):
+                component[&#39;resources&#39;] = [_recursive_make_immutable(x) for x in component.get(&#39;resources&#39;)]
+
+            if component.get(&#39;references&#39;):
+                component[&#39;references&#39;] = [_recursive_make_immutable(x) for x in component.get(&#39;references&#39;)]
+
+            if component.get(&#39;cloud_output&#39;):
+                component[&#39;cloud_output&#39;] = _recursive_make_immutable(component.get(&#39;cloud_output&#39;))
+
+        except Exception as e:
+            raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not make dict immutable&#34;, e)
+
+
+    try:
+        rv = Resource_State(**_mutable_json)
+    except Exception as e:
+        raise Cdev_Error(f&#34;Trying to load resource state from {fp} but could not serialized Dict into Resource_State&#34;, e)
+
+    return rv</code></pre>
+</details>
+</dd>
+<dt id="core.utils.file_manager.safe_json_write"><code class="name flex">
+<span>def <span class="ident">safe_json_write</span></span>(<span>obj: Dict[~KT, ~VT], fp: pydantic.types.FilePath)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
+partially written thus leaving a file in an unrecoverable state.</p>
+<h2 id="arguments">Arguments</h2>
+<p>obj (Dict): The dictionary that should be written
+fp (FilePath): The path the file should be written at</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def safe_json_write(obj: Dict, fp: FilePath):
+    &#34;&#34;&#34;
+    Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
+    partially written thus leaving a file in an unrecoverable state.
+
+    Arguments:
+        obj (Dict): The dictionary that should be written
+        fp (FilePath): The path the file should be written at
+
+    &#34;&#34;&#34;
+
+    tmp_fp = f&#34;{fp}.tmp&#34;
+
+    if os.path.isfile(tmp_fp):
+        os.remove(tmp_fp)
+
+    try:
+        with open(tmp_fp, &#34;w&#34;) as fh:
+            json.dump(obj, fh, indent=4, cls=CustomEncoder)
+
+    except Exception as e:
+        raise Cdev_Error(f&#34;Could not write data as a json into tmp file; {obj}&#34;, e)
+
+    try:
+        shutil.copyfile(tmp_fp, fp)
+    except Exception as e:
+        raise Cdev_Error(f&#34;Could not copy tmp file into actual location; {tmp_fp} -&gt; {fp}&#34;, e)
+
+    os.remove(tmp_fp)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.utils.file_manager.CustomEncoder"><code class="flex name class">
+<span>class <span class="ident">CustomEncoder</span></span>
+<span>(</span><span>*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Custom JSON encoder for handling immutable data</p>
+<p>Since we want to store state as immutable structures to make direct comparisons easier within the framework,
+we need to provide this encoder to denote how we want those structures stored as json. Using this encoder means
+that there is some information loss when making the obj a json (i.e. cant tell the difference between a frozenset vs
+list), therefor when loading the json back into the system, a custom utility should be used that reintroduces the
+immutable structures back into the data. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>json</code></strong> :&ensp;<code>[type]</code></dt>
+<dd>[description]</dd>
+</dl>
+<p>Constructor for JSONEncoder, with sensible defaults.</p>
+<p>If skipkeys is false, then it is a TypeError to attempt
+encoding of keys that are not str, int, float or None.
+If
+skipkeys is True, such items are simply skipped.</p>
+<p>If ensure_ascii is true, the output is guaranteed to be str
+objects with all incoming non-ASCII characters escaped.
+If
+ensure_ascii is false, the output can contain non-ASCII characters.</p>
+<p>If check_circular is true, then lists, dicts, and custom encoded
+objects will be checked for circular references during encoding to
+prevent an infinite recursion (which would cause an OverflowError).
+Otherwise, no such check takes place.</p>
+<p>If allow_nan is true, then NaN, Infinity, and -Infinity will be
+encoded as such.
+This behavior is not JSON specification compliant,
+but is consistent with most JavaScript based encoders and decoders.
+Otherwise, it will be a ValueError to encode such floats.</p>
+<p>If sort_keys is true, then the output of dictionaries will be
+sorted by key; this is useful for regression tests to ensure
+that JSON serializations can be compared on a day-to-day basis.</p>
+<p>If indent is a non-negative integer, then JSON array
+elements and object members will be pretty-printed with that
+indent level.
+An indent level of 0 will only insert newlines.
+None is the most compact representation.</p>
+<p>If specified, separators should be an (item_separator, key_separator)
+tuple.
+The default is (', ', ': ') if <em>indent</em> is <code>None</code> and
+(',', ': ') otherwise.
+To get the most compact JSON representation,
+you should specify (',', ':') to eliminate whitespace.</p>
+<p>If specified, default is a function that gets called for objects
+that can't otherwise be serialized.
+It should return a JSON encodable
+version of the object or raise a <code>TypeError</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CustomEncoder(json.JSONEncoder):
+    &#34;&#34;&#34;Custom JSON encoder for handling immutable data
+
+    Since we want to store state as immutable structures to make direct comparisons easier within the framework, 
+    we need to provide this encoder to denote how we want those structures stored as json. Using this encoder means
+    that there is some information loss when making the obj a json (i.e. cant tell the difference between a frozenset vs
+    list), therefor when loading the json back into the system, a custom utility should be used that reintroduces the
+    immutable structures back into the data. 
+
+    Args:
+        json ([type]): [description]
+    &#34;&#34;&#34;
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+
+        if isinstance(obj, frozenset):
+            return list(obj)
+
+        if isinstance(obj, frozendict):
+            return dict(obj)
+
+        return json.JSONEncoder.default(self, obj)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>json.encoder.JSONEncoder</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.utils.file_manager.CustomEncoder.default"><code class="name flex">
+<span>def <span class="ident">default</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement this method in a subclass such that it returns
+a serializable object for <code>o</code>, or calls the base implementation
+(to raise a <code>TypeError</code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this::</p>
+<pre><code>def default(self, o):
+    try:
+        iterable = iter(o)
+    except TypeError:
+        pass
+    else:
+        return list(iterable)
+    # Let the base class default method raise the TypeError
+    return JSONEncoder.default(self, o)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def default(self, obj):
+    if isinstance(obj, set):
+        return list(obj)
+
+    if isinstance(obj, frozenset):
+        return list(obj)
+
+    if isinstance(obj, frozendict):
+        return dict(obj)
+
+    return json.JSONEncoder.default(self, obj)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.utils" href="index.html">core.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.utils.file_manager.load_resource_state" href="#core.utils.file_manager.load_resource_state">load_resource_state</a></code></li>
+<li><code><a class="sidebar" title="core.utils.file_manager.safe_json_write" href="#core.utils.file_manager.safe_json_write">safe_json_write</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.utils.file_manager.CustomEncoder" href="#core.utils.file_manager.CustomEncoder">CustomEncoder</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.utils.file_manager.CustomEncoder.default" href="#core.utils.file_manager.CustomEncoder.default">default</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

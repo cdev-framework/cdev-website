@@ -1,0 +1,1599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>cdev.constructs.project API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>cdev.constructs.project</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+import json
+import os
+from typing import Any, Dict, List, Optional, TypeVar, Callable
+
+from pydantic import BaseModel
+from pydantic.types import DirectoryPath
+
+from core.constructs.backend import Backend_Configuration
+from core.constructs.mapper import CloudMapper
+from core.constructs.components import Component
+from core.constructs.types import F
+
+from .environment import environment_info, Environment
+
+_GLOBAL_PROJECT = None
+
+
+class project_info(BaseModel):
+    project_name: str
+    environments: List[environment_info]
+    backend_info: Backend_Configuration
+    current_environment: Optional[str]
+
+    def __init__(
+        __pydantic_self__,
+        project_name: str,
+        environments: List[environment_info],
+        backend_info: Backend_Configuration,
+        current_environment: str = None,
+       
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Represents the data about a cdev project object:
+
+        Parameters:
+            project_name (str): Name of the project
+            environments (List[environment_info]): The environments that are currently part of the project
+            current_environment (str): The current environment
+            
+        &#34;&#34;&#34;
+
+        super().__init__(
+            **{
+                &#34;project_name&#34;: project_name,
+                &#34;environments&#34;: environments,
+                &#34;backend_info&#34;: backend_info,
+                &#34;current_environment&#34;: current_environment,
+            }
+        )
+
+
+class Project_State(str, Enum):
+    UNINITIALIZED = &#34;UNINITIALIZED&#34;
+    INITIALIZING = &#34;INITIALIZING&#34;
+    INITIALIZED = &#34;INITIALIZED&#34;
+
+
+
+def wrap_phase(phase: Project_State) -&gt; Callable[[F], F]:
+    &#34;&#34;&#34;
+    Annotation that denotes when a function can be executed within the life cycle of a workspace. Throws excpetion if the workspace is not in the correct
+    phase.
+    &#34;&#34;&#34;
+
+    def inner_wrap(func: F) -&gt; F:
+        def wrapper_func(project: &#34;Project&#34;, *func_posargs, **func_kwargs):
+
+            current_state = project.get_state()
+            if not current_state == phase:
+                raise Exception(
+                    f&#34;Trying to call {func} while in project state {current_state} but need to be in {phase}&#34;
+                )
+
+            else:
+
+                return func(project, *func_posargs, **func_kwargs)
+
+        return wrapper_func
+
+    return inner_wrap
+
+
+class Project:
+    &#34;&#34;&#34;
+    Global class that defines the functionality for the Project object. The Project object is a global object that is created
+    by Cdev to provide access to helpful API&#39;s for developers to use in their projects. The object is created and managed by
+    the Cdev framework and follows a set of lifecycle rules (link to documentation).
+
+    Developers can access the object in their projects by calling `Project.instance()`. When using the Project Object, developers
+    should keep in mind the lifecycle rules around each API and how it fits into their project.
+
+    &#34;&#34;&#34;
+
+    @classmethod
+    def instance(cls):
+        &#34;&#34;&#34;
+        Method to retrieve the global instance of the Project object.
+        &#34;&#34;&#34;
+        if not _GLOBAL_PROJECT:
+            raise Exception(&#34;Currently No GLOBAL PROJECT OBJECT&#34;)
+
+        return _GLOBAL_PROJECT
+
+    @classmethod
+    def set_global_instance(cls, project: &#34;Project&#34;):
+        &#34;&#34;&#34;
+        Method to set the global Project object. Should only be used to as defined in the lifecycle of the Cdev process. (documentation)
+        &#34;&#34;&#34;
+        global _GLOBAL_PROJECT
+        _GLOBAL_PROJECT = project
+
+    @classmethod
+    def remove_global_instance(cls, caller: &#34;Project&#34;):
+        &#34;&#34;&#34;
+        Method to reset the Global Project object. This should be the final cleanup step for a Cdev process.
+        &#34;&#34;&#34;
+        global _GLOBAL_PROJECT
+
+        if not _GLOBAL_PROJECT:
+            raise Exception(&#34;Global Project is not set&#34;)
+
+        if not _GLOBAL_PROJECT == caller:
+            raise Exception(&#34;Only the current Project object can remove itself&#34;)
+
+        _GLOBAL_PROJECT = None
+
+
+    def set_name(self, name: str):
+        &#34;&#34;&#34;
+        Set the name of this Project
+
+        Args:
+            name (str): name of the Project
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def get_name(self):
+        &#34;&#34;&#34;
+        Get the name of this Project
+
+        Returns:
+            name (str)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_state(self) -&gt; Project_State:
+        &#34;&#34;&#34;
+        Get the current lifecycle state of the Project.
+
+        Returns:
+            state (Project_State)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def initialize_project(self):
+        &#34;&#34;&#34;
+        Initialize the Project object so that it is ready to perform a given operation. Note that any configuration needed for the initialization
+        process should be defined during the creation of the object, and set such that this function needs no input.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def terminate_project(self):
+        &#34;&#34;&#34;
+        Terminate the Project object as a cleanup operation after a given operation is complete. This should be the final step in the life cycle
+        of an operation that need to initialize the project.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def create_environment(self, environment_name: str, settings_files: List[str]):
+        &#34;&#34;&#34;
+        Create a new environment for this project.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def destroy_environment(self, environment_name: str):
+        &#34;&#34;&#34;
+        Destroy an environment. This function should only be called when the project is in the Initialized state, so that
+        any cloud resources in the environment will be destroyed.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_all_environment_names(self) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Get all the available environments in the Project.
+
+        Returns:
+            environment_names (List[str]): environments
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_current_environment_name(self) -&gt; str:
+        &#34;&#34;&#34;
+        Get the environment name that is currently active for this Project.
+
+        Returns:
+            environment_name (str)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def set_current_environment(self, environment_name: str):
+        &#34;&#34;&#34;
+        Change the currently active environment for this Project. This should only be called when the Project is
+        in the Uninitialized state to prevent it from being called during operations that modify an environment.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_environment(self, environment_name: str) -&gt; Environment:
+        &#34;&#34;&#34;
+        Get the environment object for a specified environment name. Note that the environment will be in a state
+        based on when this function is called within the Cdev lifecycle.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_current_environment(self) -&gt; Environment:
+        &#34;&#34;&#34;
+        Get the environment object for the currently active Environment. Note that the Environment will be in a state
+        based on when this function is called within the Cdev lifecycle.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Mappers
+    #################
+    def add_mapper(self, mapper: CloudMapper) -&gt; None:
+        &#34;&#34;&#34;
+        Add a CloudMapper to the project. The order that the Mappers are added to the Project defines the precedence give when
+        determining which CloudMapper to use.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            mapper (CloudMapper): The mapper to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_mappers(self, mappers: List[CloudMapper]) -&gt; None:
+        &#34;&#34;&#34;
+        Add a List of CloudMappers to the project. The order that the Mappers are added to the Project defines the precedence
+        give when determining which CloudMapper to use.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            mappers (List[CloudMapper]): The mapper to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_mappers(self) -&gt; List[CloudMapper]:
+        &#34;&#34;&#34;
+        Return the List of CloudMappers for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            mappers (List[CloudMapper]): mappers for this Project
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_mapper_namespace(self) -&gt; Dict[str, CloudMapper]:
+        &#34;&#34;&#34;
+        Return the Dictionary that maps Resource ID&#39;s (ruuid) to the mapper that will be used to deploy the resource into the cloud.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            ruuid_to_mapper (Dict[str, CloudMapper]): Resource ID to CloudMapper
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Commands
+    #################
+    def add_command(self, command_location: str):
+        &#34;&#34;&#34;
+        Add a Command Location to the Project. The order that the Command is added to the Project defines the precedence
+        give when searching for Commands. Command Locations should adhere to the defined form to ensure that they can be
+        found within the Project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            command_location (Command): The command location to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_commands(self, command_locations: List[str]):
+        &#34;&#34;&#34;
+        Add a List of Command Locations to the Project. The order that the Commands are added to the Project defines the precedence
+        give when searching for a Command. Command Locations should adhere to the defined form to ensure that they can be
+        found within the Project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            command_locations (Command): The command location to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_commands(self) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Get the Command Locations for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            command_locations (List[str])
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Components
+    #################
+    def add_component(self, component: Component):
+        &#34;&#34;&#34;
+        Add a Component to the Project. Components are used to determine the desired state of the Project. They should represent
+        a logical separation for the Resources in a project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            component (Component): Component to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_components(self, components: List[Component]):
+        &#34;&#34;&#34;
+        Add a List of Components to the Project. Components are used to determine the desired state of the Project. They
+        should represent a logical separation for the Resources in a project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            component (Component): Component to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_components(self) -&gt; List[Component]:
+        &#34;&#34;&#34;
+        Return the Components for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            components (List[Component])
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+def check_if_project_exists(base_directory: DirectoryPath) -&gt; bool:
+    &#34;&#34;&#34;
+    This function checks for an existing Cdev project at the given directory. A Cdev project is defined by the existence of a valid
+    &#39;cdev_project.json&#39; file (can be loaded as project_info) at the location of &lt;base_directory&gt;/.cdev/.
+
+    Arguments:
+        base_directory: Directory to start search from
+    &#34;&#34;&#34;
+
+    CDEV_FOLDER = &#34;.cdev&#34;
+    CDEV_PROJECT_FILE = &#34;cdev_project.json&#34;
+
+    if not os.path.isdir(base_directory):
+        raise Exception(f&#34;Given base directory is not a directory {base_directory}&#34;)
+
+    if not os.path.isdir(os.path.join(base_directory, CDEV_FOLDER)):
+        return False
+
+    if not os.path.isfile(os.path.join(base_directory, CDEV_FOLDER, CDEV_PROJECT_FILE)):
+        return False
+
+    try:
+        with open(
+            os.path.join(base_directory, CDEV_FOLDER, CDEV_PROJECT_FILE), &#34;r&#34;
+        ) as fh:
+            project_info(**json.load(fh))
+
+        return True
+
+    except Exception as e:
+        return False</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="cdev.constructs.project.check_if_project_exists"><code class="name flex">
+<span>def <span class="ident">check_if_project_exists</span></span>(<span>base_directory: pydantic.types.DirectoryPath) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function checks for an existing Cdev project at the given directory. A Cdev project is defined by the existence of a valid
+'cdev_project.json' file (can be loaded as project_info) at the location of <base_directory>/.cdev/.</p>
+<h2 id="arguments">Arguments</h2>
+<p>base_directory: Directory to start search from</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_if_project_exists(base_directory: DirectoryPath) -&gt; bool:
+    &#34;&#34;&#34;
+    This function checks for an existing Cdev project at the given directory. A Cdev project is defined by the existence of a valid
+    &#39;cdev_project.json&#39; file (can be loaded as project_info) at the location of &lt;base_directory&gt;/.cdev/.
+
+    Arguments:
+        base_directory: Directory to start search from
+    &#34;&#34;&#34;
+
+    CDEV_FOLDER = &#34;.cdev&#34;
+    CDEV_PROJECT_FILE = &#34;cdev_project.json&#34;
+
+    if not os.path.isdir(base_directory):
+        raise Exception(f&#34;Given base directory is not a directory {base_directory}&#34;)
+
+    if not os.path.isdir(os.path.join(base_directory, CDEV_FOLDER)):
+        return False
+
+    if not os.path.isfile(os.path.join(base_directory, CDEV_FOLDER, CDEV_PROJECT_FILE)):
+        return False
+
+    try:
+        with open(
+            os.path.join(base_directory, CDEV_FOLDER, CDEV_PROJECT_FILE), &#34;r&#34;
+        ) as fh:
+            project_info(**json.load(fh))
+
+        return True
+
+    except Exception as e:
+        return False</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.wrap_phase"><code class="name flex">
+<span>def <span class="ident">wrap_phase</span></span>(<span>phase: <a class="" title="cdev.constructs.project.Project_State" href="#cdev.constructs.project.Project_State">Project_State</a>) ‑> Callable[[~F], ~F]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Annotation that denotes when a function can be executed within the life cycle of a workspace. Throws excpetion if the workspace is not in the correct
+phase.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrap_phase(phase: Project_State) -&gt; Callable[[F], F]:
+    &#34;&#34;&#34;
+    Annotation that denotes when a function can be executed within the life cycle of a workspace. Throws excpetion if the workspace is not in the correct
+    phase.
+    &#34;&#34;&#34;
+
+    def inner_wrap(func: F) -&gt; F:
+        def wrapper_func(project: &#34;Project&#34;, *func_posargs, **func_kwargs):
+
+            current_state = project.get_state()
+            if not current_state == phase:
+                raise Exception(
+                    f&#34;Trying to call {func} while in project state {current_state} but need to be in {phase}&#34;
+                )
+
+            else:
+
+                return func(project, *func_posargs, **func_kwargs)
+
+        return wrapper_func
+
+    return inner_wrap</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="cdev.constructs.project.Project"><code class="flex name class">
+<span>class <span class="ident">Project</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Global class that defines the functionality for the Project object. The Project object is a global object that is created
+by Cdev to provide access to helpful API's for developers to use in their projects. The object is created and managed by
+the Cdev framework and follows a set of lifecycle rules (link to documentation).</p>
+<p>Developers can access the object in their projects by calling <code><a class="" title="cdev.constructs.project.Project.instance" href="#cdev.constructs.project.Project.instance">Project.instance()</a></code>. When using the Project Object, developers
+should keep in mind the lifecycle rules around each API and how it fits into their project.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Project:
+    &#34;&#34;&#34;
+    Global class that defines the functionality for the Project object. The Project object is a global object that is created
+    by Cdev to provide access to helpful API&#39;s for developers to use in their projects. The object is created and managed by
+    the Cdev framework and follows a set of lifecycle rules (link to documentation).
+
+    Developers can access the object in their projects by calling `Project.instance()`. When using the Project Object, developers
+    should keep in mind the lifecycle rules around each API and how it fits into their project.
+
+    &#34;&#34;&#34;
+
+    @classmethod
+    def instance(cls):
+        &#34;&#34;&#34;
+        Method to retrieve the global instance of the Project object.
+        &#34;&#34;&#34;
+        if not _GLOBAL_PROJECT:
+            raise Exception(&#34;Currently No GLOBAL PROJECT OBJECT&#34;)
+
+        return _GLOBAL_PROJECT
+
+    @classmethod
+    def set_global_instance(cls, project: &#34;Project&#34;):
+        &#34;&#34;&#34;
+        Method to set the global Project object. Should only be used to as defined in the lifecycle of the Cdev process. (documentation)
+        &#34;&#34;&#34;
+        global _GLOBAL_PROJECT
+        _GLOBAL_PROJECT = project
+
+    @classmethod
+    def remove_global_instance(cls, caller: &#34;Project&#34;):
+        &#34;&#34;&#34;
+        Method to reset the Global Project object. This should be the final cleanup step for a Cdev process.
+        &#34;&#34;&#34;
+        global _GLOBAL_PROJECT
+
+        if not _GLOBAL_PROJECT:
+            raise Exception(&#34;Global Project is not set&#34;)
+
+        if not _GLOBAL_PROJECT == caller:
+            raise Exception(&#34;Only the current Project object can remove itself&#34;)
+
+        _GLOBAL_PROJECT = None
+
+
+    def set_name(self, name: str):
+        &#34;&#34;&#34;
+        Set the name of this Project
+
+        Args:
+            name (str): name of the Project
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def get_name(self):
+        &#34;&#34;&#34;
+        Get the name of this Project
+
+        Returns:
+            name (str)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_state(self) -&gt; Project_State:
+        &#34;&#34;&#34;
+        Get the current lifecycle state of the Project.
+
+        Returns:
+            state (Project_State)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def initialize_project(self):
+        &#34;&#34;&#34;
+        Initialize the Project object so that it is ready to perform a given operation. Note that any configuration needed for the initialization
+        process should be defined during the creation of the object, and set such that this function needs no input.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def terminate_project(self):
+        &#34;&#34;&#34;
+        Terminate the Project object as a cleanup operation after a given operation is complete. This should be the final step in the life cycle
+        of an operation that need to initialize the project.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def create_environment(self, environment_name: str, settings_files: List[str]):
+        &#34;&#34;&#34;
+        Create a new environment for this project.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def destroy_environment(self, environment_name: str):
+        &#34;&#34;&#34;
+        Destroy an environment. This function should only be called when the project is in the Initialized state, so that
+        any cloud resources in the environment will be destroyed.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_all_environment_names(self) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Get all the available environments in the Project.
+
+        Returns:
+            environment_names (List[str]): environments
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_current_environment_name(self) -&gt; str:
+        &#34;&#34;&#34;
+        Get the environment name that is currently active for this Project.
+
+        Returns:
+            environment_name (str)
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def set_current_environment(self, environment_name: str):
+        &#34;&#34;&#34;
+        Change the currently active environment for this Project. This should only be called when the Project is
+        in the Uninitialized state to prevent it from being called during operations that modify an environment.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_environment(self, environment_name: str) -&gt; Environment:
+        &#34;&#34;&#34;
+        Get the environment object for a specified environment name. Note that the environment will be in a state
+        based on when this function is called within the Cdev lifecycle.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_current_environment(self) -&gt; Environment:
+        &#34;&#34;&#34;
+        Get the environment object for the currently active Environment. Note that the Environment will be in a state
+        based on when this function is called within the Cdev lifecycle.
+
+        Arguments:
+            environment_name (str): The environment name to switch to
+
+        Raises:
+            EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Mappers
+    #################
+    def add_mapper(self, mapper: CloudMapper) -&gt; None:
+        &#34;&#34;&#34;
+        Add a CloudMapper to the project. The order that the Mappers are added to the Project defines the precedence give when
+        determining which CloudMapper to use.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            mapper (CloudMapper): The mapper to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_mappers(self, mappers: List[CloudMapper]) -&gt; None:
+        &#34;&#34;&#34;
+        Add a List of CloudMappers to the project. The order that the Mappers are added to the Project defines the precedence
+        give when determining which CloudMapper to use.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            mappers (List[CloudMapper]): The mapper to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_mappers(self) -&gt; List[CloudMapper]:
+        &#34;&#34;&#34;
+        Return the List of CloudMappers for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            mappers (List[CloudMapper]): mappers for this Project
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_mapper_namespace(self) -&gt; Dict[str, CloudMapper]:
+        &#34;&#34;&#34;
+        Return the Dictionary that maps Resource ID&#39;s (ruuid) to the mapper that will be used to deploy the resource into the cloud.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            ruuid_to_mapper (Dict[str, CloudMapper]): Resource ID to CloudMapper
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Commands
+    #################
+    def add_command(self, command_location: str):
+        &#34;&#34;&#34;
+        Add a Command Location to the Project. The order that the Command is added to the Project defines the precedence
+        give when searching for Commands. Command Locations should adhere to the defined form to ensure that they can be
+        found within the Project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            command_location (Command): The command location to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_commands(self, command_locations: List[str]):
+        &#34;&#34;&#34;
+        Add a List of Command Locations to the Project. The order that the Commands are added to the Project defines the precedence
+        give when searching for a Command. Command Locations should adhere to the defined form to ensure that they can be
+        found within the Project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            command_locations (Command): The command location to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_commands(self) -&gt; List[str]:
+        &#34;&#34;&#34;
+        Get the Command Locations for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            command_locations (List[str])
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    #################
+    ##### Components
+    #################
+    def add_component(self, component: Component):
+        &#34;&#34;&#34;
+        Add a Component to the Project. Components are used to determine the desired state of the Project. They should represent
+        a logical separation for the Resources in a project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            component (Component): Component to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def add_components(self, components: List[Component]):
+        &#34;&#34;&#34;
+        Add a List of Components to the Project. Components are used to determine the desired state of the Project. They
+        should represent a logical separation for the Resources in a project.
+
+        Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+        Arguments:
+            component (Component): Component to add
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_components(self) -&gt; List[Component]:
+        &#34;&#34;&#34;
+        Return the Components for this Project.
+
+        Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+        Returns:
+            components (List[Component])
+        &#34;&#34;&#34;
+        raise NotImplementedError</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a class="" title="cdev.default.project.local_project" href="../default/project.html#cdev.default.project.local_project">local_project</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="cdev.constructs.project.Project.instance"><code class="name flex">
+<span>def <span class="ident">instance</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Method to retrieve the global instance of the Project object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def instance(cls):
+    &#34;&#34;&#34;
+    Method to retrieve the global instance of the Project object.
+    &#34;&#34;&#34;
+    if not _GLOBAL_PROJECT:
+        raise Exception(&#34;Currently No GLOBAL PROJECT OBJECT&#34;)
+
+    return _GLOBAL_PROJECT</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.remove_global_instance"><code class="name flex">
+<span>def <span class="ident">remove_global_instance</span></span>(<span>caller: <a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Method to reset the Global Project object. This should be the final cleanup step for a Cdev process.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def remove_global_instance(cls, caller: &#34;Project&#34;):
+    &#34;&#34;&#34;
+    Method to reset the Global Project object. This should be the final cleanup step for a Cdev process.
+    &#34;&#34;&#34;
+    global _GLOBAL_PROJECT
+
+    if not _GLOBAL_PROJECT:
+        raise Exception(&#34;Global Project is not set&#34;)
+
+    if not _GLOBAL_PROJECT == caller:
+        raise Exception(&#34;Only the current Project object can remove itself&#34;)
+
+    _GLOBAL_PROJECT = None</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.set_global_instance"><code class="name flex">
+<span>def <span class="ident">set_global_instance</span></span>(<span>project: <a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Method to set the global Project object. Should only be used to as defined in the lifecycle of the Cdev process. (documentation)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def set_global_instance(cls, project: &#34;Project&#34;):
+    &#34;&#34;&#34;
+    Method to set the global Project object. Should only be used to as defined in the lifecycle of the Cdev process. (documentation)
+    &#34;&#34;&#34;
+    global _GLOBAL_PROJECT
+    _GLOBAL_PROJECT = project</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="cdev.constructs.project.Project.add_command"><code class="name flex">
+<span>def <span class="ident">add_command</span></span>(<span>self, command_location: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a Command Location to the Project. The order that the Command is added to the Project defines the precedence
+give when searching for Commands. Command Locations should adhere to the defined form to ensure that they can be
+found within the Project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>command_location (Command): The command location to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_command(self, command_location: str):
+    &#34;&#34;&#34;
+    Add a Command Location to the Project. The order that the Command is added to the Project defines the precedence
+    give when searching for Commands. Command Locations should adhere to the defined form to ensure that they can be
+    found within the Project.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        command_location (Command): The command location to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.add_commands"><code class="name flex">
+<span>def <span class="ident">add_commands</span></span>(<span>self, command_locations: List[str])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a List of Command Locations to the Project. The order that the Commands are added to the Project defines the precedence
+give when searching for a Command. Command Locations should adhere to the defined form to ensure that they can be
+found within the Project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>command_locations (Command): The command location to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_commands(self, command_locations: List[str]):
+    &#34;&#34;&#34;
+    Add a List of Command Locations to the Project. The order that the Commands are added to the Project defines the precedence
+    give when searching for a Command. Command Locations should adhere to the defined form to ensure that they can be
+    found within the Project.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        command_locations (Command): The command location to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.add_component"><code class="name flex">
+<span>def <span class="ident">add_component</span></span>(<span>self, component: core.constructs.components.Component)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a Component to the Project. Components are used to determine the desired state of the Project. They should represent
+a logical separation for the Resources in a project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>component (Component): Component to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_component(self, component: Component):
+    &#34;&#34;&#34;
+    Add a Component to the Project. Components are used to determine the desired state of the Project. They should represent
+    a logical separation for the Resources in a project.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        component (Component): Component to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.add_components"><code class="name flex">
+<span>def <span class="ident">add_components</span></span>(<span>self, components: List[core.constructs.components.Component])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a List of Components to the Project. Components are used to determine the desired state of the Project. They
+should represent a logical separation for the Resources in a project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>component (Component): Component to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_components(self, components: List[Component]):
+    &#34;&#34;&#34;
+    Add a List of Components to the Project. Components are used to determine the desired state of the Project. They
+    should represent a logical separation for the Resources in a project.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        component (Component): Component to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.add_mapper"><code class="name flex">
+<span>def <span class="ident">add_mapper</span></span>(<span>self, mapper: core.constructs.mapper.CloudMapper) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a CloudMapper to the project. The order that the Mappers are added to the Project defines the precedence give when
+determining which CloudMapper to use.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>mapper (CloudMapper): The mapper to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_mapper(self, mapper: CloudMapper) -&gt; None:
+    &#34;&#34;&#34;
+    Add a CloudMapper to the project. The order that the Mappers are added to the Project defines the precedence give when
+    determining which CloudMapper to use.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        mapper (CloudMapper): The mapper to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.add_mappers"><code class="name flex">
+<span>def <span class="ident">add_mappers</span></span>(<span>self, mappers: List[core.constructs.mapper.CloudMapper]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a List of CloudMappers to the project. The order that the Mappers are added to the Project defines the precedence
+give when determining which CloudMapper to use.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialization</code> part of the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>mappers (List[CloudMapper]): The mapper to add</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_mappers(self, mappers: List[CloudMapper]) -&gt; None:
+    &#34;&#34;&#34;
+    Add a List of CloudMappers to the project. The order that the Mappers are added to the Project defines the precedence
+    give when determining which CloudMapper to use.
+
+    Note that this function should only be called during the `Project Initialization` part of the Cdev lifecycle.
+
+    Arguments:
+        mappers (List[CloudMapper]): The mapper to add
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.create_environment"><code class="name flex">
+<span>def <span class="ident">create_environment</span></span>(<span>self, environment_name: str, settings_files: List[str])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new environment for this project.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_environment(self, environment_name: str, settings_files: List[str]):
+    &#34;&#34;&#34;
+    Create a new environment for this project.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.destroy_environment"><code class="name flex">
+<span>def <span class="ident">destroy_environment</span></span>(<span>self, environment_name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Destroy an environment. This function should only be called when the project is in the Initialized state, so that
+any cloud resources in the environment will be destroyed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def destroy_environment(self, environment_name: str):
+    &#34;&#34;&#34;
+    Destroy an environment. This function should only be called when the project is in the Initialized state, so that
+    any cloud resources in the environment will be destroyed.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_all_environment_names"><code class="name flex">
+<span>def <span class="ident">get_all_environment_names</span></span>(<span>self) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get all the available environments in the Project.</p>
+<h2 id="returns">Returns</h2>
+<p>environment_names (List[str]): environments</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_environment_names(self) -&gt; List[str]:
+    &#34;&#34;&#34;
+    Get all the available environments in the Project.
+
+    Returns:
+        environment_names (List[str]): environments
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_commands"><code class="name flex">
+<span>def <span class="ident">get_commands</span></span>(<span>self) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the Command Locations for this Project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialized</code> part of the Cdev lifecycle.</p>
+<h2 id="returns">Returns</h2>
+<p>command_locations (List[str])</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_commands(self) -&gt; List[str]:
+    &#34;&#34;&#34;
+    Get the Command Locations for this Project.
+
+    Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+    Returns:
+        command_locations (List[str])
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_components"><code class="name flex">
+<span>def <span class="ident">get_components</span></span>(<span>self) ‑> List[core.constructs.components.Component]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the Components for this Project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialized</code> part of the Cdev lifecycle.</p>
+<h2 id="returns">Returns</h2>
+<p>components (List[Component])</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_components(self) -&gt; List[Component]:
+    &#34;&#34;&#34;
+    Return the Components for this Project.
+
+    Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+    Returns:
+        components (List[Component])
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_current_environment"><code class="name flex">
+<span>def <span class="ident">get_current_environment</span></span>(<span>self) ‑> <a class="" title="cdev.constructs.environment.Environment" href="environment.html#cdev.constructs.environment.Environment">Environment</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the environment object for the currently active Environment. Note that the Environment will be in a state
+based on when this function is called within the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>environment_name (str): The environment name to switch to</p>
+<h2 id="raises">Raises</h2>
+<p>EnvironmentDoesNotExist</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_environment(self) -&gt; Environment:
+    &#34;&#34;&#34;
+    Get the environment object for the currently active Environment. Note that the Environment will be in a state
+    based on when this function is called within the Cdev lifecycle.
+
+    Arguments:
+        environment_name (str): The environment name to switch to
+
+    Raises:
+        EnvironmentDoesNotExist
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_current_environment_name"><code class="name flex">
+<span>def <span class="ident">get_current_environment_name</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the environment name that is currently active for this Project.</p>
+<h2 id="returns">Returns</h2>
+<p>environment_name (str)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_environment_name(self) -&gt; str:
+    &#34;&#34;&#34;
+    Get the environment name that is currently active for this Project.
+
+    Returns:
+        environment_name (str)
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_environment"><code class="name flex">
+<span>def <span class="ident">get_environment</span></span>(<span>self, environment_name: str) ‑> <a class="" title="cdev.constructs.environment.Environment" href="environment.html#cdev.constructs.environment.Environment">Environment</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the environment object for a specified environment name. Note that the environment will be in a state
+based on when this function is called within the Cdev lifecycle.</p>
+<h2 id="arguments">Arguments</h2>
+<p>environment_name (str): The environment name to switch to</p>
+<h2 id="raises">Raises</h2>
+<p>EnvironmentDoesNotExist</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_environment(self, environment_name: str) -&gt; Environment:
+    &#34;&#34;&#34;
+    Get the environment object for a specified environment name. Note that the environment will be in a state
+    based on when this function is called within the Cdev lifecycle.
+
+    Arguments:
+        environment_name (str): The environment name to switch to
+
+    Raises:
+        EnvironmentDoesNotExist
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_mapper_namespace"><code class="name flex">
+<span>def <span class="ident">get_mapper_namespace</span></span>(<span>self) ‑> Dict[str, core.constructs.mapper.CloudMapper]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the Dictionary that maps Resource ID's (ruuid) to the mapper that will be used to deploy the resource into the cloud.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialized</code> part of the Cdev lifecycle.</p>
+<h2 id="returns">Returns</h2>
+<p>ruuid_to_mapper (Dict[str, CloudMapper]): Resource ID to CloudMapper</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mapper_namespace(self) -&gt; Dict[str, CloudMapper]:
+    &#34;&#34;&#34;
+    Return the Dictionary that maps Resource ID&#39;s (ruuid) to the mapper that will be used to deploy the resource into the cloud.
+
+    Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+    Returns:
+        ruuid_to_mapper (Dict[str, CloudMapper]): Resource ID to CloudMapper
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_mappers"><code class="name flex">
+<span>def <span class="ident">get_mappers</span></span>(<span>self) ‑> List[core.constructs.mapper.CloudMapper]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the List of CloudMappers for this Project.</p>
+<p>Note that this function should only be called during the <code><a class="" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a> Initialized</code> part of the Cdev lifecycle.</p>
+<h2 id="returns">Returns</h2>
+<p>mappers (List[CloudMapper]): mappers for this Project</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mappers(self) -&gt; List[CloudMapper]:
+    &#34;&#34;&#34;
+    Return the List of CloudMappers for this Project.
+
+    Note that this function should only be called during the `Project Initialized` part of the Cdev lifecycle.
+
+    Returns:
+        mappers (List[CloudMapper]): mappers for this Project
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_name"><code class="name flex">
+<span>def <span class="ident">get_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the name of this Project</p>
+<h2 id="returns">Returns</h2>
+<p>name (str)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_name(self):
+    &#34;&#34;&#34;
+    Get the name of this Project
+
+    Returns:
+        name (str)
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.get_state"><code class="name flex">
+<span>def <span class="ident">get_state</span></span>(<span>self) ‑> <a class="" title="cdev.constructs.project.Project_State" href="#cdev.constructs.project.Project_State">Project_State</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the current lifecycle state of the Project.</p>
+<h2 id="returns">Returns</h2>
+<p>state (Project_State)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state(self) -&gt; Project_State:
+    &#34;&#34;&#34;
+    Get the current lifecycle state of the Project.
+
+    Returns:
+        state (Project_State)
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.initialize_project"><code class="name flex">
+<span>def <span class="ident">initialize_project</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize the Project object so that it is ready to perform a given operation. Note that any configuration needed for the initialization
+process should be defined during the creation of the object, and set such that this function needs no input.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_project(self):
+    &#34;&#34;&#34;
+    Initialize the Project object so that it is ready to perform a given operation. Note that any configuration needed for the initialization
+    process should be defined during the creation of the object, and set such that this function needs no input.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.set_current_environment"><code class="name flex">
+<span>def <span class="ident">set_current_environment</span></span>(<span>self, environment_name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Change the currently active environment for this Project. This should only be called when the Project is
+in the Uninitialized state to prevent it from being called during operations that modify an environment.</p>
+<h2 id="arguments">Arguments</h2>
+<p>environment_name (str): The environment name to switch to</p>
+<h2 id="raises">Raises</h2>
+<p>EnvironmentDoesNotExist</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_current_environment(self, environment_name: str):
+    &#34;&#34;&#34;
+    Change the currently active environment for this Project. This should only be called when the Project is
+    in the Uninitialized state to prevent it from being called during operations that modify an environment.
+
+    Arguments:
+        environment_name (str): The environment name to switch to
+
+    Raises:
+        EnvironmentDoesNotExist
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.set_name"><code class="name flex">
+<span>def <span class="ident">set_name</span></span>(<span>self, name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the name of this Project</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>name of the Project</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_name(self, name: str):
+    &#34;&#34;&#34;
+    Set the name of this Project
+
+    Args:
+        name (str): name of the Project
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="cdev.constructs.project.Project.terminate_project"><code class="name flex">
+<span>def <span class="ident">terminate_project</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Terminate the Project object as a cleanup operation after a given operation is complete. This should be the final step in the life cycle
+of an operation that need to initialize the project.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def terminate_project(self):
+    &#34;&#34;&#34;
+    Terminate the Project object as a cleanup operation after a given operation is complete. This should be the final step in the life cycle
+    of an operation that need to initialize the project.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="cdev.constructs.project.Project_State"><code class="flex name class">
+<span>class <span class="ident">Project_State</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Project_State(str, Enum):
+    UNINITIALIZED = &#34;UNINITIALIZED&#34;
+    INITIALIZING = &#34;INITIALIZING&#34;
+    INITIALIZED = &#34;INITIALIZED&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="cdev.constructs.project.Project_State.INITIALIZED"><code class="name">var <span class="ident">INITIALIZED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="cdev.constructs.project.Project_State.INITIALIZING"><code class="name">var <span class="ident">INITIALIZING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="cdev.constructs.project.Project_State.UNINITIALIZED"><code class="name">var <span class="ident">UNINITIALIZED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="cdev.constructs.project.project_info"><code class="flex name class">
+<span>class <span class="ident">project_info</span></span>
+<span>(</span><span>project_name: str, environments: List[<a class="" title="cdev.constructs.environment.environment_info" href="environment.html#cdev.constructs.environment.environment_info">environment_info</a>], backend_info: core.constructs.backend.Backend_Configuration, current_environment: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Represents the data about a cdev project object:</p>
+<h2 id="parameters">Parameters</h2>
+<p>project_name (str): Name of the project
+environments (List[environment_info]): The environments that are currently part of the project
+current_environment (str): The current environment</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class project_info(BaseModel):
+    project_name: str
+    environments: List[environment_info]
+    backend_info: Backend_Configuration
+    current_environment: Optional[str]
+
+    def __init__(
+        __pydantic_self__,
+        project_name: str,
+        environments: List[environment_info],
+        backend_info: Backend_Configuration,
+        current_environment: str = None,
+       
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Represents the data about a cdev project object:
+
+        Parameters:
+            project_name (str): Name of the project
+            environments (List[environment_info]): The environments that are currently part of the project
+            current_environment (str): The current environment
+            
+        &#34;&#34;&#34;
+
+        super().__init__(
+            **{
+                &#34;project_name&#34;: project_name,
+                &#34;environments&#34;: environments,
+                &#34;backend_info&#34;: backend_info,
+                &#34;current_environment&#34;: current_environment,
+            }
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="cdev.constructs.project.project_info.backend_info"><code class="name">var <span class="ident">backend_info</span> : core.constructs.backend.Backend_Configuration</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="cdev.constructs.project.project_info.current_environment"><code class="name">var <span class="ident">current_environment</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="cdev.constructs.project.project_info.environments"><code class="name">var <span class="ident">environments</span> : List[<a class="" title="cdev.constructs.environment.environment_info" href="environment.html#cdev.constructs.environment.environment_info">environment_info</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="cdev.constructs.project.project_info.project_name"><code class="name">var <span class="ident">project_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CdevLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="cdev.constructs" href="index.html">cdev.constructs</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="cdev.constructs.project.check_if_project_exists" href="#cdev.constructs.project.check_if_project_exists">check_if_project_exists</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.wrap_phase" href="#cdev.constructs.project.wrap_phase">wrap_phase</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="cdev.constructs.project.Project" href="#cdev.constructs.project.Project">Project</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_command" href="#cdev.constructs.project.Project.add_command">add_command</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_commands" href="#cdev.constructs.project.Project.add_commands">add_commands</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_component" href="#cdev.constructs.project.Project.add_component">add_component</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_components" href="#cdev.constructs.project.Project.add_components">add_components</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_mapper" href="#cdev.constructs.project.Project.add_mapper">add_mapper</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.add_mappers" href="#cdev.constructs.project.Project.add_mappers">add_mappers</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.create_environment" href="#cdev.constructs.project.Project.create_environment">create_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.destroy_environment" href="#cdev.constructs.project.Project.destroy_environment">destroy_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_all_environment_names" href="#cdev.constructs.project.Project.get_all_environment_names">get_all_environment_names</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_commands" href="#cdev.constructs.project.Project.get_commands">get_commands</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_components" href="#cdev.constructs.project.Project.get_components">get_components</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_current_environment" href="#cdev.constructs.project.Project.get_current_environment">get_current_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_current_environment_name" href="#cdev.constructs.project.Project.get_current_environment_name">get_current_environment_name</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_environment" href="#cdev.constructs.project.Project.get_environment">get_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_mapper_namespace" href="#cdev.constructs.project.Project.get_mapper_namespace">get_mapper_namespace</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_mappers" href="#cdev.constructs.project.Project.get_mappers">get_mappers</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_name" href="#cdev.constructs.project.Project.get_name">get_name</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.get_state" href="#cdev.constructs.project.Project.get_state">get_state</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.initialize_project" href="#cdev.constructs.project.Project.initialize_project">initialize_project</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.instance" href="#cdev.constructs.project.Project.instance">instance</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.remove_global_instance" href="#cdev.constructs.project.Project.remove_global_instance">remove_global_instance</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.set_current_environment" href="#cdev.constructs.project.Project.set_current_environment">set_current_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.set_global_instance" href="#cdev.constructs.project.Project.set_global_instance">set_global_instance</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.set_name" href="#cdev.constructs.project.Project.set_name">set_name</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.terminate_project" href="#cdev.constructs.project.Project.terminate_project">terminate_project</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="cdev.constructs.project.Project_State" href="#cdev.constructs.project.Project_State">Project_State</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="cdev.constructs.project.Project_State.INITIALIZED" href="#cdev.constructs.project.Project_State.INITIALIZED">INITIALIZED</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project_State.INITIALIZING" href="#cdev.constructs.project.Project_State.INITIALIZING">INITIALIZING</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project_State.UNINITIALIZED" href="#cdev.constructs.project.Project_State.UNINITIALIZED">UNINITIALIZED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="cdev.constructs.project.project_info" href="#cdev.constructs.project.project_info">project_info</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="cdev.constructs.project.project_info.backend_info" href="#cdev.constructs.project.project_info.backend_info">backend_info</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.project_info.current_environment" href="#cdev.constructs.project.project_info.current_environment">current_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.project_info.environments" href="#cdev.constructs.project.project_info.environments">environments</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.project_info.project_name" href="#cdev.constructs.project.project_info.project_name">project_name</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

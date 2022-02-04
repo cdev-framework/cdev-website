@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>core.default.resources.simple.queue API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em;background:#EEE}#content{padding:20px}#sidebar{padding:30px;overflow:hidden;background:#07085d}#sidebar > *:last-child{margin-bottom:2cm}#sidebar::-webkit-scrollbar{width:8px}#sidebar::-webkit-scrollbar-track{border-radius:10px;background:#f1f1f100}#sidebar::-webkit-scrollbar-thumb{border-radius:10px;background:linear-gradient( 37deg,rgb(247,70,58) 1%,rgb(180,62,121) 80% )}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}a.sidebar{color:white;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#f7463a}a.nav-header{color:white}img.logo-img{display:block;margin-left:auto;margin-right:auto;width:25%}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#e0e0e0;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{height:100vh;overflow:auto;position:sticky;top:0;background:#07085d}#content{width:70%;max-width:200ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<!--<link rel="stylesheet"
+href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.css'>-->
+<script href='/bootstrap/css/bootstrap.js'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>core.default.resources.simple.queue</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+from os import name
+from typing import Any
+
+from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsAvailableMixin
+from core.constructs.cloud_output import  Cloud_Output_Str, OutputType
+from core.utils import hasher
+
+from core.default.resources.simple.events import Event, event_model
+from core.default.resources.simple.iam import Permission
+
+RUUID = &#34;cdev::simple::queue&#34;
+
+
+######################
+##### Events
+######################
+class queue_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        original_resource_name: str
+        original_resource_type: str
+        batch_size: int
+        batch_window: int
+    &#34;&#34;&#34;
+    batch_size: int
+    batch_window: int
+
+
+class QueueEvent(Event):
+    
+    def __init__(self, queue_name: str, batch_size: int, batch_window: int) -&gt; None:
+
+        if batch_size &gt; 10000 or batch_size &lt; 0:
+            raise Exception
+
+        self.queue_name=queue_name
+        self.batch_size=batch_size
+        self.batch_window=batch_window
+
+
+    def render(self) -&gt; queue_event_model:
+        return queue_event_model(
+            original_resource_name=self.queue_name,
+            original_resource_type=RUUID,
+            batch_size=self.batch_size,
+            batch_window=self.batch_window,
+        )
+
+
+######################
+###### Permission
+######################
+class QueuePermissions:
+
+    def __init__(self, resource_name: str) -&gt; None:
+        self.READ_QUEUE = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.WRITE_QUEUE = Permission(
+            actions=[
+                &#34;sqs:SendMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_AND_WRITE_QUEUE = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+                &#34;sqs:SendMessage&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_EVENTS = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+
+######################
+##### Output
+######################
+class QueueOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)
+
+    @property
+    def queue_name(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The name of the generated queue&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=RUUID,
+            key=&#39;queue_name&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @queue_name.setter
+    def queue_name(self, value: Any):
+        raise Exception
+
+
+######################
+##### Queue
+######################
+class simple_queue_model(ResourceModel):
+    is_fifo: bool
+
+
+class Queue(PermissionsAvailableMixin, Resource):
+
+    @update_hash
+    def __init__(self, cdev_name: str, is_fifo: bool = False, nonce: str = &#34;&#34;) -&gt; None:
+        &#34;&#34;&#34;
+        A simple sqs queue.
+
+        args:
+            cdev_name (str): Name of the resource.
+            is_fifo (bool, default=False): if this should be a First-in First-out queue (link to difference).
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self.is_fifo = is_fifo
+        self.output = QueueOutput(name)
+        self.available_permissions = QueuePermissions(cdev_name)
+
+    @property
+    def is_fifo(self):
+        return self._is_fifo
+
+    @is_fifo.setter
+    @update_hash
+    def is_fifo(self, value: bool):
+        self._is_fifo = value
+
+    def create_event_trigger(
+        self, batch_size: int = 10, batch_window: int = 5
+    ) -&gt; QueueEvent:
+    
+        # https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource
+        if self.is_fifo and batch_size &gt; 10:
+            raise Exception
+
+        event = QueueEvent(
+            queue_name=self.name,
+            batch_size=batch_size,
+            batch_window=batch_window
+        )
+
+        return event
+        
+    def compute_hash(self):
+        self._hash = hasher.hash_list([self.is_fifo, self.nonce])
+        
+    def render(self) -&gt; simple_queue_model:
+        return simple_queue_model(
+            name=self.name,
+            ruuid=self.ruuid,
+            hash=self.hash,
+            is_fifo=self.is_fifo,
+        )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.resources.simple.queue.Queue"><code class="flex name class">
+<span>class <span class="ident">Queue</span></span>
+<span>(</span><span>*func_posargs, **func_kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Queue(PermissionsAvailableMixin, Resource):
+
+    @update_hash
+    def __init__(self, cdev_name: str, is_fifo: bool = False, nonce: str = &#34;&#34;) -&gt; None:
+        &#34;&#34;&#34;
+        A simple sqs queue.
+
+        args:
+            cdev_name (str): Name of the resource.
+            is_fifo (bool, default=False): if this should be a First-in First-out queue (link to difference).
+            nonce (str): Nonce to make the resource hash unique if there are conflicting resources with same configuration.
+        &#34;&#34;&#34;
+        super().__init__(cdev_name, RUUID, nonce)
+
+        self.is_fifo = is_fifo
+        self.output = QueueOutput(name)
+        self.available_permissions = QueuePermissions(cdev_name)
+
+    @property
+    def is_fifo(self):
+        return self._is_fifo
+
+    @is_fifo.setter
+    @update_hash
+    def is_fifo(self, value: bool):
+        self._is_fifo = value
+
+    def create_event_trigger(
+        self, batch_size: int = 10, batch_window: int = 5
+    ) -&gt; QueueEvent:
+    
+        # https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource
+        if self.is_fifo and batch_size &gt; 10:
+            raise Exception
+
+        event = QueueEvent(
+            queue_name=self.name,
+            batch_size=batch_size,
+            batch_window=batch_window
+        )
+
+        return event
+        
+    def compute_hash(self):
+        self._hash = hasher.hash_list([self.is_fifo, self.nonce])
+        
+    def render(self) -&gt; simple_queue_model:
+        return simple_queue_model(
+            name=self.name,
+            ruuid=self.ruuid,
+            hash=self.hash,
+            is_fifo=self.is_fifo,
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.PermissionsAvailableMixin" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin">PermissionsAvailableMixin</a></li>
+<li><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.Queue.is_fifo"><code class="name">var <span class="ident">is_fifo</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def is_fifo(self):
+    return self._is_fifo</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.Queue.compute_hash"><code class="name flex">
+<span>def <span class="ident">compute_hash</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_hash(self):
+    self._hash = hasher.hash_list([self.is_fifo, self.nonce])</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.queue.Queue.create_event_trigger"><code class="name flex">
+<span>def <span class="ident">create_event_trigger</span></span>(<span>self, batch_size: int = 10, batch_window: int = 5) ‑> <a class="" title="core.default.resources.simple.queue.QueueEvent" href="#core.default.resources.simple.queue.QueueEvent">QueueEvent</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_event_trigger(
+    self, batch_size: int = 10, batch_window: int = 5
+) -&gt; QueueEvent:
+
+    # https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource
+    if self.is_fifo and batch_size &gt; 10:
+        raise Exception
+
+    event = QueueEvent(
+        queue_name=self.name,
+        batch_size=batch_size,
+        batch_window=batch_window
+    )
+
+    return event</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.queue.Queue.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.queue.simple_queue_model" href="#core.default.resources.simple.queue.simple_queue_model">simple_queue_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; simple_queue_model:
+    return simple_queue_model(
+        name=self.name,
+        ruuid=self.ruuid,
+        hash=self.hash,
+        is_fifo=self.is_fifo,
+    )</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.PermissionsAvailableMixin" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin">PermissionsAvailableMixin</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.PermissionsAvailableMixin.available_permissions" href="../../../constructs/resource.html#core.constructs.resource.PermissionsAvailableMixin.available_permissions">available_permissions</a></code></li>
+</ul>
+</li>
+<li><code><b><a class="" title="core.constructs.resource.Resource" href="../../../constructs/resource.html#core.constructs.resource.Resource">Resource</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.Resource.hash" href="../../../constructs/resource.html#core.constructs.resource.Resource.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.name" href="../../../constructs/resource.html#core.constructs.resource.Resource.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.nonce" href="../../../constructs/resource.html#core.constructs.resource.Resource.nonce">nonce</a></code></li>
+<li><code><a class="" title="core.constructs.resource.Resource.ruuid" href="../../../constructs/resource.html#core.constructs.resource.Resource.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="core.default.resources.simple.queue.QueueEvent"><code class="flex name class">
+<span>class <span class="ident">QueueEvent</span></span>
+<span>(</span><span>queue_name: str, batch_size: int, batch_window: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QueueEvent(Event):
+    
+    def __init__(self, queue_name: str, batch_size: int, batch_window: int) -&gt; None:
+
+        if batch_size &gt; 10000 or batch_size &lt; 0:
+            raise Exception
+
+        self.queue_name=queue_name
+        self.batch_size=batch_size
+        self.batch_window=batch_window
+
+
+    def render(self) -&gt; queue_event_model:
+        return queue_event_model(
+            original_resource_name=self.queue_name,
+            original_resource_type=RUUID,
+            batch_size=self.batch_size,
+            batch_window=self.batch_window,
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.QueueEvent.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.queue.queue_event_model" href="#core.default.resources.simple.queue.queue_event_model">queue_event_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; queue_event_model:
+    return queue_event_model(
+        original_resource_name=self.queue_name,
+        original_resource_type=RUUID,
+        batch_size=self.batch_size,
+        batch_window=self.batch_window,
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.queue.QueueOutput"><code class="flex name class">
+<span>class <span class="ident">QueueOutput</span></span>
+<span>(</span><span>name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container object for the returned values from the cloud after the resource has been deployed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QueueOutput(ResourceOutputs):
+    def __init__(self, name: str) -&gt; None:
+        super().__init__(name, RUUID)
+
+    @property
+    def queue_name(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The name of the generated queue&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=RUUID,
+            key=&#39;queue_name&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @queue_name.setter
+    def queue_name(self, value: Any):
+        raise Exception</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceOutputs" href="../../../constructs/resource.html#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.QueueOutput.queue_name"><code class="name">var <span class="ident">queue_name</span> : <a class="" title="core.constructs.cloud_output.Cloud_Output_Str" href="../../../constructs/cloud_output.html#core.constructs.cloud_output.Cloud_Output_Str">Cloud_Output_Str</a></code></dt>
+<dd>
+<div class="desc"><p>The name of the generated queue</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def queue_name(self) -&gt; Cloud_Output_Str:
+    &#34;&#34;&#34;The name of the generated queue&#34;&#34;&#34;
+    return Cloud_Output_Str(
+        name=self._name,
+        ruuid=RUUID,
+        key=&#39;queue_name&#39;,
+        type=self.OUTPUT_TYPE
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.queue.QueuePermissions"><code class="flex name class">
+<span>class <span class="ident">QueuePermissions</span></span>
+<span>(</span><span>resource_name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QueuePermissions:
+
+    def __init__(self, resource_name: str) -&gt; None:
+        self.READ_QUEUE = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.WRITE_QUEUE = Permission(
+            actions=[
+                &#34;sqs:SendMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_AND_WRITE_QUEUE = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+                &#34;sqs:SendMessage&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )
+
+        self.READ_EVENTS = Permission(
+            actions=[
+                &#34;sqs:ReceiveMessage&#34;,
+                &#34;sqs:DeleteMessage&#34;,
+                &#34;sqs:GetQueueAttributes&#34;,
+            ],
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            effect=&#34;Allow&#34;,
+        )</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.queue.queue_event_model"><code class="flex name class">
+<span>class <span class="ident">queue_event_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>something</p>
+<h2 id="arguments">Arguments</h2>
+<p>original_resource_name: str
+original_resource_type: str
+batch_size: int
+batch_window: int</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class queue_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        original_resource_name: str
+        original_resource_type: str
+        batch_size: int
+        batch_window: int
+    &#34;&#34;&#34;
+    batch_size: int
+    batch_window: int</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.event_model" href="events.html#core.default.resources.simple.events.event_model">event_model</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.queue_event_model.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.queue.queue_event_model.batch_window"><code class="name">var <span class="ident">batch_window</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="core.default.resources.simple.queue.simple_queue_model"><code class="flex name class">
+<span>class <span class="ident">simple_queue_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class with basic information about a defined resource.</p>
+<p>All classes derived from this should contain additional information about the state of a resource.
+Within the life cycle of the Cdev Core framework,this is used to represent resources after any
+configuration; hence the need to make these immutable data
+classes. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
+within a namespace</dd>
+<dt><strong><code>ruuid</code></strong></dt>
+<dd>The identifier of this resource type.</dd>
+<dt><strong><code>hash</code></strong></dt>
+<dd>A string that is the hash of this object. This hash must be computed such that it changes
+only if a change in the state is desired.</dd>
+</dl>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class simple_queue_model(ResourceModel):
+    is_fifo: bool</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.queue.simple_queue_model.is_fifo"><code class="name">var <span class="ident">is_fifo</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
+<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<img class='logo-img' src="https://s3.amazonaws.com/cdevframework.io/images/CoreLogo.svg" alt="site">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a class="sidebar" title="core.default.resources.simple" href="index.html">core.default.resources.simple</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.Queue" href="#core.default.resources.simple.queue.Queue">Queue</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.Queue.compute_hash" href="#core.default.resources.simple.queue.Queue.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.Queue.create_event_trigger" href="#core.default.resources.simple.queue.Queue.create_event_trigger">create_event_trigger</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.Queue.is_fifo" href="#core.default.resources.simple.queue.Queue.is_fifo">is_fifo</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.Queue.render" href="#core.default.resources.simple.queue.Queue.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.QueueEvent" href="#core.default.resources.simple.queue.QueueEvent">QueueEvent</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.QueueEvent.render" href="#core.default.resources.simple.queue.QueueEvent.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.QueueOutput" href="#core.default.resources.simple.queue.QueueOutput">QueueOutput</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.QueueOutput.queue_name" href="#core.default.resources.simple.queue.QueueOutput.queue_name">queue_name</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.QueuePermissions" href="#core.default.resources.simple.queue.QueuePermissions">QueuePermissions</a></code></h4>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.queue_event_model" href="#core.default.resources.simple.queue.queue_event_model">queue_event_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.queue_event_model.batch_size" href="#core.default.resources.simple.queue.queue_event_model.batch_size">batch_size</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.queue_event_model.batch_window" href="#core.default.resources.simple.queue.queue_event_model.batch_window">batch_window</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.queue.simple_queue_model" href="#core.default.resources.simple.queue.simple_queue_model">simple_queue_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.queue.simple_queue_model.is_fifo" href="#core.default.resources.simple.queue.simple_queue_model.is_fifo">is_fifo</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

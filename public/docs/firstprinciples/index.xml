@@ -21,26 +21,17 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</guid>
-      <description>Cold Starts  &#34;A computer seems infinitely fast, until it doesn&#39;t!&#34;    Perhaps the most infamous problem in the serverless compute space is: The Cold Start. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to reduce the damage of Cold Starts.
+      <description>Cold Starts  &#34;A computer seems infinitely fast, until it doesn&#39;t!&#34;    Perhaps the most infamous problem in the serverless compute space is: The Cold Start. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to lower Cold Starts to an acceptable level on serverless compute platforms.
 Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience.</description>
     </item>
     
     <item>
-      <title>Programming Language</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</link>
+      <title>Developer Experience</title>
+      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/programminglanguage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Reusability</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/composability/</guid>
-      <description>Composability  &#34;What one programmer can do in one month, two programmers can do in two months.&#34; - Fred Brooks    </description>
+      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</guid>
+      <description>Developer Experience </description>
     </item>
     
   </channel>
