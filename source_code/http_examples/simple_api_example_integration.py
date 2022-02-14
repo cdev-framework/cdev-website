@@ -1,13 +1,13 @@
 import json
 
-from cdev.resources.simple import api
-from cdev.resources.simple.xlambda import simple_lambda_function_annotation
+from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.resources.simple.api import Api, route_verb
 
-myApi = Api("cdev_api_name", "api_name")
+myApi = Api("demoApi")
 
-hello_world_get_route = myApi.route("/hello_world", "GET")
+hello_world_get_route = myApi.route("/hello_world", route_verb.GET)
 
-@simple_lambda_function_annotation("hello_world_handler", events=[hello_world_get_route])
+@simple_function_annotation("demo_function", events=[hello_world_get_route.event()])
 def hello_world(event, context):
     """
     This is an example function connected to an example api route
