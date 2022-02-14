@@ -128,7 +128,7 @@ theme = "agen-hugo"
 
 ########################### Default parameters ##########################
 [params]
-logo = "images/Logo.svg"
+logo = "images/CdevLogo.svg"
 home = "Home"
 # Google Analitycs
 googleAnalitycsID = "Your ID"
