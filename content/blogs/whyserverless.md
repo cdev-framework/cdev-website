@@ -1,10 +1,9 @@
 {
-    "type": "firstprinciples",
-    "layout": "type",
+    "type": "blogs",
     "title": "Why use Serverless?",
     "linktitle": "whyserverless", 
     "card_icon": "ti-thought",
-    "card_body": "Learn the benefits and drawbacks of serverless compute platforms",
+    "card_body": "Learn the benefits and drawbacks of Serverless compute platforms",
     "weight": "1"
 }
 

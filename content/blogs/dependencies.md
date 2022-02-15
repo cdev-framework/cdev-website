@@ -1,5 +1,5 @@
 {
-    "type": "firstprinciples",
+    "type": "blogs",
     "layout": "type",
     "title": "Dependencies",
     "linktitle": "dependencies", 

@@ -61,11 +61,11 @@ theme = "agen-hugo"
   URL = "about"
   weight = 4
 
-  ##[[menu.main]]
-  ##name = "Learn"
-  ##URL = "learn"
-  ##weight = 3
-  ##
+  [[menu.main]]
+  name = "Blogs"
+  URL = "blogs"
+  weight = 3
+  
   [[menu.main]]
   name = "Docs"
   URL = "docs"
