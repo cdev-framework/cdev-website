@@ -1,7 +1,0 @@
-cdev
-====
-
-.. toctree::
-   :maxdepth: 4
-
-   cdev
