@@ -75,7 +75,7 @@ theme = "agen-hugo"
     [[menu.main]]
     parent = "Docs"
     name = "Getting Started"
-    URL = "docs/gettingstarted"
+    URL = "/docs/gettingstarted"
     weight = 1
     
     [[menu.main]]
