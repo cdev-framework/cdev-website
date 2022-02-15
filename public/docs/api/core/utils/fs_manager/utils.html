@@ -30,7 +30,7 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">import os
-from typing import List, Optional, Set
+from typing import Dict, List, Optional, Set
 
 from pydantic.types import FilePath
 from pydantic import BaseModel, DirectoryPath
@@ -38,6 +38,8 @@ from enum import Enum
 from pathlib import PosixPath, WindowsPath
 
 from core.utils import paths as core_paths, hasher as cdev_hasher
+from core.utils.logger import log
+from core.utils.platforms import lambda_python_environment
 
 import sys
 from parsley import makeGrammar
@@ -109,6 +111,7 @@ def get_parsed_path(original_path, function_name, final_base_directory: Director
     final_file_dir = core_paths.create_path(final_base_directory, split_path[:-1])
 
 
+    log.debug(&#34;Created Parsed Path is %s&#34;, os.path.join(final_file_dir, final_file_name) )
     return os.path.join(final_file_dir, final_file_name)
 
 
@@ -135,11 +138,18 @@ class PackageTypes(str, Enum):
     LOCALPACKAGE = &#34;localpackage&#34;
     AWSINCLUDED = &#34;awsincluded&#34;
 
+class Architecture(str, Enum):
+    X86 = &#34;x86_64&#34;
+    ARM64 = &#34;aarch64&#34;
+    ANY = &#34;any&#34;
+
+
 
 class ModulePackagingInfo(BaseModel):
     module_name: str
     type: PackageTypes
     version_id: Optional[str]
+    arch: Optional[Architecture] = Architecture.ANY
     fp: Optional[str]
     tree: Optional[List[&#34;ModulePackagingInfo&#34;]]
     flat: Optional[List[&#34;ModulePackagingInfo&#34;]]
@@ -160,7 +170,7 @@ class ModulePackagingInfo(BaseModel):
                 return f&#34;{self.module_name}-{self.fp}&#34;
 
         elif self.type == PackageTypes.PIP:
-            return f&#34;{self.module_name}-{self.version_id}&#34;
+            return f&#34;{self.module_name}-{self.version_id}-{self.arch}&#34;
 
         else:
             return self.module_name
@@ -210,26 +220,27 @@ def print_layer_package():
     pass
 
 
-class lambda_python_environments(str, Enum):
-    py36 = &#34;py36&#34;
-    py37 = &#34;py37&#34;
-    py38_x86_64 = &#34;py38-x86_64&#34;
-    py38_arm64 = &#34;py38-arm64&#34;
-    py39_x86_64 = &#34; py39-x86_64&#34;
-    py39_arm64 = &#34;py39-arm64&#34;
-    py3_x86_64 = &#34;py3-x86_64&#34;
-    py3_arm64 = &#34;py3-arm64&#34;
+
+
+environment_to_architecture_suffix: Dict[lambda_python_environment, Architecture] = {
+    lambda_python_environment.py37: Architecture.X86,
+    lambda_python_environment.py38_x86_64: Architecture.X86,
+    lambda_python_environment.py38_arm64: Architecture.ARM64,
+    lambda_python_environment.py39_x86_64: Architecture.X86,
+    lambda_python_environment.py39_arm64: Architecture.ARM64,
+    lambda_python_environment.py3_x86_64: Architecture.X86,
+    lambda_python_environment.py3_arm64: Architecture.ARM64,
+}
 
 
 CONTAINER_NAMES = {
-    lambda_python_environments.py36: &#34;public.ecr.aws/lambda/python:3.6&#34;,
-    lambda_python_environments.py37: &#34;public.ecr.aws/lambda/python:3.7&#34;,
-    lambda_python_environments.py38_x86_64: &#34;public.ecr.aws/lambda/python:3.8-x86_64&#34;,
-    lambda_python_environments.py38_arm64: &#34;public.ecr.aws/lambda/python:3.8-arm64&#34;,
-    lambda_python_environments.py39_x86_64: &#34;public.ecr.aws/lambda/python:3.9-x86_64&#34;,
-    lambda_python_environments.py39_arm64: &#34;public.ecr.aws/lambda/python:3.9-arm64&#34;,
-    lambda_python_environments.py3_x86_64: &#34;public.ecr.aws/lambda/python:3-x86_64&#34;,
-    lambda_python_environments.py3_arm64: &#34;public.ecr.aws/lambda/python:3-arm64&#34;,
+    lambda_python_environment.py37: &#34;public.ecr.aws/lambda/python:3.7&#34;,
+    lambda_python_environment.py38_x86_64: &#34;public.ecr.aws/lambda/python:3.8-x86_64&#34;,
+    lambda_python_environment.py38_arm64: &#34;public.ecr.aws/lambda/python:3.8-arm64&#34;,
+    lambda_python_environment.py39_x86_64: &#34;public.ecr.aws/lambda/python:3.9-x86_64&#34;,
+    lambda_python_environment.py39_arm64: &#34;public.ecr.aws/lambda/python:3.9-arm64&#34;,
+    lambda_python_environment.py3_x86_64: &#34;public.ecr.aws/lambda/python:3-x86_64&#34;,
+    lambda_python_environment.py3_arm64: &#34;public.ecr.aws/lambda/python:3-arm64&#34;,
 }
 
 
@@ -433,11 +444,8 @@ def parse_requirement_line(line: str) -&gt; str:
     # https://www.python.org/dev/peps/pep-0508/
     try:
         parsed_info = compiled(line).specification()
-        print(parsed_info)
+        
         if parsed_info[3]:
-            print(
-                f&#34;Should include {line}; {parsed_info[3]}; {evaluate_expression(parsed_info[3])}&#34;
-            )
             if not evaluate_expression(parsed_info[3]):
                 return None
 
@@ -676,6 +684,7 @@ def evaluate_expression(expr) -&gt; bool:
     final_file_dir = core_paths.create_path(final_base_directory, split_path[:-1])
 
 
+    log.debug(&#34;Created Parsed Path is %s&#34;, os.path.join(final_file_dir, final_file_name) )
     return os.path.join(final_file_dir, final_file_name)</code></pre>
 </details>
 </dd>
@@ -696,11 +705,8 @@ def evaluate_expression(expr) -&gt; bool:
     # https://www.python.org/dev/peps/pep-0508/
     try:
         parsed_info = compiled(line).specification()
-        print(parsed_info)
+        
         if parsed_info[3]:
-            print(
-                f&#34;Should include {line}; {parsed_info[3]}; {evaluate_expression(parsed_info[3])}&#34;
-            )
             if not evaluate_expression(parsed_info[3]):
                 return None
 
@@ -761,6 +767,42 @@ def evaluate_expression(expr) -&gt; bool:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="core.utils.fs_manager.utils.Architecture"><code class="flex name class">
+<span>class <span class="ident">Architecture</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Architecture(str, Enum):
+    X86 = &#34;x86_64&#34;
+    ARM64 = &#34;aarch64&#34;
+    ANY = &#34;any&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.str</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.utils.fs_manager.utils.Architecture.ANY"><code class="name">var <span class="ident">ANY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.utils.fs_manager.utils.Architecture.ARM64"><code class="name">var <span class="ident">ARM64</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.utils.fs_manager.utils.Architecture.X86"><code class="name">var <span class="ident">X86</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="core.utils.fs_manager.utils.ExternalDependencyWriteInfo"><code class="flex name class">
 <span>class <span class="ident">ExternalDependencyWriteInfo</span></span>
 <span>(</span><span>**data: Any)</span>
@@ -823,6 +865,7 @@ def evaluate_expression(expr) -&gt; bool:
     module_name: str
     type: PackageTypes
     version_id: Optional[str]
+    arch: Optional[Architecture] = Architecture.ANY
     fp: Optional[str]
     tree: Optional[List[&#34;ModulePackagingInfo&#34;]]
     flat: Optional[List[&#34;ModulePackagingInfo&#34;]]
@@ -843,7 +886,7 @@ def evaluate_expression(expr) -&gt; bool:
                 return f&#34;{self.module_name}-{self.fp}&#34;
 
         elif self.type == PackageTypes.PIP:
-            return f&#34;{self.module_name}-{self.version_id}&#34;
+            return f&#34;{self.module_name}-{self.version_id}-{self.arch}&#34;
 
         else:
             return self.module_name
@@ -864,6 +907,10 @@ def evaluate_expression(expr) -&gt; bool:
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="core.utils.fs_manager.utils.ModulePackagingInfo.arch"><code class="name">var <span class="ident">arch</span> : Optional[<a class="" title="core.utils.fs_manager.utils.Architecture" href="#core.utils.fs_manager.utils.Architecture">Architecture</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="core.utils.fs_manager.utils.ModulePackagingInfo.flat"><code class="name">var <span class="ident">flat</span> : Optional[List[<a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>]]</code></dt>
 <dd>
 <div class="desc"></div>
@@ -913,7 +960,7 @@ def evaluate_expression(expr) -&gt; bool:
             return f&#34;{self.module_name}-{self.fp}&#34;
 
     elif self.type == PackageTypes.PIP:
-        return f&#34;{self.module_name}-{self.version_id}&#34;
+        return f&#34;{self.module_name}-{self.version_id}-{self.arch}&#34;
 
     else:
         return self.module_name</code></pre>
@@ -993,67 +1040,6 @@ def evaluate_expression(expr) -&gt; bool:
 </dd>
 </dl>
 </dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments"><code class="flex name class">
-<span>class <span class="ident">lambda_python_environments</span></span>
-<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>An enumeration.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class lambda_python_environments(str, Enum):
-    py36 = &#34;py36&#34;
-    py37 = &#34;py37&#34;
-    py38_x86_64 = &#34;py38-x86_64&#34;
-    py38_arm64 = &#34;py38-arm64&#34;
-    py39_x86_64 = &#34; py39-x86_64&#34;
-    py39_arm64 = &#34;py39-arm64&#34;
-    py3_x86_64 = &#34;py3-x86_64&#34;
-    py3_arm64 = &#34;py3-arm64&#34;</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li>builtins.str</li>
-<li>enum.Enum</li>
-</ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py36"><code class="name">var <span class="ident">py36</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py37"><code class="name">var <span class="ident">py37</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py38_arm64"><code class="name">var <span class="ident">py38_arm64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py38_x86_64"><code class="name">var <span class="ident">py38_x86_64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py39_arm64"><code class="name">var <span class="ident">py39_arm64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py39_x86_64"><code class="name">var <span class="ident">py39_x86_64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py3_arm64"><code class="name">var <span class="ident">py3_arm64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.utils.fs_manager.utils.lambda_python_environments.py3_x86_64"><code class="name">var <span class="ident">py3_x86_64</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
-</dd>
 </dl>
 </section>
 </article>
@@ -1083,6 +1069,14 @@ def evaluate_expression(expr) -&gt; bool:
 <li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a class="sidebar" title="core.utils.fs_manager.utils.Architecture" href="#core.utils.fs_manager.utils.Architecture">Architecture</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.utils.fs_manager.utils.Architecture.ANY" href="#core.utils.fs_manager.utils.Architecture.ANY">ANY</a></code></li>
+<li><code><a class="sidebar" title="core.utils.fs_manager.utils.Architecture.ARM64" href="#core.utils.fs_manager.utils.Architecture.ARM64">ARM64</a></code></li>
+<li><code><a class="sidebar" title="core.utils.fs_manager.utils.Architecture.X86" href="#core.utils.fs_manager.utils.Architecture.X86">X86</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a class="sidebar" title="core.utils.fs_manager.utils.ExternalDependencyWriteInfo" href="#core.utils.fs_manager.utils.ExternalDependencyWriteInfo">ExternalDependencyWriteInfo</a></code></h4>
 <ul >
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.ExternalDependencyWriteInfo.Config" href="#core.utils.fs_manager.utils.ExternalDependencyWriteInfo.Config">Config</a></code></li>
@@ -1093,6 +1087,7 @@ def evaluate_expression(expr) -&gt; bool:
 <li>
 <h4><code><a class="sidebar" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a></code></h4>
 <ul >
+<li><code><a class="sidebar" title="core.utils.fs_manager.utils.ModulePackagingInfo.arch" href="#core.utils.fs_manager.utils.ModulePackagingInfo.arch">arch</a></code></li>
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.ModulePackagingInfo.flat" href="#core.utils.fs_manager.utils.ModulePackagingInfo.flat">flat</a></code></li>
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.ModulePackagingInfo.fp" href="#core.utils.fs_manager.utils.ModulePackagingInfo.fp">fp</a></code></li>
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.ModulePackagingInfo.get_id_str" href="#core.utils.fs_manager.utils.ModulePackagingInfo.get_id_str">get_id_str</a></code></li>
@@ -1113,19 +1108,6 @@ def evaluate_expression(expr) -&gt; bool:
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.PackageTypes.LOCALPACKAGE" href="#core.utils.fs_manager.utils.PackageTypes.LOCALPACKAGE">LOCALPACKAGE</a></code></li>
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.PackageTypes.PIP" href="#core.utils.fs_manager.utils.PackageTypes.PIP">PIP</a></code></li>
 <li><code><a class="sidebar" title="core.utils.fs_manager.utils.PackageTypes.STANDARDLIB" href="#core.utils.fs_manager.utils.PackageTypes.STANDARDLIB">STANDARDLIB</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments" href="#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a></code></h4>
-<ul >
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py36" href="#core.utils.fs_manager.utils.lambda_python_environments.py36">py36</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py37" href="#core.utils.fs_manager.utils.lambda_python_environments.py37">py37</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py38_arm64" href="#core.utils.fs_manager.utils.lambda_python_environments.py38_arm64">py38_arm64</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py38_x86_64" href="#core.utils.fs_manager.utils.lambda_python_environments.py38_x86_64">py38_x86_64</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py39_arm64" href="#core.utils.fs_manager.utils.lambda_python_environments.py39_arm64">py39_arm64</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py39_x86_64" href="#core.utils.fs_manager.utils.lambda_python_environments.py39_x86_64">py39_x86_64</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py3_arm64" href="#core.utils.fs_manager.utils.lambda_python_environments.py3_arm64">py3_arm64</a></code></li>
-<li><code><a class="sidebar" title="core.utils.fs_manager.utils.lambda_python_environments.py3_x86_64" href="#core.utils.fs_manager.utils.lambda_python_environments.py3_x86_64">py3_x86_64</a></code></li>
 </ul>
 </li>
 </ul>

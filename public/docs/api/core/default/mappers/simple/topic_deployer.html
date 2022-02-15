@@ -64,6 +64,7 @@ def _create_simple_topic(
     output_info = {
         &#34;topic_name&#34;: topic_name,
         &#34;cdev_name&#34;: resource.name,
+        &#34;arn&#34;: rv.get(&#34;TopicArn&#34;),
         &#34;cloud_id&#34;: rv.get(&#34;TopicArn&#34;),
     }
 
@@ -92,25 +93,25 @@ def _remove_simple_topic(
     aws_client.run_client_function(&#34;sns&#34;, &#34;delete_topic&#34;, {&#34;TopicArn&#34;: topic_arn})
 
 
-#def add_subscriber(topic_arn: str, protocol: str, endpoint: str) -&gt; str:
-#    rv = raw_aws_client.run_client_function(
-#        &#34;sns&#34;,
-#        &#34;subscribe&#34;,
-#        {
-#            &#34;TopicArn&#34;: topic_arn,
-#            &#34;Protocol&#34;: protocol,
-#            &#34;Endpoint&#34;: endpoint,
-#            &#34;ReturnSubscriptionArn&#34;: True,
-#        },
-#    )
-#
-#    return rv.get(&#34;SubscriptionArn&#34;)
-#
-#
-#def remove_subscriber(subscription_arn: str):
-#    rv = raw_aws_client.run_client_function(
-#        &#34;sns&#34;, &#34;unsubscribe&#34;, {&#34;SubscriptionArn&#34;: subscription_arn}
-#    )
+def add_subscriber(topic_arn: str, protocol: str, endpoint: str) -&gt; str:
+    rv = aws_client.run_client_function(
+        &#34;sns&#34;,
+        &#34;subscribe&#34;,
+        {
+            &#34;TopicArn&#34;: topic_arn,
+            &#34;Protocol&#34;: protocol,
+            &#34;Endpoint&#34;: endpoint,
+            &#34;ReturnSubscriptionArn&#34;: True,
+        },
+    )
+
+    return rv.get(&#34;SubscriptionArn&#34;)
+
+
+def remove_subscriber(subscription_arn: str):
+    rv = aws_client.run_client_function(
+        &#34;sns&#34;, &#34;unsubscribe&#34;, {&#34;SubscriptionArn&#34;: subscription_arn}
+    )
 
 
 def handle_simple_topic_deployment(
@@ -155,6 +156,30 @@ def handle_simple_topic_deployment(
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="core.default.mappers.simple.topic_deployer.add_subscriber"><code class="name flex">
+<span>def <span class="ident">add_subscriber</span></span>(<span>topic_arn: str, protocol: str, endpoint: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_subscriber(topic_arn: str, protocol: str, endpoint: str) -&gt; str:
+    rv = aws_client.run_client_function(
+        &#34;sns&#34;,
+        &#34;subscribe&#34;,
+        {
+            &#34;TopicArn&#34;: topic_arn,
+            &#34;Protocol&#34;: protocol,
+            &#34;Endpoint&#34;: endpoint,
+            &#34;ReturnSubscriptionArn&#34;: True,
+        },
+    )
+
+    return rv.get(&#34;SubscriptionArn&#34;)</code></pre>
+</details>
+</dd>
 <dt id="core.default.mappers.simple.topic_deployer.handle_simple_topic_deployment"><code class="name flex">
 <span>def <span class="ident">handle_simple_topic_deployment</span></span>(<span>transaction_token: str, namespace_token: str, resource_diff: <a class="" title="core.constructs.resource.Resource_Difference" href="../../../constructs/resource.html#core.constructs.resource.Resource_Difference">Resource_Difference</a>, previous_output: Dict[str, Any], output_task: <a class="" title="core.constructs.output_manager.OutputTask" href="../../../constructs/output_manager.html#core.constructs.output_manager.OutputTask">OutputTask</a>) ‑> Dict[~KT, ~VT]</span>
 </code></dt>
@@ -199,6 +224,21 @@ def handle_simple_topic_deployment(
         return {}</code></pre>
 </details>
 </dd>
+<dt id="core.default.mappers.simple.topic_deployer.remove_subscriber"><code class="name flex">
+<span>def <span class="ident">remove_subscriber</span></span>(<span>subscription_arn: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_subscriber(subscription_arn: str):
+    rv = aws_client.run_client_function(
+        &#34;sns&#34;, &#34;unsubscribe&#34;, {&#34;SubscriptionArn&#34;: subscription_arn}
+    )</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
@@ -217,7 +257,9 @@ def handle_simple_topic_deployment(
 </li>
 <li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
 <ul >
+<li><code><a class="sidebar" title="core.default.mappers.simple.topic_deployer.add_subscriber" href="#core.default.mappers.simple.topic_deployer.add_subscriber">add_subscriber</a></code></li>
 <li><code><a class="sidebar" title="core.default.mappers.simple.topic_deployer.handle_simple_topic_deployment" href="#core.default.mappers.simple.topic_deployer.handle_simple_topic_deployment">handle_simple_topic_deployment</a></code></li>
+<li><code><a class="sidebar" title="core.default.mappers.simple.topic_deployer.remove_subscriber" href="#core.default.mappers.simple.topic_deployer.remove_subscriber">remove_subscriber</a></code></li>
 </ul>
 </li>
 </ul>

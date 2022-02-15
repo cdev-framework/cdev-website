@@ -29,36 +29,30 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from shutil import ExecError
-import docker
+<pre><code class="python">import docker
 import json
 import os
 from pkg_resources import Distribution
 import re
 from typing import List
 
+from core.constructs.workspace import Workspace
 
 
 from .utils import (
     PackageTypes,
     ModulePackagingInfo,
-    lambda_python_environments,
+    lambda_python_environment,
     parse_requirement_line,
+    CONTAINER_NAMES,
+    environment_to_architecture_suffix
 )
 
-# TODO: Set these as settings
-DEPLOYMENT_PLATFORM = &#34;arm64&#34;
-DEPLOYMENT_PYTHON_VERSION = &#34;python3.7&#34;
+from core.utils.logger import log
 
 
 def docker_available() -&gt; bool:
     return True
-
-
-# TODO Set as a settings
-CACHE_LOCATION = os.path.join(
-    os.getcwd(), &#34;.cdev&#34;, &#34;dockercache.json&#34;
-)
 
 has_run_container = False
 build_container = None
@@ -69,36 +63,40 @@ class DockerDownloadCache:
     Naive cache implentation for know which files have been downloaded.
     &#34;&#34;&#34;
 
-    def __init__(self) -&gt; None:
+    def __init__(self, cache_location: str) -&gt; None:
+        self._cache_location = os.path.join(cache_location, &#34;cache.json&#34;)
+        self._downloads_locations = os.path.join(cache_location, &#34;downloads&#34;)
 
-        if not os.path.isfile(CACHE_LOCATION):
+        if not os.path.isdir(self._downloads_locations):
+            os.mkdir(self._downloads_locations)
+
+
+        if not os.path.isfile(self._cache_location):
             self._cache = {
-                lambda_python_environments.py36: {},
-                lambda_python_environments.py37: {},
-                lambda_python_environments.py38_x86_64: {},
-                lambda_python_environments.py38_arm64: {},
-                lambda_python_environments.py39_x86_64: {},
-                lambda_python_environments.py39_arm64: {},
-                lambda_python_environments.py3_x86_64: {},
-                lambda_python_environments.py3_arm64: {},
+                lambda_python_environment.py37: {},
+                lambda_python_environment.py38_x86_64: {},
+                lambda_python_environment.py38_arm64: {},
+                lambda_python_environment.py39_x86_64: {},
+                lambda_python_environment.py39_arm64: {},
+                lambda_python_environment.py3_x86_64: {},
+                lambda_python_environment.py3_arm64: {},
             }
 
         else:
-            with open(CACHE_LOCATION) as fh:
+            with open(self._cache_location) as fh:
                 self._cache = json.load(fh)
 
         self._cache_dirs = {
-            lambda_python_environments.py36: &#34;py36&#34;,
-            lambda_python_environments.py37: &#34;py37&#34;,
-            lambda_python_environments.py38_x86_64: &#34;py38x8664&#34;,
-            lambda_python_environments.py38_arm64: &#34;py38arm64&#34;,
-            lambda_python_environments.py39_x86_64: &#34;py39x8664&#34;,
-            lambda_python_environments.py39_arm64: &#34;py39arm64&#34;,
-            lambda_python_environments.py3_x86_64: &#34;py3x8664&#34;,
-            lambda_python_environments.py3_arm64: &#34;py3arm64&#34;,
+            lambda_python_environment.py37: &#34;py37&#34;,
+            lambda_python_environment.py38_x86_64: &#34;py38x8664&#34;,
+            lambda_python_environment.py38_arm64: &#34;py38arm64&#34;,
+            lambda_python_environment.py39_x86_64: &#34;py39x8664&#34;,
+            lambda_python_environment.py39_arm64: &#34;py39arm64&#34;,
+            lambda_python_environment.py3_x86_64: &#34;py3x8664&#34;,
+            lambda_python_environment.py3_arm64: &#34;py3arm64&#34;,
         }
 
-    def find_item(self, environment: lambda_python_environments, id: str):
+    def find_item(self, environment: lambda_python_environment, id: str):
         raw_data = self._cache.get(environment).get(id)
         if raw_data:
             return [ModulePackagingInfo(**x) for x in raw_data]
@@ -107,54 +105,50 @@ class DockerDownloadCache:
 
     def add_item(
         self,
-        environment: lambda_python_environments,
+        environment: lambda_python_environment,
         id: str,
         item: ModulePackagingInfo,
     ):
         self._cache[environment][id] = item
 
-        with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+        with open(self._cache_location, &#34;w&#34;) as fh:
             json.dump(self._cache, fh, indent=4)
 
-    def get_packaging_dir(self, environment: lambda_python_environments):
-        raise Exception
-        BASE_PACKAGING_DIR = os.path.abspath(
-            os.path.join(
-                CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
-            )
-        )
-
-        if not os.path.isdir(BASE_PACKAGING_DIR):
-            os.mkdir(BASE_PACKAGING_DIR)
-
-        FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+    def get_packaging_dir(self, environment: lambda_python_environment):
+        FULL_DIR = os.path.join(self._downloads_locations, self._cache_dirs.get(environment))
 
         if not os.path.isdir(FULL_DIR):
             os.mkdir(FULL_DIR)
 
         return FULL_DIR
 
-
-DOWNLOAD_CACHE = DockerDownloadCache()
+DOWNLOAD_CACHE:  DockerDownloadCache = None 
 
 
 def download_package_and_create_moduleinfo(
-    project: Distribution, environment: lambda_python_environments, module_name: str
+    project: Distribution, 
+    environment: lambda_python_environment, 
+    module_name: str,
+    downloads_directory: str
 ) -&gt; ModulePackagingInfo:
-    &#34;&#34;&#34;
-    Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
-    a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
-    to this function will not have to actually download the project.
+    &#34;&#34;&#34;Download a project in a platform compatible way to extract a particular top level module info from the project. 
+    
+    Note that this function implements a cache so that it only downloads the project the first time it ever is called 
+    for the pair (project_name, environment). This means that most calls to this function will not have to actually download the project.
 
     Args:
         project (Distribution): The distribution object that contains the metadata for the package
         environment (lambda_python_environments): Deployment environment the project needs to support
         module_name (str): The top level module from this project that we want
-
+        base_archive_directory (str): Path to Cache
     Returns:
         info (ModulePackagingInfo): Object for the information on packaging this module
     &#34;&#34;&#34;
+    global DOWNLOAD_CACHE
 
+    DOWNLOAD_CACHE = DockerDownloadCache(downloads_directory)
+
+    
     package_information = _download_package(project, environment)
 
     potential_modules = [x for x in package_information if x.module_name == module_name]
@@ -168,7 +162,7 @@ def download_package_and_create_moduleinfo(
 
 
 def _download_package(
-    project: Distribution, environment: lambda_python_environments
+    project: Distribution, environment: lambda_python_environment
 ) -&gt; List[ModulePackagingInfo]:
     &#34;&#34;&#34;
     Perform the actual downloading of the package and then parse out the needed information about the top level modules made available
@@ -188,51 +182,70 @@ def _download_package(
 
     cache_item = DOWNLOAD_CACHE.find_item(environment, project.project_name)
     if cache_item:
+        log.debug(&#34;Hit Cache for Download Pkg (%s, %s)&#34;, environment, project.project_name)
         return cache_item
 
     packaging_dir = DOWNLOAD_CACHE.get_packaging_dir(environment)
 
-    print(f&#34;DOWNLOADING {project} FROM DOCKER ({project.project_name})&#34;)
+    
     client = docker.from_env()
 
-    client.images.pull(&#34;public.ecr.aws/lambda/python:3.8-arm64&#34;)
+    if not environment in CONTAINER_NAMES:
+        raise Exception(f&#34;No available Images for building projects on environment {environment}&#34;)
 
+    image_name = CONTAINER_NAMES.get(environment)
+
+    print(f&#34;PULLING DOCKER IMAGE {image_name}&#34;)
+
+    try:
+        client.images.pull(image_name)
+    except Exception as e:
+        print(e)
+        raise Exception(f&#34;Could Not Pull Docker Images {image_name}&#34;)
+        
     print(f&#34;PULLED IMAGE&#34;)
 
-    if not has_run_container:
-        build_container = client.containers.run(
-            &#34;public.ecr.aws/lambda/python:3.8-arm64&#34;,
-            entrypoint=&#34;/var/lang/bin/pip&#34;,
-            command=f&#34;install {project.project_name}=={project.version} --target /tmp&#34;,
-            volumes=[f&#34;{packaging_dir}:/tmp&#34;],
-            detach=True,
-        )
+    try:
+        if not has_run_container:
+            build_container = client.containers.run(
+                image_name,
+                entrypoint=&#34;/var/lang/bin/pip&#34;,
+                command=f&#34;install {project.project_name}=={project.version} --target /tmp&#34;,
+                volumes=[f&#34;{packaging_dir}:/tmp&#34;],
+                detach=True,
+            )
 
-        has_run_container = True
+            has_run_container = True
 
-    else:
-        build_container.restart()
+        else:
+            build_container.restart()
 
-        build_container.exec_run(
-            cmd=f&#34;/var/lang/bin/pip install {project.project_name}=={project.version} --target /tmp&#34;,
-            detach=True,
-        )
+            build_container.exec_run(
+                cmd=f&#34;/var/lang/bin/pip install {project.project_name}=={project.version} --target /tmp&#34;,
+                detach=True,
+            )
 
-    for x in build_container.logs(stream=True):
-        msg = x.decode(&#34;ascii&#34;)
-        # print(f&#34;Building Package -&gt; {msg}&#34;)
+        for x in build_container.logs(stream=True):
+            msg = x.decode(&#34;ascii&#34;)
+            print(f&#34;Container Output -&gt; {msg}&#34;)
 
+    except Exception as e:
+        print(e)
+        raise Exception(f&#34;Could Install {project.project_name} ({project.version}) using Image {image_name}&#34;)
+
+    # Create the actual packaging information and store it in cache via this function
     info = _create_package_info(project.project_name, environment)
 
     return info
 
 
 def _create_package_info(
-    project_name: str, environment: lambda_python_environments
+    project_name: str, environment: lambda_python_environment
 ) -&gt; List[ModulePackagingInfo]:
-    &#34;&#34;&#34;
-    Creates a list of ModulePackagingInfo objects that represent the top level modules made available from this
-    package. It uses the information from the &#39;dist-info&#39; that was downloaded for the projects by PIP This function
+    &#34;&#34;&#34;Creates a list of ModulePackagingInfo objects that represent the top level modules made available from this
+    package. 
+    
+    It uses the information from the &#39;dist-info&#39; that was downloaded for the projects by PIP. This function
     recursively calls itself to compute the information for dependant projects that were downloaded.
 
     Arg:
@@ -241,7 +254,6 @@ def _create_package_info(
 
     Returns:
         info (List[ModulePackagingInfo]): ModulePackagingInfo objects for each of the top level modules in this project
-
     &#34;&#34;&#34;
 
     # We check and add to the cache at this layer because we recursively call this function to compute the
@@ -249,6 +261,7 @@ def _create_package_info(
     # this info
     cache_item = DOWNLOAD_CACHE.find_item(environment, project_name)
     if cache_item:
+        log.debug(&#34;Hit Cache for Download Pkg (%s, %s)&#34;, environment, project_name)
         return cache_item
 
     packaging_dir = DOWNLOAD_CACHE.get_packaging_dir(environment)
@@ -264,7 +277,6 @@ def _create_package_info(
         for dir_name in dir_names:
             m = re.match(regex_dist_info, dir_name)
             if not m:
-                # print(f&#34;No regex match {dir_name} -&gt; {regex_dist_info}&#34;)
                 continue
 
             # [&lt;project_name&gt;-&lt;version&gt;, dist-info]
@@ -282,17 +294,16 @@ def _create_package_info(
                 dist_info_dir = os.path.join(
                     packaging_dir, f&#34;{name}-{version}.dist-info&#34;
                 )
+                log.debug(&#34;Found dist info for (%s, %s) at %s&#34;, environment, project_name, dist_info_dir)
                 break
 
         break
 
     if not dist_info_dir:
-        print(f&#34;Could not find dist info for {project_name} -&gt; {dist_info_dir}&#34;)
-        raise Exception
+        raise Exception(f&#34;Could not find dist info for {project_name} -&gt; {dist_info_dir}&#34;)
 
     if not os.path.isdir(os.path.join(packaging_dir, dist_info_dir)):
-        print(f&#34;COULD NOT FIND {os.path.join(packaging_dir, dist_info_dir)}&#34;)
-        raise Exception
+        raise Exception(f&#34;COULD NOT FIND {os.path.join(packaging_dir, dist_info_dir)}&#34;)
 
     # If no top level file is found then assume the only top level module is the same as the project name
     if not os.path.isfile(os.path.join(packaging_dir, dist_info_dir, &#34;top_level.txt&#34;)):
@@ -302,15 +313,15 @@ def _create_package_info(
         with open(os.path.join(packaging_dir, dist_info_dir, &#34;top_level.txt&#34;)) as fh:
             top_level_module_names = [x.strip() for x in fh.readlines()]
 
+        log.debug(&#34;top level modules for (%s, %s) are %s&#34;, environment, project_name, top_level_module_names)
+
     tmp_flat_requirements: List[ModulePackagingInfo] = []
     tmp_tree_requirements: List[ModulePackagingInfo] = []
     rv = []
 
     if not os.path.isfile(os.path.join(packaging_dir, dist_info_dir, &#34;METADATA&#34;)):
         # If not metadata file is found then assume no dependencies
-        print(
-            f&#34;COULD NOT FIND {os.path.join(packaging_dir, dist_info_dir, &#39;METADATA&#39;)}&#34;
-        )
+        log.debug(&#34;COULD NOT FIND %s&#34;, os.path.join(packaging_dir, dist_info_dir, &#39;METADATA&#39;))
 
     else:
         required_packages = set()
@@ -324,28 +335,39 @@ def _create_package_info(
                     break
 
                 if line.split(&#34;:&#34;)[0] == &#34;Version&#34;:
+                    # https://www.python.org/dev/peps/pep-0345/#version
+                    # ex:
+                    # version: 1.0.2
                     current_package_version = line.split(&#34;:&#34;)[1].strip()
 
                 if line.split(&#34;:&#34;)[0] == &#34;Requires-Dist&#34;:
+                    # https://www.python.org/dev/peps/pep-0345/#requires-dist-multiple-use
                     # ex:
                     # Requires-Dist: pytz (&gt;=2017.3)
                     stripped_information = line.split(&#34;:&#34;)[1].strip()
+
+
                     requirement_project_name = parse_requirement_line(
                         stripped_information
                     )
+
                     if requirement_project_name:
+                        log.debug(&#34;Pkg %s requires pkg %s&#34;, project_name, requirement_project_name)
                         required_packages.add(requirement_project_name)
 
         for required_package in required_packages:
-
+            # Recursively find the requirements to each needed project 
             dependent_pkg_infos = _create_package_info(required_package, environment)
             for dependent_pkg_info in dependent_pkg_infos:
+                # For the flat data structure add both the dependency and the dependencies dependencies 
                 tmp_flat_requirements.extend(dependent_pkg_info.flat)
                 tmp_flat_requirements.append(dependent_pkg_info)
 
                 tmp_tree_requirements.append(dependent_pkg_info)
 
     for top_level_module_name in top_level_module_names:
+        # Create module packaging info objects for each of the top level modules of the pkg
+
         # The package could be either a folder (normal case) or a single python file (ex: &#39;six&#39; package)
         # If it can not be found as either than there is an issue
         potential_dir = os.path.join(packaging_dir, top_level_module_name)
@@ -358,7 +380,7 @@ def _create_package_info(
             tmp_fp = potential_file
 
         else:
-            # TODO just continue cause things like numpy have __dummy__ in their top level pkg names but dont provide it
+            # just continue cause things like numpy have __dummy__ in their top level pkg names but dont provide it
             continue
 
         info = ModulePackagingInfo(
@@ -366,6 +388,7 @@ def _create_package_info(
                 &#34;module_name&#34;: top_level_module_name,
                 &#34;type&#34;: PackageTypes.PIP,
                 &#34;version_id&#34;: current_package_version,
+                &#34;arch&#34;: environment_to_architecture_suffix.get(environment),
                 &#34;fp&#34;: tmp_fp,
                 &#34;flat&#34;: tmp_flat_requirements,
                 &#34;tree&#34;: tmp_tree_requirements,
@@ -374,7 +397,7 @@ def _create_package_info(
 
         rv.append(info)
 
-    # Add the information to the cache
+    # Add the information to the cache for this function
     DOWNLOAD_CACHE.add_item(environment, project_name, [x.dict() for x in rv])
 
     return rv</code></pre>
@@ -401,12 +424,12 @@ def _create_package_info(
 </details>
 </dd>
 <dt id="core.utils.fs_manager.docker_package_builder.download_package_and_create_moduleinfo"><code class="name flex">
-<span>def <span class="ident">download_package_and_create_moduleinfo</span></span>(<span>project: pkg_resources.Distribution, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, module_name: str) ‑> <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a></span>
+<span>def <span class="ident">download_package_and_create_moduleinfo</span></span>(<span>project: pkg_resources.Distribution, environment: <a class="" title="core.utils.platforms.lambda_python_environment" href="../platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a>, module_name: str, downloads_directory: str) ‑> <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
-a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
-to this function will not have to actually download the project.</p>
+<div class="desc"><p>Download a project in a platform compatible way to extract a particular top level module info from the project. </p>
+<p>Note that this function implements a cache so that it only downloads the project the first time it ever is called
+for the pair (project_name, environment). This means that most calls to this function will not have to actually download the project.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>project</code></strong> :&ensp;<code>Distribution</code></dt>
@@ -415,6 +438,8 @@ to this function will not have to actually download the project.</p>
 <dd>Deployment environment the project needs to support</dd>
 <dt><strong><code>module_name</code></strong> :&ensp;<code>str</code></dt>
 <dd>The top level module from this project that we want</dd>
+<dt><strong><code>base_archive_directory</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to Cache</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>info (ModulePackagingInfo): Object for the information on packaging this module</p></div>
@@ -423,22 +448,29 @@ to this function will not have to actually download the project.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def download_package_and_create_moduleinfo(
-    project: Distribution, environment: lambda_python_environments, module_name: str
+    project: Distribution, 
+    environment: lambda_python_environment, 
+    module_name: str,
+    downloads_directory: str
 ) -&gt; ModulePackagingInfo:
-    &#34;&#34;&#34;
-    Download a project in a platform compatible way to extract a particular top level module info from the project. Note that this function implements
-    a cache so that it only downloads the project the first time it ever is called for the pair (project_name, environment). This means that most calls
-    to this function will not have to actually download the project.
+    &#34;&#34;&#34;Download a project in a platform compatible way to extract a particular top level module info from the project. 
+    
+    Note that this function implements a cache so that it only downloads the project the first time it ever is called 
+    for the pair (project_name, environment). This means that most calls to this function will not have to actually download the project.
 
     Args:
         project (Distribution): The distribution object that contains the metadata for the package
         environment (lambda_python_environments): Deployment environment the project needs to support
         module_name (str): The top level module from this project that we want
-
+        base_archive_directory (str): Path to Cache
     Returns:
         info (ModulePackagingInfo): Object for the information on packaging this module
     &#34;&#34;&#34;
+    global DOWNLOAD_CACHE
 
+    DOWNLOAD_CACHE = DockerDownloadCache(downloads_directory)
+
+    
     package_information = _download_package(project, environment)
 
     potential_modules = [x for x in package_information if x.module_name == module_name]
@@ -458,6 +490,7 @@ to this function will not have to actually download the project.</p>
 <dl>
 <dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache"><code class="flex name class">
 <span>class <span class="ident">DockerDownloadCache</span></span>
+<span>(</span><span>cache_location: str)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Naive cache implentation for know which files have been downloaded.</p></div>
@@ -470,36 +503,40 @@ to this function will not have to actually download the project.</p>
     Naive cache implentation for know which files have been downloaded.
     &#34;&#34;&#34;
 
-    def __init__(self) -&gt; None:
+    def __init__(self, cache_location: str) -&gt; None:
+        self._cache_location = os.path.join(cache_location, &#34;cache.json&#34;)
+        self._downloads_locations = os.path.join(cache_location, &#34;downloads&#34;)
 
-        if not os.path.isfile(CACHE_LOCATION):
+        if not os.path.isdir(self._downloads_locations):
+            os.mkdir(self._downloads_locations)
+
+
+        if not os.path.isfile(self._cache_location):
             self._cache = {
-                lambda_python_environments.py36: {},
-                lambda_python_environments.py37: {},
-                lambda_python_environments.py38_x86_64: {},
-                lambda_python_environments.py38_arm64: {},
-                lambda_python_environments.py39_x86_64: {},
-                lambda_python_environments.py39_arm64: {},
-                lambda_python_environments.py3_x86_64: {},
-                lambda_python_environments.py3_arm64: {},
+                lambda_python_environment.py37: {},
+                lambda_python_environment.py38_x86_64: {},
+                lambda_python_environment.py38_arm64: {},
+                lambda_python_environment.py39_x86_64: {},
+                lambda_python_environment.py39_arm64: {},
+                lambda_python_environment.py3_x86_64: {},
+                lambda_python_environment.py3_arm64: {},
             }
 
         else:
-            with open(CACHE_LOCATION) as fh:
+            with open(self._cache_location) as fh:
                 self._cache = json.load(fh)
 
         self._cache_dirs = {
-            lambda_python_environments.py36: &#34;py36&#34;,
-            lambda_python_environments.py37: &#34;py37&#34;,
-            lambda_python_environments.py38_x86_64: &#34;py38x8664&#34;,
-            lambda_python_environments.py38_arm64: &#34;py38arm64&#34;,
-            lambda_python_environments.py39_x86_64: &#34;py39x8664&#34;,
-            lambda_python_environments.py39_arm64: &#34;py39arm64&#34;,
-            lambda_python_environments.py3_x86_64: &#34;py3x8664&#34;,
-            lambda_python_environments.py3_arm64: &#34;py3arm64&#34;,
+            lambda_python_environment.py37: &#34;py37&#34;,
+            lambda_python_environment.py38_x86_64: &#34;py38x8664&#34;,
+            lambda_python_environment.py38_arm64: &#34;py38arm64&#34;,
+            lambda_python_environment.py39_x86_64: &#34;py39x8664&#34;,
+            lambda_python_environment.py39_arm64: &#34;py39arm64&#34;,
+            lambda_python_environment.py3_x86_64: &#34;py3x8664&#34;,
+            lambda_python_environment.py3_arm64: &#34;py3arm64&#34;,
         }
 
-    def find_item(self, environment: lambda_python_environments, id: str):
+    def find_item(self, environment: lambda_python_environment, id: str):
         raw_data = self._cache.get(environment).get(id)
         if raw_data:
             return [ModulePackagingInfo(**x) for x in raw_data]
@@ -508,27 +545,17 @@ to this function will not have to actually download the project.</p>
 
     def add_item(
         self,
-        environment: lambda_python_environments,
+        environment: lambda_python_environment,
         id: str,
         item: ModulePackagingInfo,
     ):
         self._cache[environment][id] = item
 
-        with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+        with open(self._cache_location, &#34;w&#34;) as fh:
             json.dump(self._cache, fh, indent=4)
 
-    def get_packaging_dir(self, environment: lambda_python_environments):
-        raise Exception
-        BASE_PACKAGING_DIR = os.path.abspath(
-            os.path.join(
-                CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
-            )
-        )
-
-        if not os.path.isdir(BASE_PACKAGING_DIR):
-            os.mkdir(BASE_PACKAGING_DIR)
-
-        FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+    def get_packaging_dir(self, environment: lambda_python_environment):
+        FULL_DIR = os.path.join(self._downloads_locations, self._cache_dirs.get(environment))
 
         if not os.path.isdir(FULL_DIR):
             os.mkdir(FULL_DIR)
@@ -538,7 +565,7 @@ to this function will not have to actually download the project.</p>
 <h3>Methods</h3>
 <dl>
 <dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.add_item"><code class="name flex">
-<span>def <span class="ident">add_item</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, id: str, item: <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>)</span>
+<span>def <span class="ident">add_item</span></span>(<span>self, environment: <a class="" title="core.utils.platforms.lambda_python_environment" href="../platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a>, id: str, item: <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -548,18 +575,18 @@ to this function will not have to actually download the project.</p>
 </summary>
 <pre><code class="python">def add_item(
     self,
-    environment: lambda_python_environments,
+    environment: lambda_python_environment,
     id: str,
     item: ModulePackagingInfo,
 ):
     self._cache[environment][id] = item
 
-    with open(CACHE_LOCATION, &#34;w&#34;) as fh:
+    with open(self._cache_location, &#34;w&#34;) as fh:
         json.dump(self._cache, fh, indent=4)</code></pre>
 </details>
 </dd>
 <dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.find_item"><code class="name flex">
-<span>def <span class="ident">find_item</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>, id: str)</span>
+<span>def <span class="ident">find_item</span></span>(<span>self, environment: <a class="" title="core.utils.platforms.lambda_python_environment" href="../platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a>, id: str)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -567,7 +594,7 @@ to this function will not have to actually download the project.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def find_item(self, environment: lambda_python_environments, id: str):
+<pre><code class="python">def find_item(self, environment: lambda_python_environment, id: str):
     raw_data = self._cache.get(environment).get(id)
     if raw_data:
         return [ModulePackagingInfo(**x) for x in raw_data]
@@ -576,7 +603,7 @@ to this function will not have to actually download the project.</p>
 </details>
 </dd>
 <dt id="core.utils.fs_manager.docker_package_builder.DockerDownloadCache.get_packaging_dir"><code class="name flex">
-<span>def <span class="ident">get_packaging_dir</span></span>(<span>self, environment: <a class="" title="core.utils.fs_manager.utils.lambda_python_environments" href="utils.html#core.utils.fs_manager.utils.lambda_python_environments">lambda_python_environments</a>)</span>
+<span>def <span class="ident">get_packaging_dir</span></span>(<span>self, environment: <a class="" title="core.utils.platforms.lambda_python_environment" href="../platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a>)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -584,18 +611,8 @@ to this function will not have to actually download the project.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_packaging_dir(self, environment: lambda_python_environments):
-    raise Exception
-    BASE_PACKAGING_DIR = os.path.abspath(
-        os.path.join(
-            CDEV_SETTINGS.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;.packages&#34;
-        )
-    )
-
-    if not os.path.isdir(BASE_PACKAGING_DIR):
-        os.mkdir(BASE_PACKAGING_DIR)
-
-    FULL_DIR = os.path.join(BASE_PACKAGING_DIR, self._cache_dirs.get(environment))
+<pre><code class="python">def get_packaging_dir(self, environment: lambda_python_environment):
+    FULL_DIR = os.path.join(self._downloads_locations, self._cache_dirs.get(environment))
 
     if not os.path.isdir(FULL_DIR):
         os.mkdir(FULL_DIR)

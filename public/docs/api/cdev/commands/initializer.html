@@ -38,6 +38,7 @@ from typing import Dict, Tuple, List
 from rich.prompt import Prompt
 from cdev.constructs.environment import environment_info
 from cdev.default.project import local_project
+from cdev.cli.logger import set_global_logger_from_cli
 
 from core.constructs.backend import Backend, Backend_Configuration
 from core.constructs.workspace import Workspace_Info
@@ -61,10 +62,14 @@ BASE_PROJECT_LOCATION = os.getcwd()
 
 AVAILABLE_TEMPLATES = [
     &#39;quick-start&#39;,
-    &#39;resources-test&#39;
+    &#39;resources-test&#39;,
+    &#39;packages&#39;
 ]
 
 def create_project_cli(args):
+    print(args)
+    config = args
+    set_global_logger_from_cli(config.loglevel)
 
     if args.template:
         template_name = args.template
@@ -300,6 +305,9 @@ def load_and_initialize_project(args):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create_project_cli(args):
+    print(args)
+    config = args
+    set_global_logger_from_cli(config.loglevel)
 
     if args.template:
         template_name = args.template

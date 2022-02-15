@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorials on Cdev | Dynamic Serverless Framework</title>
-    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/</link>
+    <link>https://staging.cdevframework.io/docs/tutorials/</link>
     <description>Recent content in Tutorials on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://staging.cdevframework.io/docs/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Checkbook Balancer</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</link>
+      <link>https://staging.cdevframework.io/docs/tutorials/checkbookbalancer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</guid>
+      <guid>https://staging.cdevframework.io/docs/tutorials/checkbookbalancer/</guid>
       <description>Check Book Balancer </description>
     </item>
     
     <item>
       <title>Email Signup</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</link>
+      <link>https://staging.cdevframework.io/docs/tutorials/emailsignup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</guid>
+      <guid>https://staging.cdevframework.io/docs/tutorials/emailsignup/</guid>
       <description>Email Sign Up Form </description>
     </item>
     
     <item>
       <title>Slack Bot</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</link>
+      <link>https://staging.cdevframework.io/docs/tutorials/slackbot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</guid>
+      <guid>https://staging.cdevframework.io/docs/tutorials/slackbot/</guid>
       <description>Slack Bot </description>
     </item>
     

@@ -42,7 +42,7 @@ def create_role_with_permissions(
     role_name: str,
     permissions: FrozenSet[Union[permission_model, permission_arn_model]],
     assume_role_policy: str
-) -&gt; Tuple[str, List[Tuple[Union[permission_model, permission_arn_model], str]]]:
+) -&gt; Tuple[str, List[Dict]]:
     &#34;&#34;&#34;
     This function creates a new IAM role and policies such that the function will have correct access to resources.
 
@@ -52,17 +52,16 @@ def create_role_with_permissions(
     
     Returns:
         str: The arn of the role created
-        Dict[Union[permission_model, permission_arn_model], str]]: Permission to the arn of the created permission
+        List[Tuple[str,bool]]: List of Tuple of permission arn and bool to denote if the permission should be destroyed on delete
     
     &#34;&#34;&#34;
 
     role_arn = _create_role(role_name, assume_role_policy)
-    permission_info: List[Tuple[Union[permission_model, permission_arn_model], str]] = []
+    permission_info: List[Tuple[str, bool]] = []
 
 
     for permission in permissions:
-        rv = add_policy(role_name, permission)
-        permission_info.append((permission, rv))
+        permission_info.append(add_policy(role_name, permission))
 
 
     basic_execution_permission_arn = permission_arn_model(
@@ -70,30 +69,26 @@ def create_role_with_permissions(
     )
 
     permission_info.append(
-        (
-            basic_execution_permission_arn, 
-            add_policy(role_name, basic_execution_permission_arn)
-        )
+        add_policy(role_name, basic_execution_permission_arn)
     )
 
     return (role_arn, permission_info)
 
 
 def delete_role_and_permissions(
-    role_name: str, permission_arns: List[Tuple[Union[permission_model, permission_arn_model], str]]
-) -&gt; bool:
+    role_name: str, permission_arns: List[Dict]
+):
     &#34;&#34;&#34;
     Delete all permissions and the associated role
     &#34;&#34;&#34;
-    for permission_model, permission_arn in permission_arns:
-        _detach_policy(role_name, permission_arn)
+    for info in permission_arns:
+        _detach_policy(role_name, info.get(&#39;arn&#39;))
 
-        #if isinstance(permission_model, simple_lambda.permission_model):
-        #    delete_policy(permission_arn)
+        if info.get(&#39;was_created&#39;):
+            delete_policy(info.get(&#39;arn&#39;))
 
     aws_client.run_client_function(&#34;iam&#34;, &#34;delete_role&#34;, {&#34;RoleName&#34;: role_name})
 
-    return True
 
 
 
@@ -109,21 +104,25 @@ def delete_policy(permission_arn: str):
 def add_policy(
     role_name: str,
     permission: Union[permission_model, permission_arn_model]
-):
+) -&gt; Dict:
     &#34;&#34;&#34;
     Creates a policy if needed and then adds the policy to the given role
     &#34;&#34;&#34;
     if isinstance(permission, permission_arn_model):
         # Already deployed policy so just append arn
         returned_permission_arn = permission.arn
+        was_created = False
         
     else:
         returned_permission_arn = _create_policy(permission)
+        was_created = True
         
     _attach_policy_to_arn(role_name, returned_permission_arn)
 
-    return returned_permission_arn
-
+    return {
+        &#34;arn&#34;: returned_permission_arn,
+        &#34;was_created&#34;: was_created
+    }
 
 def _create_policy(permission: permission_model) -&gt; str:
     &#34;&#34;&#34;
@@ -201,7 +200,7 @@ def _detach_policy(role_name: str, permission_arn: str):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="core.default.mappers.simple.role_deployer.add_policy"><code class="name flex">
-<span>def <span class="ident">add_policy</span></span>(<span>role_name: str, permission: Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>])</span>
+<span>def <span class="ident">add_policy</span></span>(<span>role_name: str, permission: Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>]) ‑> Dict[~KT, ~VT]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Creates a policy if needed and then adds the policy to the given role</p></div>
@@ -212,24 +211,29 @@ def _detach_policy(role_name: str, permission_arn: str):
 <pre><code class="python">def add_policy(
     role_name: str,
     permission: Union[permission_model, permission_arn_model]
-):
+) -&gt; Dict:
     &#34;&#34;&#34;
     Creates a policy if needed and then adds the policy to the given role
     &#34;&#34;&#34;
     if isinstance(permission, permission_arn_model):
         # Already deployed policy so just append arn
         returned_permission_arn = permission.arn
+        was_created = False
         
     else:
         returned_permission_arn = _create_policy(permission)
+        was_created = True
         
     _attach_policy_to_arn(role_name, returned_permission_arn)
 
-    return returned_permission_arn</code></pre>
+    return {
+        &#34;arn&#34;: returned_permission_arn,
+        &#34;was_created&#34;: was_created
+    }</code></pre>
 </details>
 </dd>
 <dt id="core.default.mappers.simple.role_deployer.create_role_with_permissions"><code class="name flex">
-<span>def <span class="ident">create_role_with_permissions</span></span>(<span>role_name: str, permissions: FrozenSet[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>]], assume_role_policy: str) ‑> Tuple[str, List[Tuple[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>], str]]]</span>
+<span>def <span class="ident">create_role_with_permissions</span></span>(<span>role_name: str, permissions: FrozenSet[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>]], assume_role_policy: str) ‑> Tuple[str, List[Dict[~KT, ~VT]]]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>This function creates a new IAM role and policies such that the function will have correct access to resources.</p>
@@ -240,8 +244,8 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
 <dl>
 <dt><code>str</code></dt>
 <dd>The arn of the role created</dd>
-<dt><code>Dict[Union[permission_model, permission_arn_model], str]]</code></dt>
-<dd>Permission to the arn of the created permission</dd>
+<dt><code>List[Tuple[str,bool]]</code></dt>
+<dd>List of Tuple of permission arn and bool to denote if the permission should be destroyed on delete</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -251,7 +255,7 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
     role_name: str,
     permissions: FrozenSet[Union[permission_model, permission_arn_model]],
     assume_role_policy: str
-) -&gt; Tuple[str, List[Tuple[Union[permission_model, permission_arn_model], str]]]:
+) -&gt; Tuple[str, List[Dict]]:
     &#34;&#34;&#34;
     This function creates a new IAM role and policies such that the function will have correct access to resources.
 
@@ -261,17 +265,16 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
     
     Returns:
         str: The arn of the role created
-        Dict[Union[permission_model, permission_arn_model], str]]: Permission to the arn of the created permission
+        List[Tuple[str,bool]]: List of Tuple of permission arn and bool to denote if the permission should be destroyed on delete
     
     &#34;&#34;&#34;
 
     role_arn = _create_role(role_name, assume_role_policy)
-    permission_info: List[Tuple[Union[permission_model, permission_arn_model], str]] = []
+    permission_info: List[Tuple[str, bool]] = []
 
 
     for permission in permissions:
-        rv = add_policy(role_name, permission)
-        permission_info.append((permission, rv))
+        permission_info.append(add_policy(role_name, permission))
 
 
     basic_execution_permission_arn = permission_arn_model(
@@ -279,10 +282,7 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
     )
 
     permission_info.append(
-        (
-            basic_execution_permission_arn, 
-            add_policy(role_name, basic_execution_permission_arn)
-        )
+        add_policy(role_name, basic_execution_permission_arn)
     )
 
     return (role_arn, permission_info)</code></pre>
@@ -307,7 +307,7 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
 </details>
 </dd>
 <dt id="core.default.mappers.simple.role_deployer.delete_role_and_permissions"><code class="name flex">
-<span>def <span class="ident">delete_role_and_permissions</span></span>(<span>role_name: str, permission_arns: List[Tuple[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="../../resources/simple/iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>], str]]) ‑> bool</span>
+<span>def <span class="ident">delete_role_and_permissions</span></span>(<span>role_name: str, permission_arns: List[Dict[~KT, ~VT]])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete all permissions and the associated role</p></div>
@@ -316,20 +316,18 @@ permissions [List[Union[permission_model, permission_arn_model]]]: The permissio
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def delete_role_and_permissions(
-    role_name: str, permission_arns: List[Tuple[Union[permission_model, permission_arn_model], str]]
-) -&gt; bool:
+    role_name: str, permission_arns: List[Dict]
+):
     &#34;&#34;&#34;
     Delete all permissions and the associated role
     &#34;&#34;&#34;
-    for permission_model, permission_arn in permission_arns:
-        _detach_policy(role_name, permission_arn)
+    for info in permission_arns:
+        _detach_policy(role_name, info.get(&#39;arn&#39;))
 
-        #if isinstance(permission_model, simple_lambda.permission_model):
-        #    delete_policy(permission_arn)
+        if info.get(&#39;was_created&#39;):
+            delete_policy(info.get(&#39;arn&#39;))
 
-    aws_client.run_client_function(&#34;iam&#34;, &#34;delete_role&#34;, {&#34;RoleName&#34;: role_name})
-
-    return True</code></pre>
+    aws_client.run_client_function(&#34;iam&#34;, &#34;delete_role&#34;, {&#34;RoleName&#34;: role_name})</code></pre>
 </details>
 </dd>
 </dl>

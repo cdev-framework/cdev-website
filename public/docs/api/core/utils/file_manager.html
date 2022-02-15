@@ -44,6 +44,7 @@ from pydantic import FilePath
 import os
 import shutil
 from typing import Dict, List, Tuple
+from core.constructs.cloud_output import cloud_output_dynamic_model
 
 from core.constructs.resource_state import Resource_State
 from core.utils.exceptions import Cdev_Error  
@@ -71,6 +72,10 @@ class CustomEncoder(json.JSONEncoder):
         if isinstance(obj, frozendict):
             return dict(obj)
 
+        if isinstance(obj, tuple):
+            print(f&#34;Trying to serialize tuple {obj}&#34;)
+            return list(obj)
+
         return json.JSONEncoder.default(self, obj)
 
 
@@ -79,7 +84,7 @@ def safe_json_write(obj: Dict, fp: FilePath):
     Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
     partially written thus leaving a file in an unrecoverable state.
 
-    Arguments:
+    Args:
         obj (Dict): The dictionary that should be written
         fp (FilePath): The path the file should be written at
 
@@ -95,6 +100,7 @@ def safe_json_write(obj: Dict, fp: FilePath):
             json.dump(obj, fh, indent=4, cls=CustomEncoder)
 
     except Exception as e:
+        print(e)
         raise Cdev_Error(f&#34;Could not write data as a json into tmp file; {obj}&#34;, e)
 
     try:
@@ -342,9 +348,13 @@ the exectution order of the operations are preserved. </p>
 <dd>
 <div class="desc"><p>Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
 partially written thus leaving a file in an unrecoverable state.</p>
-<h2 id="arguments">Arguments</h2>
-<p>obj (Dict): The dictionary that should be written
-fp (FilePath): The path the file should be written at</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code>Dict</code></dt>
+<dd>The dictionary that should be written</dd>
+<dt><strong><code>fp</code></strong> :&ensp;<code>FilePath</code></dt>
+<dd>The path the file should be written at</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -354,7 +364,7 @@ fp (FilePath): The path the file should be written at</p></div>
     Safely write files by first writing to a tmp file then copying to final location. This ensures that no file is
     partially written thus leaving a file in an unrecoverable state.
 
-    Arguments:
+    Args:
         obj (Dict): The dictionary that should be written
         fp (FilePath): The path the file should be written at
 
@@ -370,6 +380,7 @@ fp (FilePath): The path the file should be written at</p></div>
             json.dump(obj, fh, indent=4, cls=CustomEncoder)
 
     except Exception as e:
+        print(e)
         raise Cdev_Error(f&#34;Could not write data as a json into tmp file; {obj}&#34;, e)
 
     try:
@@ -463,6 +474,10 @@ version of the object or raise a <code>TypeError</code>.</p></div>
         if isinstance(obj, frozendict):
             return dict(obj)
 
+        if isinstance(obj, tuple):
+            print(f&#34;Trying to serialize tuple {obj}&#34;)
+            return list(obj)
+
         return json.JSONEncoder.default(self, obj)</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -503,6 +518,10 @@ implement default like this::</p>
 
     if isinstance(obj, frozendict):
         return dict(obj)
+
+    if isinstance(obj, tuple):
+        print(f&#34;Trying to serialize tuple {obj}&#34;)
+        return list(obj)
 
     return json.JSONEncoder.default(self, obj)</code></pre>
 </details>

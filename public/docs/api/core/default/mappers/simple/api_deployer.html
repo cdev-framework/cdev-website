@@ -227,7 +227,8 @@ def _update_simple_api(
 
     
     previous_route_info: Dict[str,str] = dict(mutable_previous_output.get(&#39;endpoints&#39;))
-    print(previous_route_info)
+
+
     for route in routes_to_be_deleted:
         dict_key = (
             f&#39;{route.path} {route.verb}&#39;
@@ -338,8 +339,8 @@ def handle_simple_api_deployment(
             resource_diff.new_resource,
             output_task
         )
-    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
 
+    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
         return _update_simple_api(
             transaction_token,
             namespace_token,
@@ -391,8 +392,8 @@ def handle_simple_api_deployment(
             resource_diff.new_resource,
             output_task
         )
-    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
 
+    elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
         return _update_simple_api(
             transaction_token,
             namespace_token,

@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>cdev.commands.destroy API documentation</title>
-<meta name="description" content="import os
-import shutil …" />
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -26,68 +25,28 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>cdev.commands.destroy</code></h1>
 </header>
 <section id="section-intro">
-<p>import os
-import shutil</p>
-<p>from ..backend import executer as backend_executer, resource_state_manager
-from .. import output
-from ..settings import SETTINGS</p>
-<p>from ..models import Rendered_State</p>
-<p>from ..utils import project, logger</p>
-<p>log = logger.get_cdev_logger(<strong>name</strong>)</p>
-<p>def destroy_command(args):
-project.initialize_project()
-if not output.confirm_destroy():
-return</p>
-<pre><code>fake_rendered_frontend = Rendered_State(**{
-    "hash": 0,
-    "rendered_components": None
-})
-
-fake_project_diffs = resource_state_manager.create_project_diffs(fake_rendered_frontend)
-#print(fake_project_diffs)
-backend_executer.deploy_diffs(fake_project_diffs)
-output.print("Removed resources in environment")
-#shutil.rmtree(os.path.join(SETTINGS.get("INTERNAL_FOLDER_NAME")))
-</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;import os
-import shutil
+<pre><code class="python">from cdev.constructs.project import Project
+from cdev.default.output_manager import CdevOutputManager
+from cdev.cli.logger import set_global_logger_from_cli
 
+from core.commands.deploy_differences import execute_deployment
 
-from ..backend import executer as backend_executer, resource_state_manager
-from .. import output
-from ..settings import SETTINGS
-
-from ..models import Rendered_State
-
-from ..utils import project, logger
-
-
-
-log = logger.get_cdev_logger(__name__)
+def destroy_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
+    destroy_command(args)
 
 
 def destroy_command(args):
-    project.initialize_project()
-    if not output.confirm_destroy():
-        return
 
-    fake_rendered_frontend = Rendered_State(**{
-        &#34;hash&#34;: 0,
-        &#34;rendered_components&#34;: None
-    })
+    output_manager = CdevOutputManager()
+    myProject = Project.instance()
 
-    fake_project_diffs = resource_state_manager.create_project_diffs(fake_rendered_frontend)
-    #print(fake_project_diffs)
-    backend_executer.deploy_diffs(fake_project_diffs)
-    output.print(&#34;Removed resources in environment&#34;)
-    #shutil.rmtree(os.path.join(SETTINGS.get(&#34;INTERNAL_FOLDER_NAME&#34;)))
-
-
-&#34;&#34;&#34;</code></pre>
+    print(f&#34;Destory&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -95,6 +54,41 @@ def destroy_command(args):
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="cdev.commands.destroy.destroy_command"><code class="name flex">
+<span>def <span class="ident">destroy_command</span></span>(<span>args)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def destroy_command(args):
+
+    output_manager = CdevOutputManager()
+    myProject = Project.instance()
+
+    print(f&#34;Destory&#34;)</code></pre>
+</details>
+</dd>
+<dt id="cdev.commands.destroy.destroy_command_cli"><code class="name flex">
+<span>def <span class="ident">destroy_command_cli</span></span>(<span>args)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def destroy_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
+    destroy_command(args)</code></pre>
+</details>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -108,6 +102,12 @@ def destroy_command(args):
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a class="sidebar" title="cdev.commands" href="index.html">cdev.commands</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="cdev.commands.destroy.destroy_command" href="#cdev.commands.destroy.destroy_command">destroy_command</a></code></li>
+<li><code><a class="sidebar" title="cdev.commands.destroy.destroy_command_cli" href="#cdev.commands.destroy.destroy_command_cli">destroy_command_cli</a></code></li>
 </ul>
 </li>
 </ul>

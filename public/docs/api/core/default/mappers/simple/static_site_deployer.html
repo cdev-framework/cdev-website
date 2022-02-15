@@ -29,7 +29,8 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import boto3
+<pre><code class="python">import site
+import boto3
 import json
 from typing import Any, Dict, List
 from uuid import uuid4
@@ -99,6 +100,7 @@ def _create_simple_static_site(
 
     output_info = {
         &#34;site_name&#34;: site_name,
+        &#34;bucket_name&#34;: site_name,
         &#34;cloud_id&#34;: f&#34;arn:aws:s3:::{site_name}&#34;,
         &#34;site_url&#34;: f&#34;http://{site_name}.s3-website-us-east-1.amazonaws.com&#34;,
         &#34;arn&#34;: f&#34;arn:aws:s3:::{site_name}&#34;,

@@ -250,8 +250,7 @@ class LocalBackend(Backend):
 
         try:
             return file_manager.load_resource_state(file_location)
-            with open(file_location, &#34;r&#34;) as fh:
-                return Resource_State(**json.load(fh))
+
 
         except Exception as e:
             raise InvalidResourceStateData(
@@ -971,9 +970,12 @@ def _compute_component_hash(component: ComponentModel) -&gt; str:
         hash (str): identity hash for the component
     &#34;&#34;&#34;
     if component.resources:
+        
         resources = [x for x in component.resources]
         resources.sort(key=lambda x: x.name)
 
+        print([x.name for x in resources])
+        print([x.hash for x in resources])
         resource_hashes = [x.hash for x in resources]
     else:
         resource_hashes = []
@@ -1485,8 +1487,7 @@ central_state_file (FilePath): Path to the central state file. Defaults to cdev 
 
         try:
             return file_manager.load_resource_state(file_location)
-            with open(file_location, &#34;r&#34;) as fh:
-                return Resource_State(**json.load(fh))
+
 
         except Exception as e:
             raise InvalidResourceStateData(

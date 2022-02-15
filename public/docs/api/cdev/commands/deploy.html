@@ -29,13 +29,17 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from ..constructs.project import Project
+<pre><code class="python">from cdev.constructs.project import Project
+from cdev.default.output_manager import CdevOutputManager
+from cdev.cli.logger import set_global_logger_from_cli
 
 from core.commands.deploy_differences import execute_deployment
 
-from cdev.default.output_manager import CdevOutputManager
+
 
 def deploy_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
     deploy_command(args)
 
 
@@ -85,6 +89,8 @@ def deploy_command(args):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def deploy_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
     deploy_command(args)</code></pre>
 </details>
 </dd>

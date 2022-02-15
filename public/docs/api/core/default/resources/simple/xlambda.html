@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.xlambda API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for making Serverless Functions" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,22 +25,28 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.xlambda</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for making Serverless Functions</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import importlib
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for making Serverless Functions
+
+&#34;&#34;&#34;
+
+import importlib
 import inspect
 import os
 from pydantic import FilePath
-from typing import Callable, Dict, FrozenSet, List, Optional, Union
+from typing import Any, Callable, Dict, FrozenSet, List, Optional, Union
 
-from core.constructs.cloud_output import Cloud_Output_Dynamic
+from core.constructs.cloud_output import Cloud_Output, Cloud_Output_Dynamic, Cloud_Output_Str
 from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsGrantableMixin
 from core.constructs.models import frozendict, ImmutableModel
 from core.constructs.types import cdev_str_model, cdev_str
 
 from core.utils import hasher
+from core.utils.platforms import lambda_python_environment, get_current_closest_platform
 
 from core.default.resources.simple.iam import Permission, PermissionArn, permission_arn_model, permission_model
 from core.default.resources.simple.events import Event, event_model
@@ -52,13 +58,9 @@ RUUID = &#34;cdev::simple::function&#34;
 ################
 ##### Dependencies 
 ################
-class deployed_layer_model(ResourceModel):
-    arn: str
-    version: str
-
-
 class DeployedLayer():
-    pass
+    def __init__(self, arn: str) -&gt; None:
+        self.arn = arn
 
 
 class dependency_layer_model(ResourceModel):
@@ -67,16 +69,18 @@ class dependency_layer_model(ResourceModel):
 
 class DependencyLayer(Resource):
 
-    def __init__(self, cdev_name: str, artifact_path: FilePath = None) -&gt; None:
-        super().__init__(cdev_name)
+    def __init__(self, cdev_name: str, artifact_path: FilePath, artifact_hash: str) -&gt; None:
+        super().__init__(cdev_name, LAMBDA_LAYER_RUUID)
         self.artifact_path = artifact_path
+        self.artifact_hash = artifact_hash
+        self._hash = artifact_hash
         self.output = DependencyLayerOutput(cdev_name)
 
     def render(self) -&gt; dependency_layer_model:
         return dependency_layer_model(
             ruuid=LAMBDA_LAYER_RUUID,
             name=self.name, 
-            hash=&#39;1&#39;,
+            hash=self.artifact_hash,
             artifact_path=self.artifact_path
         )
 
@@ -88,6 +92,21 @@ class DependencyLayer(Resource):
 class DependencyLayerOutput(ResourceOutputs):
     def __init__(self, name: str) -&gt; None:
         super().__init__(name, LAMBDA_LAYER_RUUID)
+
+
+    @property
+    def layer_arn(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The id of the created layer&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=LAMBDA_LAYER_RUUID,
+            key=&#39;arn&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @layer_arn.setter
+    def layer_arn(self, value: Any):
+        raise Exception
 
 
 class FunctionOutput(ResourceOutputs):
@@ -121,9 +140,19 @@ class SimpleFunctionConfiguration():
             handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
             description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
             environment_variables = frozendict(
-                {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+                {k:frozendict(v.render().dict()) if isinstance(v, Cloud_Output) else v for k,v in self.environment_variables.items()}
             ) if self.environment_variables else frozendict({})
         )
+
+    def hash(self) -&gt; str:
+        env_hashable = {k:(v if not isinstance(v, Cloud_Output) else v.hash()) for k,v in self.environment_variables.items()} 
+
+
+        return hasher.hash_list([
+            self.handler,
+            self.description,
+            hasher.hash_list(sorted(env_hashable.items()))
+        ])
 
 
 
@@ -138,15 +167,10 @@ class simple_function_model(ResourceModel):
     configuration: simple_function_configuration_model
     events: FrozenSet[event_model]
     permissions: FrozenSet[Union[permission_model, permission_arn_model]]
-    external_dependencies: FrozenSet[Union[deployed_layer_model, dependency_layer_model]]
+    external_dependencies: FrozenSet[Any]
     src_code_hash: str
+    platform: lambda_python_environment
 
-
-    class Config:
-        use_enum_values = True
-        # Beta Feature but should be fine since this is simple data 
-        frozen = True
-        extra = &#34;ignore&#34;
 
 
 class SimpleFunction(PermissionsGrantableMixin, Resource):
@@ -157,6 +181,7 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
         filepath: str,
         configuration: SimpleFunctionConfiguration,
         events: List[Event] = [],
+        platform: lambda_python_environment = None,
         function_permissions: List[Union[Permission, PermissionArn]] = [],
         external_dependencies: List[Union[DeployedLayer, DependencyLayer]]=[],
         src_code_hash: str = None,
@@ -183,6 +208,8 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
         self._granted_permissions: List[Union[Permission, PermissionArn]] = function_permissions
 
         self.src_code_hash = src_code_hash if src_code_hash else hasher.hash_file(filepath)
+
+        self._platform = platform if platform else get_current_closest_platform()
         
 
     @property
@@ -213,6 +240,15 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
         self._configuration = value
 
     @property
+    def platform(self):
+        return self._platform
+
+    @platform.setter
+    @update_hash
+    def platform(self, value: lambda_python_environment):
+        self._platform = value
+
+    @property
     def external_dependencies(self):
         return self._external_dependencies
 
@@ -222,8 +258,8 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
         self._external_dependencies = value
 
     def compute_hash(self):
-        self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
-        self._config_hash = &#34;1&#34;
+        self._permissions_hash = hasher.hash_list([x.hash() for x in self._granted_permissions])
+        self._config_hash = self._configuration.hash()
         self._events_hash = hasher.hash_list([x.hash() for x in self.events])
 
         self._hash = hasher.hash_list(
@@ -232,13 +268,16 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
                 self._config_hash,
                 self._events_hash,
                 self._permissions_hash,
-                self._nonce
+                self._nonce,
+                self._platform
             ]
         )
 
     def render(self) -&gt; simple_function_model:
 
         premissions = [x.render() for x in self.granted_permissions]
+
+        dependencies = [x.output.cloud_id.render() if isinstance(x, DependencyLayer) else x.arn for x in self.external_dependencies]
         
         return simple_function_model(
             name=self.name,
@@ -248,8 +287,9 @@ class SimpleFunction(PermissionsGrantableMixin, Resource):
             filepath=self.filepath,
             events=frozenset([x.render() for x in self.events]),
             permissions=frozenset(premissions),
-            external_dependencies=self.external_dependencies,
-            src_code_hash=self.src_code_hash
+            external_dependencies=frozenset(dependencies),
+            src_code_hash=self.src_code_hash,
+            platform=self.platform
         )
 
 
@@ -258,13 +298,13 @@ def simple_function_annotation(
     events: List[Event] = [],
     environment={},
     permissions: List[Union[Permission, PermissionArn]] = [],
+    override_platform: lambda_python_environment = None,
     includes: List[str] = [],
     nonce: str=&#34;&#34;
 ) -&gt; Callable[[Callable], SimpleFunction]:
     &#34;&#34;&#34;This annotation is used to designate that a function should be deployed as a Serverless function. 
     
-    Functions that are designated using this annotation should have a signature that takes two inputs (event,context) 
-    to conform to the aws lambda handler signature.
+    
 
     Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
     to only contain global statements needed for this function. For more information on this process read &lt;link&gt;.
@@ -299,6 +339,7 @@ def simple_function_annotation(
             filepath=full_filepath,
             events=events,
             configuration=final_config,
+            platform=override_platform,
             function_permissions=permissions,
             nonce=nonce
         )
@@ -314,12 +355,10 @@ def simple_function_annotation(
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="core.default.resources.simple.xlambda.simple_function_annotation"><code class="name flex">
-<span>def <span class="ident">simple_function_annotation</span></span>(<span>name: str, events: List[<a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a>] = [], environment={}, permissions: List[Union[<a class="" title="core.default.resources.simple.iam.Permission" href="iam.html#core.default.resources.simple.iam.Permission">Permission</a>, <a class="" title="core.default.resources.simple.iam.PermissionArn" href="iam.html#core.default.resources.simple.iam.PermissionArn">PermissionArn</a>]] = [], includes: List[str] = [], nonce: str = '') ‑> Callable[[Callable], <a class="" title="core.default.resources.simple.xlambda.SimpleFunction" href="#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a>]</span>
+<span>def <span class="ident">simple_function_annotation</span></span>(<span>name: str, events: List[<a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a>] = [], environment={}, permissions: List[Union[<a class="" title="core.default.resources.simple.iam.Permission" href="iam.html#core.default.resources.simple.iam.Permission">Permission</a>, <a class="" title="core.default.resources.simple.iam.PermissionArn" href="iam.html#core.default.resources.simple.iam.PermissionArn">PermissionArn</a>]] = [], override_platform: <a class="" title="core.utils.platforms.lambda_python_environment" href="../../../utils/platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a> = None, includes: List[str] = [], nonce: str = '') ‑> Callable[[Callable], <a class="" title="core.default.resources.simple.xlambda.SimpleFunction" href="#core.default.resources.simple.xlambda.SimpleFunction">SimpleFunction</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>This annotation is used to designate that a function should be deployed as a Serverless function. </p>
-<p>Functions that are designated using this annotation should have a signature that takes two inputs (event,context)
-to conform to the aws lambda handler signature.</p>
 <p>Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
 to only contain global statements needed for this function. For more information on this process read <link>.</p></div>
 <details class="source">
@@ -331,13 +370,13 @@ to only contain global statements needed for this function. For more information
     events: List[Event] = [],
     environment={},
     permissions: List[Union[Permission, PermissionArn]] = [],
+    override_platform: lambda_python_environment = None,
     includes: List[str] = [],
     nonce: str=&#34;&#34;
 ) -&gt; Callable[[Callable], SimpleFunction]:
     &#34;&#34;&#34;This annotation is used to designate that a function should be deployed as a Serverless function. 
     
-    Functions that are designated using this annotation should have a signature that takes two inputs (event,context) 
-    to conform to the aws lambda handler signature.
+    
 
     Functions that are annotated with this symbol will be put through the cdev function parser to optimize the final deployed artifact
     to only contain global statements needed for this function. For more information on this process read &lt;link&gt;.
@@ -372,6 +411,7 @@ to only contain global statements needed for this function. For more information
             filepath=full_filepath,
             events=events,
             configuration=final_config,
+            platform=override_platform,
             function_permissions=permissions,
             nonce=nonce
         )
@@ -386,7 +426,7 @@ to only contain global statements needed for this function. For more information
 <dl>
 <dt id="core.default.resources.simple.xlambda.DependencyLayer"><code class="flex name class">
 <span>class <span class="ident">DependencyLayer</span></span>
-<span>(</span><span>cdev_name: str, artifact_path: pydantic.types.FilePath = None)</span>
+<span>(</span><span>cdev_name: str, artifact_path: pydantic.types.FilePath, artifact_hash: str)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -396,16 +436,18 @@ to only contain global statements needed for this function. For more information
 </summary>
 <pre><code class="python">class DependencyLayer(Resource):
 
-    def __init__(self, cdev_name: str, artifact_path: FilePath = None) -&gt; None:
-        super().__init__(cdev_name)
+    def __init__(self, cdev_name: str, artifact_path: FilePath, artifact_hash: str) -&gt; None:
+        super().__init__(cdev_name, LAMBDA_LAYER_RUUID)
         self.artifact_path = artifact_path
+        self.artifact_hash = artifact_hash
+        self._hash = artifact_hash
         self.output = DependencyLayerOutput(cdev_name)
 
     def render(self) -&gt; dependency_layer_model:
         return dependency_layer_model(
             ruuid=LAMBDA_LAYER_RUUID,
             name=self.name, 
-            hash=&#39;1&#39;,
+            hash=self.artifact_hash,
             artifact_path=self.artifact_path
         )</code></pre>
 </details>
@@ -428,7 +470,7 @@ to only contain global statements needed for this function. For more information
     return dependency_layer_model(
         ruuid=LAMBDA_LAYER_RUUID,
         name=self.name, 
-        hash=&#39;1&#39;,
+        hash=self.artifact_hash,
         artifact_path=self.artifact_path
     )</code></pre>
 </details>
@@ -458,15 +500,52 @@ to only contain global statements needed for this function. For more information
 </summary>
 <pre><code class="python">class DependencyLayerOutput(ResourceOutputs):
     def __init__(self, name: str) -&gt; None:
-        super().__init__(name, LAMBDA_LAYER_RUUID)</code></pre>
+        super().__init__(name, LAMBDA_LAYER_RUUID)
+
+
+    @property
+    def layer_arn(self) -&gt; Cloud_Output_Str:
+        &#34;&#34;&#34;The id of the created layer&#34;&#34;&#34;
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=LAMBDA_LAYER_RUUID,
+            key=&#39;arn&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @layer_arn.setter
+    def layer_arn(self, value: Any):
+        raise Exception</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a class="" title="core.constructs.resource.ResourceOutputs" href="../../../constructs/resource.html#core.constructs.resource.ResourceOutputs">ResourceOutputs</a></li>
 </ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="core.default.resources.simple.xlambda.DependencyLayerOutput.layer_arn"><code class="name">var <span class="ident">layer_arn</span> : <a class="" title="core.constructs.cloud_output.Cloud_Output_Str" href="../../../constructs/cloud_output.html#core.constructs.cloud_output.Cloud_Output_Str">Cloud_Output_Str</a></code></dt>
+<dd>
+<div class="desc"><p>The id of the created layer</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def layer_arn(self) -&gt; Cloud_Output_Str:
+    &#34;&#34;&#34;The id of the created layer&#34;&#34;&#34;
+    return Cloud_Output_Str(
+        name=self._name,
+        ruuid=LAMBDA_LAYER_RUUID,
+        key=&#39;arn&#39;,
+        type=self.OUTPUT_TYPE
+    )</code></pre>
+</details>
+</dd>
+</dl>
 </dd>
 <dt id="core.default.resources.simple.xlambda.DeployedLayer"><code class="flex name class">
 <span>class <span class="ident">DeployedLayer</span></span>
+<span>(</span><span>arn: str)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -475,7 +554,8 @@ to only contain global statements needed for this function. For more information
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class DeployedLayer():
-    pass</code></pre>
+    def __init__(self, arn: str) -&gt; None:
+        self.arn = arn</code></pre>
 </details>
 </dd>
 <dt id="core.default.resources.simple.xlambda.FunctionOutput"><code class="flex name class">
@@ -499,10 +579,29 @@ to only contain global statements needed for this function. For more information
 </dd>
 <dt id="core.default.resources.simple.xlambda.SimpleFunction"><code class="flex name class">
 <span>class <span class="ident">SimpleFunction</span></span>
-<span>(</span><span>*func_posargs, **func_kwargs)</span>
+<span>(</span><span>cdev_name: str, filepath: str, configuration: <a class="" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration">SimpleFunctionConfiguration</a>, events: List[<a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a>] = [], platform: <a class="" title="core.utils.platforms.lambda_python_environment" href="../../../utils/platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a> = None, function_permissions: List[Union[<a class="" title="core.default.resources.simple.iam.Permission" href="iam.html#core.default.resources.simple.iam.Permission">Permission</a>, <a class="" title="core.default.resources.simple.iam.PermissionArn" href="iam.html#core.default.resources.simple.iam.PermissionArn">PermissionArn</a>]] = [], external_dependencies: List[Union[<a class="" title="core.default.resources.simple.xlambda.DeployedLayer" href="#core.default.resources.simple.xlambda.DeployedLayer">DeployedLayer</a>, <a class="" title="core.default.resources.simple.xlambda.DependencyLayer" href="#core.default.resources.simple.xlambda.DependencyLayer">DependencyLayer</a>]] = [], src_code_hash: str = None, nonce: str = '')</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>[summary]</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cdev_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>filepath</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>configuration</code></strong> :&ensp;<code><a class="" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration">SimpleFunctionConfiguration</a></code></dt>
+<dd>[description]. </dd>
+<dt><strong><code>events</code></strong> :&ensp;<code>List[Event]</code>, optional</dt>
+<dd>[description]. Defaults to [].</dd>
+<dt><strong><code>function_permissions</code></strong> :&ensp;<code>List[Union[Permission, PermissionArn]]</code>, optional</dt>
+<dd>[description]. Defaults to [].</dd>
+<dt><strong><code>external_dependencies</code></strong> :&ensp;<code>List[Union[<a class="" title="core.default.resources.simple.xlambda.DeployedLayer" href="#core.default.resources.simple.xlambda.DeployedLayer">DeployedLayer</a>, <a class="" title="core.default.resources.simple.xlambda.DependencyLayer" href="#core.default.resources.simple.xlambda.DependencyLayer">DependencyLayer</a>]]</code>, optional</dt>
+<dd>[description]. Defaults to [].</dd>
+<dt><strong><code>src_code_hash</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[description]. Defaults to None.</dd>
+<dt><strong><code>nonce</code></strong> :&ensp;<code>str</code></dt>
+<dd>Nonce to make the resource hash unique if there are conflicting resources with same configuration.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -515,6 +614,7 @@ to only contain global statements needed for this function. For more information
         filepath: str,
         configuration: SimpleFunctionConfiguration,
         events: List[Event] = [],
+        platform: lambda_python_environment = None,
         function_permissions: List[Union[Permission, PermissionArn]] = [],
         external_dependencies: List[Union[DeployedLayer, DependencyLayer]]=[],
         src_code_hash: str = None,
@@ -541,6 +641,8 @@ to only contain global statements needed for this function. For more information
         self._granted_permissions: List[Union[Permission, PermissionArn]] = function_permissions
 
         self.src_code_hash = src_code_hash if src_code_hash else hasher.hash_file(filepath)
+
+        self._platform = platform if platform else get_current_closest_platform()
         
 
     @property
@@ -571,6 +673,15 @@ to only contain global statements needed for this function. For more information
         self._configuration = value
 
     @property
+    def platform(self):
+        return self._platform
+
+    @platform.setter
+    @update_hash
+    def platform(self, value: lambda_python_environment):
+        self._platform = value
+
+    @property
     def external_dependencies(self):
         return self._external_dependencies
 
@@ -580,8 +691,8 @@ to only contain global statements needed for this function. For more information
         self._external_dependencies = value
 
     def compute_hash(self):
-        self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
-        self._config_hash = &#34;1&#34;
+        self._permissions_hash = hasher.hash_list([x.hash() for x in self._granted_permissions])
+        self._config_hash = self._configuration.hash()
         self._events_hash = hasher.hash_list([x.hash() for x in self.events])
 
         self._hash = hasher.hash_list(
@@ -590,13 +701,16 @@ to only contain global statements needed for this function. For more information
                 self._config_hash,
                 self._events_hash,
                 self._permissions_hash,
-                self._nonce
+                self._nonce,
+                self._platform
             ]
         )
 
     def render(self) -&gt; simple_function_model:
 
         premissions = [x.render() for x in self.granted_permissions]
+
+        dependencies = [x.output.cloud_id.render() if isinstance(x, DependencyLayer) else x.arn for x in self.external_dependencies]
         
         return simple_function_model(
             name=self.name,
@@ -606,8 +720,9 @@ to only contain global statements needed for this function. For more information
             filepath=self.filepath,
             events=frozenset([x.render() for x in self.events]),
             permissions=frozenset(premissions),
-            external_dependencies=self.external_dependencies,
-            src_code_hash=self.src_code_hash
+            external_dependencies=frozenset(dependencies),
+            src_code_hash=self.src_code_hash,
+            platform=self.platform
         )</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -665,6 +780,18 @@ def filepath(self):
     return self._filepath</code></pre>
 </details>
 </dd>
+<dt id="core.default.resources.simple.xlambda.SimpleFunction.platform"><code class="name">var <span class="ident">platform</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def platform(self):
+    return self._platform</code></pre>
+</details>
+</dd>
 </dl>
 <h3>Methods</h3>
 <dl>
@@ -678,8 +805,8 @@ def filepath(self):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def compute_hash(self):
-    self._permissions_hash = hasher.hash_list([x.hash() for x in self.granted_permissions])
-    self._config_hash = &#34;1&#34;
+    self._permissions_hash = hasher.hash_list([x.hash() for x in self._granted_permissions])
+    self._config_hash = self._configuration.hash()
     self._events_hash = hasher.hash_list([x.hash() for x in self.events])
 
     self._hash = hasher.hash_list(
@@ -688,7 +815,8 @@ def filepath(self):
             self._config_hash,
             self._events_hash,
             self._permissions_hash,
-            self._nonce
+            self._nonce,
+            self._platform
         ]
     )</code></pre>
 </details>
@@ -705,6 +833,8 @@ def filepath(self):
 <pre><code class="python">def render(self) -&gt; simple_function_model:
 
     premissions = [x.render() for x in self.granted_permissions]
+
+    dependencies = [x.output.cloud_id.render() if isinstance(x, DependencyLayer) else x.arn for x in self.external_dependencies]
     
     return simple_function_model(
         name=self.name,
@@ -714,8 +844,9 @@ def filepath(self):
         filepath=self.filepath,
         events=frozenset([x.render() for x in self.events]),
         permissions=frozenset(premissions),
-        external_dependencies=self.external_dependencies,
-        src_code_hash=self.src_code_hash
+        external_dependencies=frozenset(dependencies),
+        src_code_hash=self.src_code_hash,
+        platform=self.platform
     )</code></pre>
 </details>
 </dd>
@@ -754,12 +885,42 @@ def filepath(self):
             handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
             description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
             environment_variables = frozendict(
-                {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+                {k:frozendict(v.render().dict()) if isinstance(v, Cloud_Output) else v for k,v in self.environment_variables.items()}
             ) if self.environment_variables else frozendict({})
-        )</code></pre>
+        )
+
+    def hash(self) -&gt; str:
+        env_hashable = {k:(v if not isinstance(v, Cloud_Output) else v.hash()) for k,v in self.environment_variables.items()} 
+
+
+        return hasher.hash_list([
+            self.handler,
+            self.description,
+            hasher.hash_list(sorted(env_hashable.items()))
+        ])</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
+<dt id="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hash(self) -&gt; str:
+    env_hashable = {k:(v if not isinstance(v, Cloud_Output) else v.hash()) for k,v in self.environment_variables.items()} 
+
+
+    return hasher.hash_list([
+        self.handler,
+        self.description,
+        hasher.hash_list(sorted(env_hashable.items()))
+    ])</code></pre>
+</details>
+</dd>
 <dt id="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render"><code class="name flex">
 <span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.xlambda.simple_function_configuration_model" href="#core.default.resources.simple.xlambda.simple_function_configuration_model">simple_function_configuration_model</a></span>
 </code></dt>
@@ -774,7 +935,7 @@ def filepath(self):
         handler=self.handler.render() if isinstance(self.handler, Cloud_Output_Dynamic) else self.handler,
         description=self.description.render() if isinstance(self.description, Cloud_Output_Dynamic) else self.description,
         environment_variables = frozendict(
-            {k:v.render() if isinstance(v, Cloud_Output_Dynamic) else v for k,v in self.environment_variables}
+            {k:frozendict(v.render().dict()) if isinstance(v, Cloud_Output) else v for k,v in self.environment_variables.items()}
         ) if self.environment_variables else frozendict({})
     )</code></pre>
 </details>
@@ -821,66 +982,6 @@ only if a change in the state is desired.</dd>
 <h3>Class variables</h3>
 <dl>
 <dt id="core.default.resources.simple.xlambda.dependency_layer_model.artifact_path"><code class="name">var <span class="ident">artifact_path</span> : str</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></b></code>:
-<ul class="hlist">
-<li><code><a class="" title="core.constructs.resource.ResourceModel.hash" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.hash">hash</a></code></li>
-<li><code><a class="" title="core.constructs.resource.ResourceModel.name" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.name">name</a></code></li>
-<li><code><a class="" title="core.constructs.resource.ResourceModel.ruuid" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel.ruuid">ruuid</a></code></li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt id="core.default.resources.simple.xlambda.deployed_layer_model"><code class="flex name class">
-<span>class <span class="ident">deployed_layer_model</span></span>
-<span>(</span><span>**data: Any)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Base class with basic information about a defined resource.</p>
-<p>All classes derived from this should contain additional information about the state of a resource.
-Within the life cycle of the Cdev Core framework,this is used to represent resources after any
-configuration; hence the need to make these immutable data
-classes. </p>
-<h2 id="attributes">Attributes</h2>
-<dl>
-<dt><strong><code>name</code></strong></dt>
-<dd>The name of the resource. Note that the combination of a name and ruuid should be unique
-within a namespace</dd>
-<dt><strong><code>ruuid</code></strong></dt>
-<dd>The identifier of this resource type.</dd>
-<dt><strong><code>hash</code></strong></dt>
-<dd>A string that is the hash of this object. This hash must be computed such that it changes
-only if a change in the state is desired.</dd>
-</dl>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class deployed_layer_model(ResourceModel):
-    arn: str
-    version: str</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></li>
-<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
-<li>pydantic.main.BaseModel</li>
-<li>pydantic.utils.Representation</li>
-</ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="core.default.resources.simple.xlambda.deployed_layer_model.arn"><code class="name">var <span class="ident">arn</span> : str</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="core.default.resources.simple.xlambda.deployed_layer_model.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -971,15 +1072,9 @@ only if a change in the state is desired.</dd>
     configuration: simple_function_configuration_model
     events: FrozenSet[event_model]
     permissions: FrozenSet[Union[permission_model, permission_arn_model]]
-    external_dependencies: FrozenSet[Union[deployed_layer_model, dependency_layer_model]]
+    external_dependencies: FrozenSet[Any]
     src_code_hash: str
-
-
-    class Config:
-        use_enum_values = True
-        # Beta Feature but should be fine since this is simple data 
-        frozen = True
-        extra = &#34;ignore&#34;</code></pre>
+    platform: lambda_python_environment</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -990,10 +1085,6 @@ only if a change in the state is desired.</dd>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="core.default.resources.simple.xlambda.simple_function_model.Config"><code class="name">var <span class="ident">Config</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
 <dt id="core.default.resources.simple.xlambda.simple_function_model.configuration"><code class="name">var <span class="ident">configuration</span> : <a class="" title="core.default.resources.simple.xlambda.simple_function_configuration_model" href="#core.default.resources.simple.xlambda.simple_function_configuration_model">simple_function_configuration_model</a></code></dt>
 <dd>
 <div class="desc"></div>
@@ -1002,7 +1093,7 @@ only if a change in the state is desired.</dd>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="core.default.resources.simple.xlambda.simple_function_model.external_dependencies"><code class="name">var <span class="ident">external_dependencies</span> : FrozenSet[Union[<a class="" title="core.default.resources.simple.xlambda.deployed_layer_model" href="#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a>, <a class="" title="core.default.resources.simple.xlambda.dependency_layer_model" href="#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a>]]</code></dt>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.external_dependencies"><code class="name">var <span class="ident">external_dependencies</span> : FrozenSet[Any]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1011,6 +1102,10 @@ only if a change in the state is desired.</dd>
 <div class="desc"></div>
 </dd>
 <dt id="core.default.resources.simple.xlambda.simple_function_model.permissions"><code class="name">var <span class="ident">permissions</span> : FrozenSet[Union[<a class="" title="core.default.resources.simple.iam.permission_model" href="iam.html#core.default.resources.simple.iam.permission_model">permission_model</a>, <a class="" title="core.default.resources.simple.iam.permission_arn_model" href="iam.html#core.default.resources.simple.iam.permission_arn_model">permission_arn_model</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.xlambda.simple_function_model.platform"><code class="name">var <span class="ident">platform</span> : <a class="" title="core.utils.platforms.lambda_python_environment" href="../../../utils/platforms.html#core.utils.platforms.lambda_python_environment">lambda_python_environment</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1059,6 +1154,9 @@ only if a change in the state is desired.</dd>
 </li>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.DependencyLayerOutput" href="#core.default.resources.simple.xlambda.DependencyLayerOutput">DependencyLayerOutput</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.DependencyLayerOutput.layer_arn" href="#core.default.resources.simple.xlambda.DependencyLayerOutput.layer_arn">layer_arn</a></code></li>
+</ul>
 </li>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.DeployedLayer" href="#core.default.resources.simple.xlambda.DeployedLayer">DeployedLayer</a></code></h4>
@@ -1074,12 +1172,14 @@ only if a change in the state is desired.</dd>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.events" href="#core.default.resources.simple.xlambda.SimpleFunction.events">events</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.external_dependencies" href="#core.default.resources.simple.xlambda.SimpleFunction.external_dependencies">external_dependencies</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.filepath" href="#core.default.resources.simple.xlambda.SimpleFunction.filepath">filepath</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.platform" href="#core.default.resources.simple.xlambda.SimpleFunction.platform">platform</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunction.render" href="#core.default.resources.simple.xlambda.SimpleFunction.render">render</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration">SimpleFunctionConfiguration</a></code></h4>
 <ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.hash" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration.hash">hash</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render" href="#core.default.resources.simple.xlambda.SimpleFunctionConfiguration.render">render</a></code></li>
 </ul>
 </li>
@@ -1087,13 +1187,6 @@ only if a change in the state is desired.</dd>
 <h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.dependency_layer_model" href="#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a></code></h4>
 <ul >
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.dependency_layer_model.artifact_path" href="#core.default.resources.simple.xlambda.dependency_layer_model.artifact_path">artifact_path</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model" href="#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a></code></h4>
-<ul >
-<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model.arn" href="#core.default.resources.simple.xlambda.deployed_layer_model.arn">arn</a></code></li>
-<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.deployed_layer_model.version" href="#core.default.resources.simple.xlambda.deployed_layer_model.version">version</a></code></li>
 </ul>
 </li>
 <li>
@@ -1108,12 +1201,12 @@ only if a change in the state is desired.</dd>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model" href="#core.default.resources.simple.xlambda.simple_function_model">simple_function_model</a></code></h4>
 <ul >
-<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.Config" href="#core.default.resources.simple.xlambda.simple_function_model.Config">Config</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.configuration" href="#core.default.resources.simple.xlambda.simple_function_model.configuration">configuration</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.events" href="#core.default.resources.simple.xlambda.simple_function_model.events">events</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.external_dependencies" href="#core.default.resources.simple.xlambda.simple_function_model.external_dependencies">external_dependencies</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.filepath" href="#core.default.resources.simple.xlambda.simple_function_model.filepath">filepath</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.permissions" href="#core.default.resources.simple.xlambda.simple_function_model.permissions">permissions</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.platform" href="#core.default.resources.simple.xlambda.simple_function_model.platform">platform</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.xlambda.simple_function_model.src_code_hash" href="#core.default.resources.simple.xlambda.simple_function_model.src_code_hash">src_code_hash</a></code></li>
 </ul>
 </li>

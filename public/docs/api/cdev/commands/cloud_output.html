@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>cdev.commands.cloud_output API documentation</title>
-<meta name="description" content="from typing_extensions import final
-from core.backend import cloud_mapper_manager
-from ..frontend import executer as frontend_executer
-from .. import …" />
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -28,89 +25,36 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>cdev.commands.cloud_output</code></h1>
 </header>
 <section id="section-intro">
-<p>from typing_extensions import final
-from core.backend import cloud_mapper_manager
-from ..frontend import executer as frontend_executer
-from .. import output as cdev_output
-from ..utils import project, logger
-from rich.markup import escape</p>
-<p>from ..constructs import Cdev_Project</p>
-<p>log = logger.get_cdev_logger(<strong>name</strong>)</p>
-<p>def cloud_output_command(args):
-log.debug(f"Calling <code><a class="" title="cdev" href="../index.html">cdev</a> output</code>")
-project.initialize_project()
-log.debug(f"Initialized project")</p>
-<pre><code>rendered_frontend = frontend_executer.execute_frontend()
-
-PROJECT = Cdev_Project()
-
-desired_outputs = PROJECT.get_outputs()
-
-rendered_outputs = []
-
-for label, output in desired_outputs.items():
-
-    identifier = output.resource.split("::")[-1]
-
-    if output.transformer:
-        rendered_value = cloud_mapper_manager.get_output_value_by_hash(identifier, output.key, transformer=output.get("transformer"))
-    else:
-        rendered_value = cloud_mapper_manager.get_output_value_by_hash(identifier, output.key)
-
-    final_val = escape(rendered_value)
-    rendered_outputs.append(f"[magenta]{escape(label)}[/magenta] -&gt; [green]{final_val}[/green]")
-
-cdev_output.print(f"---OUTPUTS---")
-for rendered_output in rendered_outputs:
-    print(rendered_output)
-</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;from typing_extensions import final
-from core.backend import cloud_mapper_manager
-from ..frontend import executer as frontend_executer
-from .. import output as cdev_output
-from ..utils import project, logger
-from rich.markup import escape
+<pre><code class="python">from cdev.constructs.project import Project
+from cdev.default.output_manager import CdevOutputManager
+from cdev.cli.logger import set_global_logger_from_cli
 
 
-from ..constructs import Cdev_Project
+from core.commands.cloud_output import cloud_output_command as core_cloud_output_command
 
 
-log = logger.get_cdev_logger(__name__)
+def cloud_output_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
 
-def cloud_output_command(args):
-    log.debug(f&#34;Calling `cdev output`&#34;)
-    project.initialize_project()
-    log.debug(f&#34;Initialized project&#34;)
+    cloud_output_command(config.cloud_output_id)
 
 
-    rendered_frontend = frontend_executer.execute_frontend()
+def cloud_output_command(cloud_output_id: str):
+
+    output_manager = CdevOutputManager()
+
+    myProject = Project.instance()
     
-    PROJECT = Cdev_Project()
-    
-    desired_outputs = PROJECT.get_outputs()
+    ws = myProject.get_current_environment().get_workspace()
 
-    rendered_outputs = []
 
-    for label, output in desired_outputs.items(): 
-        
-        identifier = output.resource.split(&#34;::&#34;)[-1]
-
-        if output.transformer:
-            rendered_value = cloud_mapper_manager.get_output_value_by_hash(identifier, output.key, transformer=output.get(&#34;transformer&#34;))
-        else:
-            rendered_value = cloud_mapper_manager.get_output_value_by_hash(identifier, output.key)
-
-        final_val = escape(rendered_value)
-        rendered_outputs.append(f&#34;[magenta]{escape(label)}[/magenta] -&gt; [green]{final_val}[/green]&#34;)
-
-    cdev_output.print(f&#34;---OUTPUTS---&#34;)
-    for rendered_output in rendered_outputs:
-        print(rendered_output)
-&#34;&#34;&#34;</code></pre>
+    core_cloud_output_command(ws, output_manager, cloud_output_id)
+    </code></pre>
 </details>
 </section>
 <section>
@@ -118,6 +62,46 @@ def cloud_output_command(args):
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="cdev.commands.cloud_output.cloud_output_command"><code class="name flex">
+<span>def <span class="ident">cloud_output_command</span></span>(<span>cloud_output_id: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cloud_output_command(cloud_output_id: str):
+
+    output_manager = CdevOutputManager()
+
+    myProject = Project.instance()
+    
+    ws = myProject.get_current_environment().get_workspace()
+
+
+    core_cloud_output_command(ws, output_manager, cloud_output_id)</code></pre>
+</details>
+</dd>
+<dt id="cdev.commands.cloud_output.cloud_output_command_cli"><code class="name flex">
+<span>def <span class="ident">cloud_output_command_cli</span></span>(<span>args)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cloud_output_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
+
+    cloud_output_command(config.cloud_output_id)</code></pre>
+</details>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -131,6 +115,12 @@ def cloud_output_command(args):
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a class="sidebar" title="cdev.commands" href="index.html">cdev.commands</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="cdev.commands.cloud_output.cloud_output_command" href="#cdev.commands.cloud_output.cloud_output_command">cloud_output_command</a></code></li>
+<li><code><a class="sidebar" title="cdev.commands.cloud_output.cloud_output_command_cli" href="#cdev.commands.cloud_output.cloud_output_command_cli">cloud_output_command_cli</a></code></li>
 </ul>
 </li>
 </ul>

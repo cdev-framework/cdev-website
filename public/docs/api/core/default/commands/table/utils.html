@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.commands.table.utils API documentation</title>
-<meta name="description" content="from typing import Dict, List …" />
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,88 +25,80 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.commands.table.utils</code></h1>
 </header>
 <section id="section-intro">
-<p>from typing import Dict, List</p>
-<p>_attribute_types_to_python_type = {"S": [str], "N": [int, float], "B": [bytes]}</p>
-<p>def _validate_data(data: Dict, attributes: Dict, keys: List[Dict]) -&gt; bool:
-for key in keys:
-if not key.get("AttributeName") in data:
-return (False, f"Table key {key.get('AttributeName')} not in data")</p>
-<pre><code>    valid_types = _attribute_types_to_python_type.get(
-        attributes.get(key.get("AttributeName"))
-    )
-
-    is_val_valid_type = False
-    for attribute_type in valid_types:
-        if isinstance(data.get(key.get("AttributeName")), attribute_type):
-            is_val_valid_type = True
-            break
-
-    if not is_val_valid_type:
-        return (
-            False,
-            f"Table key {key.get('AttributeName')} ({valid_types}) not correct type in data ({type(data.get(key.get('AttributeName')))})",
-        )
-
-return (True, "")
-</code></pre>
-<p>def recursive_translate_data(value) -&gt; Dict:
-if isinstance(value, str):
-transformed_val = {"S": value}
-elif isinstance(value, (int, float)):
-transformed_val = {"N": value}
-elif isinstance(value, float):
-transformed_val = {"N": value}
-elif isinstance(value, bytes):
-transformed_val = {"B": value}
-elif isinstance(value, bool):
-transformed_val = {"BOOl": value}
-elif not value:
-transformed_val = {"NULL": True}
-elif isinstance(value, list):
-if all(isinstance(x, str) for x in value):
-transformed_val = {"SS": [x for x in value]}
-elif all(isinstance(x, (int, float)) for x in value):
-transformed_val = {"NS": [x for x in value]}
-elif all(isinstance(x, bytes) for x in value):
-transformed_val = {"BS": [x for x in value]}
-else:
-transformed_val = {"L": [recursive_translate_data(value)]}</p>
-<pre><code>elif isinstance(value, dict):
-    transformed_val = {k: recursive_translate_data(v) for k, v in value.items()}
-
-else:
-    raise Exception
-
-return transformed_val
-</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#39;&#39;&#39;from typing import Dict, List
+<pre><code class="python">from typing import Dict, List
+
+from core.constructs.resource import ResourceModel
+from core.constructs.workspace import Workspace
+
+RUUID = &#34;cdev::simple::table&#34;
+
+def get_cloud_output_from_cdev_name(component_name: str, cdev_name: str) -&gt; str:
+    try:
+        ws = Workspace.instance()
+
+
+        cloud_output = ws.get_backend().get_cloud_output_by_name(
+            ws.get_resource_state_uuid(),
+            component_name,
+            RUUID, 
+            cdev_name
+        )
+
+        return cloud_output
+    except Exception as e:
+        print(f&#34;Could not find resource {component_name}:{RUUID}:{cdev_name}&#34;)
+        print(e)
+        return None
+
+
+
+def get_resource_from_cdev_name(component_name: str, cdev_name: str) -&gt; ResourceModel:
+    try:
+        ws = Workspace.instance()
+
+
+        resource = ws.get_backend().get_resource_by_name(
+            ws.get_resource_state_uuid(),
+            component_name,
+            RUUID, 
+            cdev_name
+        )
+
+        return resource
+    except Exception as e:
+        print(f&#34;Could not find resource {component_name}:{RUUID}:{cdev_name}&#34;)
+        print(e)
+        return None
+
+
+
 
 _attribute_types_to_python_type = {&#34;S&#34;: [str], &#34;N&#34;: [int, float], &#34;B&#34;: [bytes]}
 
 
-def _validate_data(data: Dict, attributes: Dict, keys: List[Dict]) -&gt; bool:
+def validate_data(data: Dict, attributes: Dict, keys: List[Dict]) -&gt; bool:
     for key in keys:
-        if not key.get(&#34;AttributeName&#34;) in data:
-            return (False, f&#34;Table key {key.get(&#39;AttributeName&#39;)} not in data&#34;)
+        if not key.get(&#34;attribute_name&#34;) in data:
+            return (False, f&#34;Table key {key.get(&#39;attribute_name&#39;)} not in data&#34;)
 
         valid_types = _attribute_types_to_python_type.get(
-            attributes.get(key.get(&#34;AttributeName&#34;))
+            attributes.get(key.get(&#34;attribute_name&#34;))
         )
 
         is_val_valid_type = False
         for attribute_type in valid_types:
-            if isinstance(data.get(key.get(&#34;AttributeName&#34;)), attribute_type):
+            if isinstance(data.get(key.get(&#34;attribute_name&#34;)), attribute_type):
                 is_val_valid_type = True
                 break
 
         if not is_val_valid_type:
             return (
                 False,
-                f&#34;Table key {key.get(&#39;AttributeName&#39;)} ({valid_types}) not correct type in data ({type(data.get(key.get(&#39;AttributeName&#39;)))})&#34;,
+                f&#34;Table key {key.get(&#39;attribute_name&#39;)} ({valid_types}) not correct type in data ({type(data.get(key.get(&#39;attribute_name&#39;)))})&#34;,
             )
 
     return (True, &#34;&#34;)
@@ -141,8 +133,7 @@ def recursive_translate_data(value) -&gt; Dict:
     else:
         raise Exception
 
-    return transformed_val
-&#39;&#39;&#39;</code></pre>
+    return transformed_val</code></pre>
 </details>
 </section>
 <section>
@@ -150,6 +141,139 @@ def recursive_translate_data(value) -&gt; Dict:
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="core.default.commands.table.utils.get_cloud_output_from_cdev_name"><code class="name flex">
+<span>def <span class="ident">get_cloud_output_from_cdev_name</span></span>(<span>component_name: str, cdev_name: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_cloud_output_from_cdev_name(component_name: str, cdev_name: str) -&gt; str:
+    try:
+        ws = Workspace.instance()
+
+
+        cloud_output = ws.get_backend().get_cloud_output_by_name(
+            ws.get_resource_state_uuid(),
+            component_name,
+            RUUID, 
+            cdev_name
+        )
+
+        return cloud_output
+    except Exception as e:
+        print(f&#34;Could not find resource {component_name}:{RUUID}:{cdev_name}&#34;)
+        print(e)
+        return None</code></pre>
+</details>
+</dd>
+<dt id="core.default.commands.table.utils.get_resource_from_cdev_name"><code class="name flex">
+<span>def <span class="ident">get_resource_from_cdev_name</span></span>(<span>component_name: str, cdev_name: str) ‑> <a class="" title="core.constructs.resource.ResourceModel" href="../../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_resource_from_cdev_name(component_name: str, cdev_name: str) -&gt; ResourceModel:
+    try:
+        ws = Workspace.instance()
+
+
+        resource = ws.get_backend().get_resource_by_name(
+            ws.get_resource_state_uuid(),
+            component_name,
+            RUUID, 
+            cdev_name
+        )
+
+        return resource
+    except Exception as e:
+        print(f&#34;Could not find resource {component_name}:{RUUID}:{cdev_name}&#34;)
+        print(e)
+        return None</code></pre>
+</details>
+</dd>
+<dt id="core.default.commands.table.utils.recursive_translate_data"><code class="name flex">
+<span>def <span class="ident">recursive_translate_data</span></span>(<span>value) ‑> Dict[~KT, ~VT]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recursive_translate_data(value) -&gt; Dict:
+    if isinstance(value, str):
+        transformed_val = {&#34;S&#34;: value}
+    elif isinstance(value, (int, float)):
+        transformed_val = {&#34;N&#34;: value}
+    elif isinstance(value, float):
+        transformed_val = {&#34;N&#34;: value}
+    elif isinstance(value, bytes):
+        transformed_val = {&#34;B&#34;: value}
+    elif isinstance(value, bool):
+        transformed_val = {&#34;BOOl&#34;: value}
+    elif not value:
+        transformed_val = {&#34;NULL&#34;: True}
+    elif isinstance(value, list):
+        if all(isinstance(x, str) for x in value):
+            transformed_val = {&#34;SS&#34;: [x for x in value]}
+        elif all(isinstance(x, (int, float)) for x in value):
+            transformed_val = {&#34;NS&#34;: [x for x in value]}
+        elif all(isinstance(x, bytes) for x in value):
+            transformed_val = {&#34;BS&#34;: [x for x in value]}
+        else:
+            transformed_val = {&#34;L&#34;: [recursive_translate_data(value)]}
+
+    elif isinstance(value, dict):
+        transformed_val = {k: recursive_translate_data(v) for k, v in value.items()}
+
+    else:
+        raise Exception
+
+    return transformed_val</code></pre>
+</details>
+</dd>
+<dt id="core.default.commands.table.utils.validate_data"><code class="name flex">
+<span>def <span class="ident">validate_data</span></span>(<span>data: Dict[~KT, ~VT], attributes: Dict[~KT, ~VT], keys: List[Dict[~KT, ~VT]]) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_data(data: Dict, attributes: Dict, keys: List[Dict]) -&gt; bool:
+    for key in keys:
+        if not key.get(&#34;attribute_name&#34;) in data:
+            return (False, f&#34;Table key {key.get(&#39;attribute_name&#39;)} not in data&#34;)
+
+        valid_types = _attribute_types_to_python_type.get(
+            attributes.get(key.get(&#34;attribute_name&#34;))
+        )
+
+        is_val_valid_type = False
+        for attribute_type in valid_types:
+            if isinstance(data.get(key.get(&#34;attribute_name&#34;)), attribute_type):
+                is_val_valid_type = True
+                break
+
+        if not is_val_valid_type:
+            return (
+                False,
+                f&#34;Table key {key.get(&#39;attribute_name&#39;)} ({valid_types}) not correct type in data ({type(data.get(key.get(&#39;attribute_name&#39;)))})&#34;,
+            )
+
+    return (True, &#34;&#34;)</code></pre>
+</details>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -163,6 +287,14 @@ def recursive_translate_data(value) -&gt; Dict:
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a class="sidebar" title="core.default.commands.table" href="index.html">core.default.commands.table</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
+<ul >
+<li><code><a class="sidebar" title="core.default.commands.table.utils.get_cloud_output_from_cdev_name" href="#core.default.commands.table.utils.get_cloud_output_from_cdev_name">get_cloud_output_from_cdev_name</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.table.utils.get_resource_from_cdev_name" href="#core.default.commands.table.utils.get_resource_from_cdev_name">get_resource_from_cdev_name</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.table.utils.recursive_translate_data" href="#core.default.commands.table.utils.recursive_translate_data">recursive_translate_data</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.table.utils.validate_data" href="#core.default.commands.table.utils.validate_data">validate_data</a></code></li>
 </ul>
 </li>
 </ul>

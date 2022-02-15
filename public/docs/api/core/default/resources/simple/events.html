@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.events API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for creating triggerable events" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,11 +25,16 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.events</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for creating triggerable events</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from typing import Optional, Union
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for creating triggerable events
+
+&#34;&#34;&#34;
+
+from typing import Optional, Union
 
 from core.constructs.models import frozendict, ImmutableModel
 from core.default.resources.simple.iam import permission_arn_model, permission_model
@@ -38,13 +43,6 @@ from core.default.resources.simple.iam import permission_arn_model, permission_m
 ##### Events
 ################
 class event_model(ImmutableModel):
-    &#34;&#34;&#34;
-    Arguments:
-        original_resource_name (str): [description]
-        original_resource_type (str): [description]
-        hash (str): [description]
-        granting_permission (Optional[Union[permission_model, permission_arn_model]]): [description]
-    &#34;&#34;&#34;
     originating_resource_name: str
 
     originating_resource_type: str
@@ -52,6 +50,7 @@ class event_model(ImmutableModel):
     hash: str
 
     granting_permission: Optional[Union[permission_model, permission_arn_model]]
+
 
 
 class Event():
@@ -94,6 +93,7 @@ class Event():
 <li><a class="" title="core.default.resources.simple.object_store.BucketEvent" href="object_store.html#core.default.resources.simple.object_store.BucketEvent">BucketEvent</a></li>
 <li><a class="" title="core.default.resources.simple.queue.QueueEvent" href="queue.html#core.default.resources.simple.queue.QueueEvent">QueueEvent</a></li>
 <li><a class="" title="core.default.resources.simple.table.StreamEvent" href="table.html#core.default.resources.simple.table.StreamEvent">StreamEvent</a></li>
+<li><a class="" title="core.default.resources.simple.topic.TopicEvent" href="topic.html#core.default.resources.simple.topic.TopicEvent">TopicEvent</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
@@ -130,25 +130,13 @@ class Event():
 <span>(</span><span>**data: Any)</span>
 </code></dt>
 <dd>
-<div class="desc"><h2 id="arguments">Arguments</h2>
-<p>original_resource_name (str): [description]
-original_resource_type (str): [description]
-hash (str): [description]
-granting_permission (Optional[Union[permission_model, permission_arn_model]]): [description]</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<div class="desc"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class event_model(ImmutableModel):
-    &#34;&#34;&#34;
-    Arguments:
-        original_resource_name (str): [description]
-        original_resource_type (str): [description]
-        hash (str): [description]
-        granting_permission (Optional[Union[permission_model, permission_arn_model]]): [description]
-    &#34;&#34;&#34;
     originating_resource_name: str
 
     originating_resource_type: str
@@ -169,6 +157,7 @@ granting_permission (Optional[Union[permission_model, permission_arn_model]]): [
 <li><a class="" title="core.default.resources.simple.object_store.bucket_event_model" href="object_store.html#core.default.resources.simple.object_store.bucket_event_model">bucket_event_model</a></li>
 <li><a class="" title="core.default.resources.simple.queue.queue_event_model" href="queue.html#core.default.resources.simple.queue.queue_event_model">queue_event_model</a></li>
 <li><a class="" title="core.default.resources.simple.table.stream_event_model" href="table.html#core.default.resources.simple.table.stream_event_model">stream_event_model</a></li>
+<li><a class="" title="core.default.resources.simple.topic.topic_event_model" href="topic.html#core.default.resources.simple.topic.topic_event_model">topic_event_model</a></li>
 </ul>
 <h3>Class variables</h3>
 <dl>

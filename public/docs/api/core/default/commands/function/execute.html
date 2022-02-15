@@ -30,8 +30,10 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">from argparse import ArgumentParser
-
+import json
+import os
 from typing import List, Dict
+
 from boto3 import client
 
 from core.constructs.commands import BaseCommand, OutputWrapper
@@ -53,21 +55,55 @@ class execute(BaseCommand):
 
     def add_arguments(self, parser: ArgumentParser):
         parser.add_argument(
-            &#34;function_name&#34;, type=str, help=&#34;The function that you want to watch. Name must include component name. ex: comp1.demo_function&#34;
+            &#34;function_id&#34;, 
+            type=str, 
+            help=&#34;The id of the function to execute.&#34;
         )
         parser.add_argument(
             &#34;--event&#34;,
-            action=&#34;store_true&#34;,
-            help=&#34;watch the logs. If this flag is passed, only --start_time flag is read&#34;,
+            type=str,
+            help=&#34;File (json) location of event object to provide as input to the function. Can not be used with &#39;--event-data` flag.&#34;,
         )
         parser.add_argument(
-            &#34;--context&#34;, action=&#34;store_true&#34;, help=&#34;show the tail of the logs&#34;
+            &#34;--event-data&#34;,
+            type=str,
+            help=&#34;Raw string form of event object to provide as input to the function. Can not be used with &#39;--event&#39; flag.&#34;,
         )
+        
        
 
     def command(self, *args, **kwargs):
 
-        full_function_name: str = kwargs.get(&#34;function_name&#34;)
+        full_function_name: str = kwargs.get(&#34;function_id&#34;)
+
+        event_file_location: str = kwargs.get(&#34;event&#34;)
+        event_raw_data: str = kwargs.get(&#34;event_data&#34;)
+
+        if event_file_location and event_raw_data:
+            raise Exception(&#34;Can not provide both &#39;--event-data&#39; and &#39;--event&#39;&#34;)
+
+        event_data = {}
+
+        if event_file_location:
+            if not os.path.isfile(event_file_location):
+                raise Exception(f&#34;{event_file_location} is not a valid file location&#34;)
+
+            with open(event_file_location) as fh:
+                try:
+                    event_data = json.load(fh)
+                except Exception as e:
+                    print(e)
+                    raise Exception(f&#39;Could not load {event_file_location} as json&#39;)
+
+                
+        if event_raw_data:
+            try:
+                event_data = json.loads(event_raw_data)
+            except Exception as e:
+                print(e)
+                raise Exception(f&#39;Could not load {event_raw_data} as json&#39;)
+
+
         component_name = full_function_name.split(&#39;.&#39;)[0]
         function_name = full_function_name.split(&#39;.&#39;)[1]
 
@@ -79,6 +115,7 @@ class execute(BaseCommand):
         response = lambda_client.invoke(
             FunctionName=cloud_name,
             InvocationType=&#39;RequestResponse&#39;,
+            Payload=json.dumps(event_data)
         )
 
 
@@ -112,21 +149,55 @@ class execute(BaseCommand):
 
     def add_arguments(self, parser: ArgumentParser):
         parser.add_argument(
-            &#34;function_name&#34;, type=str, help=&#34;The function that you want to watch. Name must include component name. ex: comp1.demo_function&#34;
+            &#34;function_id&#34;, 
+            type=str, 
+            help=&#34;The id of the function to execute.&#34;
         )
         parser.add_argument(
             &#34;--event&#34;,
-            action=&#34;store_true&#34;,
-            help=&#34;watch the logs. If this flag is passed, only --start_time flag is read&#34;,
+            type=str,
+            help=&#34;File (json) location of event object to provide as input to the function. Can not be used with &#39;--event-data` flag.&#34;,
         )
         parser.add_argument(
-            &#34;--context&#34;, action=&#34;store_true&#34;, help=&#34;show the tail of the logs&#34;
+            &#34;--event-data&#34;,
+            type=str,
+            help=&#34;Raw string form of event object to provide as input to the function. Can not be used with &#39;--event&#39; flag.&#34;,
         )
+        
        
 
     def command(self, *args, **kwargs):
 
-        full_function_name: str = kwargs.get(&#34;function_name&#34;)
+        full_function_name: str = kwargs.get(&#34;function_id&#34;)
+
+        event_file_location: str = kwargs.get(&#34;event&#34;)
+        event_raw_data: str = kwargs.get(&#34;event_data&#34;)
+
+        if event_file_location and event_raw_data:
+            raise Exception(&#34;Can not provide both &#39;--event-data&#39; and &#39;--event&#39;&#34;)
+
+        event_data = {}
+
+        if event_file_location:
+            if not os.path.isfile(event_file_location):
+                raise Exception(f&#34;{event_file_location} is not a valid file location&#34;)
+
+            with open(event_file_location) as fh:
+                try:
+                    event_data = json.load(fh)
+                except Exception as e:
+                    print(e)
+                    raise Exception(f&#39;Could not load {event_file_location} as json&#39;)
+
+                
+        if event_raw_data:
+            try:
+                event_data = json.loads(event_raw_data)
+            except Exception as e:
+                print(e)
+                raise Exception(f&#39;Could not load {event_raw_data} as json&#39;)
+
+
         component_name = full_function_name.split(&#39;.&#39;)[0]
         function_name = full_function_name.split(&#39;.&#39;)[1]
 
@@ -138,6 +209,7 @@ class execute(BaseCommand):
         response = lambda_client.invoke(
             FunctionName=cloud_name,
             InvocationType=&#39;RequestResponse&#39;,
+            Payload=json.dumps(event_data)
         )
 
 

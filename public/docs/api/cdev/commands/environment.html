@@ -31,26 +31,28 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 </summary>
 <pre><code class="python">from typing import List, Tuple
 
-from ..constructs.project import Project
+from cdev.constructs.project import Project
+from cdev.cli.logger import set_global_logger_from_cli
 
 
 def environment_cli(args):
     command = args[0]
     parsed_args = vars(args[1])
+    
+    set_global_logger_from_cli(parsed_args.get(&#34;loglevel&#34;))
+
 
     if command == &#34;&#34;:
         print(
             &#34;You must provide a sub-command. run `cdev environment --help` for more information on available subcommands&#34;
         )
     elif command == &#34;ls&#34;:
-        print(list_environments())
+        list_environments()
     elif command == &#34;get&#34;:
         pass
     elif command == &#34;set&#34;:
         set_current_environment(parsed_args.get(&#34;env&#34;))
     elif command == &#34;create&#34;:
-
-        print(parsed_args)
         create_environment(parsed_args.get(&#34;env&#34;))
 
 
@@ -62,24 +64,35 @@ def list_environments() -&gt; Tuple[List[str], str]:
 
     myProject = Project.instance()
 
-    return (
-        myProject.get_all_environment_names(),
-        myProject.get_current_environment_name(),
-    )
+    current_environment_name = myProject.get_current_environment_name()
+    all_environment_names = myProject.get_all_environment_names()
+
+    for environment_name in all_environment_names:
+        if current_environment_name == environment_name:
+            print(f&#34;&gt; {environment_name}&#34;)
+
+        else:
+            print(environment_name)
 
 
 def set_current_environment(new_current_environment: str):
-    print(new_current_environment)
     myProject = Project.instance()
 
-    myProject.set_current_environment(new_current_environment)
+    try:
+        myProject.set_current_environment(new_current_environment)
+    except Exception as e:
+        print(f&#39;Could not set {new_current_environment} as the environment&#39;)
+        return
+
+    print(f&#34;Set Current Environment -&gt; {new_current_environment}&#34;)
 
 
 def create_environment(new_environment_name: str):
-    print(new_environment_name)
     myProject = Project.instance()
 
-    myProject.create_environment(new_environment_name)</code></pre>
+    myProject.create_environment(new_environment_name)
+
+    print(f&#34;Created Environment -&gt; {new_environment_name}&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -99,10 +112,11 @@ def create_environment(new_environment_name: str):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create_environment(new_environment_name: str):
-    print(new_environment_name)
     myProject = Project.instance()
 
-    myProject.create_environment(new_environment_name)</code></pre>
+    myProject.create_environment(new_environment_name)
+
+    print(f&#34;Created Environment -&gt; {new_environment_name}&#34;)</code></pre>
 </details>
 </dd>
 <dt id="cdev.commands.environment.environment_cli"><code class="name flex">
@@ -117,20 +131,21 @@ def create_environment(new_environment_name: str):
 <pre><code class="python">def environment_cli(args):
     command = args[0]
     parsed_args = vars(args[1])
+    
+    set_global_logger_from_cli(parsed_args.get(&#34;loglevel&#34;))
+
 
     if command == &#34;&#34;:
         print(
             &#34;You must provide a sub-command. run `cdev environment --help` for more information on available subcommands&#34;
         )
     elif command == &#34;ls&#34;:
-        print(list_environments())
+        list_environments()
     elif command == &#34;get&#34;:
         pass
     elif command == &#34;set&#34;:
         set_current_environment(parsed_args.get(&#34;env&#34;))
     elif command == &#34;create&#34;:
-
-        print(parsed_args)
         create_environment(parsed_args.get(&#34;env&#34;))</code></pre>
 </details>
 </dd>
@@ -152,10 +167,15 @@ Must be called when the Project is in the UNINITIALIZED phase.</p></div>
 
     myProject = Project.instance()
 
-    return (
-        myProject.get_all_environment_names(),
-        myProject.get_current_environment_name(),
-    )</code></pre>
+    current_environment_name = myProject.get_current_environment_name()
+    all_environment_names = myProject.get_all_environment_names()
+
+    for environment_name in all_environment_names:
+        if current_environment_name == environment_name:
+            print(f&#34;&gt; {environment_name}&#34;)
+
+        else:
+            print(environment_name)</code></pre>
 </details>
 </dd>
 <dt id="cdev.commands.environment.set_current_environment"><code class="name flex">
@@ -168,10 +188,15 @@ Must be called when the Project is in the UNINITIALIZED phase.</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def set_current_environment(new_current_environment: str):
-    print(new_current_environment)
     myProject = Project.instance()
 
-    myProject.set_current_environment(new_current_environment)</code></pre>
+    try:
+        myProject.set_current_environment(new_current_environment)
+    except Exception as e:
+        print(f&#39;Could not set {new_current_environment} as the environment&#39;)
+        return
+
+    print(f&#34;Set Current Environment -&gt; {new_current_environment}&#34;)</code></pre>
 </details>
 </dd>
 </dl>

@@ -66,7 +66,13 @@ def execute_deployment(workspace: Workspace, output: OutputManager):
 
     workspace.set_state(Workspace_State.EXECUTING_BACKEND)
 
-    workspace.deploy_differences(differences_structured)</code></pre>
+    workspace.deploy_differences(differences_structured)
+
+
+    
+
+    for tag, cloud_output in workspace.render_outputs():
+        output._console.print(f&#34;[blue]{tag}[/blue] -&gt; {cloud_output}&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -101,7 +107,13 @@ def execute_deployment(workspace: Workspace, output: OutputManager):
 
     workspace.set_state(Workspace_State.EXECUTING_BACKEND)
 
-    workspace.deploy_differences(differences_structured)</code></pre>
+    workspace.deploy_differences(differences_structured)
+
+
+    
+
+    for tag, cloud_output in workspace.render_outputs():
+        output._console.print(f&#34;[blue]{tag}[/blue] -&gt; {cloud_output}&#34;)</code></pre>
 </details>
 </dd>
 <dt id="core.commands.deploy_differences.execute_deployment_cli"><code class="name flex">

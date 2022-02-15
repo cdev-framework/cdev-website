@@ -33,14 +33,17 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <pre><code class="python">&#34;&#34;&#34;Structures for representing cloud resources and references within the framework
 
 &#34;&#34;&#34;
+from functools import wraps
 from typing import Dict, TypeVar, Union, List, Optional, Set, Callable, Any
 
 from enum import Enum
 
 from core.constructs.models import ImmutableModel
 from core.constructs.cloud_output import OutputType, Cloud_Output_Str
+from core.constructs.types import F
 
 from ..utils.hasher import hash_list
+
     
 ##################
 ##### Resource
@@ -121,8 +124,6 @@ class Resource_Difference(ImmutableModel):
         # Beta Feature but should be fine since this is simple data 
         frozen = True
 
-# Helper type to denoted any callable
-F = TypeVar(&#34;F&#34;, bound=Callable[..., Any])
 
 def update_hash(func: F) -&gt; F:
     &#34;&#34;&#34;Wrap a function that modifies the state of a Resource so that the hash is properly updated when a change occurs.
@@ -133,6 +134,7 @@ def update_hash(func: F) -&gt; F:
     Returns:
         F: Wrapped function to compute new hash after changes have been made
     &#34;&#34;&#34;
+    @wraps(func)
     def wrapped_func(resource: &#34;Resource&#34;, *func_posargs, **func_kwargs):
         rv = func(resource, *func_posargs, **func_kwargs)
         resource.compute_hash()
@@ -213,6 +215,19 @@ class ResourceOutputs():
 
     @cloud_id.setter
     def cloud_id(self, value: Any):
+        raise Exception
+
+    @property
+    def cloud_region(self) -&gt; &#39;Cloud_Output_Str&#39;:
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=self._ruuid,
+            key=&#39;cloud_region&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @cloud_region.setter
+    def cloud_region(self, value: Any):
         raise Exception
 
 ##################
@@ -404,6 +419,7 @@ class PermissionsGrantableMixin:
     Returns:
         F: Wrapped function to compute new hash after changes have been made
     &#34;&#34;&#34;
+    @wraps(func)
     def wrapped_func(resource: &#34;Resource&#34;, *func_posargs, **func_kwargs):
         rv = func(resource, *func_posargs, **func_kwargs)
         resource.compute_hash()
@@ -758,7 +774,6 @@ only if a change in the state is desired.</dd>
 <li><a class="" title="core.default.resources.simple.table.simple_table_model" href="../default/resources/simple/table.html#core.default.resources.simple.table.simple_table_model">simple_table_model</a></li>
 <li><a class="" title="core.default.resources.simple.topic.simple_topic_model" href="../default/resources/simple/topic.html#core.default.resources.simple.topic.simple_topic_model">simple_topic_model</a></li>
 <li><a class="" title="core.default.resources.simple.xlambda.dependency_layer_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.dependency_layer_model">dependency_layer_model</a></li>
-<li><a class="" title="core.default.resources.simple.xlambda.deployed_layer_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.deployed_layer_model">deployed_layer_model</a></li>
 <li><a class="" title="core.default.resources.simple.xlambda.simple_function_model" href="../default/resources/simple/xlambda.html#core.default.resources.simple.xlambda.simple_function_model">simple_function_model</a></li>
 </ul>
 <h3>Class variables</h3>
@@ -815,6 +830,19 @@ instead of update.</p></div>
 
     @cloud_id.setter
     def cloud_id(self, value: Any):
+        raise Exception
+
+    @property
+    def cloud_region(self) -&gt; &#39;Cloud_Output_Str&#39;:
+        return Cloud_Output_Str(
+            name=self._name,
+            ruuid=self._ruuid,
+            key=&#39;cloud_region&#39;,
+            type=self.OUTPUT_TYPE
+        )
+
+    @cloud_region.setter
+    def cloud_region(self, value: Any):
         raise Exception</code></pre>
 </details>
 <h3>Subclasses</h3>
@@ -851,6 +879,23 @@ def cloud_id(self) -&gt; &#39;Cloud_Output_Str&#39;:
         name=self._name,
         ruuid=self._ruuid,
         key=&#39;cloud_id&#39;,
+        type=self.OUTPUT_TYPE
+    )</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.resource.ResourceOutputs.cloud_region"><code class="name">var <span class="ident">cloud_region</span> : <a class="" title="core.constructs.cloud_output.Cloud_Output_Str" href="cloud_output.html#core.constructs.cloud_output.Cloud_Output_Str">Cloud_Output_Str</a></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def cloud_region(self) -&gt; &#39;Cloud_Output_Str&#39;:
+    return Cloud_Output_Str(
+        name=self._name,
+        ruuid=self._ruuid,
+        key=&#39;cloud_region&#39;,
         type=self.OUTPUT_TYPE
     )</code></pre>
 </details>
@@ -1311,6 +1356,7 @@ instead of update.</p></div>
 <ul >
 <li><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs.OUTPUT_TYPE" href="#core.constructs.resource.ResourceOutputs.OUTPUT_TYPE">OUTPUT_TYPE</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs.cloud_id" href="#core.constructs.resource.ResourceOutputs.cloud_id">cloud_id</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.resource.ResourceOutputs.cloud_region" href="#core.constructs.resource.ResourceOutputs.cloud_region">cloud_region</a></code></li>
 </ul>
 </li>
 <li>

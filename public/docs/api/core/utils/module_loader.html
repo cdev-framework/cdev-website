@@ -42,7 +42,7 @@ from typing import TextIO
 import inspect
 
 
-def import_module(module_name: str, denote_output: bool = False) -&gt; ModuleType:
+def import_module(module_name: str, denote_output: bool = False, override_stdout: bool = True) -&gt; ModuleType:
     &#34;&#34;&#34;Helper function for dynamically loading python modules.
     
     This function should be used whenever a python module needs to be dynamically loaded within the framework. 
@@ -62,16 +62,17 @@ def import_module(module_name: str, denote_output: bool = False) -&gt; ModuleTyp
 
     # Sometimes the module is already loaded so just reload it to capture any changes
     # Importing the initialization file should cause it to modify the state of the Workspace however is needed
-    sys.stdout = override_sys_out
 
-    
+    if override_stdout:
+        sys.stdout = override_sys_out
 
     if sys.modules.get(module_name):
         rv = importlib.reload(sys.modules.get(module_name))
     else:
         rv = importlib.import_module(module_name)
 
-    sys.stdout = sys.__stdout__
+    if override_stdout:
+        sys.stdout = sys.__stdout__
 
     if denote_output:
         print(f&#34;---------------------------------------------------&#34;)
@@ -107,6 +108,9 @@ def import_class(module_name: str, class_name: str) -&gt; type:
     raise Exception
 
 class override_sys_out(TextIO):
+   
+    encoding = sys.__stdout__.encoding 
+
     def write(s: str):
         if len(s) &gt; 0 and not s == &#34;\n&#34;:
             sys.__stdout__.write(f&#34;&gt; {s}\n&#34;)</code></pre>
@@ -171,7 +175,7 @@ for a class with a matching name. Return the <code>class</code> if found.</p>
 </details>
 </dd>
 <dt id="core.utils.module_loader.import_module"><code class="name flex">
-<span>def <span class="ident">import_module</span></span>(<span>module_name: str, denote_output: bool = False) ‑> module</span>
+<span>def <span class="ident">import_module</span></span>(<span>module_name: str, denote_output: bool = False, override_stdout: bool = True) ‑> module</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Helper function for dynamically loading python modules.</p>
@@ -186,7 +190,7 @@ to the PYTHONPATH needed to find the module should be done before this function 
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def import_module(module_name: str, denote_output: bool = False) -&gt; ModuleType:
+<pre><code class="python">def import_module(module_name: str, denote_output: bool = False, override_stdout: bool = True) -&gt; ModuleType:
     &#34;&#34;&#34;Helper function for dynamically loading python modules.
     
     This function should be used whenever a python module needs to be dynamically loaded within the framework. 
@@ -206,16 +210,17 @@ to the PYTHONPATH needed to find the module should be done before this function 
 
     # Sometimes the module is already loaded so just reload it to capture any changes
     # Importing the initialization file should cause it to modify the state of the Workspace however is needed
-    sys.stdout = override_sys_out
 
-    
+    if override_stdout:
+        sys.stdout = override_sys_out
 
     if sys.modules.get(module_name):
         rv = importlib.reload(sys.modules.get(module_name))
     else:
         rv = importlib.import_module(module_name)
 
-    sys.stdout = sys.__stdout__
+    if override_stdout:
+        sys.stdout = sys.__stdout__
 
     if denote_output:
         print(f&#34;---------------------------------------------------&#34;)
@@ -239,6 +244,9 @@ to the PYTHONPATH needed to find the module should be done before this function 
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class override_sys_out(TextIO):
+   
+    encoding = sys.__stdout__.encoding 
+
     def write(s: str):
         if len(s) &gt; 0 and not s == &#34;\n&#34;:
             sys.__stdout__.write(f&#34;&gt; {s}\n&#34;)</code></pre>
@@ -249,6 +257,13 @@ to the PYTHONPATH needed to find the module should be done before this function 
 <li>typing.IO</li>
 <li>typing.Generic</li>
 </ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.utils.module_loader.override_sys_out.encoding"><code class="name">var <span class="ident">encoding</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
 <dt id="core.utils.module_loader.override_sys_out.write"><code class="name flex">
@@ -292,6 +307,7 @@ to the PYTHONPATH needed to find the module should be done before this function 
 <li>
 <h4><code><a class="sidebar" title="core.utils.module_loader.override_sys_out" href="#core.utils.module_loader.override_sys_out">override_sys_out</a></code></h4>
 <ul >
+<li><code><a class="sidebar" title="core.utils.module_loader.override_sys_out.encoding" href="#core.utils.module_loader.override_sys_out.encoding">encoding</a></code></li>
 <li><code><a class="sidebar" title="core.utils.module_loader.override_sys_out.write" href="#core.utils.module_loader.override_sys_out.write">write</a></code></li>
 </ul>
 </li>

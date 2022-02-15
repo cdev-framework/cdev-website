@@ -55,12 +55,13 @@ from core.constructs.backend import Backend
 from core.constructs.mapper import CloudMapper
 from core.constructs.components import Component, Component_Change_Type, Component_Difference, ComponentModel
 from core.constructs.commands import BaseCommand, BaseCommandContainer
-from core.constructs.cloud_output import evaluate_dynamic_output, cloud_output_dynamic_model
+from core.constructs.cloud_output import Cloud_Output, evaluate_dynamic_output, cloud_output_dynamic_model
 from core.constructs.settings import Settings_Info, Settings, initialize_settings
 
 
-from ..utils.command_finder import find_specified_command, find_unspecified_command
-from ..utils import module_loader, topological_helper
+from core.utils.command_finder import find_specified_command
+from core.utils import module_loader, topological_helper
+from core.utils.logger import log
 
 from core.constructs.types import F
 
@@ -292,8 +293,7 @@ class Workspace:
         raise NotImplementedError
 
     def get_commands(self) -&gt; List[str]:
-        &#34;&#34;&#34;
-        Get the Command Locations for this Workspace.
+        &#34;&#34;&#34;Get the Command Locations for this Workspace.
 
         Note that this function should only be called during the `Workspace Initialized` part of the Cdev lifecycle.
 
@@ -302,9 +302,33 @@ class Workspace:
         &#34;&#34;&#34;
         raise NotImplementedError
 
-    #################
+    #######################
+    ##### Display Output
+    #######################
+
+    def display_output(self, tag: str, output: Cloud_Output):
+        &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+        Args:
+            tag: A key value to display with the output
+            output: The Cloud Output to render
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+        &#34;&#34;&#34;Render the output associated with the Workspace
+
+        Returns:
+            List[Tuple[str, Any]]: The List of outputs with their associated tag
+        
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    #######################
     ##### Components
-    #################
+    #######################
     def add_component(self, component: Component):
         &#34;&#34;&#34;
         Add a Component to the Workspace. Components are used to determine the desired state of the Workspace. They should represent
@@ -486,7 +510,14 @@ class Workspace:
 
             if isinstance(change, Resource_Difference):
                 # Step 1 is to register a transaction with the backend
-                transaction_token, namespace_token = self.get_backend().create_resource_change_transaction(self.get_resource_state_uuid(), change.component_name, change)
+
+                try:
+                    transaction_token, namespace_token = self.get_backend().create_resource_change_transaction(self.get_resource_state_uuid(), change.component_name, change)
+                except Exception as e:
+                    print(e)
+                    print(f&#34;Error Creating Transaction: {change}&#34;)
+                    raise e
+                
 
                 ruuid = change.new_resource.ruuid if change.new_resource else change.previous_resource.ruuid
 
@@ -519,6 +550,7 @@ class Workspace:
                     raise e
 
                 try:
+                    log.debug(&#34;evaluated information %s&#34;, _evaluated_change)
                     output_task.update(advance=5, comment=&#34;Deploying on Cloud :cloud:&#34;)
                     mapper = self.get_mapper_namespace().get(ruuid)
                     cloud_output = mapper.deploy_resource(transaction_token, namespace_token, _evaluated_change, previous_output, output_task)
@@ -531,6 +563,10 @@ class Workspace:
                     raise e
 
                 try:
+                    if change.action_type == Resource_Change_Type.CREATE:
+                        cloud_output[&#39;cloud_region&#39;] = Workspace.instance().settings.AWS_REGION
+
+
                     self.get_backend().complete_resource_change(
                         self.get_resource_state_uuid(),
                         change.component_name,
@@ -711,15 +747,10 @@ class Workspace:
         # Create list of all directories to start searching in
         all_search_locations_list = self.get_commands()
 
-        if len(command_list) == 1:
-            obj, program_name, command_name, is_command = find_unspecified_command(
-                command_list[0], all_search_locations_list
-            )
 
-        else:
-            obj, program_name, command_name, is_command = find_specified_command(
-                command_list, all_search_locations_list
-            )
+        obj, program_name, command_name, is_command = find_specified_command(
+            command_list, all_search_locations_list
+        )
 
         if is_command:
             if not isinstance(obj, BaseCommand):
@@ -1134,8 +1165,7 @@ the object should remain a read only object to prevent components from changing 
         raise NotImplementedError
 
     def get_commands(self) -&gt; List[str]:
-        &#34;&#34;&#34;
-        Get the Command Locations for this Workspace.
+        &#34;&#34;&#34;Get the Command Locations for this Workspace.
 
         Note that this function should only be called during the `Workspace Initialized` part of the Cdev lifecycle.
 
@@ -1144,9 +1174,33 @@ the object should remain a read only object to prevent components from changing 
         &#34;&#34;&#34;
         raise NotImplementedError
 
-    #################
+    #######################
+    ##### Display Output
+    #######################
+
+    def display_output(self, tag: str, output: Cloud_Output):
+        &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+        Args:
+            tag: A key value to display with the output
+            output: The Cloud Output to render
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+        &#34;&#34;&#34;Render the output associated with the Workspace
+
+        Returns:
+            List[Tuple[str, Any]]: The List of outputs with their associated tag
+        
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    #######################
     ##### Components
-    #################
+    #######################
     def add_component(self, component: Component):
         &#34;&#34;&#34;
         Add a Component to the Workspace. Components are used to determine the desired state of the Workspace. They should represent
@@ -1328,7 +1382,14 @@ the object should remain a read only object to prevent components from changing 
 
             if isinstance(change, Resource_Difference):
                 # Step 1 is to register a transaction with the backend
-                transaction_token, namespace_token = self.get_backend().create_resource_change_transaction(self.get_resource_state_uuid(), change.component_name, change)
+
+                try:
+                    transaction_token, namespace_token = self.get_backend().create_resource_change_transaction(self.get_resource_state_uuid(), change.component_name, change)
+                except Exception as e:
+                    print(e)
+                    print(f&#34;Error Creating Transaction: {change}&#34;)
+                    raise e
+                
 
                 ruuid = change.new_resource.ruuid if change.new_resource else change.previous_resource.ruuid
 
@@ -1361,6 +1422,7 @@ the object should remain a read only object to prevent components from changing 
                     raise e
 
                 try:
+                    log.debug(&#34;evaluated information %s&#34;, _evaluated_change)
                     output_task.update(advance=5, comment=&#34;Deploying on Cloud :cloud:&#34;)
                     mapper = self.get_mapper_namespace().get(ruuid)
                     cloud_output = mapper.deploy_resource(transaction_token, namespace_token, _evaluated_change, previous_output, output_task)
@@ -1373,6 +1435,10 @@ the object should remain a read only object to prevent components from changing 
                     raise e
 
                 try:
+                    if change.action_type == Resource_Change_Type.CREATE:
+                        cloud_output[&#39;cloud_region&#39;] = Workspace.instance().settings.AWS_REGION
+
+
                     self.get_backend().complete_resource_change(
                         self.get_resource_state_uuid(),
                         change.component_name,
@@ -1553,15 +1619,10 @@ the object should remain a read only object to prevent components from changing 
         # Create list of all directories to start searching in
         all_search_locations_list = self.get_commands()
 
-        if len(command_list) == 1:
-            obj, program_name, command_name, is_command = find_unspecified_command(
-                command_list[0], all_search_locations_list
-            )
 
-        else:
-            obj, program_name, command_name, is_command = find_specified_command(
-                command_list, all_search_locations_list
-            )
+        obj, program_name, command_name, is_command = find_specified_command(
+            command_list, all_search_locations_list
+        )
 
         if is_command:
             if not isinstance(obj, BaseCommand):
@@ -1880,6 +1941,32 @@ give when determining which CloudMapper to use.</p>
     raise NotImplementedError</code></pre>
 </details>
 </dd>
+<dt id="core.constructs.workspace.Workspace.display_output"><code class="name flex">
+<span>def <span class="ident">display_output</span></span>(<span>self, tag: str, output: <a class="" title="core.constructs.cloud_output.Cloud_Output" href="cloud_output.html#core.constructs.cloud_output.Cloud_Output">Cloud_Output</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Display the output from a Resource or Reference after a process has completed</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>tag</code></strong></dt>
+<dd>A key value to display with the output</dd>
+<dt><strong><code>output</code></strong></dt>
+<dd>The Cloud Output to render</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_output(self, tag: str, output: Cloud_Output):
+    &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+    Args:
+        tag: A key value to display with the output
+        output: The Cloud Output to render
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
 <dt id="core.constructs.workspace.Workspace.evaluate_and_replace_cloud_output"><code class="name flex">
 <span>def <span class="ident">evaluate_and_replace_cloud_output</span></span>(<span>workspace: <a class="" title="core.constructs.workspace.Workspace" href="#core.constructs.workspace.Workspace">Workspace</a>, *func_posargs, **func_kwargs)</span>
 </code></dt>
@@ -2005,8 +2092,7 @@ give when determining which CloudMapper to use.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def get_commands(self) -&gt; List[str]:
-    &#34;&#34;&#34;
-    Get the Command Locations for this Workspace.
+    &#34;&#34;&#34;Get the Command Locations for this Workspace.
 
     Note that this function should only be called during the `Workspace Initialized` part of the Cdev lifecycle.
 
@@ -2147,6 +2233,30 @@ life cycle of a workspace is correctly handled.</p></div>
     &#34;&#34;&#34;
     Run the configuration needed to initialize a workspace. This should generally only be called by the Core framework itself to ensure that the
     life cycle of a workspace is correctly handled.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="core.constructs.workspace.Workspace.render_outputs"><code class="name flex">
+<span>def <span class="ident">render_outputs</span></span>(<span>self) ‑> List[Tuple[str, Any]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Render the output associated with the Workspace</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Tuple[str, Any]]</code></dt>
+<dd>The List of outputs with their associated tag</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+    &#34;&#34;&#34;Render the output associated with the Workspace
+
+    Returns:
+        List[Tuple[str, Any]]: The List of outputs with their associated tag
+    
     &#34;&#34;&#34;
     raise NotImplementedError</code></pre>
 </details>
@@ -2547,6 +2657,7 @@ config: configuration option for the workspace</p></div>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.create_state_differences" href="#core.constructs.workspace.Workspace.create_state_differences">create_state_differences</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.deploy_differences" href="#core.constructs.workspace.Workspace.deploy_differences">deploy_differences</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.destroy_workspace" href="#core.constructs.workspace.Workspace.destroy_workspace">destroy_workspace</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.workspace.Workspace.display_output" href="#core.constructs.workspace.Workspace.display_output">display_output</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.evaluate_and_replace_cloud_output" href="#core.constructs.workspace.Workspace.evaluate_and_replace_cloud_output">evaluate_and_replace_cloud_output</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.evaluate_and_replace_previous_cloud_output" href="#core.constructs.workspace.Workspace.evaluate_and_replace_previous_cloud_output">evaluate_and_replace_previous_cloud_output</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.execute_command" href="#core.constructs.workspace.Workspace.execute_command">execute_command</a></code></li>
@@ -2561,6 +2672,7 @@ config: configuration option for the workspace</p></div>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.initialize_workspace" href="#core.constructs.workspace.Workspace.initialize_workspace">initialize_workspace</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.instance" href="#core.constructs.workspace.Workspace.instance">instance</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.remove_global_instance" href="#core.constructs.workspace.Workspace.remove_global_instance">remove_global_instance</a></code></li>
+<li><code><a class="sidebar" title="core.constructs.workspace.Workspace.render_outputs" href="#core.constructs.workspace.Workspace.render_outputs">render_outputs</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.set_backend" href="#core.constructs.workspace.Workspace.set_backend">set_backend</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.set_global_instance" href="#core.constructs.workspace.Workspace.set_global_instance">set_global_instance</a></code></li>
 <li><code><a class="sidebar" title="core.constructs.workspace.Workspace.set_resource_state_uuid" href="#core.constructs.workspace.Workspace.set_resource_state_uuid">set_resource_state_uuid</a></code></li>

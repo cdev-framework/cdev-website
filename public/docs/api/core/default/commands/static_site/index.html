@@ -34,8 +34,11 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 
 class SimpleCommandContainer(BaseCommandContainer):
     help = &#34;&#34;&#34;
-    These are the commands that are available for use on the simple static site.
-    &#34;&#34;&#34;</code></pre>
+These are the commands that are available for use on the simple static site.
+
+sync: Sync the contents of a given folder to a deployed site
+
+&#34;&#34;&#34;</code></pre>
 </details>
 </section>
 <section>
@@ -43,11 +46,11 @@ class SimpleCommandContainer(BaseCommandContainer):
 <dl>
 <dt><code class="name"><a class="" title="core.default.commands.static_site.sync" href="sync.html">core.default.commands.static_site.sync</a></code></dt>
 <dd>
-<div class="desc"><p>from cdev.management.base import BaseCommand, OutputWrapper
-from argparse import ArgumentParser
-import boto3
-import os
-from cdev.backend import …</p></div>
+<div class="desc"><p>Command for syncing a set of resources to a static site</p></div>
+</dd>
+<dt><code class="name"><a class="" title="core.default.commands.static_site.utils" href="utils.html">core.default.commands.static_site.utils</a></code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 </dl>
 </section>
@@ -72,8 +75,11 @@ from cdev.backend import …</p></div>
 </summary>
 <pre><code class="python">class SimpleCommandContainer(BaseCommandContainer):
     help = &#34;&#34;&#34;
-    These are the commands that are available for use on the simple static site.
-    &#34;&#34;&#34;</code></pre>
+These are the commands that are available for use on the simple static site.
+
+sync: Sync the contents of a given folder to a deployed site
+
+&#34;&#34;&#34;</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -104,6 +110,7 @@ from cdev.backend import …</p></div>
 <li><h3><a class='nav-header' href="#header-submodules">Sub-modules</a></h3>
 <ul>
 <li><code><a class="sidebar" title="core.default.commands.static_site.sync" href="sync.html">core.default.commands.static_site.sync</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.static_site.utils" href="utils.html">core.default.commands.static_site.utils</a></code></li>
 </ul>
 </li>
 <li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>

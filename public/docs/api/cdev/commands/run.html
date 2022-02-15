@@ -29,13 +29,17 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from cdev.default.output_manager import CdevOutputManager
-from cdev.constructs.project import Project
+<pre><code class="python">from cdev.constructs.project import Project
+from cdev.cli.logger import set_global_logger_from_cli
+from cdev.default.output_manager import CdevOutputManager
 
 from core.commands.run import run_command as core_run_command
 
 
 def run_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
+
     run_command(args[0])
 
 
@@ -45,7 +49,7 @@ def run_command(args):
     myProject = Project.instance()
     
     ws = myProject.get_current_environment().get_workspace()
-
+    
     core_run_command(ws, output_manager, args)</code></pre>
 </details>
 </section>
@@ -71,7 +75,7 @@ def run_command(args):
     myProject = Project.instance()
     
     ws = myProject.get_current_environment().get_workspace()
-
+    
     core_run_command(ws, output_manager, args)</code></pre>
 </details>
 </dd>
@@ -85,6 +89,9 @@ def run_command(args):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def run_command_cli(args):
+    config = args[0]
+    set_global_logger_from_cli(config.loglevel)
+
     run_command(args[0])</code></pre>
 </details>
 </dd>

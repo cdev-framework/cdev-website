@@ -29,7 +29,9 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import os
+<pre><code class="python">from logging import raiseExceptions
+import os
+from pydantic import DirectoryPath
 from pydantic.types import FilePath
 from sortedcontainers.sortedlist import SortedKeyList
 from typing import Dict, List, Tuple
@@ -43,33 +45,50 @@ from core.constructs.resource import (
 from core.constructs.workspace import Workspace
 
 from core.default.resources.simple.xlambda import (
+    DependencyLayer,
     SimpleFunction,
     simple_function_model,
     SimpleFunctionConfiguration
 )
 
-from core.utils import hasher, module_loader, paths, logger
+from core.utils import hasher, module_loader, paths
+from core.utils.logger import log
 
 from serverless_parser import parser as serverless_parser
 
 
-from . import utils as fs_utils
 from . import writer
-from . import package_mananger as cdev_package_manager
+from . import package_mananger 
 
-log = logger.get_cdev_logger(__name__)
+
+LAMBDA_LAYER_RUUID = &#34;cdev::simple::lambda_layer&#34;
 
 def parse_folder(
-    folder_path, prefix=None
+    folder_path: DirectoryPath, 
 ) -&gt; Tuple[List[ResourceModel], List[ResourceReferenceModel]]:
-    &#34;&#34;&#34;
-    This function takes a folder and goes through it looking for cdev resources. Specifically, it loads all available python files
-    and uses the loaded module to determine the resources defined in the files. Most resources are simple, but there is extra work
-    needed to handle the serverless functions. Serverless functions are parsed to optimized the actual deployed artifact using the
-    cparser library.
+    &#34;&#34;&#34;Search through the given folder looking for resource and references in Python files. 
+
+    Args:
+        folder_path (DirectoryPath): The directory to parse
+
+    Returns:
+        Tuple[
+            List[ResourceModel],
+            List[ResourceReferenceModel]
+        ]
+    
+    Specifically, it loads all available python files and uses the loaded module to determine 
+    the resources defined in the files. Any resource or reference defined in the global
+    context of the file will be detected.
+    
+    Most resources are passed back as is, but there are optimizations performed on the `simple functions`. 
+    Namely, Serverless functions are parsed to optimized the actual deployed artifact using the
+    cparser library and then have their dependencies managed also.
     &#34;&#34;&#34;
     if not os.path.isdir(folder_path):
         raise Exception
+
+    log.debug(&#34;Finding resources in folder %s&#34;, folder_path)
 
     python_files = [
         f
@@ -78,38 +97,80 @@ def parse_folder(
     ]
 
     # [{&lt;resource&gt;}]
-    resources_rv = SortedKeyList(key=lambda x: x.hash)
+    resources_rv = SortedKeyList(key=lambda x: x.name)
+    references_rv = SortedKeyList(key=lambda x: x.name)
 
-    references_rv = SortedKeyList(key=lambda x: x.hash)
 
     for pf in python_files:
-        final_function_info = _find_resources_information_from_file(
+        found_resources, found_references = _find_resources_information_from_file(
             os.path.join(folder_path, pf)
         )
-        resources = final_function_info[0]
-        references = final_function_info[1]
-        if resources:
-            resources_rv.update(resources)
 
-        if references:
-            references_rv.update(references)
+        if found_resources:
+            resources_rv.update(found_resources)
+
+        if found_references:
+            references_rv.update(found_references)
+
+    # Any duplicate layers can be removed 
+    cleaned_resources_rv = _deduplicate_layers_from_resource_list(resources_rv)
+
+    return cleaned_resources_rv, references_rv
 
 
-    return resources_rv, references_rv
+def _deduplicate_layers_from_resource_list(resources: List[Resource]) -&gt; List[Resource]:
+    &#34;&#34;&#34;Remove duplicated layer resources
+
+    Args:
+        resources (List[Resource]): Sorted List of resources by x.hash
+
+    Returns:
+        resource (List[Resources]): List with duplicate layers removed
+
+    Since multiple functions can produce the same Layer resource by referencing the same 
+    3rd party resource, we need to deduplicate the layers from the list.
+    &#34;&#34;&#34;
+
+    for i in range(len(resources)):
+        if i+1 &gt;= len(resources):
+            break
+
+        if not (resources[i].ruuid == LAMBDA_LAYER_RUUID and resources[i+1].ruuid == LAMBDA_LAYER_RUUID):
+            continue
+
+        if resources[i].hash == resources[i+1].hash:
+            resources.pop(i)
 
 
+    return resources
 
-def _get_module_name_from_path(fp):
+def _get_module_name_from_path(fp: FilePath):
+    &#34;&#34;&#34;Convert a full file path of a python path into a importable module name
+
+    Args:
+        fp (FilePath): path to file
+
+    Returns:
+        str: The importable python module name 
+
+
+    All module names will end up being relative to the workspace path. Note that this means
+    the `Workspace` base path should be on the `Python Path`. This usually happens by default
+    because the `Workspace` starts from the cwd. 
+    &#34;&#34;&#34;
     relative_to_project_path = paths.get_relative_to_workspace_path(fp)
 
     relative_to_project_path_parts = relative_to_project_path.split(&#34;/&#34;)
 
+    # If the last part of the file is __init__.pt then python will import it when the 
+    # rest of the path is given without the last part
     if relative_to_project_path_parts[-1] == &#34;__init__.py&#34;:
         relative_to_project_path_parts.pop()
     else:
         # remove the .py part of the file name
         relative_to_project_path_parts[-1] = relative_to_project_path_parts[-1][:-3]
 
+    # join the parts back with &#39;.&#39; to create the valid python module name
     full_module_path_from_project = &#34;.&#34;.join(relative_to_project_path_parts)
 
     return full_module_path_from_project
@@ -118,13 +179,26 @@ def _get_module_name_from_path(fp):
 def _find_resources_information_from_file(
     fp: FilePath,
 ) -&gt; Tuple[List[ResourceModel], List[ResourceReferenceModel]]:
+    &#34;&#34;&#34;Load a file and find top level objects that are Resources or References
+
+    Args:
+        fp (FilePath): path to python file
+
+    Raises:
+        Exception: [description]
+
+    Returns:
+        Tuple[List[ResourceModel], List[ResourceReferenceModel]]: Resources and References
+    &#34;&#34;&#34;
     # Input: filepath
     if not os.path.isfile(fp):
-        return
+        raise Exception
+
+    if not fp[-3:] == &#39;.py&#39;:
+        raise Exception
 
     mod_name = _get_module_name_from_path(fp)
 
-   
     # When the python file is imported and executed all the Cdev resources are created
     mod = module_loader.import_module(mod_name, denote_output=True)
 
@@ -134,6 +208,7 @@ def _find_resources_information_from_file(
     functions_to_parse: List[str] = []
     function_name_to_info: Dict[str, simple_function_model] = {}
 
+
     for i in dir(mod):
         obj = getattr(mod, i)
 
@@ -141,10 +216,10 @@ def _find_resources_information_from_file(
             # Find all the Resources in the module and render them
 
             if isinstance(obj, SimpleFunction):
-                #preparsed_info = obj.render()
+                # Functions are a special case as they will go through the parser and the output
+                # of that will be the returned resource
                 functions_to_parse.append(obj.configuration.handler)
                 function_name_to_info[obj.configuration.handler] = obj
-                #resource_rv.append(obj.render())
                 
             else:
                 resource_rv.append(obj.render())
@@ -153,15 +228,17 @@ def _find_resources_information_from_file(
             reference_rv.append(obj.render())
 
     if functions_to_parse:
-        parsed_function_info = _parse_serverless_functions(
+        log.debug(&#34;Parsing functions (%s) from %s&#34;, functions_to_parse, fp)
+        parsed_function_info, parsed_dependency_info = _parse_serverless_functions(
             fp, 
             functions_to_parse,
             handler_name_to_info=function_name_to_info
         )
 
-
         resource_rv.extend(parsed_function_info)
+        resource_rv.extend(parsed_dependency_info)
         
+
     return resource_rv, reference_rv
 
 
@@ -172,28 +249,64 @@ def _parse_serverless_functions(
     handler_name_to_info: Dict[str, SimpleFunction],
     manual_includes: Dict = {},
     global_includes: List = [],
-) -&gt; List[simple_function_model]:
+) -&gt; Tuple[List[simple_function_model], List[DependencyLayer]]:
+    &#34;&#34;&#34;Parse a given set of function names from a given file
 
-    include_functions_list = functions_names_to_parse
+    Args:
+        filepath (FilePath): The original file
+        functions_names_to_parse (List[str]): functions to parse
+        handler_name_to_info (Dict[str, SimpleFunction]): dict of additional information 
+        manual_includes (Dict, optional): Dict of information about extra lines to include. Defaults to {}.
+        global_includes (List, optional): List of global lines to include. Defaults to [].
 
+    Returns:
+        Tuple[List[simple_function_model], List[DependencyLayer]]: Functions and Dependencies parsed
+
+    Use the `serverless_parser` library to get information about each desired function and its dependencies.
+    Then use that information to create the needed archives for the functions and return the information as
+    Resources.
+    &#34;&#34;&#34;
+
+    # Get all the info about a set of functions from the original file
     parsed_file_info = serverless_parser.parse_functions_from_file(
-        filepath, include_functions=include_functions_list, remove_top_annotation=True
+        filepath, include_functions=functions_names_to_parse, remove_top_annotation=True
     )
 
+    # Base path that the all the archives will go 
+    base_archive_path = os.path.join(
+        Workspace.instance().settings.INTERMEDIATE_FOLDER_LOCATION,
+        Workspace.instance().get_resource_state_uuid(),
+    )
+
+    if not os.path.isdir(base_archive_path):
+        os.mkdir(base_archive_path)
+
+    if Workspace.instance().settings.USE_DOCKER:
+        # IF the user has denoted that they want to use Docker to build dependencies for 
+        # other architectures, then make sure a downloads cache is set up
+        download_cache = os.path.join(
+            Workspace.instance().settings.INTERMEDIATE_FOLDER_LOCATION,
+            &#34;.download_cache&#34;,
+        )
+
+        if not os.path.isdir(download_cache):
+            os.mkdir(download_cache)
+
+    else:
+        download_cache = None
+    
     rv = []
-    artifact_path = Workspace.instance().settings.BASE_PATH
-    archive_path = Workspace.instance().settings.INTERMEDIATE_FOLDER_LOCATION
+    seen_layers = {}
+
     for parsed_function in parsed_file_info.parsed_functions:
 
-        cleaned_name = _clean_function_name(parsed_function.name)
-        
+        previous_info = handler_name_to_info.get(parsed_function.name)
 
-
-        intermediate_path = fs_utils.get_parsed_path(filepath, cleaned_name, artifact_path)
-
-        needed_module_information = cdev_package_manager.get_top_level_module_info(
-            parsed_function.imported_packages, filepath
+        needed_module_information = package_mananger.get_top_level_module_info(
+            parsed_function.imported_packages, filepath, previous_info.platform, download_cache
         )
+
+        log.debug(&#34;Needed modules (%s) for %s&#34;, needed_module_information, parsed_function.name)
 
         (
             handler_archive_path,
@@ -203,14 +316,20 @@ def _parse_serverless_functions(
         ) = writer.create_full_deployment_package(
             filepath,
             parsed_function.get_line_numbers_serializeable(),
-            intermediate_path,
-            archive_path,
+            parsed_function.name,
+            base_archive_path,
             pkgs=needed_module_information,
         )
+        
+        
+        # Update the seen packages 
+        if dependencies_info:
+            # Helps return only one copy of each layer for the file
+            seen_layers.update(
+              {x.hash:x.render() for x in dependencies_info}
+            )
 
         handler_path = base_handler_path + &#34;.&#34; + parsed_function.name
-
-        previous_info = handler_name_to_info.get(parsed_function.name)
 
         new_configuration = SimpleFunctionConfiguration(
             handler=handler_path,
@@ -226,17 +345,14 @@ def _parse_serverless_functions(
             function_permissions=previous_info.granted_permissions,
             external_dependencies=dependencies_info if dependencies_info else [],
             src_code_hash=handler_archive_hash,
-            nonce=previous_info.nonce
+            nonce=previous_info.nonce,
+            platform=previous_info.platform
         )
 
     
         rv.append(new_function.render())
 
-    return rv
-
-
-def _clean_function_name(potential_name: str) -&gt; str:
-    return potential_name.replace(&#34; &#34;, &#34;_&#34;)</code></pre>
+    return rv, [layer for _,layer in seen_layers.items()]</code></pre>
 </details>
 </section>
 <section>
@@ -247,28 +363,56 @@ def _clean_function_name(potential_name: str) -&gt; str:
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="core.utils.fs_manager.finder.parse_folder"><code class="name flex">
-<span>def <span class="ident">parse_folder</span></span>(<span>folder_path, prefix=None) ‑> Tuple[List[<a class="" title="core.constructs.resource.ResourceModel" href="../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a>], List[<a class="" title="core.constructs.resource.ResourceReferenceModel" href="../../constructs/resource.html#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a>]]</span>
+<span>def <span class="ident">parse_folder</span></span>(<span>folder_path: pydantic.types.DirectoryPath) ‑> Tuple[List[<a class="" title="core.constructs.resource.ResourceModel" href="../../constructs/resource.html#core.constructs.resource.ResourceModel">ResourceModel</a>], List[<a class="" title="core.constructs.resource.ResourceReferenceModel" href="../../constructs/resource.html#core.constructs.resource.ResourceReferenceModel">ResourceReferenceModel</a>]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>This function takes a folder and goes through it looking for cdev resources. Specifically, it loads all available python files
-and uses the loaded module to determine the resources defined in the files. Most resources are simple, but there is extra work
-needed to handle the serverless functions. Serverless functions are parsed to optimized the actual deployed artifact using the
-cparser library.</p></div>
+<div class="desc"><p>Search through the given folder looking for resource and references in Python files. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>folder_path</code></strong> :&ensp;<code>DirectoryPath</code></dt>
+<dd>The directory to parse</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Tuple[
+List[ResourceModel],
+List[ResourceReferenceModel]
+]
+Specifically, it loads all available python files and uses the loaded module to determine
+the resources defined in the files. Any resource or reference defined in the global
+context of the file will be detected.</p>
+<p>Most resources are passed back as is, but there are optimizations performed on the <code>simple functions</code>.
+Namely, Serverless functions are parsed to optimized the actual deployed artifact using the
+cparser library and then have their dependencies managed also.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def parse_folder(
-    folder_path, prefix=None
+    folder_path: DirectoryPath, 
 ) -&gt; Tuple[List[ResourceModel], List[ResourceReferenceModel]]:
-    &#34;&#34;&#34;
-    This function takes a folder and goes through it looking for cdev resources. Specifically, it loads all available python files
-    and uses the loaded module to determine the resources defined in the files. Most resources are simple, but there is extra work
-    needed to handle the serverless functions. Serverless functions are parsed to optimized the actual deployed artifact using the
-    cparser library.
+    &#34;&#34;&#34;Search through the given folder looking for resource and references in Python files. 
+
+    Args:
+        folder_path (DirectoryPath): The directory to parse
+
+    Returns:
+        Tuple[
+            List[ResourceModel],
+            List[ResourceReferenceModel]
+        ]
+    
+    Specifically, it loads all available python files and uses the loaded module to determine 
+    the resources defined in the files. Any resource or reference defined in the global
+    context of the file will be detected.
+    
+    Most resources are passed back as is, but there are optimizations performed on the `simple functions`. 
+    Namely, Serverless functions are parsed to optimized the actual deployed artifact using the
+    cparser library and then have their dependencies managed also.
     &#34;&#34;&#34;
     if not os.path.isdir(folder_path):
         raise Exception
+
+    log.debug(&#34;Finding resources in folder %s&#34;, folder_path)
 
     python_files = [
         f
@@ -277,24 +421,25 @@ cparser library.</p></div>
     ]
 
     # [{&lt;resource&gt;}]
-    resources_rv = SortedKeyList(key=lambda x: x.hash)
+    resources_rv = SortedKeyList(key=lambda x: x.name)
+    references_rv = SortedKeyList(key=lambda x: x.name)
 
-    references_rv = SortedKeyList(key=lambda x: x.hash)
 
     for pf in python_files:
-        final_function_info = _find_resources_information_from_file(
+        found_resources, found_references = _find_resources_information_from_file(
             os.path.join(folder_path, pf)
         )
-        resources = final_function_info[0]
-        references = final_function_info[1]
-        if resources:
-            resources_rv.update(resources)
 
-        if references:
-            references_rv.update(references)
+        if found_resources:
+            resources_rv.update(found_resources)
 
+        if found_references:
+            references_rv.update(found_references)
 
-    return resources_rv, references_rv</code></pre>
+    # Any duplicate layers can be removed 
+    cleaned_resources_rv = _deduplicate_layers_from_resource_list(resources_rv)
+
+    return cleaned_resources_rv, references_rv</code></pre>
 </details>
 </dd>
 </dl>

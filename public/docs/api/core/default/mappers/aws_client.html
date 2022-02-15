@@ -135,25 +135,13 @@ def aws_resource_wait(service: str, wait: dict):
     waiter.wait(**final_args)
     
 
+def get_aws_region() -&gt; str:
+    return get_boto_client(&#39;s3&#39;).meta.region_name
 
-    
 
-
-def _recursive_find_key(d: dict, keys: List):
-    if len(keys) == 0:
-        return None
-
-    if len(keys) == 1:
-        return d.get(keys[0])
-
-    else:
-        top_key = keys[0]
-        keys.pop(0)
-
-        if not top_key in d:
-            return None
-
-        return _recursive_find_key(d.get(top_key), keys)</code></pre>
+def get_account_number() -&gt; str:
+    caller_info_rv =  run_client_function(&#34;sts&#34;, &#34;get_caller_identity&#34;, {})
+    return caller_info_rv.get(&#39;Account&#39;)</code></pre>
 </details>
 </section>
 <section>
@@ -186,6 +174,33 @@ def _recursive_find_key(d: dict, keys: List):
     
     
     waiter.wait(**final_args)</code></pre>
+</details>
+</dd>
+<dt id="core.default.mappers.aws_client.get_account_number"><code class="name flex">
+<span>def <span class="ident">get_account_number</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_account_number() -&gt; str:
+    caller_info_rv =  run_client_function(&#34;sts&#34;, &#34;get_caller_identity&#34;, {})
+    return caller_info_rv.get(&#39;Account&#39;)</code></pre>
+</details>
+</dd>
+<dt id="core.default.mappers.aws_client.get_aws_region"><code class="name flex">
+<span>def <span class="ident">get_aws_region</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_aws_region() -&gt; str:
+    return get_boto_client(&#39;s3&#39;).meta.region_name</code></pre>
 </details>
 </dd>
 <dt id="core.default.mappers.aws_client.get_boto_client"><code class="name flex">
@@ -296,6 +311,8 @@ we use this function to handle repeatedly calling a status function to check if 
 <li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
 <ul >
 <li><code><a class="sidebar" title="core.default.mappers.aws_client.aws_resource_wait" href="#core.default.mappers.aws_client.aws_resource_wait">aws_resource_wait</a></code></li>
+<li><code><a class="sidebar" title="core.default.mappers.aws_client.get_account_number" href="#core.default.mappers.aws_client.get_account_number">get_account_number</a></code></li>
+<li><code><a class="sidebar" title="core.default.mappers.aws_client.get_aws_region" href="#core.default.mappers.aws_client.get_aws_region">get_aws_region</a></code></li>
 <li><code><a class="sidebar" title="core.default.mappers.aws_client.get_boto_client" href="#core.default.mappers.aws_client.get_boto_client">get_boto_client</a></code></li>
 <li><code><a class="sidebar" title="core.default.mappers.aws_client.monitor_status" href="#core.default.mappers.aws_client.monitor_status">monitor_status</a></code></li>
 <li><code><a class="sidebar" title="core.default.mappers.aws_client.run_client_function" href="#core.default.mappers.aws_client.run_client_function">run_client_function</a></code></li>

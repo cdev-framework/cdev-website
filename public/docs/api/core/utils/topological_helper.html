@@ -79,6 +79,7 @@ def find_parents(resource: ResourceModel) -&gt; Tuple[List, List]:
     parent_resources = [(x.ruuid,x.name) for x in cloud_outputs if x.type == OutputType.RESOURCE ]
     parent_references = [(x.ruuid,x.name) for x in cloud_outputs if x.type == OutputType.REFERENCE]
     
+
     return parent_resources, parent_references
 
 
@@ -93,18 +94,22 @@ def _recursive_find_output(obj) -&gt; List[cloud_output_model]:
     rv = []
 
     if isinstance(obj, frozendict) or isinstance(obj, dict): 
-        for k,v in obj.items():
-            if isinstance(v, frozendict) or isinstance(v, dict):
-                if &#34;id&#34; in v and v.get(&#34;id&#34;) == &#39;cdev_cloud_output&#39;:
-                    rv.append(cloud_output_model(**v))
-                else:
-                    rv.extend(_recursive_find_output(v))
+        
+        if &#34;id&#34; in obj and obj.get(&#34;id&#34;) == &#39;cdev_cloud_output&#39;:
+            rv.append(cloud_output_model(**obj))
+        else:
+            for k,v in obj.items():
+                if isinstance(v, frozendict) or isinstance(v, dict):
+                    if &#34;id&#34; in v and v.get(&#34;id&#34;) == &#39;cdev_cloud_output&#39;:
+                        rv.append(cloud_output_model(**v))
+                    else:
+                        rv.extend(_recursive_find_output(v))
 
-            elif isinstance(v, frozenset) or isinstance(v, list):
-                all_items_rendered = [_recursive_find_output(x) for x in v]
-                
-                for item in all_items_rendered:
-                    rv.extend(item)
+                elif isinstance(v, frozenset) or isinstance(v, list):
+                    all_items_rendered = [_recursive_find_output(x) for x in v]
+
+                    for item in all_items_rendered:
+                        rv.extend(item)
 
         return rv
 
@@ -445,6 +450,7 @@ parent_resources: List[Tuple[ruuid, name]]</dd>
     parent_resources = [(x.ruuid,x.name) for x in cloud_outputs if x.type == OutputType.RESOURCE ]
     parent_references = [(x.ruuid,x.name) for x in cloud_outputs if x.type == OutputType.REFERENCE]
     
+
     return parent_resources, parent_references</code></pre>
 </details>
 </dd>

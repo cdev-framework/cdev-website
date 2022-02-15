@@ -32,7 +32,7 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <pre><code class="python">from enum import Enum
 import json
 import os
-from typing import Any, Dict, List, Optional, TypeVar, Callable
+from typing import Any, Dict, List, Optional, TypeVar, Tuple, Callable
 
 from pydantic import BaseModel
 from pydantic.types import DirectoryPath
@@ -41,6 +41,7 @@ from core.constructs.backend import Backend_Configuration
 from core.constructs.mapper import CloudMapper
 from core.constructs.components import Component
 from core.constructs.types import F
+from core.constructs.cloud_output import Cloud_Output
 
 from .environment import environment_info, Environment
 
@@ -266,6 +267,30 @@ class Project:
 
         Raises:
             EnvironmentDoesNotExist
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    #######################
+    ##### Display Output
+    #######################
+
+    def display_output(self, tag: str, output: Cloud_Output):
+        &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+        Args:
+            tag: A key value to display with the output
+            output: The Cloud Output to render
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+        &#34;&#34;&#34;Render the output associated with the Workspace
+
+        Returns:
+            List[Tuple[str, Any]]: The List of outputs with their associated tag
+        
         &#34;&#34;&#34;
         raise NotImplementedError
 
@@ -691,6 +716,30 @@ should keep in mind the lifecycle rules around each API and how it fits into the
         &#34;&#34;&#34;
         raise NotImplementedError
 
+
+    #######################
+    ##### Display Output
+    #######################
+
+    def display_output(self, tag: str, output: Cloud_Output):
+        &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+        Args:
+            tag: A key value to display with the output
+            output: The Cloud Output to render
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+
+    def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+        &#34;&#34;&#34;Render the output associated with the Workspace
+
+        Returns:
+            List[Tuple[str, Any]]: The List of outputs with their associated tag
+        
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
     #################
     ##### Mappers
     #################
@@ -1084,6 +1133,32 @@ any cloud resources in the environment will be destroyed.</p></div>
     raise NotImplementedError</code></pre>
 </details>
 </dd>
+<dt id="cdev.constructs.project.Project.display_output"><code class="name flex">
+<span>def <span class="ident">display_output</span></span>(<span>self, tag: str, output: core.constructs.cloud_output.Cloud_Output)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Display the output from a Resource or Reference after a process has completed</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>tag</code></strong></dt>
+<dd>A key value to display with the output</dd>
+<dt><strong><code>output</code></strong></dt>
+<dd>The Cloud Output to render</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_output(self, tag: str, output: Cloud_Output):
+    &#34;&#34;&#34;Display the output from a Resource or Reference after a process has completed
+
+    Args:
+        tag: A key value to display with the output
+        output: The Cloud Output to render
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
 <dt id="cdev.constructs.project.Project.get_all_environment_names"><code class="name flex">
 <span>def <span class="ident">get_all_environment_names</span></span>(<span>self) ‑> List[str]</span>
 </code></dt>
@@ -1338,6 +1413,30 @@ process should be defined during the creation of the object, and set such that t
     raise NotImplementedError</code></pre>
 </details>
 </dd>
+<dt id="cdev.constructs.project.Project.render_outputs"><code class="name flex">
+<span>def <span class="ident">render_outputs</span></span>(<span>self) ‑> List[Tuple[str, Any]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Render the output associated with the Workspace</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Tuple[str, Any]]</code></dt>
+<dd>The List of outputs with their associated tag</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_outputs(self) -&gt; List[Tuple[str, Any]]:
+    &#34;&#34;&#34;Render the output associated with the Workspace
+
+    Returns:
+        List[Tuple[str, Any]]: The List of outputs with their associated tag
+    
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
 <dt id="cdev.constructs.project.Project.set_current_environment"><code class="name flex">
 <span>def <span class="ident">set_current_environment</span></span>(<span>self, environment_name: str)</span>
 </code></dt>
@@ -1551,6 +1650,7 @@ current_environment (str): The current environment</p></div>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.add_mappers" href="#cdev.constructs.project.Project.add_mappers">add_mappers</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.create_environment" href="#cdev.constructs.project.Project.create_environment">create_environment</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.destroy_environment" href="#cdev.constructs.project.Project.destroy_environment">destroy_environment</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.display_output" href="#cdev.constructs.project.Project.display_output">display_output</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.get_all_environment_names" href="#cdev.constructs.project.Project.get_all_environment_names">get_all_environment_names</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.get_commands" href="#cdev.constructs.project.Project.get_commands">get_commands</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.get_components" href="#cdev.constructs.project.Project.get_components">get_components</a></code></li>
@@ -1564,6 +1664,7 @@ current_environment (str): The current environment</p></div>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.initialize_project" href="#cdev.constructs.project.Project.initialize_project">initialize_project</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.instance" href="#cdev.constructs.project.Project.instance">instance</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.remove_global_instance" href="#cdev.constructs.project.Project.remove_global_instance">remove_global_instance</a></code></li>
+<li><code><a class="sidebar" title="cdev.constructs.project.Project.render_outputs" href="#cdev.constructs.project.Project.render_outputs">render_outputs</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.set_current_environment" href="#cdev.constructs.project.Project.set_current_environment">set_current_environment</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.set_global_instance" href="#cdev.constructs.project.Project.set_global_instance">set_global_instance</a></code></li>
 <li><code><a class="sidebar" title="cdev.constructs.project.Project.set_name" href="#cdev.constructs.project.Project.set_name">set_name</a></code></li>

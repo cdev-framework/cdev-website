@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.table API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for making No SQL DB Tables" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,20 +25,25 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.table</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for making No SQL DB Tables</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from enum import Enum
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for making No SQL DB Tables
+&#34;&#34;&#34;
+from enum import Enum
 from typing import Any, FrozenSet, List
 
 from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsAvailableMixin
 from core.constructs.cloud_output import  Cloud_Output_Str, OutputType
-from core.utils import hasher
+from core.constructs.types import cdev_str_model
 from core.constructs.models import ImmutableModel
 
 from core.default.resources.simple.events import Event, event_model
 from core.default.resources.simple.iam import Permission
+
+from core.utils import hasher
 
 RUUID = &#34;cdev::simple::table&#34;
 
@@ -73,27 +78,43 @@ class stream_event_model(event_model):
         view_type: stream_type
         batch_size: int
     &#34;&#34;&#34;
+    table_name: cdev_str_model    
     view_type: stream_type
     batch_size: int
 
 
 class StreamEvent(Event):
-    RUUID = &#34;cdev::simple::table&#34;
 
     def __init__(self, table_name: str, view_type: stream_type, batch_size: int) -&gt; None:
-        self.table_name=table_name
+        
+        self.cdev_table_name = table_name
+        
+        self.table_name= Cloud_Output_Str(
+                name=table_name, 
+                ruuid=RUUID, 
+                key=&#39;table_name&#39;,
+                type=OutputType.RESOURCE 
+            )
+            
         self.view_type=view_type
         self.batch_size=batch_size
+
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.cdev_table_name,
+            self.view_type,
+            self.batch_size
+        ])
         
-
-
     def render(self) -&gt; stream_event_model:
         return stream_event_model(
-            original_resource_name=self.table_name,
-            original_resource_type=self.RUUID,
+            originating_resource_name=self.cdev_table_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
             batch_size=self.batch_size,
             view_type=self.view_type.value,
-            granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+            table_name=self.table_name.render()
         )
 
 
@@ -161,7 +182,7 @@ class TablePermissions:
                 &#34;dynamodb:ListShards&#34;,
                 &#34;dynamodb:ListStreams&#34;,
             ],
-            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE).join([&#34;&#34;, &#34;/stream/*&#34;]),
             effect=&#34;Allow&#34;,
         )
 
@@ -288,7 +309,8 @@ class Table(PermissionsAvailableMixin, Resource):
         self._keys = keys
         self._stream = None
 
-        self.available_permissions = TablePermissions(cdev_name)
+        self.available_permissions: TablePermissions = TablePermissions(cdev_name)
+        self.output = TableOutput(cdev_name)
 
     @property
     def attributes(self):
@@ -500,37 +522,62 @@ class Table(PermissionsAvailableMixin, Resource):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class StreamEvent(Event):
-    RUUID = &#34;cdev::simple::table&#34;
 
     def __init__(self, table_name: str, view_type: stream_type, batch_size: int) -&gt; None:
-        self.table_name=table_name
+        
+        self.cdev_table_name = table_name
+        
+        self.table_name= Cloud_Output_Str(
+                name=table_name, 
+                ruuid=RUUID, 
+                key=&#39;table_name&#39;,
+                type=OutputType.RESOURCE 
+            )
+            
         self.view_type=view_type
         self.batch_size=batch_size
+
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.cdev_table_name,
+            self.view_type,
+            self.batch_size
+        ])
         
-
-
     def render(self) -&gt; stream_event_model:
         return stream_event_model(
-            original_resource_name=self.table_name,
-            original_resource_type=self.RUUID,
+            originating_resource_name=self.cdev_table_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
             batch_size=self.batch_size,
             view_type=self.view_type.value,
-            granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+            table_name=self.table_name.render()
         )</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a></li>
 </ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="core.default.resources.simple.table.StreamEvent.RUUID"><code class="name">var <span class="ident">RUUID</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
 <h3>Methods</h3>
 <dl>
+<dt id="core.default.resources.simple.table.StreamEvent.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hash(self) -&gt; str:
+    return hasher.hash_list([
+        self.cdev_table_name,
+        self.view_type,
+        self.batch_size
+    ])</code></pre>
+</details>
+</dd>
 <dt id="core.default.resources.simple.table.StreamEvent.render"><code class="name flex">
 <span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.table.stream_event_model" href="#core.default.resources.simple.table.stream_event_model">stream_event_model</a></span>
 </code></dt>
@@ -542,11 +589,12 @@ class Table(PermissionsAvailableMixin, Resource):
 </summary>
 <pre><code class="python">def render(self) -&gt; stream_event_model:
     return stream_event_model(
-        original_resource_name=self.table_name,
-        original_resource_type=self.RUUID,
+        originating_resource_name=self.cdev_table_name,
+        originating_resource_type=RUUID,
+        hash=self.hash(),
         batch_size=self.batch_size,
         view_type=self.view_type.value,
-        granting_permission=TablePermissions(self.table_name).READ_STREAM.render()
+        table_name=self.table_name.render()
     )</code></pre>
 </details>
 </dd>
@@ -554,10 +602,21 @@ class Table(PermissionsAvailableMixin, Resource):
 </dd>
 <dt id="core.default.resources.simple.table.Table"><code class="flex name class">
 <span>class <span class="ident">Table</span></span>
-<span>(</span><span>*func_posargs, **func_kwargs)</span>
+<span>(</span><span>cdev_name: str, attributes: List[<a class="" title="core.default.resources.simple.table.AttributeDefinition" href="#core.default.resources.simple.table.AttributeDefinition">AttributeDefinition</a>], keys: List[<a class="" title="core.default.resources.simple.table.KeyDefinition" href="#core.default.resources.simple.table.KeyDefinition">KeyDefinition</a>], nonce: str = '')</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>[summary]</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cdev_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>attributes</code></strong> :&ensp;<code>List[<a class="" title="core.default.resources.simple.table.AttributeDefinition" href="#core.default.resources.simple.table.AttributeDefinition">AttributeDefinition</a>]</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>keys</code></strong> :&ensp;<code>List[<a class="" title="core.default.resources.simple.table.KeyDefinition" href="#core.default.resources.simple.table.KeyDefinition">KeyDefinition</a>]</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>nonce</code></strong> :&ensp;<code>str</code></dt>
+<dd>Nonce to make the resource hash unique if there are conflicting resources with same configuration.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -586,7 +645,8 @@ class Table(PermissionsAvailableMixin, Resource):
         self._keys = keys
         self._stream = None
 
-        self.available_permissions = TablePermissions(cdev_name)
+        self.available_permissions: TablePermissions = TablePermissions(cdev_name)
+        self.output = TableOutput(cdev_name)
 
     @property
     def attributes(self):
@@ -957,7 +1017,7 @@ def table_name(self) -&gt; Cloud_Output_Str:
                 &#34;dynamodb:ListShards&#34;,
                 &#34;dynamodb:ListStreams&#34;,
             ],
-            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE),
+            cloud_id=Cloud_Output_Str(resource_name, RUUID, &#39;cloud_id&#39;, OutputType.RESOURCE).join([&#34;&#34;, &#34;/stream/*&#34;]),
             effect=&#34;Allow&#34;,
         )</code></pre>
 </details>
@@ -1224,6 +1284,7 @@ batch_size: int</p>
         view_type: stream_type
         batch_size: int
     &#34;&#34;&#34;
+    table_name: cdev_str_model    
     view_type: stream_type
     batch_size: int</code></pre>
 </details>
@@ -1237,6 +1298,10 @@ batch_size: int</p>
 <h3>Class variables</h3>
 <dl>
 <dt id="core.default.resources.simple.table.stream_event_model.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.table.stream_event_model.table_name"><code class="name">var <span class="ident">table_name</span> : ~cdev_str_model</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1332,7 +1397,7 @@ NEW_AND_OLD_IMAGES: Both the new and the old item images of the item.</p></div>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent" href="#core.default.resources.simple.table.StreamEvent">StreamEvent</a></code></h4>
 <ul >
-<li><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent.RUUID" href="#core.default.resources.simple.table.StreamEvent.RUUID">RUUID</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent.hash" href="#core.default.resources.simple.table.StreamEvent.hash">hash</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.table.StreamEvent.render" href="#core.default.resources.simple.table.StreamEvent.render">render</a></code></li>
 </ul>
 </li>
@@ -1399,6 +1464,7 @@ NEW_AND_OLD_IMAGES: Both the new and the old item images of the item.</p></div>
 <h4><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model" href="#core.default.resources.simple.table.stream_event_model">stream_event_model</a></code></h4>
 <ul >
 <li><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model.batch_size" href="#core.default.resources.simple.table.stream_event_model.batch_size">batch_size</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model.table_name" href="#core.default.resources.simple.table.stream_event_model.table_name">table_name</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.table.stream_event_model.view_type" href="#core.default.resources.simple.table.stream_event_model.view_type">view_type</a></code></li>
 </ul>
 </li>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.topic API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for making fan our message topics" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,20 +25,69 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.topic</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for making fan our message topics</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from enum import Enum
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for making fan our message topics
+
+&#34;&#34;&#34;
 from typing import Any
 
 from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsAvailableMixin
 from core.constructs.cloud_output import Cloud_Output_Str, OutputType
-from core.utils import hasher
+from core.constructs.types import cdev_str_model
 
+from core.default.resources.simple.events import Event, event_model
 from core.default.resources.simple.iam import Permission
 
+from core.utils import hasher
+
 RUUID = &#34;cdev::simple::topic&#34;
+
+
+######################
+##### Events
+######################
+class topic_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        batch_size: int
+        batch_window: int
+    &#34;&#34;&#34;
+    topic_arn: cdev_str_model   
+
+
+class TopicEvent(Event):
+    
+    def __init__(self, topic_name: str) -&gt; None:
+
+        self.cdev_topic_name = topic_name
+
+        self.topic_arn = Cloud_Output_Str(
+                name=topic_name, 
+                ruuid=RUUID, 
+                key=&#39;arn&#39;,
+                type=OutputType.RESOURCE 
+            )
+
+
+    def render(self) -&gt; topic_event_model:
+        return topic_event_model(
+            originating_resource_name=self.cdev_topic_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
+            topic_arn=self.topic_arn.render(),
+        )
+
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.cdev_topic_name,
+        ])
 
 
 #####################
@@ -114,8 +163,9 @@ class Topic(PermissionsAvailableMixin, Resource):
 
         self._is_fifo = is_fifo
         self.output = TopicOutput(cdev_name)
-        self.permissions = TopicPermissions(cdev_name)
-    
+        self.available_permissions: TopicPermissions = TopicPermissions(cdev_name)
+        self._event = None
+
     @property
     def is_fifo(self):
         return self._is_fifo
@@ -124,6 +174,27 @@ class Topic(PermissionsAvailableMixin, Resource):
     @update_hash
     def is_fifo(self, value: bool):
         self._is_fifo = value
+
+    def create_event_trigger(
+        self
+    ) -&gt; TopicEvent:
+        if self._event:
+            raise Exception(&#34;Already created an event on this topic. Use `get_event()` to get the current event.&#34;)
+    
+
+        event = TopicEvent(
+            topic_name=self.name,
+        )
+
+        self._event = event
+
+        return event
+
+    def get_event(self) -&gt; TopicEvent:
+        if not self._event:
+            raise Exception(&#34;Topic Event has not been created. Create a Topic Event for this topic using the `create_event_trigger` function before calling this function.&#34;)
+
+        return self._event
 
     def compute_hash(self):
         self._hash = hasher.hash_list([self.is_fifo, self.nonce])
@@ -148,10 +219,20 @@ class Topic(PermissionsAvailableMixin, Resource):
 <dl>
 <dt id="core.default.resources.simple.topic.Topic"><code class="flex name class">
 <span>class <span class="ident">Topic</span></span>
-<span>(</span><span>*func_posargs, **func_kwargs)</span>
+<span>(</span><span>cdev_name: str, is_fifo: bool = False, nonce: str = '')</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Simple SNS topic.</p></div>
+<div class="desc"><p>Simple SNS topic.</p>
+<p>[summary]</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cdev_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>is_fifo</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>[description]. Defaults to False.</dd>
+<dt><strong><code>nonce</code></strong> :&ensp;<code>str</code></dt>
+<dd>Nonce to make the resource hash unique if there are conflicting resources with same configuration.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -176,8 +257,9 @@ class Topic(PermissionsAvailableMixin, Resource):
 
         self._is_fifo = is_fifo
         self.output = TopicOutput(cdev_name)
-        self.permissions = TopicPermissions(cdev_name)
-    
+        self.available_permissions: TopicPermissions = TopicPermissions(cdev_name)
+        self._event = None
+
     @property
     def is_fifo(self):
         return self._is_fifo
@@ -186,6 +268,27 @@ class Topic(PermissionsAvailableMixin, Resource):
     @update_hash
     def is_fifo(self, value: bool):
         self._is_fifo = value
+
+    def create_event_trigger(
+        self
+    ) -&gt; TopicEvent:
+        if self._event:
+            raise Exception(&#34;Already created an event on this topic. Use `get_event()` to get the current event.&#34;)
+    
+
+        event = TopicEvent(
+            topic_name=self.name,
+        )
+
+        self._event = event
+
+        return event
+
+    def get_event(self) -&gt; TopicEvent:
+        if not self._event:
+            raise Exception(&#34;Topic Event has not been created. Create a Topic Event for this topic using the `create_event_trigger` function before calling this function.&#34;)
+
+        return self._event
 
     def compute_hash(self):
         self._hash = hasher.hash_list([self.is_fifo, self.nonce])
@@ -233,6 +336,47 @@ def is_fifo(self):
     self._hash = hasher.hash_list([self.is_fifo, self.nonce])</code></pre>
 </details>
 </dd>
+<dt id="core.default.resources.simple.topic.Topic.create_event_trigger"><code class="name flex">
+<span>def <span class="ident">create_event_trigger</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.topic.TopicEvent" href="#core.default.resources.simple.topic.TopicEvent">TopicEvent</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_event_trigger(
+    self
+) -&gt; TopicEvent:
+    if self._event:
+        raise Exception(&#34;Already created an event on this topic. Use `get_event()` to get the current event.&#34;)
+
+
+    event = TopicEvent(
+        topic_name=self.name,
+    )
+
+    self._event = event
+
+    return event</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.topic.Topic.get_event"><code class="name flex">
+<span>def <span class="ident">get_event</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.topic.TopicEvent" href="#core.default.resources.simple.topic.TopicEvent">TopicEvent</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_event(self) -&gt; TopicEvent:
+    if not self._event:
+        raise Exception(&#34;Topic Event has not been created. Create a Topic Event for this topic using the `create_event_trigger` function before calling this function.&#34;)
+
+    return self._event</code></pre>
+</details>
+</dd>
 <dt id="core.default.resources.simple.topic.Topic.render"><code class="name flex">
 <span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.topic.simple_topic_model" href="#core.default.resources.simple.topic.simple_topic_model">simple_topic_model</a></span>
 </code></dt>
@@ -268,6 +412,85 @@ def is_fifo(self):
 </ul>
 </li>
 </ul>
+</dd>
+<dt id="core.default.resources.simple.topic.TopicEvent"><code class="flex name class">
+<span>class <span class="ident">TopicEvent</span></span>
+<span>(</span><span>topic_name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TopicEvent(Event):
+    
+    def __init__(self, topic_name: str) -&gt; None:
+
+        self.cdev_topic_name = topic_name
+
+        self.topic_arn = Cloud_Output_Str(
+                name=topic_name, 
+                ruuid=RUUID, 
+                key=&#39;arn&#39;,
+                type=OutputType.RESOURCE 
+            )
+
+
+    def render(self) -&gt; topic_event_model:
+        return topic_event_model(
+            originating_resource_name=self.cdev_topic_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
+            topic_arn=self.topic_arn.render(),
+        )
+
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.cdev_topic_name,
+        ])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.resources.simple.topic.TopicEvent.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hash(self) -&gt; str:
+    return hasher.hash_list([
+        self.cdev_topic_name,
+    ])</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.topic.TopicEvent.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.topic.topic_event_model" href="#core.default.resources.simple.topic.topic_event_model">topic_event_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; topic_event_model:
+    return topic_event_model(
+        originating_resource_name=self.cdev_topic_name,
+        originating_resource_type=RUUID,
+        hash=self.hash(),
+        topic_arn=self.topic_arn.render(),
+    )</code></pre>
+</details>
+</dd>
+</dl>
 </dd>
 <dt id="core.default.resources.simple.topic.TopicOutput"><code class="flex name class">
 <span>class <span class="ident">TopicOutput</span></span>
@@ -409,6 +632,46 @@ only if a change in the state is desired.</dd>
 </li>
 </ul>
 </dd>
+<dt id="core.default.resources.simple.topic.topic_event_model"><code class="flex name class">
+<span>class <span class="ident">topic_event_model</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>something</p>
+<h2 id="arguments">Arguments</h2>
+<p>batch_size: int
+batch_window: int</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class topic_event_model(event_model):
+    &#34;&#34;&#34;
+    something
+
+    Arguments:
+        batch_size: int
+        batch_window: int
+    &#34;&#34;&#34;
+    topic_arn: cdev_str_model   </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.default.resources.simple.events.event_model" href="events.html#core.default.resources.simple.events.event_model">event_model</a></li>
+<li><a class="" title="core.constructs.models.ImmutableModel" href="../../../constructs/models.html#core.constructs.models.ImmutableModel">ImmutableModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.resources.simple.topic.topic_event_model.topic_arn"><code class="name">var <span class="ident">topic_arn</span> : ~cdev_str_model</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 </dl>
 </section>
 </article>
@@ -429,8 +692,17 @@ only if a change in the state is desired.</dd>
 <h4><code><a class="sidebar" title="core.default.resources.simple.topic.Topic" href="#core.default.resources.simple.topic.Topic">Topic</a></code></h4>
 <ul >
 <li><code><a class="sidebar" title="core.default.resources.simple.topic.Topic.compute_hash" href="#core.default.resources.simple.topic.Topic.compute_hash">compute_hash</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.topic.Topic.create_event_trigger" href="#core.default.resources.simple.topic.Topic.create_event_trigger">create_event_trigger</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.topic.Topic.get_event" href="#core.default.resources.simple.topic.Topic.get_event">get_event</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.topic.Topic.is_fifo" href="#core.default.resources.simple.topic.Topic.is_fifo">is_fifo</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.topic.Topic.render" href="#core.default.resources.simple.topic.Topic.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.topic.TopicEvent" href="#core.default.resources.simple.topic.TopicEvent">TopicEvent</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.topic.TopicEvent.hash" href="#core.default.resources.simple.topic.TopicEvent.hash">hash</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.topic.TopicEvent.render" href="#core.default.resources.simple.topic.TopicEvent.render">render</a></code></li>
 </ul>
 </li>
 <li>
@@ -446,6 +718,12 @@ only if a change in the state is desired.</dd>
 <h4><code><a class="sidebar" title="core.default.resources.simple.topic.simple_topic_model" href="#core.default.resources.simple.topic.simple_topic_model">simple_topic_model</a></code></h4>
 <ul >
 <li><code><a class="sidebar" title="core.default.resources.simple.topic.simple_topic_model.is_fifo" href="#core.default.resources.simple.topic.simple_topic_model.is_fifo">is_fifo</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a class="sidebar" title="core.default.resources.simple.topic.topic_event_model" href="#core.default.resources.simple.topic.topic_event_model">topic_event_model</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.topic.topic_event_model.topic_arn" href="#core.default.resources.simple.topic.topic_event_model.topic_arn">topic_arn</a></code></li>
 </ul>
 </li>
 </ul>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.object_store API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for creating Cloud Object Stores like S3" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,20 +25,27 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.object_store</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for creating Cloud Object Stores like S3</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from enum import Enum
-from typing import Any
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for creating Cloud Object Stores like S3
+
+&#34;&#34;&#34;
+
+from enum import Enum
+from typing import Any, List
 
 from core.constructs.resource import Resource, ResourceModel, update_hash, ResourceOutputs, PermissionsAvailableMixin
 from core.constructs.cloud_output import Cloud_Output_Str, OutputType
+from core.constructs.types import cdev_str_model
 from core.utils import hasher
 
 from core.default.resources.simple.iam import Permission
 
 from core.default.resources.simple.events import Event, event_model
+
 RUUID = &#34;cdev::simple::bucket&#34;
 
 class Bucket_Event_Type(str, Enum):
@@ -58,23 +65,44 @@ class bucket_event_model(event_model):
         event_type: EventTypes
         bucket_event_type: Bucket_Event_Types
     &#34;&#34;&#34;
+    bucket_arn: cdev_str_model
+    bucket_name: cdev_str_model
     bucket_event_type: Bucket_Event_Type
 
 
 class BucketEvent(Event):
-    RUUID = &#34;cdev::simple::bucket&#34;
 
     def __init__(self, bucket_name: str, bucket_event_type: Bucket_Event_Type) -&gt; None:
-        self.bucket_name = bucket_name
+        self.bucket_cdev_name = bucket_name
         self.bucket_event_type = bucket_event_type
+        self.bucket_arn =  Cloud_Output_Str(
+                name=bucket_name, 
+                ruuid=RUUID, 
+                key=&#39;cloud_id&#39;,
+                type=OutputType.RESOURCE 
+            )
+        self.bucket_name =  Cloud_Output_Str(
+                name=bucket_name, 
+                ruuid=RUUID, 
+                key=&#39;bucket_name&#39;,
+                type=OutputType.RESOURCE 
+            )
 
-
-    def render(self) -&gt; event_model:
+    def render(self) -&gt; bucket_event_model:
         return bucket_event_model(
-            original_resource_name=self.bucket_name,
-            original_resource_type=self.RUUID,
-            bucket_event_type=self.bucket_event_type 
+            originating_resource_name=self.bucket_cdev_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
+            bucket_event_type=self.bucket_event_type,
+            bucket_arn=self.bucket_arn.render(),
+            bucket_name=self.bucket_name.render()
         )
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.bucket_cdev_name,
+            self.bucket_event_type
+        ])
 
 
 class BucketPermissions:
@@ -145,6 +173,11 @@ class BucketOutput(ResourceOutputs):
 
 
 class SimpleBucket(PermissionsAvailableMixin, Resource):
+    &#34;&#34;&#34;A Simple Bucket is a basic object store for applications to build on.
+
+
+    
+    &#34;&#34;&#34;
     
     @update_hash
     def __init__(self, cdev_name: str, nonce: str=&#34;&#34;) -&gt; None:
@@ -202,35 +235,47 @@ class SimpleBucket(PermissionsAvailableMixin, Resource):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class BucketEvent(Event):
-    RUUID = &#34;cdev::simple::bucket&#34;
 
     def __init__(self, bucket_name: str, bucket_event_type: Bucket_Event_Type) -&gt; None:
-        self.bucket_name = bucket_name
+        self.bucket_cdev_name = bucket_name
         self.bucket_event_type = bucket_event_type
+        self.bucket_arn =  Cloud_Output_Str(
+                name=bucket_name, 
+                ruuid=RUUID, 
+                key=&#39;cloud_id&#39;,
+                type=OutputType.RESOURCE 
+            )
+        self.bucket_name =  Cloud_Output_Str(
+                name=bucket_name, 
+                ruuid=RUUID, 
+                key=&#39;bucket_name&#39;,
+                type=OutputType.RESOURCE 
+            )
 
-
-    def render(self) -&gt; event_model:
+    def render(self) -&gt; bucket_event_model:
         return bucket_event_model(
-            original_resource_name=self.bucket_name,
-            original_resource_type=self.RUUID,
-            bucket_event_type=self.bucket_event_type 
-        )</code></pre>
+            originating_resource_name=self.bucket_cdev_name,
+            originating_resource_type=RUUID,
+            hash=self.hash(),
+            bucket_event_type=self.bucket_event_type,
+            bucket_arn=self.bucket_arn.render(),
+            bucket_name=self.bucket_name.render()
+        )
+
+    def hash(self) -&gt; str:
+        return hasher.hash_list([
+            self.bucket_cdev_name,
+            self.bucket_event_type
+        ])</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a class="" title="core.default.resources.simple.events.Event" href="events.html#core.default.resources.simple.events.Event">Event</a></li>
 </ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="core.default.resources.simple.object_store.BucketEvent.RUUID"><code class="name">var <span class="ident">RUUID</span></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
 <h3>Methods</h3>
 <dl>
-<dt id="core.default.resources.simple.object_store.BucketEvent.render"><code class="name flex">
-<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.events.event_model" href="events.html#core.default.resources.simple.events.event_model">event_model</a></span>
+<dt id="core.default.resources.simple.object_store.BucketEvent.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -238,11 +283,30 @@ class SimpleBucket(PermissionsAvailableMixin, Resource):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def render(self) -&gt; event_model:
+<pre><code class="python">def hash(self) -&gt; str:
+    return hasher.hash_list([
+        self.bucket_cdev_name,
+        self.bucket_event_type
+    ])</code></pre>
+</details>
+</dd>
+<dt id="core.default.resources.simple.object_store.BucketEvent.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self) ‑> <a class="" title="core.default.resources.simple.object_store.bucket_event_model" href="#core.default.resources.simple.object_store.bucket_event_model">bucket_event_model</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self) -&gt; bucket_event_model:
     return bucket_event_model(
-        original_resource_name=self.bucket_name,
-        original_resource_type=self.RUUID,
-        bucket_event_type=self.bucket_event_type 
+        originating_resource_name=self.bucket_cdev_name,
+        originating_resource_type=RUUID,
+        hash=self.hash(),
+        bucket_event_type=self.bucket_event_type,
+        bucket_arn=self.bucket_arn.render(),
+        bucket_name=self.bucket_name.render()
     )</code></pre>
 </details>
 </dd>
@@ -406,15 +470,28 @@ def bucket_name(self) -&gt; Cloud_Output_Str:
 </dd>
 <dt id="core.default.resources.simple.object_store.SimpleBucket"><code class="flex name class">
 <span>class <span class="ident">SimpleBucket</span></span>
-<span>(</span><span>*func_posargs, **func_kwargs)</span>
+<span>(</span><span>cdev_name: str, nonce: str = '')</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>A Simple Bucket is a basic object store for applications to build on.</p>
+<p>Create a simple S3 bucket that can be used as an object store.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cdev_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the resource</dd>
+<dt><strong><code>nonce</code></strong> :&ensp;<code>str</code></dt>
+<dd>Nonce to make the resource hash unique if there are conflicting resources with same configuration.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class SimpleBucket(PermissionsAvailableMixin, Resource):
+    &#34;&#34;&#34;A Simple Bucket is a basic object store for applications to build on.
+
+
+    
+    &#34;&#34;&#34;
     
     @update_hash
     def __init__(self, cdev_name: str, nonce: str=&#34;&#34;) -&gt; None:
@@ -554,6 +631,8 @@ bucket_event_type: Bucket_Event_Types</p>
         event_type: EventTypes
         bucket_event_type: Bucket_Event_Types
     &#34;&#34;&#34;
+    bucket_arn: cdev_str_model
+    bucket_name: cdev_str_model
     bucket_event_type: Bucket_Event_Type</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -565,7 +644,15 @@ bucket_event_type: Bucket_Event_Types</p>
 </ul>
 <h3>Class variables</h3>
 <dl>
+<dt id="core.default.resources.simple.object_store.bucket_event_model.bucket_arn"><code class="name">var <span class="ident">bucket_arn</span> : ~cdev_str_model</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="core.default.resources.simple.object_store.bucket_event_model.bucket_event_type"><code class="name">var <span class="ident">bucket_event_type</span> : <a class="" title="core.default.resources.simple.object_store.Bucket_Event_Type" href="#core.default.resources.simple.object_store.Bucket_Event_Type">Bucket_Event_Type</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="core.default.resources.simple.object_store.bucket_event_model.bucket_name"><code class="name">var <span class="ident">bucket_name</span> : ~cdev_str_model</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -638,7 +725,7 @@ only if a change in the state is desired.</dd>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.object_store.BucketEvent" href="#core.default.resources.simple.object_store.BucketEvent">BucketEvent</a></code></h4>
 <ul >
-<li><code><a class="sidebar" title="core.default.resources.simple.object_store.BucketEvent.RUUID" href="#core.default.resources.simple.object_store.BucketEvent.RUUID">RUUID</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.object_store.BucketEvent.hash" href="#core.default.resources.simple.object_store.BucketEvent.hash">hash</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.object_store.BucketEvent.render" href="#core.default.resources.simple.object_store.BucketEvent.render">render</a></code></li>
 </ul>
 </li>
@@ -674,7 +761,9 @@ only if a change in the state is desired.</dd>
 <li>
 <h4><code><a class="sidebar" title="core.default.resources.simple.object_store.bucket_event_model" href="#core.default.resources.simple.object_store.bucket_event_model">bucket_event_model</a></code></h4>
 <ul >
+<li><code><a class="sidebar" title="core.default.resources.simple.object_store.bucket_event_model.bucket_arn" href="#core.default.resources.simple.object_store.bucket_event_model.bucket_arn">bucket_arn</a></code></li>
 <li><code><a class="sidebar" title="core.default.resources.simple.object_store.bucket_event_model.bucket_event_type" href="#core.default.resources.simple.object_store.bucket_event_model.bucket_event_type">bucket_event_type</a></code></li>
+<li><code><a class="sidebar" title="core.default.resources.simple.object_store.bucket_event_model.bucket_name" href="#core.default.resources.simple.object_store.bucket_event_model.bucket_name">bucket_name</a></code></li>
 </ul>
 </li>
 <li>

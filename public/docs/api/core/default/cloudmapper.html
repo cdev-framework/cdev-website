@@ -60,6 +60,7 @@ class DefaultMapper(CloudMapper):
             &#34;cdev::simple::api&#34;,
             &#34;cdev::simple::bucket&#34;,
             &#34;cdev::simple::function&#34;,
+            &#34;cdev::simple::lambda_layer&#34;,
             &#34;cdev::simple::table&#34;,
             &#34;cdev::simple::queue&#34;,
             &#34;cdev::simple::relationaldb&#34;,
@@ -84,6 +85,7 @@ class DefaultMapper(CloudMapper):
 RESOURCE_TO_HANDLER_FUNCTION = {
    
     &#34;cdev::simple::function&#34;: lambda_deployer.handle_simple_lambda_function_deployment,
+    &#34;cdev::simple::lambda_layer&#34;: lambda_deployer.handle_simple_layer_deployment,
     &#34;cdev::simple::api&#34;: api_deployer.handle_simple_api_deployment,
     &#34;cdev::simple::bucket&#34;: bucket_deployer.handle_simple_bucket_deployment,
     &#34;cdev::simple::table&#34;: dynamodb_deployer.handle_simple_table_deployment,
@@ -123,6 +125,7 @@ RESOURCE_TO_HANDLER_FUNCTION = {
             &#34;cdev::simple::api&#34;,
             &#34;cdev::simple::bucket&#34;,
             &#34;cdev::simple::function&#34;,
+            &#34;cdev::simple::lambda_layer&#34;,
             &#34;cdev::simple::table&#34;,
             &#34;cdev::simple::queue&#34;,
             &#34;cdev::simple::relationaldb&#34;,
@@ -190,6 +193,7 @@ RESOURCE_TO_HANDLER_FUNCTION = {
         &#34;cdev::simple::api&#34;,
         &#34;cdev::simple::bucket&#34;,
         &#34;cdev::simple::function&#34;,
+        &#34;cdev::simple::lambda_layer&#34;,
         &#34;cdev::simple::table&#34;,
         &#34;cdev::simple::queue&#34;,
         &#34;cdev::simple::relationaldb&#34;,

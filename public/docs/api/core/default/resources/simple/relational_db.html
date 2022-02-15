@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.resources.simple.relational_db API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Set of constructs for making Serverless based Relational DBs" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -25,11 +25,16 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.resources.simple.relational_db</code></h1>
 </header>
 <section id="section-intro">
+<p>Set of constructs for making Serverless based Relational DBs</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from enum import Enum
+<pre><code class="python">&#34;&#34;&#34;Set of constructs for making Serverless based Relational DBs
+
+&#34;&#34;&#34;
+
+from enum import Enum
 from typing import Any
 
 from core.constructs.resource import Resource, ResourceModel, ResourceOutputs, update_hash, PermissionsAvailableMixin
@@ -296,10 +301,33 @@ class RelationalDB(PermissionsAvailableMixin, Resource):
 <dl>
 <dt id="core.default.resources.simple.relational_db.RelationalDB"><code class="flex name class">
 <span>class <span class="ident">RelationalDB</span></span>
-<span>(</span><span>*func_posargs, **func_kwargs)</span>
+<span>(</span><span>cdev_name: str, engine: <a class="" title="core.default.resources.simple.relational_db.db_engine" href="#core.default.resources.simple.relational_db.db_engine">db_engine</a>, username: str, password: str, database_name: str = '', enable_http_endpoint: bool = True, max_capacity: int = 64, min_capacity: int = 2, seconds_to_pause: int = 300, nonce: str = '')</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>[summary]</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cdev_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>engine</code></strong> :&ensp;<code><a class="" title="core.default.resources.simple.relational_db.db_engine" href="#core.default.resources.simple.relational_db.db_engine">db_engine</a></code></dt>
+<dd>[description]</dd>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>password</code></strong> :&ensp;<code>str</code></dt>
+<dd>[description]</dd>
+<dt><strong><code>database_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>[description]. Defaults to "".</dd>
+<dt><strong><code>enable_http_endpoint</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>[description]. Defaults to True.</dd>
+<dt><strong><code>max_capacity</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>[description]. Defaults to 64.</dd>
+<dt><strong><code>min_capacity</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>[description]. Defaults to 2.</dd>
+<dt><strong><code>seconds_to_pause</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>[description]. Defaults to 300.</dd>
+<dt><strong><code>nonce</code></strong> :&ensp;<code>str</code></dt>
+<dd>Nonce to make the resource hash unique if there are conflicting resources with same configuration.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>

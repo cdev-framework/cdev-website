@@ -2,9 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docs on Cdev | Dynamic Serverless Framework</title>
-    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/</link>
+    <link>https://staging.cdevframework.io/docs/</link>
     <description>Recent content in docs on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Aug 2019 16:19:26 +0600</lastBuildDate><atom:link href="https://staging.cdevframework.io/docs/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

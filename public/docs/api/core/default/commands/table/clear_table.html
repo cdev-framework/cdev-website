@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>core.default.commands.table.clear_table API documentation</title>
-<meta name="description" content="from argparse import ArgumentParser
-import json
-from typing import Dict, List …" />
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -27,92 +25,35 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.commands.table.clear_table</code></h1>
 </header>
 <section id="section-intro">
-<p>from argparse import ArgumentParser
-import json
-from typing import Dict, List</p>
-<p>import boto3</p>
-<p>from cdev.management.base import BaseCommand
-from cdev.backend.utils import get_resource
-from cdev.backend.cloud_mapper_manager import get_output_value_by_hash
-from cdev.mapper.backend.aws import aws_client as raw_aws_client</p>
-<p>RUUID = "cdev::simple::table"</p>
-<p>class clear_table(BaseCommand):
-def add_arguments(self, parser: ArgumentParser):
-parser.add_argument(
-"resource-name", type=str, help="The resource you want to sync data to"
-)</p>
-<pre><code>def command(self, *args, **kwargs):
-    """
-    Clear all items for the table
-    """
-    # &lt;https://stackoverflow.com/questions/55169952/delete-all-items-dynamodb-using-python&gt;
-
-    resource_name = kwargs.get("resource-name")
-    dynamo = boto3.resource("dynamodb")
-
-    try:
-        resource = get_resource(resource_name, RUUID)
-        dynamodb_table_name = get_output_value_by_hash(resource.hash, "table_name")
-    except Exception as e:
-        self.stderr.write(f"Could not find simple table {resource_name}")
-        return
-
-    table = dynamo.Table(dynamodb_table_name)
-
-    # get the table keys
-    tableKeyNames = [key.get("AttributeName") for key in table.key_schema]
-
-    # Only retrieve the keys for each item in the table (minimize data transfer)
-    projectionExpression = ", ".join("#" + key for key in tableKeyNames)
-    expressionAttrNames = {"#" + key: key for key in tableKeyNames}
-
-    counter = 0
-    page = table.scan(
-        ProjectionExpression=projectionExpression,
-        ExpressionAttributeNames=expressionAttrNames,
-    )
-    with table.batch_writer() as batch:
-        while page["Count"] &gt; 0:
-            counter += page["Count"]
-            # Delete items in batches
-            for itemKeys in page["Items"]:
-                self.stdout.write(f"Removing item {itemKeys}")
-                batch.delete_item(Key=itemKeys)
-            # Fetch the next page
-            if "LastEvaluatedKey" in page:
-                page = table.scan(
-                    ProjectionExpression=projectionExpression,
-                    ExpressionAttributeNames=expressionAttrNames,
-                    ExclusiveStartKey=page["LastEvaluatedKey"],
-                )
-            else:
-                break
-
-    self.stdout.write(f"Deleted {counter}")
-</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#39;&#39;&#39;from argparse import ArgumentParser
-import json
+<pre><code class="python">from argparse import ArgumentParser
 from typing import Dict, List
 
 import boto3
 
 
-from cdev.management.base import BaseCommand
-from cdev.backend.utils import get_resource
-from cdev.backend.cloud_mapper_manager import get_output_value_by_hash
-from cdev.mapper.backend.aws import aws_client as raw_aws_client
+from core.constructs.commands import BaseCommand, OutputWrapper
+from core.default.resources.simple.table import Table
+from core.utils.paths import get_full_path_from_workspace_base
+
+
+from . import utils
 
 RUUID = &#34;cdev::simple::table&#34;
 
 
 class clear_table(BaseCommand):
+
+    help = &#34;&#34;&#34;
+Clear the current data from a given Table. This should only be used on development tables.   
+&#34;&#34;&#34;
+
     def add_arguments(self, parser: ArgumentParser):
         parser.add_argument(
-            &#34;resource-name&#34;, type=str, help=&#34;The resource you want to sync data to&#34;
+            &#34;resource_name&#34;, type=str, help=&#34;The resource you want to sync data to&#34;
         )
 
     def command(self, *args, **kwargs):
@@ -121,17 +62,15 @@ class clear_table(BaseCommand):
         &#34;&#34;&#34;
         # https://stackoverflow.com/questions/55169952/delete-all-items-dynamodb-using-python
 
-        resource_name = kwargs.get(&#34;resource-name&#34;)
+        full_resource_name = kwargs.get(&#34;resource_name&#34;)
+        component_name = full_resource_name.split(&#39;.&#39;)[0]
+        table_resource_name = full_resource_name.split(&#39;.&#39;)[1]
+
+        cloud_output = utils.get_cloud_output_from_cdev_name(component_name, table_resource_name)
+        table_cloud_name = cloud_output.get(&#39;table_name&#39;)
+
         dynamo = boto3.resource(&#34;dynamodb&#34;)
-
-        try:
-            resource = get_resource(resource_name, RUUID)
-            dynamodb_table_name = get_output_value_by_hash(resource.hash, &#34;table_name&#34;)
-        except Exception as e:
-            self.stderr.write(f&#34;Could not find simple table {resource_name}&#34;)
-            return
-
-        table = dynamo.Table(dynamodb_table_name)
+        table = dynamo.Table(table_cloud_name)
 
         # get the table keys
         tableKeyNames = [key.get(&#34;AttributeName&#34;) for key in table.key_schema]
@@ -150,7 +89,7 @@ class clear_table(BaseCommand):
                 counter += page[&#34;Count&#34;]
                 # Delete items in batches
                 for itemKeys in page[&#34;Items&#34;]:
-                    self.stdout.write(f&#34;Removing item {itemKeys}&#34;)
+                    self.stderr.write(f&#34;Removing item {itemKeys}&#34;)
                     batch.delete_item(Key=itemKeys)
                 # Fetch the next page
                 if &#34;LastEvaluatedKey&#34; in page:
@@ -162,8 +101,7 @@ class clear_table(BaseCommand):
                 else:
                     break
 
-        self.stdout.write(f&#34;Deleted {counter}&#34;)
-&#39;&#39;&#39;</code></pre>
+        self.stderr.write(f&#34;Deleted {counter}&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -173,6 +111,158 @@ class clear_table(BaseCommand):
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.commands.table.clear_table.clear_table"><code class="flex name class">
+<span>class <span class="ident">clear_table</span></span>
+<span>(</span><span>stdout: rich.console.Console = None, stderr: rich.console.Console = None, no_color=False, force_color=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base Class for a user defined command</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class clear_table(BaseCommand):
+
+    help = &#34;&#34;&#34;
+Clear the current data from a given Table. This should only be used on development tables.   
+&#34;&#34;&#34;
+
+    def add_arguments(self, parser: ArgumentParser):
+        parser.add_argument(
+            &#34;resource_name&#34;, type=str, help=&#34;The resource you want to sync data to&#34;
+        )
+
+    def command(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Clear all items for the table
+        &#34;&#34;&#34;
+        # https://stackoverflow.com/questions/55169952/delete-all-items-dynamodb-using-python
+
+        full_resource_name = kwargs.get(&#34;resource_name&#34;)
+        component_name = full_resource_name.split(&#39;.&#39;)[0]
+        table_resource_name = full_resource_name.split(&#39;.&#39;)[1]
+
+        cloud_output = utils.get_cloud_output_from_cdev_name(component_name, table_resource_name)
+        table_cloud_name = cloud_output.get(&#39;table_name&#39;)
+
+        dynamo = boto3.resource(&#34;dynamodb&#34;)
+        table = dynamo.Table(table_cloud_name)
+
+        # get the table keys
+        tableKeyNames = [key.get(&#34;AttributeName&#34;) for key in table.key_schema]
+
+        # Only retrieve the keys for each item in the table (minimize data transfer)
+        projectionExpression = &#34;, &#34;.join(&#34;#&#34; + key for key in tableKeyNames)
+        expressionAttrNames = {&#34;#&#34; + key: key for key in tableKeyNames}
+
+        counter = 0
+        page = table.scan(
+            ProjectionExpression=projectionExpression,
+            ExpressionAttributeNames=expressionAttrNames,
+        )
+        with table.batch_writer() as batch:
+            while page[&#34;Count&#34;] &gt; 0:
+                counter += page[&#34;Count&#34;]
+                # Delete items in batches
+                for itemKeys in page[&#34;Items&#34;]:
+                    self.stderr.write(f&#34;Removing item {itemKeys}&#34;)
+                    batch.delete_item(Key=itemKeys)
+                # Fetch the next page
+                if &#34;LastEvaluatedKey&#34; in page:
+                    page = table.scan(
+                        ProjectionExpression=projectionExpression,
+                        ExpressionAttributeNames=expressionAttrNames,
+                        ExclusiveStartKey=page[&#34;LastEvaluatedKey&#34;],
+                    )
+                else:
+                    break
+
+        self.stderr.write(f&#34;Deleted {counter}&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.commands.BaseCommand" href="../../../constructs/commands.html#core.constructs.commands.BaseCommand">BaseCommand</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.commands.table.clear_table.clear_table.help"><code class="name">var <span class="ident">help</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="core.default.commands.table.clear_table.clear_table.command"><code class="name flex">
+<span>def <span class="ident">command</span></span>(<span>self, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear all items for the table</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def command(self, *args, **kwargs):
+    &#34;&#34;&#34;
+    Clear all items for the table
+    &#34;&#34;&#34;
+    # https://stackoverflow.com/questions/55169952/delete-all-items-dynamodb-using-python
+
+    full_resource_name = kwargs.get(&#34;resource_name&#34;)
+    component_name = full_resource_name.split(&#39;.&#39;)[0]
+    table_resource_name = full_resource_name.split(&#39;.&#39;)[1]
+
+    cloud_output = utils.get_cloud_output_from_cdev_name(component_name, table_resource_name)
+    table_cloud_name = cloud_output.get(&#39;table_name&#39;)
+
+    dynamo = boto3.resource(&#34;dynamodb&#34;)
+    table = dynamo.Table(table_cloud_name)
+
+    # get the table keys
+    tableKeyNames = [key.get(&#34;AttributeName&#34;) for key in table.key_schema]
+
+    # Only retrieve the keys for each item in the table (minimize data transfer)
+    projectionExpression = &#34;, &#34;.join(&#34;#&#34; + key for key in tableKeyNames)
+    expressionAttrNames = {&#34;#&#34; + key: key for key in tableKeyNames}
+
+    counter = 0
+    page = table.scan(
+        ProjectionExpression=projectionExpression,
+        ExpressionAttributeNames=expressionAttrNames,
+    )
+    with table.batch_writer() as batch:
+        while page[&#34;Count&#34;] &gt; 0:
+            counter += page[&#34;Count&#34;]
+            # Delete items in batches
+            for itemKeys in page[&#34;Items&#34;]:
+                self.stderr.write(f&#34;Removing item {itemKeys}&#34;)
+                batch.delete_item(Key=itemKeys)
+            # Fetch the next page
+            if &#34;LastEvaluatedKey&#34; in page:
+                page = table.scan(
+                    ProjectionExpression=projectionExpression,
+                    ExpressionAttributeNames=expressionAttrNames,
+                    ExclusiveStartKey=page[&#34;LastEvaluatedKey&#34;],
+                )
+            else:
+                break
+
+    self.stderr.write(f&#34;Deleted {counter}&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a class="" title="core.constructs.commands.BaseCommand" href="../../../constructs/commands.html#core.constructs.commands.BaseCommand">BaseCommand</a></b></code>:
+<ul class="hlist">
+<li><code><a class="" title="core.constructs.commands.BaseCommand.add_arguments" href="../../../constructs/commands.html#core.constructs.commands.BaseCommand.add_arguments">add_arguments</a></code></li>
+<li><code><a class="" title="core.constructs.commands.BaseCommand.run_from_command_line" href="../../../constructs/commands.html#core.constructs.commands.BaseCommand.run_from_command_line">run_from_command_line</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -184,6 +274,17 @@ class clear_table(BaseCommand):
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a class="sidebar" title="core.default.commands.table" href="index.html">core.default.commands.table</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.commands.table.clear_table.clear_table" href="#core.default.commands.table.clear_table.clear_table">clear_table</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.commands.table.clear_table.clear_table.command" href="#core.default.commands.table.clear_table.clear_table.command">command</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.table.clear_table.clear_table.help" href="#core.default.commands.table.clear_table.clear_table.help">help</a></code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

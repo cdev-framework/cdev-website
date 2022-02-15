@@ -25,11 +25,35 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <h1 class="title">Module <code>core.default.commands.object_store</code></h1>
 </header>
 <section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from core.constructs.commands import BaseCommandContainer
+
+
+class SimpleCommandContainer(BaseCommandContainer):
+    help = &#34;&#34;&#34;
+These are the commands that are available for use on simple buckets.
+
+cp: Copy files between your local workspace and a deployed bucket
+sync: Sync the contents of a given folder to a deployed bucket
+
+&#34;&#34;&#34;</code></pre>
+</details>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
-<dt><code class="name"><a class="" title="core.default.commands.object_store.put_object" href="put_object.html">core.default.commands.object_store.put_object</a></code></dt>
+<dt><code class="name"><a class="" title="core.default.commands.object_store.cp" href="cp.html">core.default.commands.object_store.cp</a></code></dt>
+<dd>
+<div class="desc"><p>Command for uploading objects to a Bucket</p></div>
+</dd>
+<dt><code class="name"><a class="" title="core.default.commands.object_store.sync" href="sync.html">core.default.commands.object_store.sync</a></code></dt>
+<dd>
+<div class="desc"><p>Command for syncing a set of resources to a static site</p></div>
+</dd>
+<dt><code class="name"><a class="" title="core.default.commands.object_store.utils" href="utils.html">core.default.commands.object_store.utils</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -40,6 +64,42 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="core.default.commands.object_store.SimpleCommandContainer"><code class="flex name class">
+<span>class <span class="ident">SimpleCommandContainer</span></span>
+<span>(</span><span>stdout: rich.console.Console = None, stderr: rich.console.Console = None, no_color=False, force_color=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is used to designate that the directory is a CommandContainer and should be searched for when looking for commands.</p>
+<p>This class should be initialized in the <strong>init</strong>.py file for the folder.</p>
+<p>The directory should contain valid Commands or other CommandContainers</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SimpleCommandContainer(BaseCommandContainer):
+    help = &#34;&#34;&#34;
+These are the commands that are available for use on simple buckets.
+
+cp: Copy files between your local workspace and a deployed bucket
+sync: Sync the contents of a given folder to a deployed bucket
+
+&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a class="" title="core.constructs.commands.BaseCommandContainer" href="../../../constructs/commands.html#core.constructs.commands.BaseCommandContainer">BaseCommandContainer</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="core.default.commands.object_store.SimpleCommandContainer.help"><code class="name">var <span class="ident">help</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -55,7 +115,19 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 </li>
 <li><h3><a class='nav-header' href="#header-submodules">Sub-modules</a></h3>
 <ul>
-<li><code><a class="sidebar" title="core.default.commands.object_store.put_object" href="put_object.html">core.default.commands.object_store.put_object</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.object_store.cp" href="cp.html">core.default.commands.object_store.cp</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.object_store.sync" href="sync.html">core.default.commands.object_store.sync</a></code></li>
+<li><code><a class="sidebar" title="core.default.commands.object_store.utils" href="utils.html">core.default.commands.object_store.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a class='nav-header' href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a class="sidebar" title="core.default.commands.object_store.SimpleCommandContainer" href="#core.default.commands.object_store.SimpleCommandContainer">SimpleCommandContainer</a></code></h4>
+<ul >
+<li><code><a class="sidebar" title="core.default.commands.object_store.SimpleCommandContainer.help" href="#core.default.commands.object_store.SimpleCommandContainer.help">help</a></code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

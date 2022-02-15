@@ -2,36 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>First Principles on Cdev | Dynamic Serverless Framework</title>
-    <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/</link>
+    <link>https://staging.cdevframework.io/docs/firstprinciples/</link>
     <description>Recent content in First Principles on Cdev | Dynamic Serverless Framework</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://staging.cdevframework.io/docs/firstprinciples/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why use Serverless?</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</link>
+      <link>https://staging.cdevframework.io/docs/firstprinciples/whyserverless/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</guid>
+      <guid>https://staging.cdevframework.io/docs/firstprinciples/whyserverless/</guid>
       <description>What is Serverless?  “But there are still servers involved!” - Some person every time there is a discussion about serverless    Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering, and it is just about who manages the servers. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on.</description>
     </item>
     
     <item>
       <title>Cold Starts</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</link>
+      <link>https://staging.cdevframework.io/docs/firstprinciples/coldstarts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</guid>
+      <guid>https://staging.cdevframework.io/docs/firstprinciples/coldstarts/</guid>
       <description>Cold Starts  &#34;A computer seems infinitely fast, until it doesn&#39;t!&#34;    Perhaps the most infamous problem in the serverless compute space is: The Cold Start. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to lower Cold Starts to an acceptable level on serverless compute platforms.
 Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience.</description>
     </item>
     
     <item>
-      <title>Developer Experience</title>
-      <link>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</link>
+      <title>Dependencies</title>
+      <link>https://staging.cdevframework.io/docs/firstprinciples/dependencies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</guid>
-      <description>Developer Experience </description>
+      <guid>https://staging.cdevframework.io/docs/firstprinciples/dependencies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://staging.cdevframework.io/docs/firstprinciples/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://staging.cdevframework.io/docs/firstprinciples/architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cdev Core</title>
+      <link>https://staging.cdevframework.io/docs/firstprinciples/core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://staging.cdevframework.io/docs/firstprinciples/core/</guid>
+      <description></description>
     </item>
     
   </channel>

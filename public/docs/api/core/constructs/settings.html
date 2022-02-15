@@ -86,10 +86,13 @@ class Settings(BaseSettings):
 
     DEPLOYMENT_PLATFORM = &#34;x86&#34;
 
+    USE_DOCKER = False
+
 
     class Config:
         env_prefix = &#39;CDEV_&#39;
         validate_assignment = True
+        extra = &#39;allow&#39;
 
 
 
@@ -231,10 +234,13 @@ Heroku and any 12 factor app design.</p></div>
 
     DEPLOYMENT_PLATFORM = &#34;x86&#34;
 
+    USE_DOCKER = False
+
 
     class Config:
         env_prefix = &#39;CDEV_&#39;
-        validate_assignment = True</code></pre>
+        validate_assignment = True
+        extra = &#39;allow&#39;</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">

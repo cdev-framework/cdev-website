@@ -29,17 +29,23 @@ href='https://cdevwebsitestaging.s3.amazonaws.com/bootstrap/css/bootstrap.min.cs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from time import sleep
-from typing import Any, Dict, Union
+<pre><code class="python">import math
+import os
+from time import sleep
+from typing import Any, Dict, FrozenSet, Union, List, Tuple
 from uuid import uuid4
 
 from core.constructs.resource import Resource_Difference, Resource_Change_Type
 from core.constructs.output_manager import OutputTask
+from core.constructs.models import frozendict
+
 from core.default.resources.simple import xlambda as simple_xlambda
 from core.default.resources.simple.iam import permission_arn_model, permission_model
 
 from core.utils import paths as core_paths, hasher
-from core.constructs.models import frozendict
+from core.utils.logger import log
+from core.utils.platforms import lambda_python_environment
+
 
 
 from .. import aws_client 
@@ -59,7 +65,16 @@ from .event_deployer import (
     EVENT_TO_HANDLERS
 )
 
-import os
+
+python_environment_to_aws_params: Dict[lambda_python_environment, Tuple] = {
+    lambda_python_environment.py37: (&#39;python3.7&#39;, &#39;x86_64&#39;),
+    lambda_python_environment.py38_x86_64: (&#39;python3.8&#39;, &#39;x86_64&#39;),
+    lambda_python_environment.py38_arm64: (&#39;python3.8&#39;, &#39;arm64&#39;),
+    lambda_python_environment.py39_x86_64: (&#39;python3.9&#39;, &#39;x86_64&#39;),
+    lambda_python_environment.py39_arm64: (&#39;python3.9&#39;, &#39;arm64&#39;),
+    lambda_python_environment.py3_x86_64: (&#39;python3.9&#39;, &#39;x86_64&#39;),
+    lambda_python_environment.py3_arm64: (&#39;python3.9&#39;, &#39; arm64&#39;),
+}
 
 
 AssumeRolePolicyDocumentJSON = &#34;&#34;&#34;{
@@ -93,7 +108,7 @@ def _create_simple_lambda(
     # 3. Upload dependencies if needed
     # 4. Create the function
     # 5. Create any integrations that are need based on Events passed in
-
+    log.debug(&#34;Create lambda %s&#34;, resource)
     full_namespace_suffix = hasher.hash_list([namespace_token, str(uuid4())])
 
     function_name = f&#34;cdev_function_{full_namespace_suffix}&#34;
@@ -117,6 +132,7 @@ def _create_simple_lambda(
     )
 
     final_info[&#34;role_id&#34;] = role_arn
+    final_info[&#34;role_name&#34;] = role_name
     final_info[&#34;permissions&#34;] = permission_info
 
     # Step 2
@@ -130,16 +146,7 @@ def _create_simple_lambda(
     final_info[&#34;artifact_bucket&#34;] = BUCKET
     final_info[&#34;artifact_key&#34;] = keyname
 
-    # Step 3
-    if resource.external_dependencies:
-        output_task.update(
-            comment=f&#34;Creating dependencies for lambda function {resource.name}&#34;
-        )
-
-        cloud_dependency_info = [_create_dependency(x) for x in resource.external_dependencies]
-
-        final_info[&#34;layers&#34;] = cloud_dependency_info
-
+    
     # Step 4
     # TODO
     output_task.update(
@@ -152,9 +159,12 @@ def _create_simple_lambda(
         comment=f&#34;Create Lambda function&#34;
     )
 
+    runtime, arch = python_environment_to_aws_params.get(resource.platform)
+    
     lambda_function_args = {
         &#34;FunctionName&#34;: function_name,
-        &#34;Runtime&#34;: &#34;python3.7&#34;,
+        &#34;Runtime&#34;: runtime,
+        &#34;Architectures&#34;: [arch],
         &#34;Role&#34;: role_arn,
         &#34;Handler&#34;: resource.configuration.handler,
         &#34;Code&#34;: {&#34;S3Bucket&#34;: BUCKET, &#34;S3Key&#34;: keyname},
@@ -163,17 +173,16 @@ def _create_simple_lambda(
         }
         if resource.configuration.environment_variables
         else {},
-        &#34;Layers&#34;: [
-            f&#39;{x.get(&#34;arn&#34;)}:{x.get(&#34;version&#34;)}&#39; for x in final_info.get(&#34;layers&#34;)
-        ]
-        if final_info.get(&#34;layers&#34;)
+        &#34;Layers&#34;: list(resource.external_dependencies)
+        if resource.external_dependencies
         else [],
     }
+    log.debug(&#34;lambda configuration %s&#34;, lambda_function_args)
 
     lambda_function_rv = aws_client.run_client_function(
         &#34;lambda&#34;, &#34;create_function&#34;, lambda_function_args
     )
-
+    final_info[&#34;layers&#34;] = resource.external_dependencies
     final_info[&#34;cloud_id&#34;] = lambda_function_rv.get(&#34;FunctionArn&#34;)
 
     # Step 5
@@ -242,24 +251,15 @@ def _remove_simple_lambda(
         &#34;lambda&#34;, &#34;delete_function&#34;, {&#34;FunctionName&#34;: cloud_id}
     )
 
-    #role_name = previous_output.get(&#34;role_name&#34;)
-    #permissions =  previous_output.get(&#34;permissions&#34;)
-#
-    #delete_role_and_permissions(role_name, permissions)
+    role_arn = previous_output.get(&#34;role_id&#34;)
+    role_name = previous_output.get(&#34;role_name&#34;)
+    permissions =  previous_output.get(&#34;permissions&#34;)
+
+    delete_role_and_permissions(role_name, permissions)
 
     output_task.update(
         comment=f&#34;Deleting permissions for the resource ({cloud_id})&#34;
     )
-
-    dependencies_info = previous_output.get(&#34;layers&#34;)
-    
-    if dependencies_info:
-        for dependency_info in dependencies_info:
-            _remove_dependency(dependency_info)
-
-        output_task.update(
-            comment=f&#34;Deleting dependencies for the resource ({cloud_id})&#34;
-        )
 
    
     output_task.update(
@@ -286,6 +286,7 @@ def _update_simple_lambda(
     cloud_id = previous_output[&#39;cloud_id&#39;]
 
     did_update_permission = False
+    did_update_src_code = False
 
     mutable_previous_output = dict(previous_output)
     
@@ -313,7 +314,7 @@ def _update_simple_lambda(
         output_task.update(
             comment=f&#34;Updating Policies&#34;
         )
-        permission_output: Dict[Union[permission_model, permission_arn_model], str] = previous_output.get(&#34;permissions&#34;)
+        permission_output: frozenset = previous_output.get(&#34;permissions&#34;)
         role_name_output = previous_output.get(&#34;role_name&#34;)
 
         
@@ -324,7 +325,9 @@ def _update_simple_lambda(
         for permission in create_permissions:
             
             rv = add_policy(role_name_output, permission)
-            permission_output[permission] = rv
+            tmp = list(permission_output)
+            tmp.append(rv)
+            permission_output = frozenset(tmp)
 
         for permission in remove_permissions:
 
@@ -332,7 +335,9 @@ def _update_simple_lambda(
                 role_name_output,
                 permission_output.get(permission),
             )
-            permission_output.pop(permission)
+            tmp = list(permission_output)
+            tmp.pop(rv)
+            permission_output = frozenset(tmp)
 
 
         mutable_previous_output[&#39;permissions&#39;] = permission_output
@@ -359,11 +364,20 @@ def _update_simple_lambda(
         )
 
         mutable_previous_output[&#34;artifact_key&#34;] = keyname
+        did_update_src_code = True
+
 
     if (
         not previous_resource.external_dependencies
         == new_resource.external_dependencies
     ):
+        if did_update_src_code:
+            output_task.update(
+                comment=f&#34;[blink]Waiting for src code update to complete. ~5s[/blink]&#34;
+            )
+            sleep(5)
+
+
         output_task.update(
             comment=f&#34;Update Dependencies&#34;
         )
@@ -371,31 +385,20 @@ def _update_simple_lambda(
         remove_dependencies = previous_resource.external_dependencies.difference(new_resource.external_dependencies)
         create_dependencies = new_resource.external_dependencies.difference(previous_resource.external_dependencies)
         
-        previous_dependency_output: Dict =  mutable_previous_output.get(&#34;layers&#34;)
+        previous_dependency_output: List =  list(mutable_previous_output.get(&#34;layers&#34;))
 
         for dependency in create_dependencies:
-            new_layer_rv = _create_dependency(
-                dependency
-            )
-
-            previous_dependency_output[dependency] = new_layer_rv
+            previous_dependency_output.append(dependency)
 
         for dependency in remove_dependencies:
-            _remove_dependency(dependency)
-
-            previous_dependency_output.pop(dependency)
-
-        sleep(5)
+            previous_dependency_output.remove(dependency)
 
         aws_client.run_client_function(
             &#34;lambda&#34;,
             &#34;update_function_configuration&#34;,
             {
                 &#34;FunctionName&#34;: cloud_id,
-            
-                &#34;Layers&#34;: [
-                    f&#39;{x.get(&#34;arn&#34;)}:{x.get(&#34;version&#34;)}&#39; for x in previous_dependency_output
-                ],
+                &#34;Layers&#34;: previous_dependency_output
             },
         )
 
@@ -465,53 +468,6 @@ def _update_simple_lambda(
 
 
 
-##########################
-##### Dependencies
-##########################
-def _create_dependency(
-    dependency: Union[simple_xlambda.dependency_layer_model, simple_xlambda.deployed_layer_model],
-) -&gt; Dict:
-
-    if isinstance(dependency, simple_xlambda.deployed_layer_model):
-        return dependency.arn
-
-    key_name = _upload_s3_dependency(dependency)
-
-    # key name will always include .zip so remove that part and change &#39;-&#39; into &#39;_&#39;
-    layer_name = key_name.replace(&#34;-&#34;, &#34;_&#34;)[:-4]
-    dependency_rv = aws_client.run_client_function(
-        &#34;lambda&#34;,
-        &#34;publish_layer_version&#34;,
-        {
-            &#34;Content&#34;: {&#34;S3Bucket&#34;: BUCKET, &#34;S3Key&#34;: key_name},
-            &#34;LayerName&#34;: layer_name,
-            &#34;CompatibleRuntimes&#34;: [
-                &#34;python3.6&#34;,
-                &#34;python3.7&#34;,
-                &#34;python3.8&#34;,
-            ],
-        },
-    )
-
-    return {
-        &#34;arn&#34;: dependency_rv.get(&#34;LayerArn&#34;),
-        &#34;S3bucket&#34;: BUCKET,
-        &#34;S3key&#34;: key_name,
-        &#34;version&#34;: dependency_rv.get(&#34;Version&#34;),
-        &#34;name&#34;: layer_name,
-        &#34;hash&#34;: dependency.get(&#34;hash&#34;),
-    }
-
-
-def _remove_dependency(dependency_cloud_info: Dict):
-    aws_client.run_client_function(
-        &#34;lambda&#34;,
-        &#34;delete_layer_version&#34;,
-        {
-            &#34;LayerName&#34;: dependency_cloud_info.get(&#34;name&#34;),
-            &#34;VersionNumber&#34;: dependency_cloud_info.get(&#34;version&#34;),
-        },
-    )
 
 
 
@@ -543,12 +499,15 @@ def _upload_s3_code_artifact(
     return keyname
 
 def _upload_s3_dependency(
-    dependency: simple_xlambda.dependency_layer_model
+    dependency: simple_xlambda.dependency_layer_model,
+    output_task: OutputTask
 ) -&gt; str:
     # Takes in a resource and create an s3 artifact that can be use as src code for lambda deployment
-    keyname = dependency.name + f&#34;-{dependency.hash}&#34; + &#34;.zip&#34;
-    # original_zipname = resource.configuration.Handler.split(&#34;.&#34;)[0] + &#34;.zip&#34;
-    zip_location = core_paths.get_full_path_from_workspace_base(dependency.artifact_path)
+    keyname = f&#34;{dependency.name}-{dependency.hash}.zip&#34;
+
+    zip_location = core_paths.get_full_path_from_intermediate_base(dependency.artifact_path)
+
+    total_bytes =  os.path.getsize(zip_location)
 
     if not os.path.isfile(zip_location):
         # TODO better exception
@@ -561,14 +520,23 @@ def _upload_s3_dependency(
         use_threads=True,
     )
 
+    
+
+    def update_progress_bar(x):
+        advance_amount = (x/total_bytes) * 4
+        output_task.update(advance=advance_amount, comment=&#39;[blink]Uploading Package[/blink]&#39;)
+
+
     object_args = {
         &#34;Bucket&#34;: BUCKET,
         &#34;Key&#34;: keyname,
         &#34;Filename&#34;: zip_location,
-        &#34;Callback&#34;: lambda x: print(x),
+        &#34;Callback&#34;: update_progress_bar,
         &#34;Config&#34;: config,
     }
     aws_client.run_client_function(&#34;s3&#34;, &#34;upload_file&#34;, object_args)
+
+    output_task.update( comment=&#39;Uploaded Package&#39;)
 
     return keyname
 
@@ -585,6 +553,7 @@ def handle_simple_lambda_function_deployment(
         output_task: OutputTask
     ) -&gt; Dict:
     try:
+        log.debug(&#34;Calling lambda mapper&#34;)
         if resource_diff.action_type == Resource_Change_Type.CREATE:
             return _create_simple_lambda(
                 transaction_token,
@@ -605,6 +574,115 @@ def handle_simple_lambda_function_deployment(
         elif resource_diff.action_type == Resource_Change_Type.DELETE:
 
             return _remove_simple_lambda(
+                transaction_token,
+                resource_diff.previous_resource,
+                previous_output,
+                output_task
+            )
+
+    except Exception as e:
+        print(e)
+        raise Exception(&#34;COULD NOT DEPLOY&#34;)
+
+###################################
+##### Layers
+###################################
+
+def _create_simple_layer( 
+        transaction_token: str, 
+        namespace_token: str, 
+        resource: simple_xlambda.dependency_layer_model, 
+        output_task: OutputTask
+    ):
+
+    output_task.update(
+        comment=f&#34;Creating dependencies for lambda function {resource.name}&#34;
+    )
+
+    key_name = _upload_s3_dependency(resource, output_task)
+
+    # key name will always include .zip so remove that part and change &#39;-&#39; into &#39;_&#39;
+    layer_name = key_name.replace(&#34;-&#34;, &#34;_&#34;)[:-4].replace(&#34;.&#34;,&#34;&#34;)
+    dependency_rv = aws_client.run_client_function(
+        &#34;lambda&#34;,
+        &#34;publish_layer_version&#34;,
+        {
+            &#34;Content&#34;: {&#34;S3Bucket&#34;: BUCKET, &#34;S3Key&#34;: key_name},
+            &#34;LayerName&#34;: f&#34;{layer_name}_{namespace_token}&#34;,
+            &#34;CompatibleRuntimes&#34;: [
+                &#34;python3.7&#34;,
+                &#34;python3.8&#34;,
+                &#34;python3.9&#34;
+            ],
+        },
+    )
+
+    return {
+        &#34;cloud_id&#34;: f&#34;{dependency_rv.get(&#39;LayerArn&#39;)}:{dependency_rv.get(&#39;Version&#39;)}&#34;,
+        &#34;arn&#34;: dependency_rv.get(&#34;LayerArn&#34;),
+        &#34;version&#34;: dependency_rv.get(&#39;Version&#39;)
+    }
+
+def _update_simple_layer(
+        transaction_token: str, 
+        namespace_token: str,
+        previous_resource: simple_xlambda.dependency_layer_model,
+        new_resource: simple_xlambda.dependency_layer_model,
+        previous_output: Dict,
+        output_task: OutputTask
+    ):
+    return _create_simple_layer(
+        transaction_token,
+        namespace_token,
+        new_resource,
+        output_task
+    )
+    
+def _remove_simple_layer(
+        transaction_token,
+        resource,
+        previous_output,
+        output_task
+    ):
+        aws_client.run_client_function(
+            &#34;lambda&#34;,
+            &#34;delete_layer_version&#34;,
+            {
+                &#34;LayerName&#34;: previous_output.get(&#34;arn&#34;),
+                &#34;VersionNumber&#34;: previous_output.get(&#34;version&#34;),
+            },
+        )
+
+
+
+def handle_simple_layer_deployment( 
+        transaction_token: str, 
+        namespace_token: str, 
+        resource_diff: Resource_Difference, 
+        previous_output: Dict[str, Any],
+        output_task: OutputTask
+    ) -&gt; Dict:
+    try:
+        if resource_diff.action_type == Resource_Change_Type.CREATE:
+            return _create_simple_layer(
+                transaction_token,
+                namespace_token,
+                resource_diff.new_resource,  
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+
+            return _update_simple_layer(
+                transaction_token,
+                namespace_token,
+                simple_xlambda.dependency_layer_model(**resource_diff.previous_resource.dict()),
+                resource_diff.new_resource,
+                previous_output,
+                output_task
+            )
+
+        elif resource_diff.action_type == Resource_Change_Type.DELETE:
+            return _remove_simple_layer(
                 transaction_token,
                 resource_diff.previous_resource,
                 previous_output,
@@ -640,6 +718,7 @@ def handle_simple_lambda_function_deployment(
         output_task: OutputTask
     ) -&gt; Dict:
     try:
+        log.debug(&#34;Calling lambda mapper&#34;)
         if resource_diff.action_type == Resource_Change_Type.CREATE:
             return _create_simple_lambda(
                 transaction_token,
@@ -671,6 +750,54 @@ def handle_simple_lambda_function_deployment(
         raise Exception(&#34;COULD NOT DEPLOY&#34;)</code></pre>
 </details>
 </dd>
+<dt id="core.default.mappers.simple.lambda_deployer.handle_simple_layer_deployment"><code class="name flex">
+<span>def <span class="ident">handle_simple_layer_deployment</span></span>(<span>transaction_token: str, namespace_token: str, resource_diff: <a class="" title="core.constructs.resource.Resource_Difference" href="../../../constructs/resource.html#core.constructs.resource.Resource_Difference">Resource_Difference</a>, previous_output: Dict[str, Any], output_task: <a class="" title="core.constructs.output_manager.OutputTask" href="../../../constructs/output_manager.html#core.constructs.output_manager.OutputTask">OutputTask</a>) ‑> Dict[~KT, ~VT]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def handle_simple_layer_deployment( 
+        transaction_token: str, 
+        namespace_token: str, 
+        resource_diff: Resource_Difference, 
+        previous_output: Dict[str, Any],
+        output_task: OutputTask
+    ) -&gt; Dict:
+    try:
+        if resource_diff.action_type == Resource_Change_Type.CREATE:
+            return _create_simple_layer(
+                transaction_token,
+                namespace_token,
+                resource_diff.new_resource,  
+                output_task
+            )
+        elif resource_diff.action_type == Resource_Change_Type.UPDATE_IDENTITY:
+
+            return _update_simple_layer(
+                transaction_token,
+                namespace_token,
+                simple_xlambda.dependency_layer_model(**resource_diff.previous_resource.dict()),
+                resource_diff.new_resource,
+                previous_output,
+                output_task
+            )
+
+        elif resource_diff.action_type == Resource_Change_Type.DELETE:
+            return _remove_simple_layer(
+                transaction_token,
+                resource_diff.previous_resource,
+                previous_output,
+                output_task
+            )
+
+    except Exception as e:
+        print(e)
+        raise Exception(&#34;COULD NOT DEPLOY&#34;)</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
@@ -690,6 +817,7 @@ def handle_simple_lambda_function_deployment(
 <li><h3><a class='nav-header' href="#header-functions">Functions</a></h3>
 <ul >
 <li><code><a class="sidebar" title="core.default.mappers.simple.lambda_deployer.handle_simple_lambda_function_deployment" href="#core.default.mappers.simple.lambda_deployer.handle_simple_lambda_function_deployment">handle_simple_lambda_function_deployment</a></code></li>
+<li><code><a class="sidebar" title="core.default.mappers.simple.lambda_deployer.handle_simple_layer_deployment" href="#core.default.mappers.simple.lambda_deployer.handle_simple_layer_deployment">handle_simple_layer_deployment</a></code></li>
 </ul>
 </li>
 </ul>

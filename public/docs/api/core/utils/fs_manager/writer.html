@@ -37,9 +37,11 @@ from pydantic.types import DirectoryPath, FilePath
 import shutil
 from typing import List, Dict, Tuple, Set
 from zipfile import ZipFile
+from core.constructs.workspace import Workspace
 
 
 from core.utils import paths as core_paths, hasher as cdev_hasher
+from core.utils.logger import log
 from core.default.resources.simple.xlambda import  DependencyLayer
 
 
@@ -51,9 +53,6 @@ from .external_dependencies_index import weighted_dependency_graph, compute_inde
 
 EXCLUDE_SUBDIRS = {&#34;__pycache__&#34;}
 
-#CACHE_LOCATION = os.path.join(
-#    cdev_settings.get(&#34;CDEV_INTERMEDIATE_FOLDER_LOCATION&#34;), &#34;writercache.json&#34;
-#)
 
 
 class LayerWriterCache:
@@ -80,16 +79,16 @@ class LayerWriterCache:
             json.dump(self._cache, fh, indent=4)
 
 
-#LAYER_CACHE = LayerWriterCache()
+LAYER_CACHE = LayerWriterCache(os.path.join(os.getcwd(),&#34;.cache&#34;) )
 
 
 def create_full_deployment_package(
     original_path: FilePath,
     needed_lines: List[int],
-    parsed_path: str,
+    function_name: str,
     base_archive_directory: DirectoryPath,
     pkgs: Dict[str, ModulePackagingInfo] = None,
-    available_layers: int = 2,
+    available_layers: int = 5,
 ):
     &#34;&#34;&#34;
     Create all the needed deployment resources needed for a given serverless function. This includes parsing out the needed lines from
@@ -98,7 +97,7 @@ def create_full_deployment_package(
     Args:
         original_path (FilePath): The original file location that this function is from
         needed_lines (List[int]): The list of line numbers needed from the original function
-        parsed_path (str): The final location of the parsed file
+        function_name (str): The name of the function
         base_archive_directory (DirectoryPath): Base path to write final archives
         pkgs (Dict[str, ModulePackagingInfo]): The list of package info for the function
         available_layers (int): The number of layers available to use
@@ -106,33 +105,47 @@ def create_full_deployment_package(
     Returns:
         handler_archive_location (FilePath): The location of the created archive for the handler
         handler_archive_hash (str): Identifying hash of the handler archive
-        base_handler_path (str): The path to the file as a python package path
+        base_handler_path (str): The path to the file as a python package path. This will be the handler entry point when deployed.
         external_dependencies (LambdaLayerArtifact): List of layers that are needed for this function
     &#34;&#34;&#34;
+    global LAYER_CACHE
 
-    dependencies_info = None
+    LAYER_CACHE = LayerWriterCache(os.path.join(base_archive_directory, &#34;cache&#34;))
+
+    # Clean the name of the function and create the final path of the parsed function
+    cleaned_name = function_name.replace(&#34; &#34;, &#34;_&#34;)   
+    parsed_path = fs_utils.get_parsed_path(original_path, cleaned_name, base_archive_directory)
+    log.debug(&#34;Parsed Path (%s) for %s/%s&#34;, parsed_path, original_path, cleaned_name)
 
     # Write the actual parsed function into an intermediate folder
     _make_intermediate_handler_file(original_path, needed_lines, parsed_path)
+
+    # Keeps track of all files that need to be include in the handler archive
     handler_files = [parsed_path]
 
     # The handler can be in a subdirectory and since we preserve the relative project structure, we need to bring any __init__.py files
     # to make sure the handler is in a valid path
-    extra_handler_path_files = _find_packaging_files_handler(original_path)
+    extra_handler_path_files = _find_packaging_files_handler(original_path, base_archive_directory)
 
     handler_files.extend(extra_handler_path_files)
 
-    # Start from the base intermediate folder location then replace &#39;/&#39; with &#39;.&#39; and final remove the &#39;.py&#39; from the end
-    base_handler_path = core_paths.get_relative_to_intermediate_path(
-        parsed_path
+    # Start from the base archive folder location then replace &#39;/&#39; with &#39;.&#39; and final remove the &#39;.py&#39; from the end
+    base_handler_path = os.path.relpath(
+        parsed_path,
+        start=base_archive_directory
     ).replace(&#34;/&#34;, &#34;.&#34;)[:-3]
 
-    filename = os.path.split(parsed_path)[1]
+    # Zip archive will be at the same directory as the handler and replaced &#39;.py&#39; with &#39;.zip
+    parsed_filename = os.path.split(parsed_path)[1]
     zip_archive_location = os.path.join(
-        os.path.dirname(parsed_path), filename[:-3] + &#34;.zip&#34;
+        os.path.dirname(parsed_path), parsed_filename[:-3] + &#34;.zip&#34;
     )
 
+    dependencies_info: List[DependencyLayer] = []
+
     if pkgs:
+        # Based on the directly references modules in the handler
+        # Figure out the optimal modules to package to need the needs. 
         layer_dependencies, handler_dependencies = _create_package_dependencies_info(
             pkgs
         )
@@ -140,18 +153,22 @@ def create_full_deployment_package(
         if layer_dependencies:
             # Make the layer archive in the same folder as the handler
 
+            LAYERS_DIR_NAME = &#34;layers&#34;
+
+            archive_dir = os.path.join(
+                base_archive_directory, LAYERS_DIR_NAME
+            )
+
+            if not os.path.isdir(archive_dir):
+                os.mkdir(archive_dir)
+
             (
                 single_dependency_layers,
                 composite_layer,
             ) = _create_layers_from_referenced_modules(
                 layer_dependencies, available_layers
             )
-
-            archive_dir = os.path.join(
-                base_archive_directory, os.path.dirname(parsed_path)
-            )
-            dependencies_info: List[DependencyLayer] = []
-            # dependencies_info = _make_layers_zips(archive_dir, filename[:-3], layer_dependencies )
+                    
 
             if single_dependency_layers:
                 for single_layer in single_dependency_layers:
@@ -174,6 +191,7 @@ def create_full_deployment_package(
             )
             handler_files.extend(local_dependencies_intermediate_locations)
 
+
     # Create the actual handler archive by zipping the needed files
     archive_hash = _make_intermediate_handler_zip(zip_archive_location, handler_files, base_archive_directory)
 
@@ -185,8 +203,7 @@ def _create_package_dependencies_info(
 ) -&gt; Tuple[List[ModulePackagingInfo], List[str]]:
     &#34;&#34;&#34;
     Take a dictionary of the directly referenced packages (str [pkg_name] -&gt; ModulePackagingInfo) that are used by a handler and return the
-    necessary information for creating the deployment packages. The optional parameter of how many layers are available is used to drive the optimization
-    steps for how to package the layer dependencies. Packages can be broken down into two categories: handler and layer.
+    necessary information for creating the deployment packages.
 
     Args:
         pkgs (Dict[str, ModulePackagingInfo]): Directly referenced packages used by the handler
@@ -194,8 +211,11 @@ def _create_package_dependencies_info(
     Returns:
         layer_dependencies (List[ModulePackagingInfo]): The packages to be added to the layers
         handler_dependencies (List[str]): List of files to include with the handler
+    
+    Packages can be broken down into two categories: handler and layer.
 
-    Handler packages are located within the &#39;cdev project&#39;, and therefore, should be packaged into the handler archive so that they
+    
+    Handler packages are located within the `Workspace`, and therefore, should be packaged into the handler archive so that they
     remain in the correct relative location to the handler function.
         src:\n
         |_ views\n
@@ -203,10 +223,10 @@ def _create_package_dependencies_info(
         |_ models\n
         |___ model.py\n
 
-    If a function in the handlers.py file references models.py as a relative package (from .. import models or from src import models)
-    it is important to keep the relative file structure the same
+    If a function in the handlers.py file references models.py as a relative package (from .. import models) it is important to keep 
+    the relative file structure the same.
 
-    Layer packages are packages that are found on the PYTHONPATH and most likely installed with a package manager like PIP. These
+    Layer packages are packages that are found on the PYTHONPATH and installed with a package manager like PIP. These
     should be packages as layers to keep the handler archive size small. Read the Cdev dependency deep dives for an in depth breakdown of
     how the layers are being packaged.
 
@@ -214,7 +234,6 @@ def _create_package_dependencies_info(
     needed dependencies.
     &#34;&#34;&#34;
 
-    layer_dependencies = []
     handler_dependencies = set()
     directly_referenced_module_write_info: Set[ModulePackagingInfo] = set()
 
@@ -224,7 +243,8 @@ def _create_package_dependencies_info(
             directly_referenced_module_write_info.add(pkg)
 
         elif pkg.type == PackageTypes.LOCALPACKAGE:
-            if core_paths.is_in_workspace(pkg.fp):
+            full_path  = core_paths.get_full_path_from_workspace_base(pkg.fp)
+            if core_paths.is_in_workspace(full_path):
                 if os.path.isdir(pkg.fp):
                     # If the fp is a dir that means we need to include the entire directory
                     for dir, _, files in os.walk(pkg.fp):
@@ -240,8 +260,8 @@ def _create_package_dependencies_info(
                     handler_dependencies.add(pkg.fp)
             else:
                 # Can not link to a locally managed module that is not within the cdev project structure.
-                print(f&#34;Linking to local module outside of project directory {pkg.fp}&#34;)
-                # raise Exception
+                print(f&#34;Linking to local module outside of Workspace {pkg.fp}&#34;)
+                raise Exception
 
             if pkg.flat:
                 # If the local module has dependencies, we need to recursively search them for import statements
@@ -277,14 +297,11 @@ def _create_layers_from_referenced_modules(
     # For a more detailed look at this optimization process read the dependency deep dive on the cdev website.
     graph = weighted_dependency_graph(directly_referenced_modules)
 
-    graph.print_graph()
 
     directly_referenced_modules_removed = set(directly_referenced_modules).difference(
         graph.true_top_level_modules
     )
-    print(
-        f&#34;True top level modules {graph.true_top_level_modules }; removed  {directly_referenced_modules_removed}&#34;
-    )
+
 
     # Optimization algorithm:
     # Since there is only one available layer, everything must go into the composite layer
@@ -306,14 +323,13 @@ def _create_layers_from_referenced_modules(
         # The available layers that can be used for single dependencies
         index_depth = min(max_index_level, available_layers)
 
-        print(f&#34;Computing index of size {index_depth}&#34;)
+        
         index = compute_index(graph, index_depth)
         for pair, value in index.items():
             print(f&#34;{pair} -&gt; {math.floor(value/1024)} KB&#34;)
 
         index_heap = [(-value, key) for key, value in index.items()]
         heapq.heapify(index_heap)
-        print(index_heap)
 
         single_dependency_layer_ids = heapq.heappop(index_heap)[1]
 
@@ -370,10 +386,10 @@ def _make_intermediate_handler_file(
     _write_intermediate_function(parsed_path, cleaned_actual_lines)
 
 
-def _find_packaging_files_handler(original_path: FilePath) -&gt; List[FilePath]:
+def _find_packaging_files_handler(original_path: FilePath, base_intermediate_path: DirectoryPath) -&gt; List[FilePath]:
     &#34;&#34;&#34;
-    This adds additional files like __init__.py need to make the file work. Since the handler can be in submodules, it is important
-    to find all the nested __init__.py files for making sure the handler is accessible.
+    This adds additional files like __init__.py that are needed to make the file work. Since the handler can be in submodules, 
+    it is important to find all the nested __init__.py files for making sure the handler is accessible.
 
     Args:
         original_path (FilePath): The original path of the file
@@ -384,19 +400,22 @@ def _find_packaging_files_handler(original_path: FilePath) -&gt; List[FilePath]:
     path_from_project_dir = os.path.dirname(
         core_paths.get_relative_to_workspace_path(original_path)
     ).split(&#34;/&#34;)
-    intermediate_location = core_paths.get_workspace_path()
+
+    tmp = &#34;&#34;
+    actual_base_path = Workspace.instance().settings.BASE_PATH
     rv = []
 
+    # Traverse the directory path looking for __init__.py files. If an __init__.py is found then copy it over
+    # else just make an empty one   
     while path_from_project_dir:
 
-        intermediate_location = os.path.join(
-            intermediate_location, path_from_project_dir.pop(0)
+        tmp = os.path.join(
+            tmp, path_from_project_dir.pop(0)
         )
 
-        file_loc = os.path.join(intermediate_location, &#34;__init__.py&#34;)
-        intermediate_file_location = core_paths.get_full_path_from_intermediate_base(
-            core_paths.get_relative_to_workspace_path(file_loc)
-        )
+        file_loc = os.path.join(actual_base_path, tmp, &#34;__init__.py&#34;)
+
+        intermediate_file_location = os.path.join(base_intermediate_path, tmp, &#34;__init__.py&#34;)
 
         if os.path.isfile(file_loc):
             shutil.copyfile(file_loc, intermediate_file_location)
@@ -460,9 +479,12 @@ def _copy_local_dependencies(dependencies: List[FilePath], base_final_dir: Direc
         copied_file_locations (List[str]): list of locations of the copied files
     &#34;&#34;&#34;
     rv = []
+
+
     for dependency in dependencies:
-        intermediate_location = core_paths.get_full_path_from_intermediate_base(
-            core_paths.get_relative_to_project_path(dependency)
+        intermediate_location = os.path.join(
+            base_final_dir,
+            core_paths.get_relative_to_workspace_path(dependency)
         )
 
         relative_to_intermediate = core_paths.get_relative_to_intermediate_path(
@@ -537,7 +559,7 @@ def _make_single_dependency_archive(
     module_info: ModulePackagingInfo, archive_dir: DirectoryPath
 ) -&gt; DependencyLayer:
     needed_info: List[ExternalDependencyWriteInfo] = []
-    print(f&#34;Making single dependency {module_info}&#34;)
+    
 
     needed_info.append(
         ExternalDependencyWriteInfo(
@@ -546,7 +568,6 @@ def _make_single_dependency_archive(
     )
 
     for child in module_info.flat:
-        print(f&#34;Adding  {child}&#34;)
         if not child.type == PackageTypes.PIP:
             continue
 
@@ -561,20 +582,20 @@ def _make_single_dependency_archive(
     ids.sort()
 
     _id_hashes = cdev_hasher.hash_list(ids)
-    #cache_item = LAYER_CACHE.find_item(_id_hashes)
-    #if cache_item:
-    #    return cache_item
+    cache_item = LAYER_CACHE.find_item(_id_hashes)
 
     layer_name = module_info.get_id_str()
 
+    if cache_item:
+        return DependencyLayer(
+            cdev_name=layer_name, artifact_path=cache_item[0], artifact_hash=cache_item[1]
+        )
+
     archive_path, archive_hash = _make_layers_zips(archive_dir, layer_name, needed_info)
 
-    # convert to json string then back to python object because it has a Filepath type in it and that is always handled weird.
-    # LAYER_CACHE.add_item(_id_hashes, (archive_path, archive_hash))
+    LAYER_CACHE.add_item(_id_hashes, (archive_path, archive_hash))
 
-    rv = DependencyLayer(**{&#34;name&#34;: layer_name, &#34;artifact_path&#34;: archive_path})
-
-    return rv
+    return DependencyLayer(cdev_name=layer_name, artifact_path=archive_path, artifact_hash=archive_hash)
 
 
 def _make_composite_dependency_archive(
@@ -606,9 +627,9 @@ def _make_composite_dependency_archive(
     ids.sort()
 
     _id_hashes = cdev_hasher.hash_list(ids)
-    #cache_item = LAYER_CACHE.find_item(_id_hashes)
-    #if cache_item:
-    #    return None
+    cache_item = LAYER_CACHE.find_item(_id_hashes)
+    if cache_item:
+        return None
 
     layer_name = f&#34;composite_{_id_hashes}&#34;
 
@@ -617,9 +638,9 @@ def _make_composite_dependency_archive(
     )
 
     # convert to json string then back to python object because it has a Filepath type in it and that is always handled weird.
-    # LAYER_CACHE.add_item(_id_hashes, (archive_path, archive_hash))
+    LAYER_CACHE.add_item(_id_hashes, (archive_path, archive_hash))
 
-    rv = DependencyLayer(**{&#34;name&#34;: layer_name, &#34;artifact_path&#34;: archive_path})
+    rv = DependencyLayer(cdev_name=layer_name, artifact_path=archive_path)
 
     return rv
 
@@ -629,13 +650,13 @@ def _make_layers_zips(
     layer_name: str,
     needed_info: List[ExternalDependencyWriteInfo],
 ) -&gt; Tuple[FilePath, str]:
-    &#34;&#34;&#34;
-    Create the zip archive that will be deployed with the handler function. This function uses a cache to determine if there is already an archive available to
-    use. All modules provide are written to a single archive such that the module is in &#39;/python/&lt;module_name&gt;&#39;.
+    &#34;&#34;&#34;Create the zip archive that will be deployed with the handler function.
+    
+    All modules provide are written to a single archive such that the module is in &#39;/python/&lt;module_name&gt;&#39;.
 
     Args:
         zip_archive_location_directory (DirectoryPath): The directory that the archive will be created in.
-        basename (str): base name for the archive
+        layer_name (str): base name for the archive
         needed_info (List[ExternalDependencyWriteInfo]): The information about what modules to add to the archive
 
     Returns:
@@ -726,7 +747,7 @@ def _make_layers_zips(
     full_archive_hash = cdev_hasher.hash_list(_file_hashes)
 
     return (
-        core_paths.get_relative_to_project_path(zip_archive_full_path),
+        zip_archive_full_path,
         full_archive_hash,
     )</code></pre>
 </details>
@@ -739,7 +760,7 @@ def _make_layers_zips(
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="core.utils.fs_manager.writer.create_full_deployment_package"><code class="name flex">
-<span>def <span class="ident">create_full_deployment_package</span></span>(<span>original_path: pydantic.types.FilePath, needed_lines: List[int], parsed_path: str, base_archive_directory: pydantic.types.DirectoryPath, pkgs: Dict[str, <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>] = None, available_layers: int = 2)</span>
+<span>def <span class="ident">create_full_deployment_package</span></span>(<span>original_path: pydantic.types.FilePath, needed_lines: List[int], function_name: str, base_archive_directory: pydantic.types.DirectoryPath, pkgs: Dict[str, <a class="" title="core.utils.fs_manager.utils.ModulePackagingInfo" href="utils.html#core.utils.fs_manager.utils.ModulePackagingInfo">ModulePackagingInfo</a>] = None, available_layers: int = 5)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create all the needed deployment resources needed for a given serverless function. This includes parsing out the needed lines from
@@ -750,8 +771,8 @@ the original function, packaging local dependencies, and packaging external depe
 <dd>The original file location that this function is from</dd>
 <dt><strong><code>needed_lines</code></strong> :&ensp;<code>List[int]</code></dt>
 <dd>The list of line numbers needed from the original function</dd>
-<dt><strong><code>parsed_path</code></strong> :&ensp;<code>str</code></dt>
-<dd>The final location of the parsed file</dd>
+<dt><strong><code>function_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the function</dd>
 <dt><strong><code>base_archive_directory</code></strong> :&ensp;<code>DirectoryPath</code></dt>
 <dd>Base path to write final archives</dd>
 <dt><strong><code>pkgs</code></strong> :&ensp;<code>Dict[str, ModulePackagingInfo]</code></dt>
@@ -762,7 +783,7 @@ the original function, packaging local dependencies, and packaging external depe
 <h2 id="returns">Returns</h2>
 <p>handler_archive_location (FilePath): The location of the created archive for the handler
 handler_archive_hash (str): Identifying hash of the handler archive
-base_handler_path (str): The path to the file as a python package path
+base_handler_path (str): The path to the file as a python package path. This will be the handler entry point when deployed.
 external_dependencies (LambdaLayerArtifact): List of layers that are needed for this function</p></div>
 <details class="source">
 <summary>
@@ -771,10 +792,10 @@ external_dependencies (LambdaLayerArtifact): List of layers that are needed for 
 <pre><code class="python">def create_full_deployment_package(
     original_path: FilePath,
     needed_lines: List[int],
-    parsed_path: str,
+    function_name: str,
     base_archive_directory: DirectoryPath,
     pkgs: Dict[str, ModulePackagingInfo] = None,
-    available_layers: int = 2,
+    available_layers: int = 5,
 ):
     &#34;&#34;&#34;
     Create all the needed deployment resources needed for a given serverless function. This includes parsing out the needed lines from
@@ -783,7 +804,7 @@ external_dependencies (LambdaLayerArtifact): List of layers that are needed for 
     Args:
         original_path (FilePath): The original file location that this function is from
         needed_lines (List[int]): The list of line numbers needed from the original function
-        parsed_path (str): The final location of the parsed file
+        function_name (str): The name of the function
         base_archive_directory (DirectoryPath): Base path to write final archives
         pkgs (Dict[str, ModulePackagingInfo]): The list of package info for the function
         available_layers (int): The number of layers available to use
@@ -791,33 +812,47 @@ external_dependencies (LambdaLayerArtifact): List of layers that are needed for 
     Returns:
         handler_archive_location (FilePath): The location of the created archive for the handler
         handler_archive_hash (str): Identifying hash of the handler archive
-        base_handler_path (str): The path to the file as a python package path
+        base_handler_path (str): The path to the file as a python package path. This will be the handler entry point when deployed.
         external_dependencies (LambdaLayerArtifact): List of layers that are needed for this function
     &#34;&#34;&#34;
+    global LAYER_CACHE
 
-    dependencies_info = None
+    LAYER_CACHE = LayerWriterCache(os.path.join(base_archive_directory, &#34;cache&#34;))
+
+    # Clean the name of the function and create the final path of the parsed function
+    cleaned_name = function_name.replace(&#34; &#34;, &#34;_&#34;)   
+    parsed_path = fs_utils.get_parsed_path(original_path, cleaned_name, base_archive_directory)
+    log.debug(&#34;Parsed Path (%s) for %s/%s&#34;, parsed_path, original_path, cleaned_name)
 
     # Write the actual parsed function into an intermediate folder
     _make_intermediate_handler_file(original_path, needed_lines, parsed_path)
+
+    # Keeps track of all files that need to be include in the handler archive
     handler_files = [parsed_path]
 
     # The handler can be in a subdirectory and since we preserve the relative project structure, we need to bring any __init__.py files
     # to make sure the handler is in a valid path
-    extra_handler_path_files = _find_packaging_files_handler(original_path)
+    extra_handler_path_files = _find_packaging_files_handler(original_path, base_archive_directory)
 
     handler_files.extend(extra_handler_path_files)
 
-    # Start from the base intermediate folder location then replace &#39;/&#39; with &#39;.&#39; and final remove the &#39;.py&#39; from the end
-    base_handler_path = core_paths.get_relative_to_intermediate_path(
-        parsed_path
+    # Start from the base archive folder location then replace &#39;/&#39; with &#39;.&#39; and final remove the &#39;.py&#39; from the end
+    base_handler_path = os.path.relpath(
+        parsed_path,
+        start=base_archive_directory
     ).replace(&#34;/&#34;, &#34;.&#34;)[:-3]
 
-    filename = os.path.split(parsed_path)[1]
+    # Zip archive will be at the same directory as the handler and replaced &#39;.py&#39; with &#39;.zip
+    parsed_filename = os.path.split(parsed_path)[1]
     zip_archive_location = os.path.join(
-        os.path.dirname(parsed_path), filename[:-3] + &#34;.zip&#34;
+        os.path.dirname(parsed_path), parsed_filename[:-3] + &#34;.zip&#34;
     )
 
+    dependencies_info: List[DependencyLayer] = []
+
     if pkgs:
+        # Based on the directly references modules in the handler
+        # Figure out the optimal modules to package to need the needs. 
         layer_dependencies, handler_dependencies = _create_package_dependencies_info(
             pkgs
         )
@@ -825,18 +860,22 @@ external_dependencies (LambdaLayerArtifact): List of layers that are needed for 
         if layer_dependencies:
             # Make the layer archive in the same folder as the handler
 
+            LAYERS_DIR_NAME = &#34;layers&#34;
+
+            archive_dir = os.path.join(
+                base_archive_directory, LAYERS_DIR_NAME
+            )
+
+            if not os.path.isdir(archive_dir):
+                os.mkdir(archive_dir)
+
             (
                 single_dependency_layers,
                 composite_layer,
             ) = _create_layers_from_referenced_modules(
                 layer_dependencies, available_layers
             )
-
-            archive_dir = os.path.join(
-                base_archive_directory, os.path.dirname(parsed_path)
-            )
-            dependencies_info: List[DependencyLayer] = []
-            # dependencies_info = _make_layers_zips(archive_dir, filename[:-3], layer_dependencies )
+                    
 
             if single_dependency_layers:
                 for single_layer in single_dependency_layers:
@@ -858,6 +897,7 @@ external_dependencies (LambdaLayerArtifact): List of layers that are needed for 
                 base_archive_directory
             )
             handler_files.extend(local_dependencies_intermediate_locations)
+
 
     # Create the actual handler archive by zipping the needed files
     archive_hash = _make_intermediate_handler_zip(zip_archive_location, handler_files, base_archive_directory)

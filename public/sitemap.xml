@@ -2,43 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/httpendpoints/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/whyserverless/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/coldstarts/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/dynamodb/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/scheduletasks/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/checkbookbalancer/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/firstprinciples/developerexperience/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/emailsignup/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/examples/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/tutorials/slackbot/</loc>
-  </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/about/</loc>
+    <loc>https://staging.cdevframework.io/docs/gettingstarted/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/</loc>
+    <loc>https://staging.cdevframework.io/docs/examples/httpendpoints/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/tutorials/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/whyserverless/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/coldstarts/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/examples/dynamodb/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/examples/scheduletasks/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/tutorials/checkbookbalancer/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/dependencies/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/tutorials/emailsignup/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/examples/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/tutorials/slackbot/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/architecture/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/docs/firstprinciples/core/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/about/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/contact/</loc>
+    <loc>https://staging.cdevframework.io/</loc>
     <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/categories/</loc>
+    <loc>https://staging.cdevframework.io/contact/</loc>
+    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/docs/</loc>
+    <loc>https://staging.cdevframework.io/docs/</loc>
+    <lastmod>2019-08-01T16:19:26+06:00</lastmod>
   </url><url>
-    <loc>http://cdevwebsitestaging.s3-website-us-east-1.amazonaws.com/tags/</loc>
+    <loc>https://staging.cdevframework.io/categories/</loc>
+  </url><url>
+    <loc>https://staging.cdevframework.io/tags/</loc>
   </url>
 </urlset>
