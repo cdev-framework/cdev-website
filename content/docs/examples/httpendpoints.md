@@ -26,20 +26,30 @@ interface for creating HTTP Apis on the cloud and connecting them to serverless 
 {{<codesnippet `/source_code/http_examples/simple_api_example_integration.py`>}}
 
 Get the live url for your endpoint:
-{{<cli linux="cdev output <component_name>.api.demoApi.endpoint" windows="cdev output <component_name>.api.demoApi.endpoint">}}
+```
+cdev output <component_name>.api.demoApi.endpoint
+```
 
 You can test the endpoint with the follow commands from your terminal:
-{{<cli linux="curl <your_endpoint>/hello_world" windows="wget <your_endpoint>/hello_world">}}
+```
+curl <your_endpoint>/hello_world
+```
 
 {{<break 2>}}
 ### Integrate POST route with data to a Serverless function
 {{<codesnippet `/source_code/http_examples/simple_api_example_post.py`>}}
 
 Get the live url for your endpoint:
-{{<cli linux="cdev output <component_name>.api.demoApi.endpoint" windows="cdev output <component_name>.api.demoApi.endpoint">}}
+```
+cdev output <component_name>.api.demoApi.endpoint
+```
 
 You can test the endpoint with the follow commands from your terminal:
-{{<cli linux="curl -X POST <your_endpoint>/send_data -H 'Content-Type: application/json' -d '{\"login\":\"my_login\"}'" windows="wget <your_endpoint>/send_data">}}
+```
+curl -X POST <your_endpoint>/send_data -H 'Content-Type: application/json' -d '{\"login\":\"my_login\"}'
+```
 
 Check the logs of your function
-{{<cli linux="cdev run function.logs <component_name>.send_data_handler" windows="cdev run function.logs <component_name>.send_data_handler">}}
+```
+cdev run function.logs <component_name>.send_data_handler
+```
