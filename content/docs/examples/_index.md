@@ -9,4 +9,4 @@
 
 # Examples
 
-List below are examples of how small components that can be used to create projects. These are designed to provide snippets that can be dropped into a project and expanded on. For more in fleshed out projects check out our [tutorials](/docs/tutorials)
+Below are examples of how how to integrate different resources into your projects. These are designed to provide snippets that can be dropped into a project and expanded on. For more fleshed out projects check out our [tutorials](/docs/tutorials)
