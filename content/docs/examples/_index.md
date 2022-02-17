@@ -3,7 +3,7 @@
     "layout": "type",
     "title": "Examples",
     "Name": "examples",
-    "linktitle": "/examples",
+    "linktitle": "examples",
     "weight": 3
 }
 
