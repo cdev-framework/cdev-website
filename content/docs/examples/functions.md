@@ -14,6 +14,8 @@
 At the heart of Cdev is the Serverless Function. This is the most powerful resource available through the framework because it is where you have to freedom to create what you want. We have made many optimizations to create the best experience for creating and maintaining Serverless Functions.
 
 
+For a more in depth discussion about the capabilities and limits of Serverless Functions checkout our [architecture documentation](/docs/firstprinciples)
+
 {{<break 2>}}
 ### Basic Function
 {{<codesnippet `/source_code/function_examples/basic_function.py`>}}
@@ -84,3 +86,5 @@ pip install pandas
 It might take a few seconds to upload a copy of the dependency to the cloud when first used, but when using the package in other functions in the same component, it will simply link to the already deployed version.
 
 {{<codesnippet `/source_code/function_examples/dependency_function2.py`>}}
+
+
