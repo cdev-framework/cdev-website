@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "HTTP API endpoints",
+    "title": "Integrate HTTP Endpoints",
     "linktitle": "httpendpoints",
     "card_icon": "ti-bolt",
     "card_body": "Learn how create different API endpoints with API Gateway",

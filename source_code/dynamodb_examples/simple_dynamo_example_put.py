@@ -4,33 +4,34 @@ import time
 
 import boto3
 
-from cdev.resources.simple.table import Table, key_type, attribute_type, simple_table_output
-from cdev.resources.simple.xlambda import simple_lambda_function_annotation as simple_lambda_function
+from cdev.resources.simple.table import Table, AttributeDefinition, KeyDefinition, key_type, attribute_type
+from cdev.resources.simple.xlambda import simple_function_annotation
 
-MyAttributes = [
-    {"AttributeName": "email", "AttributeType": attribute_type.S},
-    {"AttributeName": "date_created", "AttributeType": attribute_type.S},
+
+myAttributes = [
+  AttributeDefinition("email", attribute_type.S),
+  AttributeDefinition("date_created", attribute_type.S)
 ]
 
-MyKeys = [
-    {"AttributeName": "email", "KeyType": key_type.HASH},
-    {"AttributeName": "date_created", "KeyType": key_type.RANGE},
+myKeys = [
+  KeyDefinition("email", key_type.HASH),
+  KeyDefinition("date_created", key_type.RANGE)
 ]
 
 
-EmailTable = Table("EmailRegistryTable", "new_email_registry", MyAttributes, MyKeys)
+EmailTable = Table("EmailRegistryTable", myAttributes, myKeys)
 
 
 client = boto3.resource('dynamodb')
 table_name = os.environ.get("TABLENAME")
 
 
-@simple_lambda_function("email_adder", Environment={"TABLENAME": EmailTable.from_output(simple_table_output.table_name)}, permissions=[EmailTable.permissions.READ_AND_WRITE_TABLE])
+@simple_function_annotation("email_adder", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
 def add_email_handler(event, context):
     print(event)
 
     # Load the body of the request into a data obj    
-    data = json.loads(event.get("body"))
+    data = event.get("body")
 
     first_name = data.get("first_name")
     last_name = data.get("last_name")

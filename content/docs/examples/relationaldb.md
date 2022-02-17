@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate a RelationalDB",
+    "title": "Integrate RelationalDBs",
     "linktitle": "relationaldb",
     "card_icon": "ti-server",
     "card_body": "Learn to create and integrate a Relational DB to store data",

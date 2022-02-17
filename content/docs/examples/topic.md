@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate a Pub/Sub Topic",
+    "title": "Integrate Pub/Sub Topics",
     "linktitle": "topic",
     "card_icon": "ti-signal",
     "card_body": "Learn to create and integrate a Pub/Sub Topic",

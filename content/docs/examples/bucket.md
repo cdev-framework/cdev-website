@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate with an S3 Bucket",
+    "title": "Integrate S3 Buckets",
     "linktitle": "bucket",
     "card_icon": "ti-paint-bucket",
     "card_body": "Learn to create and connect to a S3 Bucket to read and write objects",
