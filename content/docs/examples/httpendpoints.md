@@ -46,7 +46,7 @@ cdev output <component_name>.api.demoApi.endpoint
 
 You can test the endpoint with the follow commands from your terminal:
 ```
-curl -X POST <your_endpoint>/send_data -H 'Content-Type: application/json' -d '{\"login\":\"my_login\"}'
+curl -X POST <your_endpoint>/send_data -H 'Content-Type: application/json' -d "{\"login\":\"my_login\"}"
 ```
 
 Check the logs of your function
