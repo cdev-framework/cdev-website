@@ -5,7 +5,7 @@
     "linktitle": "dynamodb",
     "card_icon": "ti-server",
     "card_body": "Learn to connect to a Dynamodb database to read and write data",
-    "weight": "2"
+    "weight": "3"
 }
 
 

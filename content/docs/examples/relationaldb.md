@@ -5,7 +5,7 @@
     "linktitle": "relationaldb",
     "card_icon": "ti-server",
     "card_body": "Learn to create and integrate a Relational DB to store data",
-    "weight": "1"
+    "weight": "3"
 }
 
 
