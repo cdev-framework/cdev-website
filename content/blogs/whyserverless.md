@@ -14,11 +14,11 @@
 “But there are still servers involved!” - Some person every time there is a discussion about serverless
 {{</blockqoute>}}
 
-Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering, and it is just about who manages the servers. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on. These applications can range from databases, object/file storage, compute, and as time passes, almost any tool developers use.
+Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on. These applications can range from databases, object/file storage, compute, and as time passes, almost any tool developers use.
 
 {{<break>}}
 
-Although there are cool serverless services in almost any developer tool vertical, Cdev's main focus is on improving the developer experience for serverless compute platforms like AWS Lambda, Azure Functions, GCP Functions, etc. We believe that serverless compute platforms have the potential to expand the range of viable software projects and pool of people that can develop these projects. To understand how Cdev improves the developer experience, it is important to understand the technology that came before Serverless compute platforms. 
+Although there are interesting Serverless services in almost any developer tool vertical, Cdev's main focus is on improving the developer experience for Serverless compute platforms like Aws Lambda, Azure Functions, GCP Functions, etc. We believe that Serverless compute platforms have the potential to expand the range of viable software projects and pool of people that can develop these projects. To understand how Cdev improves the developer experience, it is important to understand the technology that came before Serverless compute platforms. 
 {{<break 2>}}
 
 ### Before The Cloud 
@@ -31,7 +31,7 @@ Horizontal scaling is when a copy of an application is run on multiple different
 {{<break>}}
 
 ### The Cloud
-When AWS released EC2 in 20XX, they changed the calculous around horizontal scaling. Instead of a company needing to forecast their traffic far enough ahead that they have time to order and rack new servers, a company could now spin up new servers with the click of a button. This meant that companies could avoid the high upfront cost of purchasing servers and avoid the mistakes of over or under forecasting their needs. Being able to rent servers on demand via the aws website was revolutionary, but even having a human going on a site and clicking to provision servers was not efficient enough. The true super power of the cloud was providing the apis for systems to scale themselves in reaction to their current state. This meant that your system could add new servers when it reached certain threshold like: all computers are at 80% cpu utilization, X amount of network traffic, etc. Eventually cloud providers created Platforms as a Service (PaaS) that handled setting up and reacting to events to horizontally scale applications. 
+When Aws released EC2 in 20XX, they changed the calculous around horizontal scaling. Instead of a company needing to forecast their traffic far enough ahead that they have time to order and rack new servers, a company could now spin up new servers with the click of a button or call of an Api. This meant that companies could avoid the high upfront cost of purchasing servers and avoid the mistakes of over or under forecasting their needs. Being able to rent servers on demand via Aws was revolutionary, but even having a human going on a site and clicking to provision servers was not efficient enough. The true super power of the cloud was providing the Apis for systems to scale themselves in reaction to their current state. This meant that your system could add new servers when it reached certain threshold like: all computers are at 80% cpu utilization, X amount of network traffic, etc. Eventually cloud providers created Platforms as a Service (PaaS) that handled setting up and reacting to events to horizontally scale applications. 
 
 {{<break>}}
 
@@ -39,9 +39,9 @@ When AWS released EC2 in 20XX, they changed the calculous around horizontal scal
 
 ### The Serverless Value Proposition
 
-In 2015, AWS announced **[Lambda](https://www.youtube.com/watch?v=9eHoyUVo-yg&ab_channel=AmazonWebServices)**: the first serverless compute platform. This was the logical conclusion of the arc of horizontal scaling. This platform would provide the finest granularity for horizontal scaling by working at the level of individual functions. This new paradigm was supposed to completely abstract all aspects of horizontal scaling allowing developers to get all the benefits while focusing on their own projects. Also by abstracting these details, serverless compute platforms are supposed to by an easier on ramp for new developers to deploy their projects because they do not need to understand how to provision and maintain servers, but instead need only know how to write a function. 
+In 2015, AWS announced **[Lambda](https://www.youtube.com/watch?v=9eHoyUVo-yg&ab_channel=AmazonWebServices)**: the first serverless compute platform. This was the logical conclusion of the arc of horizontal scaling. This platform would provide the finest granularity for horizontal scaling by working at the level of individual functions. This new paradigm was supposed to completely abstract all aspects of horizontal scaling allowing developers to get all the benefits while focusing on their own projects. Also by abstracting these details, serverless compute platforms are supposed to be an easier on ramp for new developers to deploy their projects because they do not need to understand how to provision and maintain servers, but instead need only know how to write a function. 
 
-With this value proposition, it seemed the serverless compute platforms would change how developers create and deliver software, but the adoption of the technology has not gone as expected. 
+With this value proposition, it seemed the Serverless compute platforms would change how developers create and deliver software, but the adoption of the technology has not gone as expected. 
 
 
 {{<break>}}

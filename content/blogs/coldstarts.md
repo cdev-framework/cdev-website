@@ -17,14 +17,14 @@
 {{<break>}}
 
 
-Perhaps the most infamous problem in the serverless compute space is: **The Cold Start**. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the serverless compute paradigm. Although unavoidable, it is possible to lower Cold Starts to an acceptable level on serverless compute platforms. 
+Perhaps the most infamous problem in the serverless compute space is: **The Cold Start**. It is a problem that arises from any horizontal scaling platform, but did not become a problem for developers until the Serverless compute paradigm. Although unavoidable, it is possible to lower Cold Starts to an acceptable level on Serverless compute platforms. 
 
 Cdev has created new parsing technology that is aimed at helping developers manage their Cold Starts while maintaining a familiar development experience. 
 
 {{<break>}}
 
 ### Horizontal Scaling
-For a lot of people the limits of computers are most noticed when a server hosting an application is overloaded from an increase in traffic that causes the site to crash. As a site grows in popularity, it eventually reaches a point that no single computer is big or fast enough to handle all the traffic, so the only way to handle all the traffic is to use multiple computers.
+For a lot of people the limits of computers are most noticed when a server hosting an application is overloaded from an increase in traffic that causes the site to crash. As a site grows in popularity, it eventually reaches a point that no single computer is fast enough to handle all the traffic, so the only way to handle all the traffic is to use multiple computers.
 
 Horizontal scaling is when a copy of an application is run on multiple different computers, and another computer runs a load balancing program to split the traffic to the different application computers. As traffic increases, more servers can be added to handle the traffic, and inversely if traffic decreases, unneeded servers can be removed. 
 
@@ -54,7 +54,7 @@ As mentioned in our **[Why Serverless](/docs/firstprinciples/whyserverless)** po
 
 ### What are the current ways to mitigate Cold Starts? 
 
-The current state of mitigating Cold Starts is best understood by looking at the three types of serverless functions people are creating described in ***[this great post by Matt Coulter](https://dev.to/cdkpatterns/learn-the-3-aws-lambda-states-today-the-single-purpose-function-the-fat-lambda-and-the-lambda-lith-361j)*** . 
+The current state of mitigating Cold Starts is best understood by looking at the three types of serverless functions people are creating described in ***[this post by Matt Coulter](https://dev.to/cdkpatterns/learn-the-3-aws-lambda-states-today-the-single-purpose-function-the-fat-lambda-and-the-lambda-lith-361j)*** . 
 
 Reading this article, I could not help but feel like Goldilocks trying to find the right bed to sleep in: 
 - The single purpose function requiring to much of a change in how I think about software development. Being a mere mortal who is not a ninja at navigating my IDE, having to constantly switch and create different files causes friction that interrupts the flow state of coding. 
@@ -67,7 +67,7 @@ Can we have the benefits of serverless compute platforms while not having to con
 
 ### How Cdev helps mitigate Cold Starts
 
-To understand Cdev's parsing technology it helps to start with a fat lambda example and understand all the parts that can add time to Cold Start. In the following example you will see three handler functions that each interact with a different external AWS service, but they are part of the same backend and make sense to be kept in the same file. 
+Cdev introduces a set of parsing tools that attempt to understand the dependencies of a Serverless function, so that it can deploy only the needed dependencies of the function. To understand Cdev's parsing technology it helps to start with a fat lambda example and understand all the parts that can add time to Cold Start. In the following example you will see three handler functions that each interact with a different external AWS service, but they are part of the same backend and make sense to be kept in the same file. 
 
 {{<break>}}
 
@@ -75,16 +75,11 @@ To understand Cdev's parsing technology it helps to start with a fat lambda exam
 
 {{<break>}}
 
-Leaving this as a fat lambda adds unnecessary time to each function's Cold Start because each function only uses a single external AWS service, but when the function is loaded, a connection is made to each of the external AWS services. When a python module is loaded, all the code in the top level namespace is executed, which means for our function, it executes all three **boto3.client** calls. Connections to external systems add extra latency because the low level protocols were designed to create long standing connections that can be reused later in applications, but the initial creation of the connection requires a few rounds trips between the systems before communication can start. 
+Leaving this as a fat lambda adds unnecessary time to each function's Cold Start because each function only uses a single external AWS service, but when the function is loaded, a connection is made to each of the external AWS services. When a python module is loaded, all the code in the top level namespace is executed, which means for our function, it executes all three **boto3.client** calls. Connections to external systems add extra latency because the initial creation of the connection requires a few rounds trips between the systems before communication can start. 
 
 {{<break>}}
 
-The first instinct might be to move the **boto3.client** calls into the functions themselves, but this would actually make the issue worse because then the connection would be initialized on every function invocation instead of just when the code is first loaded. This inability of the fat lambda to handle adding different initialization steps is the driving force for using the single purpose function model. 
-
-{{<break>}}
-
-The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the file are needed for each individual function. Using this new parsing technology, Cdev deploys 
-intermediate files for each function that contains only the code needed for that function. The final deployment artifacts using Cdev would be: 
+The problem with using the single purpose function model is the additional manual and cognitive work it adds to the developer experience, so Cdev has created a solution that automatically creates and deploys single purpose functions from fat lambda files. By analyzing the syntax tree representation of the code, Cdev is able to understand what parts of the global namespace are needed for each individual function. Using this parsing technology, Cdev deploys intermediate files for each function that contains only the code needed for that function. The final deployment artifacts using Cdev would be: 
 
 {{<break>}}
 myhandler1.py 
