@@ -8,8 +8,6 @@
     "weight": "3"
 }
 
-# New Header
-
 # Building a Slack Bot
 
 {{<blockqoute>}}
@@ -27,7 +25,7 @@ Your bot can send DMs, it can be mentioned by users, it can post messages or upl
 {{</blockqoute>}}
 
 
-
+{{<break 1>}}
 ## Creating the App and Bot in Slack
 We are going to start by setting up a development App and Bot in Slack and then connect it to a custom backend created with Cdev. Once we have the logic and functionality that we want, we can come back and create a replica of the Bot to be used as the production version. 
 
@@ -61,31 +59,33 @@ Now that the App has been installed, you will see that there is `Bot User OAuth 
 
 We can now set up our Bot to receive events from our Workspace. The general flow of data for a Bot is that Slack sends notifications to our backend about events in the Workspace and then we reply by sending a message to the Slack Api as our Bot. To be able to receive these events, we must provide a webhook for Slack to send the data to, which we will now set up using Cdev.
 
-
+{{<break 2>}}
 ## Creating the Backend with Cdev
 **See getting started if you have not worked with a Cdev project before**
+
 
 ### Create a Cdev Project 
 
 We will be starting from a provided template for this template. You can create the template project by running
-```
+```bash
 cdev init my-slack-bot --template slack-bot
 ```
 
 Our template uses the Slack Python SDK, so you need to install it to your environment via the provided requirements.txt file
-```
+```bash
 pip install -r requirements.txt
 ```
 
+{{<break 1>}}
 ### Add our Settings
 We need to change our `Environments` settings module, so that we can provided our `SLACK_SECRET` and `SLACK_BOT_OAUTH_TOKEN` as variables to our `Cdev Environment`. 
 
-```
+```bash
 cdev environment settings_information --key base_class --new-value src.project_settings.SlackBotSettings
 ```
 This command updates your `Cdev Environment` to use the provided `SlackBotSettings` class as the container for your settings. For more information about how to modify `Environment Settings` check out our documentation in the [example section](/docs/examples/settings).
 
-
+{{<break 1>}}
 ### Set our Settings
 
 Create a file called `cdev_slack_bot_oauth_token` in the `settings/dev_secrets/` folder. Then in the created file, paste the `Bot User OAuth Token` from the previous steps. This should be the only value in the file. 
@@ -101,12 +101,12 @@ Create a file called `cdev_slack_secret` in the `settings/dev_secrets/` folder. 
 {{<tutorial_image>}}
 /images/slack_tutorial/signing_secret.png
 {{</tutorial_image>}}
-{{<break 1>}}
+{{<break 2>}}
 
 ### Deploying our Bot
 
 Now we can deploy our backend.
-```
+```bash
 cdev deploy
 ```
 
@@ -117,9 +117,10 @@ Base API URL -> <your url>
 Routes -> FrozenDict({'/webhook POST': 'ca8ts2p'})
 ```
 
+{{<break 1>}}
 ### Add our generated Webhook
 
-We are going to take this Api and use it to receive events from our Slack Workspace. In the Slack App page, `Enable Events` on the `Events Subscription` page and add your full url (<base_url/webhook>) as the `receive_url`. It will automatically send a test event to your backend to make sure it is configured correctly. 
+We are going to take this Api and use it to receive events from our Slack Workspace. In the Slack App page, `Enable Events` on the `Events Subscription` page and add your full url (<base_url>/webhook) as the `receive_url`. It will automatically send a test event to your backend to make sure it is configured correctly. 
 
 {{<tutorial_image>}}
 /images/slack_tutorial/add_webhook_url.png
@@ -127,10 +128,11 @@ We are going to take this Api and use it to receive events from our Slack Worksp
 {{<break 1>}}
 
 You can see that the event was received by showing the logs of your function.
-```
+```bash
 cdev run function.logs slack_bot.webhook
 ```
 
+{{<break 1>}}
 ## Modifying the Slack Bot Events
 
 We now must tell Slack what events we want to listen for. This is an important part of understanding the load your backend will receive, and you should choose the smallest amount of events needed to make your application. For this tutorial, we will only be listening to events that directly mention our App or Bot (`message.im` and `app_mention`). You can set your events by scrolling down on the `Events Subscription` page to the `Subscribe to Bot Events` section. Note after saving the changes, you will have to reinstall the app. 
@@ -150,7 +152,10 @@ Now you should be able to directly message your Bot in a Slack Channel and have 
 Congratulations you have set up your Slack Bot!! Continue reading to learn how to add more functionality to your Slack Bot!
 
 
-**Todo add more about using messaging queues to segment messages to downstream consumers**
-
+{{<break 1>}}
 ## Use a messaging queue for more advanced use cases
 https://api.slack.com/apis/connections/events-api#the-events-api__responding-to-events
+
+
+{{<break 1>}}
+## Creating a Production Environment

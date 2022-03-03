@@ -26,12 +26,12 @@ interface for creating HTTP Apis on the cloud and connecting them to serverless 
 {{<codesnippet `/source_code/http_examples/simple_api_example_integration.py`>}}
 
 Get the live url for your endpoint:
-```
+```bash
 cdev output <component_name>.api.demoApi.endpoint
 ```
 
 You can test the endpoint with the follow commands from your terminal:
-```
+```bash
 curl <your_endpoint>/hello_world
 ```
 
@@ -40,16 +40,16 @@ curl <your_endpoint>/hello_world
 {{<codesnippet `/source_code/http_examples/simple_api_example_post.py`>}}
 
 Get the live url for your endpoint:
-```
+```bash
 cdev output <component_name>.api.demoApi.endpoint
 ```
 
 You can test the endpoint with the follow commands from your terminal:
-```
+```bash
 curl -X POST <your_endpoint>/send_data -H 'Content-Type: application/json' -d "{\"login\":\"my_login\"}"
 ```
 
 Check the logs of your function
-```
+```bash
 cdev run function.logs <component_name>.send_data_handler
 ```

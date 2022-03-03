@@ -21,17 +21,17 @@ For a more in depth discussion about the capabilities and limits of Serverless F
 {{<codesnippet `/source_code/function_examples/basic_function.py`>}}
 
 Once your function is deployed, you can execute it with the `cdev run function.execute` command.
-```
+```bash
 cdev run function.execute <component_name>.hello_function
 ```
 
 You can then look at the logs from the deployed function
-```
+```bash
 cdev run function.logs <component_name>.hello_function
 ```
 
 As you are working on a `Function`, you can use the `--watch` flag to have live updated feed of your logs
-```
+```bash
 cdev run function.logs <component_name>.hello_function --watch
 ```
 Note that it may take a second for the logs to show up since they are being pulled from the cloud.
@@ -43,11 +43,11 @@ One of the most important aspects of Serverless Functions is that they can trigg
 {{<codesnippet `/source_code/function_examples/event_function.py`>}}
 
 You can now get the url of the created http api and execute your function by going to the `/hello` route.
-```
+```bash
 cdev output <component_name>.api.demo.endpoint
 ```
 You can use the command line tool `curl` to test your live url or
-```
+```bash
 curl <api_endpoint>/hello
 ```
 
@@ -55,7 +55,7 @@ You can even go to the url in your favorite web browser!
 
 After visiting the url you can also checkout the logs of your `Function` to see the information that is passed to your `Function` about the `Event` that triggered it. 
 
-```
+```bash
 cdev run function.logs <component_name>.hello_function
 ```
 
@@ -77,7 +77,7 @@ Although the above `Function` has permission to access the `Bucket`, it does not
 ### Third Party Packages
 Third Party Packages are an important part of modern software development. To use a third party package, simple install it with `pip` (we highly recommend using a virtual python environment) and then use the package in a function.
 
-```
+```bash
 pip install pandas
 ```
 

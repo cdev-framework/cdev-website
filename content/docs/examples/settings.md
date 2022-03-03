@@ -22,7 +22,7 @@ In your `src` folder, create a new file called `project_settings.py`. Then copy 
 {{<codesnippet `/source_code/settings_examples/basic_settings.py`>}}
 
 Then to set this as the `Settings` for the current `Environment`, run the following command. 
-```
+```bash
 cdev environment settings_information --key base_class --new-value src.project_settings.CustomSettings
 ```
 
@@ -79,7 +79,7 @@ somesecretvalue
 ### Environment variables
 You can use standard Environment Variables to set your settings values via [Pydantic Base Settings support for Environment Variables](https://pydantic-docs.helpmanual.io/usage/settings/#parsing-environment-variable-values). 
 
-```
+```bash
 export CDEV_SOME_KEY=somevalue
 ```
 **Note the variables needs be have the `CDEV_` prefix**
@@ -95,7 +95,7 @@ As mentioned in the [Django Settings documentation](https://docs.djangoproject.c
 1. It doesn’t allow for Python syntax errors.
 
 2. It can assign settings dynamically using normal Python syntax. For example:
-```
+```python
 ANOTHER_KEY = "somevalue".capitalize()
 ```
 

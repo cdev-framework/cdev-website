@@ -22,7 +22,7 @@ We will be using Auth0 as our User Authorization platform and integrating their 
 {{<break 1>}}
 ## Create a Basic Api
 User the `quick-start` template as a starting place 
-```
+```bash
 cdev init user-auth-demo --template quick-start
 ```
 You should have a `src/resources.py` file that looks like 
@@ -30,7 +30,7 @@ You should have a `src/resources.py` file that looks like
 {{<codesnippet `/source_code/userauth_examples/basic_api.py`>}}
 
 To create the Api and Handler run
-```
+```bash
 cdev deploy
 ```
 
@@ -41,7 +41,7 @@ Routes -> FrozenDict({'/hello_world GET': 'muupctg'})
 ```
 
 You can check that this Api is working correctly by using the Curl command
-```
+```bash
 curl https://<your_endpoint>/live/hello_world
 ```
 
@@ -66,13 +66,13 @@ We need one more value from Auth0: the `issuer_url` for your Auth0 account.
 We can now create an `Authorizer` for our Cdev Api. **Note that we add 'https://' and a trailing '/' to the issuer_url and the `name` property on the Cdev Authorizer does not need to match the name of the created Api in Auth0**
 {{<codesnippet `/source_code/userauth_examples/default_authorizer.py`>}}
 
-```
+```bash
 cdev deploy
 ```
 
 By setting the `default_authorizer` property on the Api, all created routes will by default use that Authorizer. Now when we curl the following generated url we will receive a 401 Authentication Error.
 
-```
+```bash
 curl -i https://<your_endpoint>/live/hello_world
 ```
 
@@ -81,8 +81,6 @@ Now we must have the correct authorization to be able to access this endpoint. A
 **pictures**
 
 
+## Next Steps
 
-{{<break 1>}}
-## Creating a Frontend
-Now that we have the endpoint secured, we are going to create a simple frontend that allows the user to login and then access the restricted endpoint. 
-
+For a more in depth tutorial about how to integrate user authentication into a full stack app, check out our [full stack application tutorial](docs/tutorials).
