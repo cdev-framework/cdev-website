@@ -5,14 +5,14 @@
         
         <div class="row" style="height: max-content; ">              
             <i id="{{.LinkTitle}}" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
-            <a href="{{.Dir | relURL }}">{{.Title}}</a>
+            <a href="{{.Permalink | relURL }}">{{.Title}}</a>
         </div>
             
         {{ $ParentName := .LinkTitle }}
         {{range .Pages}}
             <div class="row sub-{{$ParentName}}" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="{{.Dir | relURL}}{{.LinkTitle}}" class='sublink'>{{.Title}}</a>
+                <a href="{{.Permalink | relURL}}" class='sublink'>{{.Title}}</a>
             </div>
         {{end}}
     {{end}}
