@@ -423,3 +423,20 @@ ol{
     background: $light;
   }
 }
+.main-sub-link {
+  display: none !important;
+  margin-left: 20px;
+
+  &.active{
+    display: block !important;
+  }
+}
+.sidebar {
+
+  i.active{
+    color: #f7463a!important;
+  }
+  .main-link.active {
+    color: #f7463a!important;
+  }
+}

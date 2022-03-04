@@ -135,5 +135,17 @@
     });
   }
 
-
+  $('.sidebar .main-link')
+  $( ".sidebar .main-link" ).each(function( index ) {
+    var href = $(this).attr('href');
+    var currentURL = window.location.pathname;
+    if (href === currentURL) {
+      $(this).addClass('active')
+      $(this).parent().find('.main-sub-link').addClass('active')
+      $(this).parent().find('i').addClass('active')
+    }
+    if ($(this).parent().find('.main-sub-link').length == 0) {
+      $(this).parent().find('i').css({"visibility": "hidden"});
+    }
+  });
 })(jQuery);
