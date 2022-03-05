@@ -1,3 +1,4 @@
+
 (function ($) {
   'use strict';
 
@@ -148,4 +149,10 @@
       $(this).parent().find('i').css({"visibility": "hidden"});
     }
   });
+
+  $('.highlight pre code')
+  .parent()
+  .append('<div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="..."><button class="btn btn-dark copy-code" style=""><i class="icon-xs text-white ti-clipboard"></i></button></div>');
+  $( ".highlight pre code" ).addClass( "code-block" )
+  
 })(jQuery);

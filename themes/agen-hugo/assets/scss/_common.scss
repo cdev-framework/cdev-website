@@ -440,3 +440,25 @@ ol{
     color: #f7463a!important;
   }
 }
+
+.highlight {
+  pre {
+    position: relative;
+    .bode-btn-group {
+      position: absolute;
+      top: 0;
+      margin-left: 92.8%;
+      // right: 5%;
+      padding-top: 10px;
+      .copy-to-code {
+        position: relative;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+:not(pre)>code+span.copy-to-code {
+  display: none;
+}
