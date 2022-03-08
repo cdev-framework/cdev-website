@@ -136,8 +136,7 @@
     });
   }
 
-  $('.sidebar .main-link')
-  $( ".sidebar .main-link" ).each(function( index ) {
+  $( ".sidebar .main-link" ).each(function() {
     var href = $(this).attr('href');
     var currentURL = window.location.pathname;
     if (href === currentURL) {
@@ -147,6 +146,15 @@
     }
     if ($(this).parent().find('.main-sub-link').length == 0) {
       $(this).parent().find('i').css({"visibility": "hidden"});
+    }
+  });
+  $( ".sidebar .sublink" ).each(function() {
+    var subHref = $(this).attr('href');
+    var subCurrentURL = window.location.pathname;
+    if (subHref === subCurrentURL) {
+      $(this).parent().parent().find('.main-sub-link').addClass('active')
+      $(this).parent().parent().find('.main-link').addClass('active')
+      $(this).parent().parent().find('i').addClass('active')
     }
   });
 

@@ -185,3 +185,16 @@ pre code {
     display: block;
     padding: 15px;
 }
+
+
+@media (max-width: 767px) {
+    .logo-img {
+        width: 25%
+    }
+    .navigation  {
+        padding: 10px;
+    }
+    .nav-item, .dropdown-item {
+        text-align: left;
+    }
+}
