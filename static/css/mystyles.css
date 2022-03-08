@@ -189,12 +189,15 @@ pre code {
 
 @media (max-width: 767px) {
     .logo-img {
-        width: 25%
+        width: 100%
+    }
+    .navbar-brand {
+        width: 100px;
     }
     .navigation  {
         padding: 10px;
     }
     .nav-item, .dropdown-item {
-        text-align: left;
+        text-align: right   ;
     }
 }
