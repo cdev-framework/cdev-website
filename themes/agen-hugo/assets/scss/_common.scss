@@ -462,3 +462,25 @@ ol{
 :not(pre)>code+span.copy-to-code {
   display: none;
 }
+.coding_section .col-lg-8 a {
+  color: #f7463a!important;
+}
+.hljs {
+  background-color: #002b36 !important;
+}
+.hljs, .hljs span {
+  color: #93a1a1 !important;
+}
+
+.coding_section {
+  @media screen and (max-width: 991px) {
+    padding-top: 5px !important;
+  }
+  img {
+    width: 800px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.5)!important;
+    @media screen and (max-width: 991px) {
+      width: 100%;
+    }
+  }
+}
