@@ -12,7 +12,7 @@
         {{range .Pages}}
             <div class="row sub-{{$ParentName}}" style="height: max-content; display: none;">
                 <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="{{.RelPermalink}}" class='sublink'>{{.Title}}</a>
+                <a href="{{.RelPermalink}}{{.LinkTitle}}" class='sublink'>{{.Title}}</a>
             </div>
         {{end}}
     {{end}}

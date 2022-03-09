@@ -21,7 +21,7 @@ Most applications will need a database for storing persistent data, and Dynamodb
 {{<codesnippet `/source_code/dynamodb_examples/simple_dynamo_example_put.py`>}}
 
 
-```
+```bash
 cdev run function.execute hello_world_comp.email_adder --event-data "{\"body\":{\"first_name\":\"Paul\",\"last_name\":\"Atreides\",\"email\":\"Muaddib@dune.com\"}}"
 ```
 

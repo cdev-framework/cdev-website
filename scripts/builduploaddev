@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "---------BUILD HUGO------------"
+hugo -b https://dev.cdevframework.io --environment dev
+
+#echo "------PDOC DOCUMENTATION-------"
+#here=$(pwd)
+#cd $cdevprojectpath
+#. ./scripts/activate
+#./scripts/make_documentation
+#cd $here
+
+echo "-------UPLOAD TO STAGE-----------"
+
+aws s3 cp ./public s3://dev.cdevframework.io --recursive
