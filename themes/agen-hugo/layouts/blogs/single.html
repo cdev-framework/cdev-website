@@ -10,16 +10,16 @@
 
 
 
-<div class="coding_section container">
+<div class="coding_section container" >
     <div class="row" >
-        <div class="col-lg-4 col-md-4" style="padding-left: 4%; overflow: hidden; max-width: 25%;">
+        <div class="col-md-4">
             {{ partial "blog-side.html" .}}
         </div>
 
-        <div class="col-lg-8 col-md-8" style="padding-left: 2em;">
+        <div class="content-section col-md-8">
             {{.Content}}
 
-            <div class="row" style="padding-left: 1em; padding-right: 1em;">
+            <div class="d-flex">
                 {{ with .NextInSection }}
                 <div>
                 <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>

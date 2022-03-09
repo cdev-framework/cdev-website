@@ -148,6 +148,20 @@
       $(this).parent().find('i').css({"visibility": "hidden"});
     }
   });
+  
+  $('.sidebar i.icon-xs.ti-angle-down').on('click', function () {
+    if ($(this).hasClass('active') === true) {
+      $(this).removeClass('active')
+      $(this).parent().find('.main-link').removeClass('active')
+      $(this).parent().find('.main-sub-link').removeClass('active')
+    }
+    else {
+      $(this).addClass('active')
+      $(this).parent().find('.main-link').addClass('active')
+      $(this).parent().find('.main-sub-link').addClass('active')
+    }
+  });
+
   $( ".sidebar .sublink" ).each(function() {
     var subHref = $(this).attr('href');
     var subCurrentURL = window.location.pathname;
