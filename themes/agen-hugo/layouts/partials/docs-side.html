@@ -1,26 +1,19 @@
 <div class="sidebar container">
     <div style="font-weight:bold; padding-left: 18px; display: inherit;">Docs</div>
     {{range .FirstSection.Sections}}
-    
-        
         <div class="row" style="height: max-content; ">              
-            <i id="{{.LinkTitle}}" class="icon-xs ti-angle-down text-white dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
-            <a href="{{.RelPermalink }}">{{.Title}}</a>
-        </div>
-            
-        {{ $ParentName := .LinkTitle }}
-        {{range .Pages}}
-            <div class="row sub-{{$ParentName}}" style="height: max-content; display: none;">
-                <i class="icon-xs ti-angle-down text-white" style="visibility: hidden;"></i>
-                <a href="{{.RelPermalink}}{{.LinkTitle}}" class='sublink'>{{.Title}}</a>
-            </div>
-        {{end}}
+            <i id="{{.LinkTitle}}" class="icon-xs ti-angle-down dropdown" style="padding-top: 10%; vertical-align: text-bottom;"></i>
+            <a href="{{.Permalink | relURL }}" class="main-link">{{.Title}}</a>
+            {{ $ParentName := .LinkTitle }}
+            {{range .Pages}}
+                <div class="row main-sub-link">
+                    <a href="{{.Permalink | relURL}}" class='sublink'>{{.Title}}</a>
+                </div>
+            {{end}}
+        </div> 
     {{end}}
-
     <div class="row" style="height: max-content; ">              
         <i id="API" class="icon-xs ti-angle-down" style="padding-top: 10%; vertical-align: text-bottom; visibility: hidden;"></i>
         <a href="{{.Site.BaseURL}}{{.Site.Params.ApiURL}}">API</a>
     </div>
-
 </div>
-  
