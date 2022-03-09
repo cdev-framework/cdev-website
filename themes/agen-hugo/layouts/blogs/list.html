@@ -4,30 +4,21 @@
     <body>
         {{- partial "preloader.html" . -}}
         {{- partial "static-header.html" . -}}
-
-
 <!--{{ partial "page-title.html" . }}-->
-
-
-
-<div class="coding_section container" style="max-width: 100%;">
+<div class="coding_section container">
     <div class="row">
-        <div class="col-lg-4 col-md-4" style="padding-left: 4%; overflow: hidden; max-width: 20%;">
+        <div class="col-lg-4 col-md-4">
             {{ partial "blog-side.html" .}}
         </div>
-
-        <div class="col-lg-9 col-md-8" style="padding-left: 5%;">
-            {{.Content}}
-            {{ partial "section-border.html" .}}
+        <div class="content-section col-lg-9 col-md-8">
+            <div class="">
+                {{.Content}}
+                {{ partial "section-border.html" .}}
+            </div>
             {{ partial "children-card-container.html" .}}
-
         </div>
-
-
     </div>
-
 </div>
-
 {{- partial "footer.html" . -}}
 </body>
 </html>
