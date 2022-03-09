@@ -64,12 +64,14 @@
 
 .sidebar {
     height: 100%;
-    width: 80%;
-    position: absolute;
+    width: 100%;
+    /* position: absolute; */
     padding-top: 20px;
-    padding-left: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     background-color: #07085d;
-    overflow-y: scroll
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 50%) !important;
 }
     
 .sidebar div {
@@ -115,14 +117,14 @@
 i.dropdown:hover{
     color: #f7463a!important;
 }
-
+.coding_section .col-lg-4 {
+    max-width: 25%;
+}
 /*hide for small screens */
-@media only screen and (max-width: 990px) { 
-    .sidebar {
-       display: none;
-       visibility: hidden;
+@media screen and (max-width: 991px) { 
+    .coding_section .col-lg-4 {
+        max-width: 100% !important;
     }
-
     .desktop{
         display: none;
         visibility: hidden;
@@ -184,4 +186,20 @@ pre code {
     background-color: #eee;
     display: block;
     padding: 15px;
+}
+
+
+@media (max-width: 767px) {
+    .logo-img {
+        width: 100%
+    }
+    .navbar-brand {
+        width: 100px;
+    }
+    .navigation  {
+        padding: 10px;
+    }
+    .nav-item, .dropdown-item {
+        text-align: right   ;
+    }
 }
