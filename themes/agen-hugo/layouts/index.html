@@ -32,27 +32,26 @@
     </div>
     {{ partial "section-border.html" .}}
     <div class="row">
-      <div><p>**Will be demo gif**</p></div>
+      <div><p>**Will be real video soon**</p></div>
       <div class="col-lg-12 " style="padding-bottom: 5em; display: flex; justify-content: center; overflow: hidden; align-items: center;">
-        <img style='object-fit: cover; min-width: 70%; min-height: 100%; flex-shrink: 2;'  alt="Example of cdev in use">
         
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
      
       {{ with .Site.Data.homepage.pip}}
       <div class="col-lg-8 mx-auto" style="background-color: #ecececb0; border-radius: 5px; padding-top: 1em; padding-bottom: 1em; text-align:center;">
-        <code class='col-11 mycode' style="color: black; font-size: large; padding-top: 5px; padding-bottom: 5px;">
-          <span class='code-snippet'>{{ .message | markdownify}}</span>
+        <code class='col-11 code-block' style="font-size: large; padding-top: 5px; padding-bottom: 5px;">
+          <span class='code-snippet' style="color: black">{{ .message | markdownify}}</span>
           <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="..." style=" float: right; margin-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px;">
-            <button class="btn btn-secondary copy-code-snippet">
+            <button class="btn btn-dark copy-code">
                 <i class="icon-xs ti-clipboard text-white "></i>
             </button>    
           </div>
         </code>
       </div>
-
-     
     
-      {{end}}
+    {{end}}    
+      
       
     </div>
     {{ partial "section-border.html" .}}
