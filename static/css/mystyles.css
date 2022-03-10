@@ -1,3 +1,8 @@
+@media (min-width: 1441px) {
+    .container {
+        max-width: calc(100% - 20%);
+    }
+}
 .about-content {
     padding-top: 30px;
     padding-bottom: 30px;
