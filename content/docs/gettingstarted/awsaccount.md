@@ -40,3 +40,5 @@ Once you have created your credentials, Cdev will be default to using the Aws cr
 
 ## Setting up Billing Alarms
 We highly recommend taking the time to [create Billing Alerts on your Aws Account](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html). These billing alerts will help you proactively react to situations where something has gone wrong with the resources you have created as opposed to finding out at the end of the billing cycle. 
+
+{{<break 2>}}
