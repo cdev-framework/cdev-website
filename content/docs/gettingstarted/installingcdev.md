@@ -9,6 +9,7 @@
 }
 
 # Installing the Cdev Sdk
+{{<break 1>}}
 
 The Cdev Sdk is currently distributed as a Python Package with PyPi, so you can install it using a single command with `pip`. **Note that it is always recommended working with a [python virtual environment](/docs/gettingstarted/python)**
 
@@ -56,7 +57,7 @@ cdev run function.execute hello_world_comp.hello_world_function
 
 **You might have to wait a sec for the logs to process in the cloud**
 ```bash
-$ cdev run function.logs hello_world_comp.hello_world_function
+cdev run function.logs hello_world_comp.hello_world_function
 ```
 {{<break 1>}}
 
@@ -71,11 +72,9 @@ outputs
 <your-url>
 ```
 
-{{<break 1>}}
-
 We can now use the `curl` cli tool to call our `Api Endpoint` or visit `<your-url>/hello_world` directly in your web browser!
 ```bash
-$ curl <your-url>/hello_world
+curl <your-url>/hello_world
 ```
 
 
@@ -86,10 +85,12 @@ $ curl <your-url>/hello_world
 
 We can delete all the created resources using the `destroy` command.
 ```bash
-$ cdev destroy
+cdev destroy
 ```
 
 {{<break 1>}}
 
 ## Next Steps
 Now that you have created you deployed your first `Api` and `Serverless Function`, you can follow [one of our tutorials to learn how to create larger project](/docs/tutorials)
+
+{{<break 2>}}
