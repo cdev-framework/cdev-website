@@ -166,7 +166,7 @@ extensions = ["hardLineBreak"]
   link = "#"
 
   [[params.social]]
-  icon = "ti-discord" 
+  icon = "slack" 
   link = "#"
   
 
