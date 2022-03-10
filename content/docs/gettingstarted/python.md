@@ -9,7 +9,9 @@
 }
 
 # Setting up Python
-{{<break 1>}}
+{{<header_divider>}}
+
+
 The Cdev Sdk is a Python Library and CLI that helps developers with Serverless Development, which means that you will need to have Python installed on your computer and access to a CLI environment.
 
 

@@ -10,10 +10,11 @@
 
 
 # Message Queues
+{{<header_divider>}}
 
 Message Queue that allows for events to be transmitted
 
-{{<break 2>}}
+{{<break 1>}}
 ### Basic Queue
 
 {{<codesnippet `/source_code/message_queue_examples/simple_queue_example.py`>}}

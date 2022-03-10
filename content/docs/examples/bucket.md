@@ -4,17 +4,18 @@
     "title": "Integrate S3 Buckets",
     "linktitle": "bucket",
     "card_icon": "ti-paint-bucket",
-    "card_body": "Learn to create and connect to a S3 Bucket to read and write objects",
+    "card_body": "Learn to create a S3 Bucket to store objects",
     "weight": "3"
 }
 
 
 # Working with S3 Buckets
+{{<header_divider>}}
 
 The Amazon Simple Storage Service (S3) was one of the first offerings by Aws, and it has become perhaps their most well know service. Cdev makes it easy to quickly create and integrate S3 Buckets into your projects.
 
 
-{{<break 2>}}
+{{<break 1>}}
 ## Create a S3 Bucket
 {{<codesnippet `/source_code/s3_examples/single_bucket.py`>}}
 

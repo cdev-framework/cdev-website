@@ -4,17 +4,18 @@
     "title": "Integrate RelationalDBs",
     "linktitle": "relationaldb",
     "card_icon": "ti-server",
-    "card_body": "Learn to create and integrate a Relational DB to store data",
+    "card_body": "Learn to create and integrate a Relational DB",
     "weight": "3"
 }
 
 
 # Serverless Functions
+{{<header_divider>}}
 
 Relational Databases have been a flagship part of software development for the past few decades. Through Aurora Databases, you can integrate a Relational DB into your Serverless application. You can create Postgres or MySql compatible databases. 
 
 
-{{<break 2>}}
+{{<break 1>}}
 ### Creating a Relational DB
 {{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
 

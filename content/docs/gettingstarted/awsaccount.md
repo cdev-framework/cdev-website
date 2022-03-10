@@ -9,7 +9,7 @@
 }
 
 # Creating an Aws Account
-{{<break 1>}}
+{{<header_divider>}}
 
 We will follow the [Aws Documentation](https://aws.amazon.com/getting-started/guides/setup-environment/) to make sure that your account is set up correctly.
 

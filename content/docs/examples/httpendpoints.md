@@ -4,16 +4,17 @@
     "title": "Integrate HTTP Endpoints",
     "linktitle": "httpendpoints",
     "card_icon": "ti-bolt",
-    "card_body": "Learn to create different API endpoints with API Gateway",
+    "card_body": "Learn to create API endpoints with API Gateway",
     "weight": "1"
 }
 
 # Build an HTTP API Endpoint
+{{<header_divider>}}
 
 HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple
 interface for creating HTTP Apis on the cloud and connecting them to serverless functions. 
 
-{{<break 2>}}
+{{<break 1>}}
 ### Create an Api
 {{<codesnippet `/source_code/http_examples/simple_api_example.py`>}}
 

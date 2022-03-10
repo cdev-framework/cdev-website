@@ -9,9 +9,13 @@
 }
 
 # Installing the Cdev Sdk
-{{<break 1>}}
+{{<header_divider>}}
 
 The Cdev Sdk is currently distributed as a Python Package with PyPi, so you can install it using a single command with `pip`. **Note that it is always recommended working with a [python virtual environment](/docs/gettingstarted/python)**
+
+{{<break 1>}}
+
+## Installing the SDK
 
 ```bash
 pip install cdev

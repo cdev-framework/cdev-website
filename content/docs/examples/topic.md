@@ -10,10 +10,11 @@
 
 
 # Pub/Sub Topic
+{{<header_divider>}}
 
 A Pub/Sub Topic that allows for events to be transmitted in a Fan Out fashion.
 
-{{<break 2>}}
+{{<break 1>}}
 ### Basic Topic
 
 {{<codesnippet `/source_code/topic_examples/simple_topic_example.py`>}}

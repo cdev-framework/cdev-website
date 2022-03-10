@@ -10,6 +10,7 @@
 
 
 # Create and Update Project Settings
+{{<header_divider>}}
 
 Cdev provides a mechanism to manage settings per `Environment` that affect how your resources are generated. These settings can be used to provide different values to the framework for different `Environments`. 
 

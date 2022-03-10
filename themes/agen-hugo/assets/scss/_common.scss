@@ -79,6 +79,13 @@ a:hover {
   margin: 40px auto 90px;
 }
 
+.header-divider {
+  height: 9px;
+  background: $primary-gradient;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
 .bg-cover {
   background-size: cover;
   background-position: center center;
@@ -466,12 +473,14 @@ ol{
   color: #f7463a!important;
   transition: all .3s;
 }
+
+/*
 .hljs {
   background-color: #002b36 !important;
-}
-.hljs, .hljs span {
-  color: #93a1a1 !important;
-}
+}*/
+
+
+
 
 .coding_section {
   @media screen and (max-width: 991px) {

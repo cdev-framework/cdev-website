@@ -10,13 +10,14 @@
 
 
 # Serverless Functions
+{{<header_divider>}}
 
 At the heart of Cdev is the Serverless Function. This is the most powerful resource available through the framework because it is where you have to freedom to create what you want. We have made many optimizations to create the best experience for creating and maintaining Serverless Functions.
 
 
 For a more in depth discussion about the capabilities and limits of Serverless Functions checkout our [architecture documentation](/docs/firstprinciples)
 
-{{<break 2>}}
+{{<break 1>}}
 ### Basic Function
 {{<codesnippet `/source_code/function_examples/basic_function.py`>}}
 
@@ -37,7 +38,7 @@ cdev run function.logs <component_name>.hello_function --watch
 Note that it may take a second for the logs to show up since they are being pulled from the cloud.
 
 
-{{<break 2>}}
+{{<break 1>}}
 ### Responding to Events
 One of the most important aspects of Serverless Functions is that they can triggered by different resources. By passing an `Event` construct into the args of your `Function`, your deployed `Function` will be triggered by the event in the Cloud.
 {{<codesnippet `/source_code/function_examples/event_function.py`>}}
@@ -66,7 +67,6 @@ By default, created `Functions` have no permissions to access other resources, s
 {{<codesnippet `/source_code/function_examples/permission_function.py`>}}
 
 
-{{<break 2>}}
 ### Environment Variables
 Although the above `Function` has permission to access the `Bucket`, it does not by default know the name of the `Bucket`. All functions have a set of Environment Variables that can be set. To access these variables within the `Function` use the `os.environ` variable. 
 

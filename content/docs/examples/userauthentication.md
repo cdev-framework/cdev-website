@@ -10,6 +10,7 @@
 
 
 # Add User Authentication to Your Application
+{{<header_divider>}}
 
 User Authentication and Management is one of the most important aspects aspects in application development.
 
