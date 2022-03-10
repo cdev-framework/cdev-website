@@ -53,17 +53,23 @@ You can create a [trail Auth0 account](https://auth0.com/signup) that has a free
 
 
 From the Auth0 Dashboard, Create a new Api. Note that you can set the name value to whatever makes sense for your project. The value that you provide for the `identifier` field will need to saved as it will be used as the `audience` property in the next step.
-**picture**
+{{<tutorial_image>}}
+/images/autho_examples/create_api.png
+{{</tutorial_image>}}
+{{<tutorial_image>}}
+/images/autho_examples/api_settings.png
+{{</tutorial_image>}}
 
-If you forget the `identifier` field for your created api in Auth0, you can find it here.
-**picture**
 
-
-We need one more value from Auth0: the `issuer_url` for your Auth0 account.
-**picture**
+We need one more value from Auth0: the `issuer_url` for your Auth0 account. In the `Application` tab, there should be an auto generated application for your api.
+{{<tutorial_image>}}
+/images/autho_examples/issuer_location.jpg
+{{</tutorial_image>}}
 
 
 We can now create an `Authorizer` for our Cdev Api. **Note that we add 'https://' and a trailing '/' to the issuer_url and the `name` property on the Cdev Authorizer does not need to match the name of the created Api in Auth0**
+
+Update your /src/resources.py file to the follow, replacing the values on lines 12 and 13. 
 {{<codesnippet `/source_code/userauth_examples/default_authorizer.py`>}}
 
 ```bash
@@ -76,11 +82,12 @@ By setting the `default_authorizer` property on the Api, all created routes will
 curl -i https://<your_endpoint>/live/hello_world
 ```
 
-Now we must have the correct authorization to be able to access this endpoint. Auth0 provides a testing token that can be used to test that the authorization is working correctly.
+Now we must have the correct authorization to be able to access this endpoint. On the Api page in the `Test` tab, Auth0 provides a testing token that can be used to test that the authorization is working correctly.
 
-**pictures**
-
+{{<tutorial_image>}}
+/images/autho_examples/api_test_command.jpg
+{{</tutorial_image>}}
 
 ## Next Steps
 
-For a more in depth tutorial about how to integrate user authentication into a full stack app, check out our [full stack application tutorial](docs/tutorials).
+For a more in depth tutorial about how to integrate user authentication into a full stack app, check out our [full stack application tutorial](/docs/tutorials).

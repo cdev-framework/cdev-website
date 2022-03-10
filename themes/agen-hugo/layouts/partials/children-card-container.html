@@ -1,8 +1,8 @@
 <div class="row">
     {{range .Pages}}
-    <div class="col-md-4 col-sm-6 my-3">
+    <div class="col-md-6 col-sm-6 my-3">
         <div class="card hover-bg-secondary shadow py-4" style="box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)!important;">
-          <a href="{{.Permalink}}">
+          <a href="{{.RelPermalink }}">
           <div class="card-body text-center">
             <div class="position-relative">
               <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{.Params.card_icon}} mb-5 d-inline-block text-white"></i>
