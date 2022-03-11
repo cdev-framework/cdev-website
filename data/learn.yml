@@ -1,8 +1,8 @@
 methods:
-  - Build:
-    title: "Build"
+  - Create:
+    title: "Create"
     description: "Learn by creating one of our sample projects"
-    icon: "ti-rocket"
+    icon: "ti-palette"
     url: /docs/tutorials
   
   - Principles:

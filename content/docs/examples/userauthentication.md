@@ -3,7 +3,7 @@
     "layout": "type",
     "title": "Integrate User Authentication",
     "linktitle": "userauthentication",
-    "card_icon": "ti-user",
+    "card_icon": "ti-id-badge",
     "card_body": "Learn how add User Authentication with Auth0",
     "weight": "2"
 }
