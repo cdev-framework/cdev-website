@@ -171,17 +171,5 @@ As your Bot grows in scope, it becomes important to understand how Slack expects
 
 Although there are many ways to implement a system to ingest and reply to these messages, we are going to use `Message Queues` to help use process our Bot Events. 
 
-{{<break 1>}}
-
-### Creating a Message Queue
-
-
-### Sending Messages to the Queue
-
-
-### Ingesting Messages from the Queue
-
-
 
 {{<break 1>}}
-## Creating a Production Environment
