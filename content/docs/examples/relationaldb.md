@@ -28,7 +28,7 @@ Aurora Databases are designed to integrate with Serverless environments by execu
 pip install aurora-data-api
 ```
 
-{{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
+{{<codesnippet `/source_code/relationaldb_examples/standarda_api_db.py`>}}
 
 
 {{<break 2>}}
