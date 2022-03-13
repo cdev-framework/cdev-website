@@ -9,29 +9,78 @@
 }
 
 
-# Serverless Functions
+# Serverless Relational Databases
 {{<header_divider>}}
 
-Relational Databases have been a flagship part of software development for the past few decades. Through Aurora Databases, you can integrate a Relational DB into your Serverless application. You can create Postgres or MySql compatible databases. 
+Relational Databases have been a flagship part of software development for the past few decades. Through Aurora Databases, you can integrate a Relational DB into your Serverless application. You can create Postgres or MySql compatible databases. Aurora Databases are designed to integrate with Serverless environments by executing SQL over a HTTP tunnel making it more accessible from a Serverless Function environment. You can use third party libraries to access the DB from a Serverless Function using both the standard Python DB API adn SlqAlchemy.
 
 
 {{<break 1>}}
-### Creating a Relational DB
+## Creating a Relational DB
 {{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
 
-Aurora Databases are designed to integrate with Serverless environments by executing SQL over a HTTP tunnel making it more accessible from a Serverless Function environment. You can use third party libraries for access the DB from a Serverless Function using both the standard Python DB API.
-
 
 {{<break 2>}}
-### Connecting to a Relational DB with the standard Python DB API
+## Accessing the DB from the CLI
+Once you have created a DB, the fastest way to access the DB is through an interactive session on your CLI. You can open a interactive session using the following Cdev Command. This shell is designed to be a simple emulation of [psql](https://www.postgresql.org/docs/13/app-psql.html) and [mysql](https://dev.mysql.com/doc/refman/8.0/en/mysql.html). 
 ```bash
-pip install aurora-data-api
+cdev run relationaldb.shell <component_name>.<resource_name>
+```
+{{<break 1>}}
+### Create a Table
+**Mysql**
+```sql
+CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(100), PRIMARY KEY ( id ));
+```
+**Postgres**
+```sql
+CREATE TABLE users( id serial PRIMARY KEY, name VARCHAR ( 50 ) );
+```
+{{<break 1>}}
+### Add Row
+```sql
+INSERT INTO users(id, name) VALUES (18,'Paul Atreides');
+```
+{{<break 1>}}
+### Query the Table
+```sql
+select * from users;
+```
+{{<break 1>}}
+### Transactions
+**Start Transaction**
+```sql
+BEGIN
+```
+**Commit Transaction**
+```sql
+COMMIT
+```
+**Rollback Transaction**
+```sql
+ROLLBACK
 ```
 
-{{<codesnippet `/source_code/relationaldb_examples/standarda_api_db.py`>}}
-
 
 {{<break 2>}}
-### Accessing the DB from the CLI
+## Connecting to a Relational DB with Python
 
+Although there are some [underlying architectural decisions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html) that make these db's optimized for use in a Serverless Computing environment, we can access them in our code using the standard [Python Database Api](https://peps.python.org/pep-0249/) and [SqlAlchemy](https://www.sqlalchemy.org/). To simplify the use of the these standard Api's, we will be using two third party packages: [aurora-data-api](https://github.com/cloud-utils/aurora-data-api) and [sqlalchemy-aurora-data-api](https://github.com/cloud-utils/sqlalchemy-aurora-data-api). These packages handle the hard work of creating the standardized Api's for our created databases and exposing them in packages that are optimized for Serverless Development. 
 
+```bash
+pip install aurora-data-api sqlalchemy-aurora-data-api
+```
+
+{{<break 1>}}
+### Python Database Api
+Using `aurora-data-api` to access your DB via the `Python Database Api` is the fastest way to get started. For more information on how to use the `Python Database Api` checkout this [tutorial](https://philvarner.github.io/pages/novice-python3-db-api.html) 
+{{<codesnippet `/source_code/relationaldb_examples/standard_api_db.py`>}}
+
+**Execute the function**
+```bash
+cdev run function.execute hello_world_comp.db_handler
+```
+**Check the logs**
+```bash
+cdev run function.logs hello_world_comp.db_handler
+```
