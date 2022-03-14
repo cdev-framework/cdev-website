@@ -104,9 +104,29 @@ cdev run function.logs hello_world_comp.db_handler
 
 {{<break 1>}}
 #### SqlAlchemy ORM
-One of the main benefits of SqlAlchemy is the option to use it's [powerful ORM](https://www.fullstackpython.com/sqlalchemy.html). To get the full use of the ORM, we are going to pair it with the [alembic](alembic.sqlalchemy.org) library to help automatically generate the migration files when we update our models.
+One of the main benefits of SqlAlchemy is the option to use it's [powerful ORM](https://www.fullstackpython.com/sqlalchemy.html). To get the full use of the ORM, we are going to pair it with the [alembic](https://alembic.sqlalchemy.org) library to help automatically generate the migration files when we update our models.
 
-First we are going to create our models. Create a `src/models.py` file and add the follow code
+Starting from the `quick-start` template, add a `relational db` to your resources.
+```bash
+cdev init orm-demo --template quick-start
+```
+
+Update you `src/hello_world/resources.py` file to 
+{{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_orm_resource.py`>}}
+
+Now we can deploy our resources
+```bash
+cdev deploy
+```
+
+{{<break 1>}}
+**Next, we are going to create our models.** First, install `sqlalchemy_aurora_data_api`
+
+```bash
+pip install sqlalchemy_aurora_data_api
+```
+Then, create a `src/hello_world/models.py` file and add the follow code
+
 {{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_models.py`>}}
 
 Now we are going to install and configure `alembic`.
@@ -124,7 +144,7 @@ alembic init src/alembic
 First, Import the base declarative model from the `models.py` file, and set that as the `target_metadata` variable on line 20.
 
 ```python
-from src.models import Base
+from src.hello_world.models import Base
 ```
 
 ```python
@@ -133,10 +153,9 @@ target_metadata = Base.metadata
 
 Then, change `line 59` to use `connect args` and our database engine.
 ```python
-connectable = engine_from_config(
+connectable = create_engine(
         postgres_database_engine,
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
+        echo=True,
         connect_args=dict(aurora_cluster_arn=cluster_arn, secret_arn=secret_arn)
     )
 ```
@@ -145,6 +164,7 @@ Above the `run_migrations_online` function declaration on `line 51`, add the fol
 
 ```python
 import os
+from sqlalchemy import create_engine
 
 cluster_arn = os.environ.get("CLUSTER_ARN")
 secret_arn = os.environ.get("SECRET_ARN")
@@ -165,15 +185,55 @@ export CLUSTER_ARN=$(cdev output --value hello_world_comp.relationaldb.demo_db.c
 ```bash
 export DB_NAME=<db_name>
 ```
+{{<break 1>}}
 
 You should now be able to create automated migrations. **Note you should familiarize yourself with the [limits of alembic auto generation](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect) and ALWAYS confirm the changes before applying them.** 
 
 ```bash
 alembic revision --autogenerate -m "Added users table"
 ```
-Apply the migration with the `upgrade` command.
+Apply the migration with the `upgrade` command. This will create our `Users` Table.
 ```bash
 alembic upgrade head
+```
+
+{{<break 1>}}
+Lets now connect to our DB and add a User
+```bash
+cdev run relationaldb.shell hello_world_comp.demo_db
+```
+```sql
+BEGIN
+```
+```sql
+INSERT INTO users(id, name) VALUES (1,'Paul Atreides');
+```
+```sql
+COMMIT
+```
+```bash
+quit
+```
+
+
+{{<break 1>}}
+Now we can updated our `src/hello_world/resources.py` to have our `Serverless Function` use the SqlAlchemy ORM to access our Database. Replace your `src/hello_world/resources.py` with the following code.
+
+{{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_orm_resources_updated.py`>}}
+
+Then deploy the changes to the function
+```bash
+cdev deploy
+```
+
+run the deployed function
+```bash
+cdev run function.execute hello_world_comp.hello_world_function
+```
+
+Check the logs from the function
+```bash
+cdev run function.logs hello_world_comp.hello_world_function
 ```
 
 {{<break 2>}}
