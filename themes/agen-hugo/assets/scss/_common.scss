@@ -447,7 +447,8 @@ ol{
     .bode-btn-group {
       position: absolute;
       top: 0;
-      margin-left: 92.8%;
+      margin-left: calc(100% - 55px);
+      // margin-left: 95%;
       // right: 5%;
       padding-top: 10px;
       .copy-to-code {
@@ -456,6 +457,13 @@ ol{
         right: 0;
       }
     }
+  }
+}
+.group-code {
+  display: grid;
+  align-items: flex-start;
+  .bode-btn-group {
+    margin-left: calc(100% - 55px);
   }
 }
 
