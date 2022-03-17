@@ -4,6 +4,8 @@ import json
 from cdev.resources.simple.api import Api, Authorizer
 from cdev.resources.simple.xlambda import simple_function_annotation
 
+from cdev.resources.simple.static_site import StaticSite
+
 from cdev import Project as cdev_project
 
 myProject = cdev_project.instance()
@@ -32,6 +34,8 @@ def hello_world(event, context):
     }
 
 
+myFrontend = StaticSite("demofrontend", content_folder="src/content")
 
 myProject.display_output("Base API URL", DemoApi.output.endpoint)
 myProject.display_output("Routes", DemoApi.output.endpoints)
+myProject.display_output("Static Site URl", myFrontend.output.site_url)
