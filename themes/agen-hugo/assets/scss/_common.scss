@@ -493,3 +493,20 @@ ol{
     }
   }
 }
+
+.tip {
+  border: 0 solid #448aff;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left-width: 4px;
+  margin: 20px 0;
+  padding: 0 12px;
+  &.info {
+    border-color: #00bfa5;
+
+    summary {
+      background-color: rgba(0,191,165,.1);
+      padding: 8px 12px 8px 40px;
+    }
+  }
+}
