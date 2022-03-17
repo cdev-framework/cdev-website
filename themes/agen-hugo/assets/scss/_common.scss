@@ -478,8 +478,12 @@ ol{
   display: none;
 }
 .coding_section .col-md-8 a {
-  color: #f7463a!important;
+  color: #f7463a;
   transition: all .3s;
+}
+
+.coding_section .col-md-8 a:hover {
+  color: #aa0b00;
 }
 
 /*

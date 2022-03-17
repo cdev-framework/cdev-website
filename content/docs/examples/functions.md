@@ -17,32 +17,8 @@ At the heart of Cdev is the Serverless Function. This is the most powerful resou
 
 For a more in depth discussion about the capabilities and limits of Serverless Functions checkout our [architecture documentation](/docs/firstprinciples)
 
+{{<break 1>}}
 
-
-{{<break 2>}}
-{{<tool_tip key="info" summary="Info: some header information" >}}
-- Check out [this detailed blog post](/docs/firstprinciples) with a practical example.
-{{</tool_tip>}}
-
-
-{{<tool_tip key="tool_tip" summary="Tip: Looking for a quick read through how the core features are used?" >}}
-Check out [this detailed blog post](/docs/firstprinciples) with a practical example.
-{{</tool_tip>}}
-
-
-{{<tool_tip key="warning" summary="Warning: Looking for a quick read through how the core features are used?" >}}
-Check out [this detailed blog post](/docs/firstprinciples) with a practical example.
-{{</tool_tip>}}
-
-
-{{<tool_tip key="error" summary="Error: Looking for a quick read through how the core features are used?" >}}
-Check out [this detailed blog post](/docs/firstprinciples) with a practical example.
-{{</tool_tip>}}
-
-
-{{<tool_tip key="question" summary="Question: Looking for a quick read through how the core features are used?" >}}
-Check out [this detailed blog post](/docs/firstprinciples) with a practical example.
-{{</tool_tip>}}
 
 
 ### Basic Function
@@ -94,6 +70,7 @@ By default, created `Functions` have no permissions to access other resources, s
 {{<codesnippet `/source_code/function_examples/permission_function.py`>}}
 
 
+{{<break 2>}}
 ### Environment Variables
 Although the above `Function` has permission to access the `Bucket`, it does not by default know the name of the `Bucket`. All functions have a set of Environment Variables that can be set. To access these variables within the `Function` use the `os.environ` variable. 
 
