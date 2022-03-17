@@ -17,6 +17,15 @@ At the heart of Cdev is the Serverless Function. This is the most powerful resou
 For a more in depth discussion about the capabilities and limits of Serverless Functions checkout our [architecture documentation](/docs/firstprinciples)
 
 {{<break 2>}}
+{{< tool_info summary="Info: Looking for a quick read through how the core features are used?" info="Check out [this detailed blog post](/docs/firstprinciples) with a practical example." >}}
+
+{{< tool_tip summary="Tip: Looking for a quick read through how the core features are used?" info="Check out [this detailed blog post](/docs/firstprinciples) with a practical example." >}}
+
+{{< tool_warning summary="Warning: Looking for a quick read through how the core features are used?" info="Check out [this detailed blog post](/docs/firstprinciples) with a practical example." >}}
+
+{{< tool_error summary="Error: Looking for a quick read through how the core features are used?" info="Check out [this detailed blog post](/docs/firstprinciples) with a practical example." >}}
+
+{{< tool_question summary="Question: Looking for a quick read through how the core features are used?" info="Check out [this detailed blog post](/docs/firstprinciples) with a practical example." >}}
 ### Basic Function
 {{<codesnippet `/source_code/function_examples/basic_function.py`>}}
 
