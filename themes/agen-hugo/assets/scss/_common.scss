@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $body-color;
   overflow-x: hidden;
@@ -622,3 +626,20 @@ details[open]>summary:after {
 }
 
 //C:\Users\Amjad\Documents\GitHub\cdev-website\static\images\flame-svgrepo-com.svg
+
+.table-of-contents {
+  border-left: 1px solid #E2E2E2;
+  padding-left: 20px;
+  margin-top: 30px;
+  ul {
+    padding: 0;
+    list-style-type: none;
+    li {
+      margin: 8px 0;
+      ul {
+        padding-left: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+}

@@ -12,6 +12,8 @@
 # Serverless Functions
 {{<header_divider>}}
 
+## Examples
+
 At the heart of Cdev is the Serverless Function. This is the most powerful resource available through the framework because it is where you have to freedom to create what you want. We have made many optimizations to create the best experience for creating and maintaining Serverless Functions.
 
 

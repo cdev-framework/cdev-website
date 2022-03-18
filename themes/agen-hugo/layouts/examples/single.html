@@ -12,11 +12,11 @@
 
 <div class="coding_section container" >
     <div class="row" >
-        <div class="col-lg-4 col-md-4">
+        <div class="col-md-3 col-sm-3">
             {{ partial "docs-side.html" .}}
         </div>
 
-        <div class="content-section col-lg-8 col-md-8">
+        <div class="content-section col-md-7 col-sm-6">
             {{.Content}}
 
             <div class="d-flex">
@@ -36,6 +36,9 @@
                 {{ end }}
             </div>
 
+        </div>
+        <div class="col-md-2 col-sm-3">            
+            {{ partial "table-of-content.html" .}}
         </div>
     </div>
 
