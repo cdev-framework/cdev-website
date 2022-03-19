@@ -238,12 +238,15 @@ class TableOfContents {
               headingLevel = TableOfContents.getHeadingLevel(headingElement),
               headingLevelDifference = headingLevel - currentLevel,
               linkElement = document.createElement("a");
+          
+         
 
           if (!headingElement.id) {
               headingElement.id = TableOfContents.generateId(headingElement);
           }
           linkElement.href = `#${headingElement.id}`;
           linkElement.textContent = headingElement.textContent;
+          linkElement.classList.add('nav-link')
 
           if (headingLevelDifference > 0) {
               // Go down the DOM by adding list elements.

@@ -93,6 +93,7 @@
 
 .content-section {
     margin-bottom: 50px;
+    position: relative;
 }
 
 .sidebar i.icon-xs.ti-angle-down {
@@ -264,4 +265,8 @@ p > strong > code {
     padding: 1px 2px;
     font-family: inconsolata,Menlo,Monaco,courier new,monospace;
 
+}
+
+nav > ul > li > a:active {
+    color: red;
 }
