@@ -21,7 +21,7 @@ For these examples, we will be using [Auth0](https://auth0.com/) as our User Aut
 
 {{<break 1>}}
 ## Create a Basic Api
-User the `quick-start` template as a starting place 
+Use the `user-auth` template as a starting place 
 ```bash
 cdev init user-auth-demo --template user-auth
 ```
@@ -29,7 +29,7 @@ You should have a `src/resources.py` file that looks like
 
 {{<codesnippet `/source_code/userauth_examples/basic_api.py`>}}
 
-To create the `Api` and `Handler` run
+To create the `Api` and `Serverless Function` run
 ```bash
 cdev deploy
 ```
@@ -60,14 +60,17 @@ From the Auth0 Dashboard, Create a new Api on the `Application > Api` page.
 {{</tutorial_image>}}
 {{<break 2>}}
 
-**Note that you can set the `name` to whatever makes sense for your project. The value that you provide for the `identifier` field will need to saved as it will be used as the `audience` property in the next step.**
+{{<tool_tip key="info" summary="Setting the values">}}
+Note that you can set the `name` to whatever makes sense for your project. The value that you provide for the `identifier` field will need to saved as it will be used as the `audience` property in the next step.
+{{</tool_tip>}}
 
+{{<break 1>}}
 {{<tutorial_image>}}
 /images/autho_examples/api_settings.png
 {{</tutorial_image>}}
 {{<break 2>}}
 
-We need one more value from Auth0: the `issuer_url` for your Auth0 account. In the `Application` tab, there should be an auto generated application for your api.
+We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. In the `Application` tab, there should be an auto generated `Application` for your api. When you open the auto generate app, you will see the `Domain` for your account. This `Domain` value will be the `issuer_url`.
 
 {{<tutorial_image>}}
 /images/autho_examples/issuer_location.jpg
@@ -77,7 +80,12 @@ We need one more value from Auth0: the `issuer_url` for your Auth0 account. In t
 ### Creating our Authorizer
 We can now create an `Authorizer` for our Cdev Api. 
 
-Update your /src/resources.py file to the follow, replacing the values on lines `13` and `14`. **Note that we add 'https://' and a trailing '/' to the issuer_url.**
+Update your /src/resources.py file to the follow, replacing the values on lines `13` and `14`. 
+
+{{<tool_tip key="info" summary="Setting the issuer_url">}}
+Note that you need to add 'https://' and a trailing '/' to the `issuer_url`.
+{{</tool_tip>}}
+
 {{<codesnippet `/source_code/userauth_examples/default_authorizer.py`>}}
 
 ```bash
@@ -85,13 +93,13 @@ cdev deploy
 ```
 {{<break 1>}}
 ### Testing our Authorizer
-By setting the `default_authorizer` property on the Api, all created routes will by default use that Authorizer. Now when we curl the following generated url we will receive a 401 Authentication Error.
+By setting the `default_authorizer` property on the `Api`, all created routes will by default use that `Authorizer`. Now when we curl the following generated url we will receive a `401 Authentication Error`.
 
 ```bash
 curl -i https://<your_endpoint>/live/demo
 ```
 
-Now we must have the correct authorization to be able to access this endpoint. In the `Test` tab on out `Api` page, Auth0 provides a testing token that can be used to test that the authorization is working correctly.
+Now we must have the correct authorization to be able to access this endpoint. In the `Test` tab on the `Api` page, Auth0 provides a testing token that can be used to test that the authorization is working correctly.
 
 {{<tutorial_image>}}
 /images/autho_examples/api_test_command.jpg
@@ -109,12 +117,15 @@ Update lines `7`, `37`, and `41` to add a static front end hosting resource
 ```bash
 cdev deploy
 ```
-
-**This resource takes a while to create, so we will do some more work on the Auth0 site as it goes.**
+{{<tool_tip key="warning" summary="Resource Creation Time">}}
+To create a frontend that works with Auth0, our website must be secured with `HTTPS`. Therefore, the `Static Site` resources creates your frontend on `Aws Cloudfront`, which is a globally distributed Content Delivery Network (CDN). Using `Aws Cloudfront` provides many benefits, but it also means that it takes a few minutes to initially create the resource. Once created, **updates to website are instant.** As the resource deploys, you can create continue with the next section on Auth0 or grab a cup of coffee. 
+{{</tool_tip>}}
 
 {{<break 1>}}
 ### Create an Application and Database in Auth0
-Although we have created and secured our Api, we need to add a few more resources to Auth0 to create the user login and authentication experience. Back in your Auth0 console, navigate to the `authentication > databases` tab. We are going to create a new database that will be used to store the credentials of our development users. 
+Although we have created and secured our `Api`, we need to add a few more resources to `Auth0` to create a user login and authentication work flow.
+
+In the `Auth0` console, navigate to the `authentication > databases` tab. Create a new database that will be used to store the credentials of our development users. 
 
 {{<tutorial_image>}}
 /images/autho_examples/create_user_db.png
@@ -126,14 +137,14 @@ Although we have created and secured our Api, we need to add a few more resource
 {{</tutorial_image>}}
 
 {{<break 1>}}
-On the `Applications > Applications` page, we can create a Single Page Application (SPA). 
+On the `Applications > Applications` page, create a Single Page Application (SPA). 
 
 {{<tutorial_image>}}
 /images/autho_examples/create_spa_app.png
 {{</tutorial_image>}}
 {{<break 1>}}
 
-Once created, navigate to the `connections` tab for your created SPA. There you will be able to enable your user database for this application. 
+Once created, navigate to the `connections` tab for your created SPA, and enable the created database for this application. 
 
 {{<tutorial_image>}}
 /images/autho_examples/enable_dev_user_db.png
@@ -142,7 +153,7 @@ Once created, navigate to the `connections` tab for your created SPA. There you 
 
 
 ### Connecting the Frontend to Auth0
-We can now return to our Cdev application and hopefully the `static site` resource has finished deploying. Before deploying our code to the `static site` resource, we need to add some information to connect the site to Auth0. We are going to fill out the values in the `src/content/auth_config.json` file. When you open the file, it should look like:
+Before deploying our code to the `Static Site` resource, we need to add some information to connect the site to Auth0. We need to fill out the values in the `src/content/auth_config.json` file. When you open the file, it should look like:
 ```json
 {
   "domain": "",
@@ -152,7 +163,7 @@ We can now return to our Cdev application and hopefully the `static site` resour
 }
 ```
 
-We can find the `domain` and `clientId` values on Auth0 in our Application's `Settings Tab`. 
+We can find the `domain` and `clientId` values on `Auth0` in our Application's `Settings Tab`. 
 {{<tutorial_image>}}
 /images/autho_examples/domain_client_location.png
 {{</tutorial_image>}}
@@ -189,29 +200,31 @@ In your `Settings` tab on your `Application` page, add your url to the following
 
 {{<break 2>}}
 ### Push The Files to Your Site
-Now that we have configured Auth0 with our site, we can push the demo content to your site using the following command.
+Now that we have configured `Auth0`, we can push the demo content to the `Static Site` using the following command.
 ```bash
 cdev run static_site.sync user_auth.demofrontend
 ```
 
-You can find your url in a web browser.
+You can get the `url` of your `Static Site` using the following command.
 ```bash
 cdev output user_auth.staticsite.demofrontend.site_url
 ```
 
+Now you can visit your site in your web browser!
+
 {{<break 1>}}
 ### Check Your Site
-The provided template site demonstrates the basics of how to login using the [Auth0 Javascript SDK](https://auth0.com/docs/libraries/auth0js) and then use the provided `jwt` to make a call to our Api. When you login the page should look like
+The provided template site demonstrates the basics of how to login using the [Auth0 Javascript SDK](https://auth0.com/docs/libraries/auth0js) and then use the provided `jwt` to make a call to our `Api`. When you login, the page should look like
 {{<tutorial_image>}}
 /images/autho_examples/spa_logged_out.png
 {{</tutorial_image>}}
 
-Then when you click `login`, you should be redirected to `Auth0 Universal Login Page`
+When you click `login`, you should be redirected to the `Auth0 Universal Login Page`
 {{<tutorial_image>}}
 /images/autho_examples/universal_login.png
 {{</tutorial_image>}}
 
-After logging in, you will be redirected and should see a representation the provided `jwt` and user information from Auth0. You can then use the `hit api` button to make a call to your Api. 
+After logging in, you will be redirected and should see the provided `jwt` and user information from Auth0. You can then use the `hit api` button to make a call to your `Api`. 
 {{<tutorial_image>}}
 /images/autho_examples/spa_logged_in.png
 {{</tutorial_image>}}

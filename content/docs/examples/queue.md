@@ -5,7 +5,7 @@
     "linktitle": "queue",
     "card_icon": "ti-direction",
     "card_body": "Learn to create and integrate a Message Queue",
-    "weight": "6"
+    "weight": "5"
 }
 
 

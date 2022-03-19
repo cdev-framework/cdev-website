@@ -5,7 +5,7 @@
     "linktitle": "topic",
     "card_icon": "ti-signal",
     "card_body": "Learn to create and integrate a Pub/Sub Topic",
-    "weight": "7"
+    "weight": "5"
 }
 
 

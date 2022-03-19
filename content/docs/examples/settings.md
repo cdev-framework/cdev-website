@@ -5,16 +5,16 @@
     "linktitle": "settings",
     "card_icon": "ti-settings",
     "card_body": "Learn to create and modify your Project Settings",
-    "weight": "2"
+    "weight": "3"
 }
 
 
 # Create and Update Project Settings
 {{<header_divider>}}
 
-Cdev provides a mechanism to manage settings per `Environment` that affect how your resources are generated. These settings can be used to provide different values to the framework for different `Environments`. 
+Cdev provides a mechanism to manage settings per `Environment`. These settings can be used to provide different values to the framework for different `Environments`.
 
-We built our settings starting from the [Pydantic Settings module](https://pydantic-docs.helpmanual.io/usage/settings/) to provide a relatively type safe mechanism for working with settings, and then we added an additional workflow inspired by the [Django Settings module](https://docs.djangoproject.com/en/4.0/topics/settings/). 
+We built our settings starting from the [Pydantic Settings module](https://pydantic-docs.helpmanual.io/usage/settings/) to provide a type safe mechanism for working with settings, and then we added an additional workflow inspired by the [Django Settings module](https://docs.djangoproject.com/en/4.0/topics/settings/) to provide flexibility when working with complex types (List, Dict, etc). 
 
 
 {{<break 1>}}
@@ -22,12 +22,16 @@ We built our settings starting from the [Pydantic Settings module](https://pydan
 In your `src` folder, create a new file called `project_settings.py`. Then copy the following code into the file.
 {{<codesnippet `/source_code/settings_examples/basic_settings.py`>}}
 
-Then to set this as the `Settings` for the current `Environment`, run the following command. 
+Set this as the `Settings` for the current `Environment` using the following command. 
 ```bash
 cdev environment settings_information --key base_class --new-value src.project_settings.CustomSettings
 ```
 
-This command sets the `CustomSettings` class found in the `src.project_settings` module as the default class to use for your `Environment` Settings. Note that the structure of the `--new-value` parameter is `<python_module>.<class_name>`, where the `python_module` must be available on the [python search path](https://docs.python.org/3/tutorial/modules.html#the-module-search-path) and contain the class `class_name` that is a descendant of `core.constructs.settings.Settings`.
+This command sets the `CustomSettings` class found in the `src.project_settings` module as the default class to use for your `Environment` Settings. 
+
+{{<tool_tip key="info" summary="Structure of Values">}}
+Note that the structure of the `--new-value` parameter is `<python_module>.<class_name>`, where the `python_module` must be available on the [python search path](https://docs.python.org/3/tutorial/modules.html#the-module-search-path) and contain the class `class_name` that is a descendant of `core.constructs.settings.Settings`.
+{{</tool_tip>}}
 
 
 {{<break 1>}}
@@ -36,23 +40,30 @@ You can access the Settings via the `Global Project` object.
 
 {{<codesnippet `/source_code/settings_examples/using_settings.py`>}}
 
-**Note you can directly reference a property (`myProject.settings.SOME_KEY`) without storing the settings in the `mySettings` variable, but this step allows us to add a typing hint to help clarify the values we are using.**
-
+{{<tool_tip key="info" summary="Type Hints">}}
+You can directly reference a property (`myProject.settings.SOME_KEY`) without storing the settings in the `mySettings` variable, but this step allows us to add a typing hint to help clarify the values we are using.
+{{</tool_tip>}}
 
 {{<break 1>}}
 ## Modifying a Custom Setting Class
-All the custom Settings will derive from the Core Constructs `Settings` class, which itself derives from the Pydantic `BaseSettings` Model. Therefore, we can add additional settings by adding properties to the class with the defining type conditions. You must derive from the `Settings` class to make sure that the needed settings for the framework to work are available. **Note that all properties should be all uppercase with '_' to separate words**
+All the custom setting classes will derive from the Core Constructs `Settings` class, which itself derives from the Pydantic `BaseSettings` Model. Therefore, we can add additional settings by adding properties to the class with the defining type conditions. You must derive from the `Settings` class to make sure that the needed settings for the framework to work are available. 
+
 
 {{<codesnippet `/source_code/settings_examples/basic_settings_properties.py`>}}
 
+{{<tool_tip key="info" summary="Property Names">}}
+All properties should be all uppercase with '_' to separate words
+{{</tool_tip>}}
 
+
+{{<break 1>}}
 ## Setting the Values 
 
 The ordering of the precedent for settings values is (from lowest to highest):
 1. The default field values for the Settings model.
 2. Variables loaded from the secrets directory.
 3. Environment variables.
-4. Variable from the Dynamic Settings Modules.
+4. Variables from the Dynamic Settings Modules.
 
 
 {{<break 1>}}
@@ -60,17 +71,22 @@ The ordering of the precedent for settings values is (from lowest to highest):
 When creating a property, it is recommended to either provide a value as the default value or denote the property as `Optional`.  
 {{<codesnippet `/source_code/settings_examples/basic_settings_properties.py`>}}
 
-
-### Secret Values
-When a Cdev `Environment` is created, a directory (settings/secrets/<your_environment>_secrets) is added to store the secret values for that `Environment`. This directory is used when loading your settings module as the [Secrets Directory for the Pydantic Base Settings](https://pydantic-docs.helpmanual.io/usage/settings/#secret-support). Following the Pydantic Documentation to set a secret, create a file name `cdev_<property>` and add the value as the only thing in the file.  **Note that you should make sure these files are not stored in a public repository. You can add a .gitignore to block these files by following the [getting start guide](/docs/gettingstarted#ignorefile)**
-
 {{<break 1>}}
+### Secret Values
+When a Cdev `Environment` is created, a directory (settings/secrets/<your_environment>_secrets) is added to store the secret values for that `Environment`. This directory is used when loading your settings module as the [Secrets Directory for the Pydantic Base Settings](https://pydantic-docs.helpmanual.io/usage/settings/#secret-support). Following the Pydantic Documentation to set a secret, create a file name `cdev_<property>` and add the value as the only thing in the file.  
+
+{{<tool_tip key="warning" summary="Storing Secrets">}}
+You should make sure these files are not stored in a public repository. You can add a .gitignore to block these files by using the [example .gitignore](/docs/examples/git/#gitignore)
+{{</tool_tip>}}
+
 Create:
 ```
 settings/secrets/<your_environment>_secrets/cdev_some_key
 ```
-**Note the file needs be have the `cdev_` prefix and also the property is written in lower case.**
-{{<break 2>}}
+{{<tool_tip key="info" summary="File Name">}}
+The file needs to have the `cdev_` prefix and the property written in lower case.
+{{</tool_tip>}}
+
 Then add to the file:
 ```
 somesecretvalue
@@ -83,11 +99,19 @@ You can use standard Environment Variables to set your settings values via [Pyda
 ```bash
 export CDEV_SOME_KEY=somevalue
 ```
-**Note the variables needs be have the `CDEV_` prefix**
+
+{{<tool_tip key="info" summary="Variable Names">}}
+The variables needs be have the `CDEV_` prefix.
+{{</tool_tip>}}
+
 
 {{<break 1>}}
 ### Variable from the Dynamic Settings Modules
-For more complex values, it can be helpful to write the values directly in Python. We felt that the Django framework handled this in an elegant way, so we modeled our system after theirs. Each Cdev `Environment` comes with a python module that can be used to load complex values. You can set properties by setting them as variables in the module. **Note we do NOT need to use the `cdev` prefix when setting the properties**
+For more complex values, it can be helpful to write the values directly in Python. We felt that the Django framework handled this in an elegant way, so we modeled our system after theirs. Each Cdev `Environment` comes with a python module that can be used to load complex values. You can set properties by setting them as variables in the module.
+
+{{<tool_tip key="info" summary="Variable Names">}}
+Note we do NOT need to use the `cdev` prefix when setting the properties
+{{</tool_tip>}}
 
 {{<codesnippet `/source_code/settings_examples/dynamic_settings.py`>}}
 
@@ -95,7 +119,7 @@ For more complex values, it can be helpful to write the values directly in Pytho
 As mentioned in the [Django Settings documentation](https://docs.djangoproject.com/en/4.0/topics/settings/#the-basics), the file is a valid python module therefor:
 1. It doesn’t allow for Python syntax errors.
 
-2. It can assign settings dynamically using normal Python syntax. For example:
+2. It can assign settings using normal Python syntax. For example:
 ```python
 ANOTHER_KEY = "somevalue".capitalize()
 ```
@@ -104,11 +128,11 @@ ANOTHER_KEY = "somevalue".capitalize()
 
 Each Cdev `Environment` has it's own dedicated dynamic module in the `settings/` folder, but there is also a `base_settings.py` module that is applied for all environments. This should be used to set values that are the same for all `Environments`.
 
-{{<break 1>}}
-### Extra Notes
+
+{{<tool_tip key="warning" summary="Settings Lifecycle">}}
 Note that the life cycle of a `Setting` class is that it is initialized as a child of the Pydantic `Base Settings` then the Dynamic Setting Modules are applied. This means if you have a required property that is only set via a Dynamic Setting Module, it will fail to initially create the class because of a `Pydantic` validation error. This can be avoided be either providing a default value when creating the `Custom Setting Class` or making the property as `Optional`.
 
-
+{{</tool_tip>}}
 
 
 

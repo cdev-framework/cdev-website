@@ -5,7 +5,7 @@
     "linktitle": "relationaldb",
     "card_icon": "ti-server",
     "card_body": "Learn to create and integrate a Relational DB",
-    "weight": "3"
+    "weight": "4"
 }
 
 
@@ -16,14 +16,14 @@ Relational Databases have been a flagship part of software development for the p
 
 
 {{<break 1>}}
-### Creating a Relational DB
+## Creating a Relational DB
 {{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
 
 Aurora Databases are designed to integrate with Serverless environments by executing SQL over a HTTP tunnel making it more accessible from a Serverless Function environment. You can use third party libraries for access the DB from a Serverless Function using both the standard Python DB API.
 
 
-{{<break 2>}}
-### Connecting to a Relational DB with the standard Python DB API
+{{<break 1>}}
+## Connecting to a Relational DB with the standard Python DB API
 ```bash
 pip install aurora-data-api
 ```

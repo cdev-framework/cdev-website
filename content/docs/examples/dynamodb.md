@@ -5,7 +5,7 @@
     "linktitle": "dynamodb",
     "card_icon": "ti-server",
     "card_body": "Learn to connect to a Dynamodb database",
-    "weight": "3"
+    "weight": "4"
 }
 
 
@@ -15,10 +15,12 @@
 Most applications will need a database for storing persistent data, and Dynamodb is the flagship Aws nosql database. It is the easiest to get setup and integrated with Serverless Functions. For more information about how use the database effectively visit the **[aws documentation](https://docs.aws.amazon.com/dynamodb/index.html)**.
 
 {{<break 1>}}
-### Create a Dynamodb table for storing emails
+## Create a Dynamodb table for storing emails
 {{<codesnippet `/source_code/dynamodb_examples/simple_dynamo_example.py`>}}
 
-### Write data from a Serverless Function
+
+{{<break 1>}}
+## Write data from a Serverless Function
 {{<codesnippet `/source_code/dynamodb_examples/simple_dynamo_example_put.py`>}}
 
 

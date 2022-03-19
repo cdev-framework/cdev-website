@@ -1,4 +1,4 @@
-# Generated as part of the User Auth project template 
+# Generated as part of the user-auth project template 
 import json
 
 from cdev.resources.simple.api import Api

@@ -6,7 +6,7 @@
     "linktitle": "git",
     "card_icon": "ti-github",
     "card_body": "Learn to manage your project with Git",
-    "weight": "10"
+    "weight": "5"
 }
 
 # Working with Git

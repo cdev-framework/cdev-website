@@ -11,19 +11,20 @@
 # Build an HTTP API Endpoint
 {{<header_divider>}}
 
-HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple
-interface for creating HTTP Apis on the cloud and connecting them to serverless functions. 
+HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple interface for creating HTTP Apis and connecting them to `Serverless Functions`. 
 
 {{<break 1>}}
-### Create an Api
+## Create an Api
 {{<codesnippet `/source_code/http_examples/simple_api_example.py`>}}
 
 
-### Create routes
+{{<break 1>}}
+## Create routes
 {{<codesnippet `/source_code/http_examples/simple_api_example_get.py`>}}
 
 
-### Integrate GET route with a Serverless function
+{{<break 1>}}
+## Integrate GET route with a Serverless function
 {{<codesnippet `/source_code/http_examples/simple_api_example_integration.py`>}}
 
 Get the live url for your endpoint:
@@ -36,8 +37,8 @@ You can test the endpoint with the follow commands from your terminal:
 curl <your_endpoint>/hello_world
 ```
 
-{{<break 2>}}
-### Integrate POST route with data to a Serverless function
+{{<break 1>}}
+## Integrate POST route with data to a Serverless function
 {{<codesnippet `/source_code/http_examples/simple_api_example_post.py`>}}
 
 Get the live url for your endpoint:

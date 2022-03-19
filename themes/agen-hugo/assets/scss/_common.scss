@@ -520,8 +520,10 @@ details[open]>summary:after {
   margin: 20px 0;
   padding: 0;
   position: relative;
+  box-shadow: 0 .2rem .5rem rgba(0,0,0,.2)!important;
   p{
-    padding-left: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   summary {
     background-color: rgba(0,191,165,.1);
@@ -565,7 +567,7 @@ details[open]>summary:after {
       display:none;
     }
   }
-  &.tool_tip {
+  &.tip {
     border-color: #00bfa5;
     summary {
       background-color: rgba(0, 191, 165,.1);
