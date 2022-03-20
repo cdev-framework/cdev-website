@@ -26,15 +26,7 @@ cdev run bucket.cp <local.json> bucket://<bucket-info>
 ```
 
 {{<tool_tip key="tip" summary="Using the Aws cli">}}
-You can also get the deployed name of your bucket with the `cdev output` command and then use the [aws cli tool](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-
-```bash
-cdev output <component_name>.bucket.demo_bucket.bucket_name
-```
-
-```bash
-aws s3 cp <local_file> s3://<your-bucket-name>
-```
+You can also get the deployed name of your bucket with the `cdev output` command and then use the [aws cli tool](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to transfer files.
 {{</tool_tip>}}
 
 {{<break 1>}}
