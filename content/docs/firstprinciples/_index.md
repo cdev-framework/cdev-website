@@ -4,7 +4,7 @@
     "title": "First Principles",
     "Name": "firstprinciples",
     "linktitle": "firstprinciples",
-    "weight": 2
+    "weight": 3
 }
 
 # First Principles

@@ -86,14 +86,14 @@ theme = "agen-hugo"
     
     [[menu.main]]
     parent = "Docs"
-    name = "First Principles"
-    URL = "docs/firstprinciples"
+    name = "Examples"
+    URL = "docs/examples"
     weight = 2
 
     [[menu.main]]
     parent = "Docs"
-    name = "Examples"
-    URL = "docs/examples"
+    name = "First Principles"
+    URL = "docs/firstprinciples"
     weight = 3
 
     [[menu.main]]
