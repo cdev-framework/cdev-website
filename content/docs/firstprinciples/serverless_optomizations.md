@@ -5,7 +5,7 @@
     "linktitle": "optimizations", 
     "card_icon": "ti-home",
     "card_body": "Learn about Cdev's Serverless optimizations",
-    "weight": "2"
+    "weight": "3"
 }
 
 

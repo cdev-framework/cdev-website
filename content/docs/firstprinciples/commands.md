@@ -1,11 +1,11 @@
 {
     "type": "firstprinciples",
     "layout": "type",
-    "title": "Commands",
-    "linktitle": "commands", 
+    "title": "User Commands",
+    "linktitle": "user_commands", 
     "card_icon": "ti-home",
     "card_body": "Learn about the User Command System",
-    "weight": "4"
+    "weight": "5"
 }
 
 
