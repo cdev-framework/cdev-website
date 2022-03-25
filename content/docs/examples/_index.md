@@ -4,7 +4,7 @@
     "title": "Examples",
     "Name": "examples",
     "linktitle": "examples",
-    "weight": 3
+    "weight": 2
 }
 
 # Examples

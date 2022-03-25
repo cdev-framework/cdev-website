@@ -1,15 +1,18 @@
 {
-    "type": "tutorials",
+    "type": "tutorial",
     "layout": "type",
-    "title": "Full Stack App",
-    "linktitle": "checkbookbalancer", 
-    "card_icon": "ti-money",
-    "card_body": "Learn how to make a fullstack application",
-    "weight": "3"
+    "title": "Fullstack Application",
+    "linktitle": "fullstack", 
+    "card_icon": "ti-layout",
+    "card_body": "Learn how to create and maintain a fullstack web application",
+    "weight": "1"
 }
 
-# Full Stack Application
-{{<header_divider>}}
+
+**Coming Soon (April 2022)**
+
+Create a site to help schedule tennis matches to learn how Cdev can be used to create and manage full stack web applications.
+
 
 In this tutorial, we will be going through the entire process of creating a full stack application with Cdev. We will be focusing on demonstrating how Cdev can integrate with standard python tools and other development workflows to create a great developer experience. We will explain all the components and steps of this tutorial in depth, but it does help to have some familiarity with some of the technologies and concepts around full stack development.
 
@@ -21,8 +24,6 @@ In this tutorial, we will be going through the entire process of creating a full
 - Monitoring Applications
 
 {{<break 1>}}
-## What we are building
-
 
 ### Technologies
 - Backend
@@ -39,7 +40,6 @@ In this tutorial, we will be going through the entire process of creating a full
 - Monitoring
     - [Lambda Powertools](https://awslabs.github.io/aws-lambda-powertools-python/latest/)
     - Aws Cloudwatch
-    - Datadog? 
 - Sending Text and Emails
     - Twilio
     - Send Grid
@@ -47,3 +47,6 @@ In this tutorial, we will be going through the entire process of creating a full
     - Pytest
 
 
+
+
+{{<break>}}
