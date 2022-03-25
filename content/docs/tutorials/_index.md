@@ -1,5 +1,5 @@
 {
-    "type": "tutorials",
+    "type": "tutorial",
     "layout": "type",
     "title": "Tutorials",
     "Name": "tutorials",

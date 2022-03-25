@@ -3,7 +3,7 @@
     "layout": "type",
     "title": "Managing a Project",
     "linktitle": "resources", 
-    "card_icon": "ti-home",
+    "card_icon": "ti-package",
     "card_body": "Learn how to manage a Cdev Project",
     "weight": "2"
 }

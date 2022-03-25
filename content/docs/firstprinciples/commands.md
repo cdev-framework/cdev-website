@@ -1,15 +1,13 @@
 {
     "type": "firstprinciples",
     "layout": "type",
-    "title": "User Commands",
+    "title": "User Defined Commands",
     "linktitle": "user_commands", 
-    "card_icon": "ti-home",
+    "card_icon": "ti-brush",
     "card_body": "Learn about the User Command System",
-    "weight": "5"
+    "weight": "6"
 }
 
-
-# User Defined Commands
 
 
 ## Providing an Interface for Extensibility

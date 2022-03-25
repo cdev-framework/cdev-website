@@ -1,14 +1,12 @@
 {
-    "type": "tutorials",
+    "type": "tutorial",
     "layout": "type",
-    "title": "Slack Bot",
+    "title": "Build a Slack Bot",
     "linktitle": "slackbot", 
     "card_icon": "ti-comments",
     "card_body": "Learn how to create a Slack bot",
-    "weight": "3"
+    "weight": "2"
 }
-
-# Building a Slack Bot
 
 {{<blockqoute>}}
 What are bots? 
@@ -169,7 +167,6 @@ Congratulations you have set up your Slack Bot!! Continue reading to learn how t
 ## Use a messaging queue for more advanced use cases
 As your Bot grows in scope, it becomes important to understand how Slack expects your bot to act. [Per the Slack documentation](https://api.slack.com/apis/connections/events-api#the-events-api__responding-to-events), **Your app should respond to the event request with an HTTP 2xx within three seconds...Respond to events with a HTTP 200 OK as soon as you can. Avoid actually processing and reacting to events within the same process. Implement a queue to handle inbound events after they are received.**
 
-Although there are many ways to implement a system to ingest and reply to these messages, we are going to use `Message Queues` to help use process our Bot Events. 
-
+**Coming Soon (April 2022)**
 
 {{<break 1>}}
