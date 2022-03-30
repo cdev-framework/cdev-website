@@ -6,6 +6,7 @@ theme = "agen-hugo"
 
 
 
+
 #################################### Plugins ##########################################
 [params.plugins]
 
@@ -133,6 +134,8 @@ home = "Home"
 # Google Analitycs
 googleAnalitycsID = "Your ID"
 ApiURL="docs/api/cdev"
+
+
 
 [blackfriday]
 extensions = ["hardLineBreak"]
