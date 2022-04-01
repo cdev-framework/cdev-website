@@ -159,7 +159,7 @@ event body -> VG9Db3VudHJ5PVVTJlRvU3RhdGU9TUkmU21zTWVzc2FnZVNpZD1TTTIyMmUxNTNkNT
 
 Create a `src/link_bot/serializer.py` file and add the following code to the file. The work for deserializing the data from Twilio is done in the `TwilioWebhookEvent` class initializer (lines 11-13). 
 
-{{<codesnippet `/source_code/link_bot_tutorial/serializer.py`>}}
+{{<codesnippet "/source_code/link_bot_tutorial/serializer.py">}}
 
 {{<tool_tip key="info" summary="Powertools Dataclasses">}}
 The `TwilioWebhookEvent` is derived from a data class from the Lambda Powertools library. This library provides a light weight mechanism to provide additional information about the `triggering` event for a handler. This allows developers to be given type hints when using the `object` in the handler. 
@@ -167,7 +167,7 @@ The `TwilioWebhookEvent` is derived from a data class from the Lambda Powertools
 
 We can now update our webhook to use our created class to have easier access to the data from Twilio. Update your `handlers.py` to the following code. The newly created `twilio_event` object will provided access to all the available data from the Twilio event.
 
-{{<codesnippet `/source_code/link_bot_tutorial/handler_serialized.py`>}}
+{{<codesnippet "/source_code/link_bot_tutorial/handler_serialized.py">}}
 
 
 
@@ -176,12 +176,12 @@ We can now update our webhook to use our created class to have easier access to 
 Now that we are able to understand the data provided to our webhook by Twilio, we need to define the structure of the message that we will support. Our bot will receive a link to store, a description of the link, and set of tags. 
 
 
-{{<codesnippet `/source_code/link_bot_tutorial/basic_link_service.py`>}}
+{{<codesnippet "/source_code/link_bot_tutorial/basic_link_service.py">}}
 
 
 ### Advanced Part
 
-{{<triple_iphone_image `/images/link_bot_tutorial/send_message_hn.jpg` `/images/link_bot_tutorial/basic_message_hn.png` `/images/link_bot_tutorial/error_basic_parsing.png`>}}
+{{<triple_iphone_image "/images/link_bot_tutorial/send_message_hn.jpg" "/images/link_bot_tutorial/basic_message_hn.png" "/images/link_bot_tutorial/error_basic_parsing.png">}}
 
 
 {{<break 1>}}
