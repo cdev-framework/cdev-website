@@ -21,7 +21,6 @@ def parse_message(message: str) -> Tuple[str, str, List[str]]:
 
     Args:
         message (str): the message
-        from_id (str): id of the sender of the message
 
     Returns:
         str: The Url

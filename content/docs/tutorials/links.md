@@ -175,25 +175,95 @@ We can now update our webhook to use our created class to have easier access to 
 ## Link Parsing Service
 Now that we are able to understand the data provided to our webhook by Twilio, we need to define the structure of the message that we will support. Our bot will receive a link to store, a description of the link, and set of tags. 
 
+Create a file called `link_service.py`, and add the following code. This code provides the business logic for taking a message and returning the `url`, `description`, and `list of tags`. It uses a [regular expression](https://www.w3schools.com/python/python_regex.asp) to parse the `url` from the beginning of the message, then parses the remaining part of the message into the `description` and `tags` based on the presence of the `#` character. If there is not a `url` present at the beginning of the message, it raises an exception. 
+
+{{<tool_tip key="warning" summary="Using a service file">}}
+We created a seperate file for the business logic of parsing our message so that it is not directly tied to our `handler`. When using Cdev, all business level logic should be separated into a `service` file. This is the lowest hanging fruit for writing business logic that is agnostic to the underlying compute platform and development framework.
+{{</tool_tip>}}
 
 {{<codesnippet "/source_code/link_bot_tutorial/basic_link_service.py">}}
 
+We can now update our web hook to use the `link_service`. Update your `handler.py` to the following. Once deployed, you can see the updates by texting your bot and checking your function's logs. 
 
-### Advanced Part
-
-{{<triple_iphone_image "/images/link_bot_tutorial/send_message_hn.jpg" "/images/link_bot_tutorial/basic_message_hn.png" "/images/link_bot_tutorial/error_basic_parsing.png">}}
+{{<codesnippet "/source_code/link_bot_tutorial/handler_service_connected.py">}}
 
 
 {{<break 1>}}
 ## Test Project
+**Coming Soon. Early April.**
 
+**Write Unit Test Cases**
 
+{{<break 1>}}
 ## Save Information Into Notion
+Now that we have our messages properly structured, we can use the [Notion Api](https://developers.notion.com/) to store our links. Our webhook will make a request to the Notion Api, then if successful, reply back to the user that the link and additional data was stored.
 
+You can sign up for a free personal Notion account or use an existing account. We chose to use Notion because we use it for note collection and other tasks, but you could use any other service that has a publicly accessible Api. 
 
-### Create a Notion DB Integration
+### Create an Integration
+To send data through the Notion Api, we need to create an [integration](https://developers.notion.com/docs/authorization). This integration will have the permissions needed to add data to our Notion Database. To create an integration, go to your accounts `Settings and Members` Page, then the `Integrations` Tab.
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_create_integration.png
+{{</tutorial_image>}}
+
+When configuring your integration, you will need to grant it permissions to read, update, and insert content, but you do not need to grant any `user information`. If you are signed into multiple workspaces, make sure you select to desired desired workspace in the `Associated Workspace` dropdown. 
+
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_integration_settings.png
+{{</tutorial_image>}}
+
+{{<break 1>}}
+After confirming the integration settings, you will be taken to the integration page. Note your `integration token` because it will be used by our webhook to authenticate with the Notion Api.
+
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_secret.png
+{{</tutorial_image>}}
+
+{{<break 1>}}
+
+### Create the Database
+
+Now that the integration is complete, you can create a `Database` in your workspace that will be used to the store the information. Note that to work with the code provided in this tutorial, you will need to make the `properties` of the database match our database. The properties should be:
+
+- Description (Title)
+- link (URL)
+- Tags (Multi-select)
+- Status (Multi-select) 
+
+Also note that you will need the `Database` id. When on the `Database` page, this can be found by looking at the url of the page. The `Database` id will be the sequence of characters before the `?`. In the example image, our `Database` id is: 5416acb700044512a5d02e9cea7dfb93.
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_create_table.png
+{{</tutorial_image>}}
+
+{{<break 1>}}
+Finally, you will need to grant the integration access to this database. You can do this by using the `Share` button in the top right of the page.  
+
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_share_db_with_integration.png
+{{</tutorial_image>}}
 
 
 ### Save with the Notion Api
 
-{{<break>}}
+
+
+{{<break 1>}}
+## Additional Features
+**Coming Soon. Early April.**
+
+**Add additional functionality to support edge cases when sharing links from some applications on an Iphone.**
+<!--
+**The follow section 
+
+
+When sharing links from some applications, the messaging dialogue separates the link and additional text into separate messages. This poses a problem for our application because Twilio invokes our `webhook` separately for each of the messages. This means that our current parsing strategy will not be able to pair the `description` and `tags` with the `url`.
+
+
+{{<triple_iphone_image "/images/link_bot_tutorial/send_message_hn.jpg" "/images/link_bot_tutorial/basic_message_hn.png" "/images/link_bot_tutorial/error_basic_parsing.png">}}
+{{<break 1>}}
+
+To solve this problem, we will use a database to store a `url` and `timestamp` if the entire message is a url, then when we receive the message with the `description` and `tags`, we will pair it with the most recent link in the database. For this implementation, we will be using [DynamoDb](/docs/examples/dynamodb/) because it provides fast access for our data access pattern. 
+
+Create a file called `db.py`, and add the following. This will create a `DynamoDb` Table that we can use to store the links. -->
+
+{{<break 1>}}
