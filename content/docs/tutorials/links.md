@@ -207,7 +207,7 @@ To send data through the Notion Api, we need to create an [integration](https://
 /images/link_bot_tutorial/notion_create_integration.png
 {{</tutorial_image>}}
 
-When configuring your integration, you will need to grant it permissions to read, update, and insert content, but you do not need to grant any `user information`. If you are signed into multiple workspaces, make sure you select to desired desired workspace in the `Associated Workspace` dropdown. 
+When configuring your integration, you will need to grant it permissions to read, update, and insert content, but you do not need to grant any `user information`. If you are signed into multiple workspaces, make sure you select the desired workspace in the `Associated Workspace` dropdown. 
 
 {{<tutorial_image>}}
 /images/link_bot_tutorial/notion_integration_settings.png
@@ -255,14 +255,16 @@ If your `Notion Database` has a different set of properties, you will need to ad
 
 
 We need to pass the `NOTION_TOKEN` and `NOTION_DB_ID` into the the environment of the `handler`. We will create a custom settings class and use that to pass the values. Create a file called `src/link_bot_settings.py` and add the following code.
-{{<codesnippet "/source_code/link_bot_tutorial/notion_service.py">}}
+{{<codesnippet "/source_code/link_bot_tutorial/link_bot_settings.py">}}
+
+You then need to add the `NOTION_TOKEN` value using a file in the settings folder. Create a file called `settings/<your-environment-secrets>/cdev_notion_secret` then paste your value into the file.
 
 Set this as the settings for your environment using the following command
 ```bash
 cdev environment settings_information --key base_class --new-value src.link_bot_settings.LinkBotSettings
 ```
 
-Finally, update your handler to use the new service and pass the environment variables. 
+Finally, update your `handler.py` to use the new service and pass the environment variables. 
 
 {{<codesnippet "/source_code/link_bot_tutorial/handler_connected.py">}}
 

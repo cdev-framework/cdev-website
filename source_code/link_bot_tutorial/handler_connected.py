@@ -1,6 +1,7 @@
 from twilio.twiml.messaging_response import MessagingResponse
 
 from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev import Project as cdev_project
 
 from .api import twilio_webhook_route
 from .serializer import TwilioWebhookEvent
@@ -8,10 +9,14 @@ from .link_service import parse_message, ParsingError
 from .notion_service import save_info_notion
 from .notion_service import NOTION_DB_ID, NOTION_TOKEN
 
+from ..link_bot_settings import LinkBotSettings
+
+myProject = cdev_project.instance()
+mySettings: LinkBotSettings = myProject.settings
 
 notion_env_vars = {
-    NOTION_DB_ID: "5416acb700044512a5d02e9cea7dfb93",
-    NOTION_TOKEN: "secret_NDtmmwRXqfz0bSDTibiWAQfYBR85fBPFV24p6HMrhRe"
+    NOTION_DB_ID: mySettings.NOTION_DB_ID,
+    NOTION_TOKEN: mySettings.NOTION_SECRET
 }
 
 
