@@ -200,6 +200,7 @@ Now that we have our messages properly structured, we can use the [Notion Api](h
 
 You can sign up for a free personal Notion account or use an existing account. We chose to use Notion because we use it for note collection and other tasks, but you could use any other service that has a publicly accessible Api. 
 
+{{<break 1>}}
 ### Create an Integration
 To send data through the Notion Api, we need to create an [integration](https://developers.notion.com/docs/authorization). This integration will have the permissions needed to add data to our Notion Database. To create an integration, go to your accounts `Settings and Members` Page, then the `Integrations` Tab.
 {{<tutorial_image>}}
@@ -219,9 +220,9 @@ After confirming the integration settings, you will be taken to the integration 
 /images/link_bot_tutorial/notion_secret.png
 {{</tutorial_image>}}
 
-{{<break 1>}}
+{{<break 2>}}
 
-### Create the Database
+### Create the Notion Database
 
 Now that the integration is complete, you can create a `Database` in your workspace that will be used to the store the information. Note that to work with the code provided in this tutorial, you will need to make the `properties` of the database match our database. The properties should be:
 
@@ -230,7 +231,7 @@ Now that the integration is complete, you can create a `Database` in your worksp
 - Tags (Multi-select)
 - Status (Multi-select) 
 
-Also note that you will need the `Database` id. When on the `Database` page, this can be found by looking at the url of the page. The `Database` id will be the sequence of characters before the `?`. In the example image, our `Database` id is: 5416acb700044512a5d02e9cea7dfb93.
+Also note that you will need the `Database id`. When on the `Database` page, this can be found by looking at the url of the page. The `Database id` will be the sequence of characters before the `?`. In the example image, our `Database id` is: 5416acb700044512a5d02e9cea7dfb93.
 {{<tutorial_image>}}
 /images/link_bot_tutorial/notion_create_table.png
 {{</tutorial_image>}}
@@ -242,10 +243,30 @@ Finally, you will need to grant the integration access to this database. You can
 /images/link_bot_tutorial/notion_share_db_with_integration.png
 {{</tutorial_image>}}
 
-
+{{<break 2>}}
 ### Save with the Notion Api
+Create a new file called `notion_service.py` and add the following code. This code uses the `Notion Api` to save the provided data. Like the `link_service` this code is designed to be independent of the computing platform it runs on. 
+
+{{<tool_tip key="tip" summary="Different Database Set Up">}}
+If your `Notion Database` has a different set of properties, you will need to adjust the return value of the the `create_properties` function. You can learn more about setting properties from the [Notion Api Documentation](https://developers.notion.com/docs/working-with-databases#adding-pages-to-a-database).
+{{</tool_tip>}}
+
+{{<codesnippet "/source_code/link_bot_tutorial/notion_service.py">}}
 
 
+We need to pass the `NOTION_TOKEN` and `NOTION_DB_ID` into the the environment of the `handler`. We will create a custom settings class and use that to pass the values. Create a file called `src/link_bot_settings.py` and add the following code.
+{{<codesnippet "/source_code/link_bot_tutorial/notion_service.py">}}
+
+Set this as the settings for your environment using the following command
+```bash
+cdev environment settings_information --key base_class --new-value src.link_bot_settings.LinkBotSettings
+```
+
+Finally, update your handler to use the new service and pass the environment variables. 
+
+{{<codesnippet "/source_code/link_bot_tutorial/handler_connected.py">}}
+
+You should now be able to text your bot and have the data saved to Notion{{<emoji>}}:tada:{{</emoji>}} 
 
 {{<break 1>}}
 ## Additional Features
