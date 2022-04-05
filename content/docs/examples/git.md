@@ -10,7 +10,7 @@
 }
 
 # Working with Git
-
+{{<header_divider>}}
 
 ## Gitignore
 Add these lines if you already have an existing .gitignore
