@@ -67,7 +67,7 @@ cdev run function.logs hello_world_comp.hello_world_function
 
 ## Test Api Endpoint
 
-We can also check that our `Api` has been properly created and configured with our `Serverless Function`. We must use the `Output` command to get the url that the Cloud generated for our `Api`.
+We can also check that our `Api` has been properly created and configured with our `Serverless Function`. We can use the `Output` command to get the url that the Cloud generated for our `Api`.
 ```bash
 cdev output hello_world_comp.api.demoapi.endpoint
 ```

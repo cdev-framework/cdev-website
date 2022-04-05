@@ -46,7 +46,7 @@ It is helpful to use [virtual environments](https://realpython.com/python-virtua
 pip install virtualenv
 ```
 
-
+{{<tool_tip key="tip" summary="Using Virtual Environments">}}
 For each `Project` you will create and activate your virtual environment.
 ```
 python -m virtualenv .venv
@@ -54,6 +54,6 @@ python -m virtualenv .venv
 ```
 . ./.venv/bin/activate
 ```
-
+{{</tool_tip>}}
 
 {{<break 2>}}

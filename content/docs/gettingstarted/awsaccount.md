@@ -18,9 +18,11 @@ We will follow the [Aws Documentation](https://aws.amazon.com/getting-started/gu
 ## Create Your Account
 Follow the steps for the first module for creating your account on [the official Aws documentation](https://aws.amazon.com/getting-started/guides/setup-environment/module-one/).
 
-When following the steps provided by the Aws documentation, you can select a `Personal Account` and the `Basic Support` plan. Although it does require a credit card to create an account, most of the services in Aws have a generous free tier that provide enough credit to experiment and run small scale projects. 
+When following the steps provided by the Aws documentation, you can select a `Personal Account` and the `Basic Support` plan. Although it does require a credit card to create an account, most of the services in Aws have a free tier that provide enough credit to experiment and run small scale projects. 
 
+<!--{{<tool_tip key="info" summary="Working with Aws">}}
 We understand that Aws can be an intimidating service to use, and we are working hard to make it easier to use by providing constructs that encompass best practices. 
+{{</tool_tip>}}-->
 
 {{<break 1>}}
 
@@ -34,7 +36,7 @@ Securing your Aws account by using an IAM User as opposed to the Root User is a 
 ## Install the CLI
 Follow the steps for the third module for [installing the Aws CLI and configuring your credentials](https://aws.amazon.com/getting-started/guides/setup-environment/module-three/).
 
-Once you have created your credentials, Cdev will be default to using the Aws credentials that are configured to deploy any resources in the cloud. 
+Once you have created your credentials, Cdev will use the Aws credentials that are configured to deploy resources in the cloud. 
 
 {{<break 1>}}
 
