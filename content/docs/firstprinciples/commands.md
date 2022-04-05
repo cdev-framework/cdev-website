@@ -8,11 +8,13 @@
     "weight": "6"
 }
 
+**Coming in April**
 
-
+<!--
 ## Providing an Interface for Extensibility
 
 
 ## Registering a Command
 
+-->
 
