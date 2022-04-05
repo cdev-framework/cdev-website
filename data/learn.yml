@@ -15,4 +15,4 @@ methods:
     title: "Blogs"
     description: "Learn about the problems we are trying to solve"
     icon: "ti-thought" 
-    url: https://github.com
+    url: /blogs
