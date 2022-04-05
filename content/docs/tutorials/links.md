@@ -8,7 +8,7 @@
     "weight": "2"
 }
 
-Learn how to store links by texting them to a Twilio number and then save them in a Notion Database. 
+Learn how to store a link by texting it to a [Twilio](https://www.twilio.com/) number and then save it in a [Notion](https://www.notion.so/) Database. 
 
 Twilio provides Api's to help developers integrate SMS into their applications. You can easily send automated text messages with Twilio, and also use webhooks to receive text messages. In this tutorial, we will be creating a `bot` with a SMS interface that allows us to text links to the bot and have those links saved in a Notion Database.
 
@@ -28,6 +28,7 @@ When creating your account, you will have to verify both an email and phone numb
 /images/link_bot_tutorial/twilio_signup.png
 {{</tutorial_image>}}
 
+{{<break 1>}}
 Now that your trial account is set up, you can transition to creating your Cdev project. Once we have set up the template project, we will go back to the Twilio Console to create our phone number and webhook. 
 
 
@@ -62,7 +63,7 @@ You should receive output like
 <?xml version="1.0" encoding="UTF-8"?><Response><Message>Hi from your backend!</Message></Response>
 ```
 {{<break 1>}}
-## Connect a Twilio Number to the Webhook
+## Connect the Twilio Number to the Webhook
 We can now go back to the Twilio Console to create our phone number and attach our webhook. In the console, create your first phone number.
 {{<tutorial_image>}}
 /images/link_bot_tutorial/get_a_number.jpg
@@ -133,7 +134,7 @@ You can now send a test text message from your number to yourself.
 {{<break 1>}}
 You should receive your demo text message from your Twilio Number! You can then reply to the number, which will trigger your webhook and reply back with `"Hi from your backend!"`. 
 
-
+{{<break 1>}}
 Congratulations {{<emoji>}}:tada:{{</emoji>}} You have created a live bot! We will now be adding more logic to our backend to have the bot save links that we send!
 
 {{<tool_tip key="tip" summary="Create a Contact">}}
@@ -162,7 +163,7 @@ Create a `src/link_bot/serializer.py` file and add the following code to the fil
 {{<codesnippet "/source_code/link_bot_tutorial/serializer.py">}}
 
 {{<tool_tip key="info" summary="Powertools Dataclasses">}}
-The `TwilioWebhookEvent` is derived from a data class from the Lambda Powertools library. This library provides a light weight mechanism to provide additional information about the `triggering` event for a handler. This allows developers to be given type hints when using the `object` in the handler. 
+The `TwilioWebhookEvent` is derived from a data class from the [Lambda Powertools library](/docs/examples/powertools). This library provides a light weight mechanism to provide additional information about the `triggering` event for a handler. This allows developers to be given type hints when using the `object` in the handler. 
 {{</tool_tip>}}
 
 We can now update our webhook to use our created class to have easier access to the data from Twilio. Update your `handlers.py` to the following code. The newly created `twilio_event` object will provided access to all the available data from the Twilio event.
@@ -189,7 +190,7 @@ We can now update our web hook to use the `link_service`. Update your `handler.p
 
 
 {{<break 1>}}
-## Test Project
+## Unit Tests
 **Coming Soon. Early April.**
 
 **Write Unit Test Cases**
@@ -248,13 +249,13 @@ Finally, you will need to grant the integration access to this database. You can
 Create a new file called `notion_service.py` and add the following code. This code uses the `Notion Api` to save the provided data. Like the `link_service` this code is designed to be independent of the computing platform it runs on. 
 
 {{<tool_tip key="tip" summary="Different Database Set Up">}}
-If your `Notion Database` has a different set of properties, you will need to adjust the return value of the the `create_properties` function. You can learn more about setting properties from the [Notion Api Documentation](https://developers.notion.com/docs/working-with-databases#adding-pages-to-a-database).
+If your `Notion Database` has a different set of properties, you will need to adjust the return value of the `create_properties` function. You can learn more about setting properties from the [Notion Api Documentation](https://developers.notion.com/docs/working-with-databases#adding-pages-to-a-database).
 {{</tool_tip>}}
 
 {{<codesnippet "/source_code/link_bot_tutorial/notion_service.py">}}
 
 
-We need to pass the `NOTION_TOKEN` and `NOTION_DB_ID` into the the environment of the `handler`. We will create a custom settings class and use that to pass the values. Create a file called `src/link_bot_settings.py` and add the following code.
+We need to pass the `NOTION_TOKEN` and `NOTION_DB_ID` into the environment of the `handler`. We will create a custom settings class and use that to pass the values. Create a file called `src/link_bot_settings.py` and add the following code.
 {{<codesnippet "/source_code/link_bot_tutorial/link_bot_settings.py">}}
 
 You then need to add the `NOTION_TOKEN` value using a file in the settings folder. Create a file called `settings/<your-environment-secrets>/cdev_notion_secret` then paste your value into the file.
@@ -264,7 +265,7 @@ Set this as the settings for your environment using the following command
 cdev environment settings_information --key base_class --new-value src.link_bot_settings.LinkBotSettings
 ```
 
-Finally, update your `handler.py` to use the new service and pass the environment variables. 
+Finally, update your `handler.py` to the following to use the new service and pass the environment variables. Then deploy the changes. 
 
 {{<codesnippet "/source_code/link_bot_tutorial/handler_connected.py">}}
 
