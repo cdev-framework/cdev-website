@@ -10,10 +10,10 @@ banner:
 service:
   enable : true
   title : "The Cdev Framework"
-  subtitle : "A dynamic framework that enables scalability and manageability for software projects 
-  of any size. By building on top of Serverless platforms, developers can start building projects faster without worrying about
-  setting up hosting configuration. As your projects begin to outgrow the limits of the starting architecture, transition them
-  without having to having to start from scratch."
+  subtitle : "A framework that enables scalability and manageability for software projects 
+  of any size. By building on top of Serverless compute platforms, developers can start building projects faster without worrying about
+  setting up hosting configuration. As your project begins to outgrow the limits of the starting architecture, transition it
+  without having to start from scratch."
   # service item comes from 'service.yml'
 
 pip:
