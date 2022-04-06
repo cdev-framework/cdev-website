@@ -62,6 +62,23 @@ You should receive output like
 ```
 <?xml version="1.0" encoding="UTF-8"?><Response><Message>Hi from your backend!</Message></Response>
 ```
+
+{{<tool_tip key="info" summary="Custom Responses">}}
+In `src/ink_bot/handlers.py`, you will see that the `route event` is set up to reply back with `application/xml`. This will map the return value from the `Serverless Function` as the `Body` of the `HTTP Response` with type `application/xml`. If you need more customization over the HTTP Response, you can use a [more detailed return value](/docs/examples/httpendpoints/#return-values-from-function)
+
+```python
+return {
+    "isBase64Encoded": False,
+    "statusCode": 200,
+    "headers": { 
+        "Content-Type": "application/xml"
+    },
+    "body": response.to_xml()
+}
+```
+{{</tool_tip>}}
+
+
 {{<break 1>}}
 ## Connect the Twilio Number to the Webhook
 We can now go back to the Twilio Console to create our phone number and attach our webhook. In the console, create your first phone number.
