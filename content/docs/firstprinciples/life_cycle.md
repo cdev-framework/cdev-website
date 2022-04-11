@@ -8,7 +8,7 @@
     "weight": "5"
 }
 
-**Coming in April**
+**Coming soon April 2022**
 
 <!--
 ## CLI Commands 

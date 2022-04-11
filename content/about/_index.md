@@ -1,8 +1,10 @@
----
-title: "About Cdev"
-date: 2019-08-01T16:19:26+06:00
-draft: false
-bgImage: "images/backgrounds/page-title.jpg"
-description: "this is meta description"
----
+{
+    "type": "about",
+    "layout": "type",
+    "title": "Cdev Development Framework"
+}
 
+
+The Cdev framework is currently focused on creating a frictionless Python Serverless developer experience while allowing created projects to be transitioned off the Serverless compute platforms when needed. 
+
+ 

@@ -1,7 +1,7 @@
 {
     "type": "blogs",
-    "title": "Why use Serverless?",
-    "linktitle": "whyserverless", 
+    "title": "What is Serverless?",
+    "linktitle": "whatisserverless", 
     "card_icon": "ti-thought",
     "card_body": "Learn the benefits and drawbacks of Serverless compute platforms",
     "weight": "1"

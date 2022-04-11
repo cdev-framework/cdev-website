@@ -50,6 +50,6 @@ Using the syntax tree to understand a function's dependencies covers a large maj
 
 {{<break 1>}}
 ## Package Management
-**coming soon April 2022**
+**Coming soon April 2022**
 
 {{<break 2>}}
