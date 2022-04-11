@@ -5,6 +5,4 @@
 }
 
 
-The Cdev framework is currently focused on creating a frictionless Python Serverless developer experience while allowing created projects to be transitioned off the Serverless compute platforms when needed. 
-
- 
+The Cdev framework is focused on creating a frictionless Python Serverless developer experience while allowing created projects to be transitioned off the Serverless compute platforms when needed. 
