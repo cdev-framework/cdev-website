@@ -9,7 +9,7 @@
 }
 
 
-**Coming Soon (April 2022)**
+**Coming Soon (August 2022)**
 
 Create a site to help schedule tennis matches to learn how Cdev can be used to create and manage full stack web applications.
 
@@ -33,7 +33,7 @@ In this tutorial, we will be going through the entire process of creating a full
     - Sql Alchemy 
     - Alembic
 - Frontend
-    - Vanilla Javascript
+    - React
     - Bootstrap
 - User Authentication
     - Auth0
@@ -43,6 +43,8 @@ In this tutorial, we will be going through the entire process of creating a full
 - Sending Text and Emails
     - Twilio
     - Send Grid
+- Payments
+    - Stripe
 - Unit Testing
     - Pytest
 

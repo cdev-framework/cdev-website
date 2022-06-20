@@ -28,9 +28,25 @@ cdev -h
 
 {{<break 1>}}
 ## Create Your First Project
+{{<tool_tip key="tip" summary="Artifacts S3 Bucket">}}
+When creating a new project, you will be prompted to link to a `S3 Bucket` for your deployment artifacts.
+
+You will need to provide a `S3 Bucket` in your Aws Account. If you do not already have one, you can create a bucket with the following command.
+```bash
+aws s3 mb s3://<bucket-name>
+```
+
+This bucket can be used for managing the deployment artifacts for multiple projects.
+
+{{</tool_tip>}}
+
 Now that we have the Cdev Sdk installed, we can use it to create a new `Project`. We can start our `Project` from a template that will help us get started faster.
 ```bash
 cdev init demo-project --template quick-start
+```
+
+```bash
+Name of bucket to store artifacts (): <bucket-name>
 ```
 
 {{<break 1>}}

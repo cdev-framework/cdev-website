@@ -289,10 +289,7 @@ Finally, update your `handler.py` to the following to use the new service and pa
 You should now be able to text your bot and have the data saved to Notion{{<emoji>}}:tada:{{</emoji>}} 
 
 {{<break 1>}}
-## Additional Features
-**Coming Soon. Early April.**
 
-**Add additional functionality to support edge cases when sharing links from some applications on an Iphone.**
 <!--
 **The follow section 
 

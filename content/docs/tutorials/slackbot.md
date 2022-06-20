@@ -163,10 +163,10 @@ Now you should be able to directly message your Bot in a Slack Channel and have 
 Congratulations you have set up your Slack Bot!! Continue reading to learn how to add more functionality to your Slack Bot!
 
 
-{{<break 1>}}
+<!---{{<break 1>}}
 ## Use a messaging queue for more advanced use cases
 As your Bot grows in scope, it becomes important to understand how Slack expects your bot to act. [Per the Slack documentation](https://api.slack.com/apis/connections/events-api#the-events-api__responding-to-events), **Your app should respond to the event request with an HTTP 2xx within three seconds...Respond to events with a HTTP 200 OK as soon as you can. Avoid actually processing and reacting to events within the same process. Implement a queue to handle inbound events after they are received.**
 
-**Coming Soon (April 2022)**
 
-{{<break 1>}}
+
+{{<break 1>}}-->
