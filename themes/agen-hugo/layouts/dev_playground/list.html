@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "preloader.html" . -}}
+        {{- partial "static-header.html" . -}}
+
+
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container">
+    <div class="row">
+        
+        {{ partial "docs-side.html" .}}
+        <div class="content-section col-lg-8 col-md-8">
+            <div class="">
+                {{.Content}}
+                {{ partial "section-border.html" .}}
+            </div>
+            {{ partial "children-card-container.html" .}}
+        </div>
+    </div>
+</div>
+{{- partial "footer.html" . -}}
+</body>
+</html>
