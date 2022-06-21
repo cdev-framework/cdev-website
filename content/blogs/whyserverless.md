@@ -10,9 +10,9 @@
 # What is Serverless?
 {{<break>}}
 
-{{<blockqoute>}}
+{{<blockquote>}}
 “But there are still servers involved!” - Some person every time there is a discussion about serverless
-{{</blockqoute>}}
+{{</blockquote>}}
 
 Overtime the meaning of Serverless has become muddied. Some would say that it has always been muddy because there are in fact servers still involved with any kind of serverless offering. Typically Serverless refers to services that offer abstracted versions of applications such that developers do not need to worry about creating, managing, or scaling the underlying infrastructure that the application runs on. These applications can range from databases, object/file storage, compute, and as time passes, almost any tool developers use.
 

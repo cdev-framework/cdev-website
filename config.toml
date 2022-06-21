@@ -2,7 +2,7 @@
 baseURL = "https://exampleSite.com"
 languageCode = "en-us"
 title = "Cdev | Dynamic Serverless Framework"
-theme = "agen-hugo"
+
 
 
 

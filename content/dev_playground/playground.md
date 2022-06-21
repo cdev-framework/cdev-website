@@ -76,3 +76,26 @@ Tips provide helpful errors about documentation
 {{<tool_tip key="question" summary="Some Title">}}
 What is the meaning of life? 42
 {{</tool_tip>}}
+
+## Images
+{{<tutorial_image>}}
+/images/link_bot_tutorial/notion_share_db_with_integration.png
+{{</tutorial_image>}}
+
+
+## Block Quote 
+
+{{<blockquote>}}
+What are bots? 
+{{<break 2>}}
+A bot is a type of Slack App designed to interact with users via conversation.
+{{<break 2>}}
+A bot is the same as a regular app: it can access the same range of APIs and do all of the magical things that a Slack App can do.
+{{<break 1>}}
+But when you build a bot for your Slack App, you're giving that app a face, a name, and a personality, and encouraging users to talk to it.
+{{<break 2>}}
+Your bot can send DMs, it can be mentioned by users, it can post messages or upload files, and it can be invited to channels - or kicked out.
+
+{{<break 2>}}
+-Slack Documentation
+{{</blockquote>}}

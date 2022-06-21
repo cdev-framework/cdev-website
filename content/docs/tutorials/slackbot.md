@@ -8,7 +8,7 @@
     "weight": "3"
 }
 
-{{<blockqoute>}}
+{{<blockquote>}}
 What are bots? 
 {{<break 2>}}
 A bot is a type of Slack App designed to interact with users via conversation.
@@ -21,7 +21,7 @@ Your bot can send DMs, it can be mentioned by users, it can post messages or upl
 
 {{<break 2>}}
 -Slack Documentation
-{{</blockqoute>}}
+{{</blockquote>}}
 
 
 {{<break 1>}}

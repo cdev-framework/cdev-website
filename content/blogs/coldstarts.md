@@ -10,9 +10,9 @@
 
 # Cold Starts
 
-{{<blockqoute>}}
+{{<blockquote>}}
 "A computer seems infinitely fast, until it doesn't!"
-{{</blockqoute>}}
+{{</blockquote>}}
 
 {{<break>}}
 
