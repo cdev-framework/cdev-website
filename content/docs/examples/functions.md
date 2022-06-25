@@ -24,6 +24,31 @@ For a more in depth discussion about the capabilities and limits of `Serverless 
 ## Basic Function
 {{<codesnippet `/source_code/function_examples/basic_function.py`>}}
 
+{{<tool_tip key="tip" summary="Basic Function">}}
+The component that contains the function is registered in *src/cdev_project.py*.
+```
+# Generated as part of Quick Start project template
+import os
+
+from cdev.default.cloudmapper import DefaultMapper
+from cdev.default.components import Cdev_FileSystem_Component
+
+from cdev import Project as cdev_project
+
+myProject = cdev_project.instance()
+
+
+myProject.add_mapper(DefaultMapper())
+
+# register hello_world component
+myProject.add_component(
+    Cdev_FileSystem_Component(os.path.join("src", "hello_world"), "hello_world_comp")
+)
+```
+
+{{</tool_tip>}}
+
+
 Once your function is deployed, you can execute it with the `cdev run function.execute` command.
 ```bash
 cdev run function.execute <component_name>.hello_function
