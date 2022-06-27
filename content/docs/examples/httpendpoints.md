@@ -11,10 +11,10 @@
 # Build an HTTP API Endpoint
 {{<header_divider>}}
 
-HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple interface for creating HTTP Apis and connecting them to `Serverless Functions`. 
+HTTP endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple interface for creating HTTP APIs and connecting them to `Serverless Functions`. 
 
 {{<break 1>}}
-## Create an Api
+## Create an API
 {{<codesnippet `/source_code/http_examples/simple_api_example.py`>}}
 
 
@@ -60,7 +60,7 @@ cdev run function.logs <component_name>.send_data_handler
 {{<break 1>}}
 
 ## Return Values from Function
-[From the Aws Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.response), API Gateway makes the following assumptions if your Lambda function returns valid JSON and doesn't return a statusCode:
+[From the AWS Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html#http-api-develop-integrations-lambda.response), API Gateway makes the following assumptions if your Lambda function returns valid JSON and doesn't return a statusCode:
 
 - isBase64Encoded is `false`.
 - statusCode is `200`.
@@ -74,7 +74,7 @@ Function Response
 return "Hello from Lambda!"
 ```
 
-Api Gateway Response
+API Gateway Response
 ```json
 {
   "isBase64Encoded": false,
@@ -93,7 +93,7 @@ Function Response
 return { "message": "Hello from Lambda!" }
 ```
 
-Api Gateway Response
+API Gateway Response
 ```json
 {
   "isBase64Encoded": false,
