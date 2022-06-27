@@ -61,7 +61,7 @@ cdev plan
 
 {{<break 1>}}
 
-When you are ready to deploy your changes, you can use the `deploy` command to deploy the changes. You will be prompted to confirm the set of changes to you are about to deploy. **Note that Cdev will use the currently configured Aws credentials for your environment to deploy the resources**
+When you are ready to deploy your changes, you can use the `deploy` command to deploy the changes. You will be prompted to confirm the set of changes that you are about to deploy. **Note that Cdev will use the currently configured Aws credentials for your environment to deploy the resources**
 ```bash
 cdev deploy
 ```
