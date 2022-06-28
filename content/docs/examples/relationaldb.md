@@ -118,7 +118,7 @@ Starting from the `quick-start` template, add a `relational db` to your resource
 cdev init orm-demo --template quick-start
 ```
 
-Update you `src/hello_world/resources.py` file to 
+Update your `src/hello_world/resources.py` file to 
 {{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_orm_resource.py`>}}
 
 Now we can deploy our resources
