@@ -50,6 +50,9 @@ pip install virtualenv
 For each `Project` you will create and activate your virtual environment.
 ```
 python -m virtualenv .venv
+
+# or 
+python3 -m virtualenv .venv
 ```
 ```
 . ./.venv/bin/activate

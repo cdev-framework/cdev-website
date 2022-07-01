@@ -31,7 +31,7 @@ cdev -h
 {{<tool_tip key="tip" summary="Artifacts S3 Bucket">}}
 When creating a new project, you will be prompted to link to a `S3 Bucket` for your deployment artifacts.
 
-You will need to provide a `S3 Bucket` in your Aws Account. If you do not already have one, you can create a bucket with the following command.
+You will need to provide a `S3 Bucket` in your AWS Account. If you do not already have one, you can create a bucket with the following command.
 ```bash
 aws s3 mb s3://<bucket-name>
 ```
@@ -53,7 +53,7 @@ Name of bucket to store artifacts (): <bucket-name>
 
 ## Deploying Resources
 
-Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to the `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create an `Api` and `Serveless Function`.
+Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to the `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create an `API` and `Serveless Function`.
 
 ```bash
 cdev plan
@@ -61,7 +61,7 @@ cdev plan
 
 {{<break 1>}}
 
-When you are ready to deploy your changes, you can use the `deploy` command to deploy the changes. You will be prompted to confirm the set of changes to you are about to deploy. **Note that Cdev will use the currently configured Aws credentials for your environment to deploy the resources**
+When you are ready to deploy your changes, you can use the `deploy` command to deploy the changes. You will be prompted to confirm the set of changes that you are about to deploy. **Note that Cdev will use the currently configured Aws credentials for your environment to deploy the resources**
 ```bash
 cdev deploy
 ```
@@ -69,7 +69,7 @@ cdev deploy
 
 ## Testing Serverless Function
 
-Now that we have deployed our `Serverless Function` and `Api`, we can test that they have been created in the Cloud. We can use `Commands` to execute our function in the Cloud and then retrieve the logs of the `Serverless Function`.
+Now that we have deployed our `Serverless Function` and `API`, we can test that they have been created in the Cloud. We can use `Commands` to execute our function in the Cloud and then retrieve the logs of the `Serverless Function`.
 
 ```bash
 cdev run function.execute hello_world_comp.hello_world_function
@@ -81,9 +81,9 @@ cdev run function.logs hello_world_comp.hello_world_function
 ```
 {{<break 1>}}
 
-## Test Api Endpoint
+## Test API Endpoint
 
-We can also check that our `Api` has been properly created and configured with our `Serverless Function`. We can use the `Output` command to get the url that the Cloud generated for our `Api`.
+We can also check that our `API` has been properly created and configured with our `Serverless Function`. We can use the `Output` command to get the url that the Cloud generated for our `API`.
 ```bash
 cdev output hello_world_comp.api.demoapi.endpoint
 ```
@@ -92,7 +92,7 @@ outputs
 <your-url>
 ```
 
-We can now use the `curl` cli tool to call our `Api Endpoint` or visit `<your-url>/hello_world` directly in your web browser!
+We can now use the `curl` cli tool to call our `API Endpoint` or visit `<your-url>/hello_world` directly in your web browser!
 ```bash
 curl <your-url>/hello_world
 ```
@@ -111,6 +111,6 @@ cdev destroy
 {{<break 1>}}
 
 ## Next Steps
-Now that you have created you deployed your first `Api` and `Serverless Function`, you can follow [one of our tutorials to learn how to create larger project](/docs/tutorials)
+Now that you have created and deployed your first `API` and `Serverless Function`, you can follow [one of our tutorials to learn how to create a larger project.](/docs/tutorials)
 
 {{<break 2>}}

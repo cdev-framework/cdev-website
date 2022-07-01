@@ -14,13 +14,13 @@
 
 User Authentication and Management is one of the most important aspects aspects in application development.
 
-With the `Cdev Api` resource, we can add granular [User Authorization](https://auth0.com/intro-to-iam/what-is-authorization/) and [Role-Based Access Control (RBAC)](https://auth0.com/docs/manage-users/access-control/rbac) to any backend. The `Cdev Api` resource supports
+With the `Cdev API` resource, we can add granular [User Authorization](https://auth0.com/intro-to-iam/what-is-authorization/) and [Role-Based Access Control (RBAC)](https://auth0.com/docs/manage-users/access-control/rbac) to any backend. The `Cdev API` resource supports
 user authentication through JWT Tokens (need more details on the specifics).
 
-For these examples, we will be using [Auth0](https://auth0.com/) as our User Authorization platform and integrating their service into our Api's. Auth0 provides great tutorials and we based the following examples off their [official documentation](https://auth0.com/blog/securing-aws-http-apis-with-jwt-authorizers/) and a [helpful blog by Sandrino Di Mattia](https://sandrino.dev/blog/aws-api-gateway-jwt-auth0)
+For these examples, we will be using [Auth0](https://auth0.com/) as our User Authorization platform and integrating their service into our API's. Auth0 provides great tutorials and we based the following examples off their [official documentation](https://auth0.com/blog/securing-aws-http-apis-with-jwt-authorizers/) and a [helpful blog by Sandrino Di Mattia](https://sandrino.dev/blog/aws-api-gateway-jwt-auth0)
 
 {{<break 1>}}
-## Create a Basic Api
+## Create a Basic API
 Use the `user-auth` template as a starting place 
 ```bash
 cdev init user-auth-demo --template user-auth
@@ -29,7 +29,7 @@ You should have a `src/resources.py` file that looks like
 
 {{<codesnippet `/source_code/userauth_examples/basic_api.py`>}}
 
-To create the `Api` and `Serverless Function` run
+To create the `API` and `Serverless Function` run
 ```bash
 cdev deploy
 ```
@@ -40,7 +40,7 @@ Base API URL -> https://<your-endpoint>/live
 Routes -> FrozenDict({'/demo GET': 'ayhuxeb'})
 ```
 
-You can check that this `Api` is working correctly by using the Curl command
+You can check that this `API` is working correctly by using the Curl command
 ```bash
 curl https://<your_endpoint>/live/demo
 ```
@@ -52,7 +52,7 @@ Or by going to the url `https://<your_endpoint>/live/demo` in your browser.
 You can create a [trail Auth0 account](https://auth0.com/signup) that has a free tier of 7,000 active users and unlimited logins with no required credit card. 
 
 
-From the Auth0 Dashboard, Create a new Api on the `Application > Api` page. 
+From the Auth0 Dashboard, Create a new API on the `Application > API` page. 
 
 
 {{<tutorial_image>}}
@@ -61,7 +61,7 @@ From the Auth0 Dashboard, Create a new Api on the `Application > Api` page.
 {{<break 2>}}
 
 {{<tool_tip key="info" summary="Setting the values">}}
-Note that you can set the `name` to whatever makes sense for your project. The value that you provide for the `identifier` field will need to saved as it will be used as the `audience` property in the next step.
+Note that you can set the `name` to whatever makes sense for your project. The value that you provide for the `identifier` field will need to be saved as it will be used as the `audience` property in the next step.
 {{</tool_tip>}}
 
 {{<break 1>}}
@@ -70,7 +70,7 @@ Note that you can set the `name` to whatever makes sense for your project. The v
 {{</tutorial_image>}}
 {{<break 2>}}
 
-We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. In the `Application` tab, there should be an auto generated `Application` for your api. When you open the auto generate app, you will see the `Domain` for your account. This `Domain` value will be the `issuer_url`.
+We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. In the `Application` tab, there should be an auto generated `Application` for your API. When you open the auto generate app, you will see the `Domain` for your account. This `Domain` value will be the `issuer_url`.
 
 {{<tutorial_image>}}
 /images/autho_examples/issuer_location.jpg
@@ -78,7 +78,7 @@ We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. 
 {{<break 2>}}
 
 ### Creating our Authorizer
-We can now create an `Authorizer` for our Cdev Api. 
+We can now create an `Authorizer` for our Cdev API. 
 
 Update your /src/resources.py file to the follow, replacing the values on lines `13` and `14`. 
 
@@ -93,13 +93,13 @@ cdev deploy
 ```
 {{<break 1>}}
 ### Testing our Authorizer
-By setting the `default_authorizer` property on the `Api`, all created routes will by default use that `Authorizer`. Now when we curl the following generated url we will receive a `401 Authentication Error`.
+By setting the `default_authorizer` property on the `API`, all created routes will by default use that `Authorizer`. Now when we curl the following generated url we will receive a `401 Authentication Error`.
 
 ```bash
 curl -i https://<your_endpoint>/live/demo
 ```
 
-Now we must have the correct authorization to be able to access this endpoint. In the `Test` tab on the `Api` page, Auth0 provides a testing token that can be used to test that the authorization is working correctly.
+Now we must have the correct authorization to be able to access this endpoint. In the `Test` tab on the `API` page, Auth0 provides a testing token that can be used to test that the authorization is working correctly.
 
 {{<tutorial_image>}}
 /images/autho_examples/api_test_command.jpg
@@ -118,12 +118,12 @@ Update lines `7`, `37`, and `41` to add a static front end hosting resource
 cdev deploy
 ```
 {{<tool_tip key="warning" summary="Resource Creation Time">}}
-To create a frontend that works with Auth0, our website must be secured with `HTTPS`. Therefore, the `Static Site` resources creates your frontend on `Aws Cloudfront`, which is a globally distributed Content Delivery Network (CDN). Using `Aws Cloudfront` provides many benefits, but it also means that it takes a few minutes to initially create the resource. Once created, **updates to website are instant.** As the resource deploys, you can create continue with the next section on Auth0 or grab a cup of coffee. 
+To create a frontend that works with Auth0, our website must be secured with `HTTPS`. Therefore, the `Static Site` resources creates your frontend on `AWS Cloudfront`, which is a globally distributed Content Delivery Network (CDN). Using `AWS Cloudfront` provides many benefits, but it also means that it takes a few minutes to initially create the resource. Once created, **updates to website are instant.** As the resource deploys, you can create continue with the next section on Auth0 or grab a cup of coffee. 
 {{</tool_tip>}}
 
 {{<break 1>}}
 ### Create an Application and Database in Auth0
-Although we have created and secured our `Api`, we need to add a few more resources to `Auth0` to create a user login and authentication work flow.
+Although we have created and secured our `API`, we need to add a few more resources to `Auth0` to create a user login and authentication work flow.
 
 In the `Auth0` console, navigate to the `authentication > databases` tab. Create a new database that will be used to store the credentials of our development users. 
 
@@ -214,7 +214,7 @@ Now you can visit your site in your web browser!
 
 {{<break 1>}}
 ### Check Your Site
-The provided template site demonstrates the basics of how to login using the [Auth0 Javascript SDK](https://auth0.com/docs/libraries/auth0js) and then use the provided `jwt` to make a call to our `Api`. When you login, the page should look like
+The provided template site demonstrates the basics of how to login using the [Auth0 Javascript SDK](https://auth0.com/docs/libraries/auth0js) and then use the provided `jwt` to make a call to our `API`. When you login, the page should look like
 {{<tutorial_image>}}
 /images/autho_examples/spa_logged_out.png
 {{</tutorial_image>}}
@@ -224,7 +224,7 @@ When you click `login`, you should be redirected to the `Auth0 Universal Login P
 /images/autho_examples/universal_login.png
 {{</tutorial_image>}}
 
-After logging in, you will be redirected and should see the provided `jwt` and user information from Auth0. You can then use the `hit api` button to make a call to your `Api`. 
+After logging in, you will be redirected and should see the provided `jwt` and user information from Auth0. You can then use the `hit api` button to make a call to your `API`. 
 {{<tutorial_image>}}
 /images/autho_examples/spa_logged_in.png
 {{</tutorial_image>}}
