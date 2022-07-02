@@ -77,6 +77,12 @@ Tips provide helpful errors about documentation
 What is the meaning of life? 42
 {{</tool_tip>}}
 
+
+{{<tool_tip key="python" summary="Test">}}
+Something about python
+{{</tool_tip>}}
+
+
 ## Images
 {{<tutorial_image>}}
 /images/link_bot_tutorial/notion_share_db_with_integration.png
