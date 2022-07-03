@@ -78,8 +78,18 @@ What is the meaning of life? 42
 {{</tool_tip>}}
 
 
-{{<tool_tip key="python" summary="Test">}}
+{{<tool_tip key="python" summary="Python">}}
 Something about python
+{{</tool_tip>}}
+
+
+{{<tool_tip key="web" summary="Web Technologies">}}
+Something about web technologies
+{{</tool_tip>}}
+
+
+{{<tool_tip key="cdev" summary="Cdev">}}
+Information about Cdev
 {{</tool_tip>}}
 
 
