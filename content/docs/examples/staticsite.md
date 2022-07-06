@@ -43,7 +43,9 @@ The initial file structure should resemble the image below. If this is not your 
 In the root of your project folder, create a `React` app with the following command:
 ```bash
 npx create-react-app <your-app-name-here>
-# example
+```
+For example:
+```bash
 npx create-react-app my-react-app
 ```
 Once the `React` app is created, the file structure will look like this:
@@ -56,8 +58,9 @@ Using the terminal, enter the folder that contains the `React` app and start the
 ```bash
 cd <your-app-name-here>
 npm start
-
-#example 
+```
+For example:
+```bash
 cd my-react-app
 npm start
 ```
@@ -85,8 +88,9 @@ In the root directory, within the `src` folder, create a folder named `content`.
 Use the following command to copy the contents of the `React` app `build` folder to the root `src/content` folder.
 ```bash
 cp -r <your-app-name-here>/build/* src/content
-
-#example
+```
+For example:
+```bash
 cp -r my-react-app/build/* src/content
 ```
 The file structure should look like this:
@@ -132,6 +136,9 @@ myProject.display_output("Static Site URl", myFrontend.output.site_url)
 Now save and deploy the changes.
 ```bash
 cdev plan
+```
+
+```bash
 cdev deploy
 ```
 {{<break 1>}}
