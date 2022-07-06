@@ -1,9 +1,9 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate React JS",
+    "title": "Host a Static Frontend",
     "linktitle": "static sites",
-    "card_icon": "ti-infinite",
+    "card_icon": "ti-desktop",
     "card_body": "Learn how to connect React to the Static Site Resource",
     "weight": "1"
 }
@@ -11,18 +11,31 @@
 # Connect React JS to the Static Site Resource
 {{<header_divider>}}
 
-Many websites are built using a front-end library or framework. `React(React.js or ReactJS)` is one of the most popular front-end libraries. `React` can easily integrate with `Cdev` to be a static site resource and complement the backend. For more information about how to use `React`, visit the **[official documentation](https:/reactjs.org/)**.
+Many websites are built using a front-end library or framework. `React(React.js or ReactJS)` is one of the most popular front-end libraries. `Cdev` can easily integrate `React` with the `Static Site` resource, which allows you to host your statuc front-end content. 
+
+{{<tool_tip key="info" summary="React Documentation">}}
+For more information about how to use `React`, visit the **[official documentation](https:/reactjs.org/)**. 
+{{</tool_tip>}}
 
 {{<break 1>}}
 
 ## Requirements
-To create a `React` application you will need to install `Node.js`, a JavaScript runtime, on your `Windows Subsystem for Linux`. The instructions can be found here: **[Install Node.js on Windows Subsystem for Linux(WSL)](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)** . 
+To create a `React` application you will need to install `Node.js`, a `JavaScript Runtime`. 
+{{<tool_tip key="info" summary="Node.js Installation Instructions">}}
+
+#### Windows and MacOS
+Instructions for Windows and MacOs can be found here: **[Node JS Installers](https://nodejs.org/en/download/)**.
+
+#### Windows Subsystem for Linux(WSL)
+WSL instructions can be found here: **[Install Node.js on Windows Subsystem for Linux(WSL)](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)**.  
+
+{{</tool_tip>}}
 {{<break 1>}}
 
 The initial file structure should resemble the image below. If this is not your starting point for this example, consult the `Getting Started` section to initialize a `Cdev project` before continuing.
 
 {{<tutorial_image>}}
-/images/react_example/init_img.png
+/images/react_example/init_structure.png
 {{</tutorial_image>}}
 {{<break 2>}}
 
@@ -35,7 +48,7 @@ npx create-react-app my-react-app
 ```
 Once the `React` app is created, the file structure will look like this:
 {{<tutorial_image>}}
-/images/react_example/react_file_structure.png
+/images/react_example/react_structure.png
 {{</tutorial_image>}}
 {{<break 1>}}
 
@@ -65,7 +78,7 @@ The command, `npm run build`, minifies files to create a production build of the
 
 In the root directory, within the `src` folder, create a folder named `content`.
 {{<tutorial_image>}}
-/images/react_example/root_src.png
+/images/react_example/root_src_structure.png
 {{</tutorial_image>}}
 {{<break 1>}}
 
@@ -78,7 +91,7 @@ cp -r my-react-app/build/* src/content
 ```
 The file structure should look like this:
 {{<tutorial_image>}}
-/images/react_example/src_with_build_contents.png
+/images/react_example/src_w_build_contents.png
 {{</tutorial_image>}}
 {{<break 2>}}
 
@@ -124,12 +137,12 @@ cdev deploy
 {{<break 1>}}
 
 ### Push the React Application to Your Site
-Sync the front-end, static `React` app, to the static site with the following command:
+Sync the front-end, static `React` app, to the `Static Site` with the following command:
 ```bash
 cdev run static_site.sync hello_world_comp.demofrontend  --dir src/content
 ```
 
-Use the command below to get the url of the static site. 
+Use the command below to get the url of the `Static Site`. 
 ```bash
 cdev output hello_world_comp.staticsite.demofrontend.site_url
 ```
