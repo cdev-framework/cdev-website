@@ -11,7 +11,7 @@
 # Connect React JS to the Static Site Resource
 {{<header_divider>}}
 
-Many websites are built using a front-end library or framework. `React(React.js or ReactJS)` is one of the most popular front-end libraries. `Cdev` can easily integrate `React` with the `Static Site` resource, which allows you to host your statuc front-end content. 
+Many websites are built using a front-end library or framework. `React(React.js or ReactJS)` is one of the most popular front-end libraries. `Cdev` can easily integrate `React` with the `Static Site` resource, which allows you to host your static front-end content. 
 
 {{<tool_tip key="info" summary="React Documentation">}}
 For more information about how to use `React`, visit the **[official documentation](https:/reactjs.org/)**. 
@@ -32,7 +32,7 @@ WSL instructions can be found here: **[Install Node.js on Windows Subsystem for 
 {{</tool_tip>}}
 {{<break 1>}}
 
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the `Getting Started` section to initialize a `Cdev project` before continuing.
+The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Getting Started](/docs/gettingstarted)** section to initialize a `Cdev project` before continuing.
 
 {{<tutorial_image>}}
 /images/react_example/init_structure.png
