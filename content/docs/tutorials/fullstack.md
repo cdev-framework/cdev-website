@@ -60,10 +60,10 @@ Base API URL -> <your-endpoint>
 ## Create Database Connection
 For this project we will be utilizing a relational database and the SqlAlchemy ORM.  An in-depth example of how to set up SqlAlchemy ORM can be found in the examples section of our website as a part of the ["Integrate RelationalDBs"](https://cdevframework.io/docs/examples/relationaldb/#sqlalchemy-orm)chapter. 
 
-Update your `src/hello_world/resources.py` file to 
+Update your `src/hello_world/resources.py` file to: 
 {{<codesnippet `/source_code/diary_tutorial/step1_resource.py`>}}
 
-Now we can deploy our resources
+Now we can deploy our resources.
 ```bash
 cdev deploy
 ```
@@ -74,7 +74,7 @@ cdev deploy
 ```bash
 pip install sqlalchemy_aurora_data_api
 ```
-Then, create a `src/hello_world/models.py` file and add the follow code
+Then, create a `src/hello_world/models.py` file and add the following code:
 
 {{<codesnippet `/source_code/diary_tutorial/models.py`>}}
 
@@ -140,14 +140,14 @@ quit
 ```
 
 ## Create Serverless Functions
-Now that the database is set up it is time to add some serverless functions.  We can start by uncommenting lines 5-6, 13, 43-44, and 53-58 of your `src/hello_world/resources.py` file.
+Now that the database is set up, it is time to add some serverless functions.  We can start by uncommenting lines 5-6, 13, 43-44, and 53-58 of your `src/hello_world/resources.py` file.
 {{<break >}}
 Then deploy the changes.
 ```bash
 cdev deploy
 ```
 
-run the deployed function
+Run the deployed function.
 ```bash
 cdev run function.execute hello_world_comp.hello_world_function
 ```
@@ -156,7 +156,7 @@ Check the logs from the function
 ```bash
 cdev run function.logs hello_world_comp.hello_world_function
 ```
-Next, we will add the routes and functions to create and retrieve our diary entries. First we will need to add a `src/hello_world/utils.py` file and add the following code to it.
+Next, we will add the routes and functions to create and retrieve our diary entries. First, we will need to add a `src/hello_world/utils.py` file and add the following code to it.
 
 {{<codesnippet `/source_code/diary_tutorial/utils.py`>}}
 
@@ -165,7 +165,7 @@ We will then add the following to our `src/hello_world/resources.py` file on lin
 from .utils import Response
 ```
 
-Next we need to add the following lines below the hello_route on line 24 of `src/hello_world/resources.py` so that our functions will have routes to be associated with.
+Next, we need to add the following lines below the hello_route on line 24 of `src/hello_world/resources.py` so that our functions will have routes to be associated with.
 
 {{<codesnippet `/source_code/diary_tutorial/routes.py`>}}
 
@@ -204,7 +204,7 @@ We can then update our `App.js` file in the `src` folder of our `React` app to t
 
 {{<codesnippet `/source_code/diary_tutorial/app.js`>}}
 
-You will need to update the api calls with your api enpoint. At this point you can test your functions on the live server.
+You will need to update the api calls with your API enpoint. At this point you can test your functions on the live server.
 
 ### Connecting to the Frontend URL
 Prepare the `React` application by creating a build folder with the following command:
