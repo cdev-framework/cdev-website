@@ -12,7 +12,7 @@ Learn how to store a link by texting it to a [Twilio](https://www.twilio.com/) n
 
 Twilio provides Api's to help developers integrate SMS into their applications. You can easily send automated text messages with Twilio, and also use webhooks to receive text messages. In this tutorial, we will be creating a `bot` with a SMS interface that allows us to text links to the bot and have those links saved in a Notion Database.
 
-{{<youtube "https://www.youtube.com/embed/xsvTsV6Aof0">}}
+{{<youtube "https://www.youtube.com/embed/Ayif-wDjXqE">}}
 
 {{<tool_tip key="tip" summary="Other Data Stores">}}
 In this tutorial, we are using Notion to store our links, but the way the tutorial is structured, you will only need to change the last step to send the links to a different service.
