@@ -110,7 +110,7 @@ cdev run function.logs hello_world_comp.db_handler
 
 
 {{<break 1>}}
-#### SqlAlchemy ORM
+### SqlAlchemy ORM
 One of the main benefits of SqlAlchemy is the option to use it's [powerful ORM](https://www.fullstackpython.com/sqlalchemy.html). To get the full use of the ORM, we are going to pair it with the [alembic](https://alembic.sqlalchemy.org) library to automatically generate the migration files when we update our models.
 
 Starting from the `quick-start` template, add a `relational db` to your resources.
