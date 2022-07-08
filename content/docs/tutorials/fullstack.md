@@ -233,6 +233,9 @@ In the root directory, within the `src` folder, create a folder named `content`.
 {{<break 1>}}
 
 Use the following command to copy the contents of the `React` app `build` folder to the root `src/content` folder.
+{{<tool_tip key="warning" summary="Change directory in terminal">}}
+Make sure you have changed back to your root directory in your terminal before doing the following command, otherwise your terminal will not be able to find the appropriate folders/files.  If you are still inside your `React` app folder you can use the command `cd ..` twice to return to your root directory for the project.
+{{</tool_tip>}}
 ```bash
 cp -r frontend/<your-app-name-here>/build/* src/content
 ```
