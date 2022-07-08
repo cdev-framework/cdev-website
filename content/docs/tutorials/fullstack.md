@@ -70,7 +70,9 @@ cdev deploy
 
 {{<break 1>}}
 **Next, we are going to create our database models.** Install `sqlalchemy_aurora_data_api`.
-
+{{<tool_tip key="tip" summary="Database models">}}
+`Database models` determine the logical structure of your database.  They determine how data can be stored, organized, and manipulated.
+{{</tool_tip>}}
 ```bash
 pip install sqlalchemy_aurora_data_api
 ```
@@ -78,7 +80,7 @@ Then, create a `src/hello_world/models.py` file and add the following code:
 
 {{<codesnippet `/source_code/diary_tutorial/models.py`>}}
 
-Now we are going to install and configure `alembic`.
+Now we are going to install and configure `alembic`.  Alembic is a database migration tool for usage with SQLAlchemy for Python.
 
 ```bash
 pip install alembic
@@ -186,7 +188,15 @@ cdev deploy
 {{<break 2>}}
 
 ## Create and Connect React Frontend
+To create a `React` application you will need to install `Node.js`, a `JavaScript Runtime`. 
+{{<tool_tip key="info" summary="Node.js Installation Instructions">}}
+#### Windows and MacOS
+Instructions for Windows and MacOs can be found here: **[Node JS Installers](https://nodejs.org/en/download/)**.
 
+#### Windows Subsystem for Linux(WSL)
+WSL instructions can be found here: **[Install Node.js on Windows Subsystem for Linux(WSL)](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)**.  
+
+{{</tool_tip>}}
 The first step is to create a frontend folder in our project to hold our React app. After creating the frontend folder run the following commands.
 ```bash
 cd frontend
