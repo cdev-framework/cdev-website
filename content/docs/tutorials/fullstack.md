@@ -14,7 +14,7 @@
 Create a site to create and keep diary entries to learn how Cdev can be used to create and manage full stack web applications.
 
 
-In this tutorial, we will be going through the entire process of creating a full stack application with Cdev. We will be focusing on demonstrating how Cdev can integrate with standard python tools and other development workflows to create a great developer experience. We will explain all the components and steps of this tutorial in depth, but it does help to have some familiarity with some of the technologies and concepts around full stack development.
+In this tutorial, we will be going through the entire process of creating a full stack application with Cdev. We will be focusing on demonstrating how Cdev can integrate with standard Python tools and other development workflows. We will explain all the components and steps of this tutorial in depth, but it does help to have some familiarity with some of the technologies and concepts around full stack development.
 
 - How the web works
 - Basics of Frontend Development (HTML, CSS, and JS)
@@ -45,7 +45,7 @@ We will be starting this tutorial from the standard `quick-start` template.
 cdev init diary-project --template quick-start
 ```
 
-Now we can deploy our project to get a live Webhook
+Now we can deploy our project to get a live REST Api
 
 ```bash
 cdev deploy
@@ -58,18 +58,18 @@ Base API URL -> <your-endpoint>
 {{<break>}}
 
 ## Create Database Connection
-For this project we will be utilizing a relational database and the SqlAlchemy ORM.  An in-depth example of how to set up SqlAlchemy ORM can be found in the examples section of our website as a part of the ["Integrate RelationalDBs"](https://cdevframework.io/docs/examples/relationaldb/#sqlalchemy-orm)chapter. 
+For this project we will be utilizing a relational database and the SqlAlchemy ORM.  An in-depth example of how to set up SqlAlchemy ORM can be found in the examples section of our website as a part of the [Integrate RelationalDBs](https://cdevframework.io/docs/examples/relationaldb/#sqlalchemy-orm) chapter. 
 
 Update your `src/hello_world/resources.py` file to: 
 {{<codesnippet `/source_code/diary_tutorial/step1_resource.py`>}}
 
-Now we can deploy our resources.
+Now we can deploy our new resources.
 ```bash
 cdev deploy
 ```
 
 {{<break 1>}}
-**Next, we are going to create our models.** Install `sqlalchemy_aurora_data_api`.
+**Next, we are going to create our database models.** Install `sqlalchemy_aurora_data_api`.
 
 ```bash
 pip install sqlalchemy_aurora_data_api
@@ -94,7 +94,7 @@ alembic init src/alembic
 Replace the code in your `src/alembic/env.py` with the following:
 {{<codesnippet `/source_code/diary_tutorial/alembic.py`>}}
 
-Now to make sure our values are registered in the `env.py` script, we need to set our environments. 
+Now to make sure our values are registered in the `env.py` script, we need to set our environment variables. 
 
 ```bash
 export SECRET_ARN=$(cdev output --value hello_world_comp.relationaldb.demo_db.secret_arn)
@@ -107,7 +107,7 @@ export DB_NAME=<db_name>
 ```
 {{<break 1>}}
 
-You should now be able to create automated migrations. 
+You can now create automated migrations. 
 
 {{<tool_tip key="warning" summary="Auto Generation limits">}}
 You should familiarize yourself with the [limits of alembic auto generation](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect) and **ALWAYS** confirm the changes before applying them.
@@ -122,23 +122,24 @@ alembic upgrade head
 ```
 
 {{<break 1>}}
-Lets now connect to our DB and add an User.
+Lets now connect to our DB and add an User. The following command will open an interactive session to the database that allows you to execute SQL statments.
 ```bash
 cdev run relationaldb.shell hello_world_comp.demo_db
 ```
+Run the following commands to add a diary entry to your database.
 ```sql
-BEGIN
+' (table_name) => ' BEGIN
 ```
 ```sql
-INSERT INTO entries(title, content) VALUES ('test entry','test our db connection');
+' (table_name) => 'INSERT INTO entries(title, content) VALUES ('test entry','test our db connection');
 ```
 ```sql
-COMMIT
+' (table_name) => 'COMMIT
 ```
 ```bash
-quit
+' (table_name) => 'quit
 ```
-
+{{<break 2>}}
 ## Create Serverless Functions
 Now that the database is set up, it is time to add some serverless functions.  We can start by uncommenting lines 5-6, 13, 43-44, and 53-58 of your `src/hello_world/resources.py` file.
 {{<break >}}
@@ -182,6 +183,8 @@ Then deploy the changes.
 cdev deploy
 ```
 
+{{<break 2>}}
+
 ## Create and Connect React Frontend
 
 The first step is to create a frontend folder in our project to hold our React app. After creating the frontend folder run the following commands.
@@ -205,7 +208,7 @@ We can then update our `App.js` file in the `src` folder of our `React` app to t
 {{<codesnippet `/source_code/diary_tutorial/app.js`>}}
 
 You will need to update the api calls with your API enpoint. At this point you can test your functions on the live server.
-
+ {{<break 1>}}
 ### Connecting to the Frontend URL
 Prepare the `React` application by creating a build folder with the following command:
 ```bash
