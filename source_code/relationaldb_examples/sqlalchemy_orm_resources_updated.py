@@ -19,13 +19,19 @@ DemoApi = Api("demoapi")
 hello_route = DemoApi.route("/hello_world", "GET")
 
 ## DB
+db_resource = "demo_db"
+username = "username"
+password ="pasword"
+db_name = "default_table"
+
 myDB = RelationalDB(
-  "demo_db",
+  db_resource,
   db_engine.aurora_postgresql,
-  "username",
-  "password",
-  "default_table"
+  username,
+  password,
+  db_name
 )
+
 
 ## Functions
 

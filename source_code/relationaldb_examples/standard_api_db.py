@@ -6,15 +6,19 @@ from cdev.resources.simple.relational_db import RelationalDB, db_engine
 from cdev.resources.simple.xlambda import simple_function_annotation
 
 
+db_resource = "demo_db"
+username = "username"
+password ="pasword"
 db_name = "default_table"
 
 myDB = RelationalDB(
-  "demo_db",
+  db_resource,
   db_engine.aurora_postgresql,
-  "username",
-  "password",
+  username,
+  password,
   db_name
 )
+
 
 @simple_function_annotation("db_handler", environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN":myDB.output.secret_arn, "DB_NAME": db_name}, permissions=[myDB.available_permissions.DATABASE_ACCESS,myDB.available_permissions.SECRET_ACCESS])
 def connect_to_db(event, context):

@@ -24,13 +24,19 @@ def hello_world(event, context):
     }
 
 
+db_resource = "demo_db"
+username = "username"
+password ="pasword"
+db_name = "default_table"
+
 myDB = RelationalDB(
-  "demo_db",
+  db_resource,
   db_engine.aurora_postgresql,
-  "username",
-  "password",
-  "default_table"
+  username,
+  password,
+  db_name
 )
+
 
 myProject.display_output("Base API URL", DemoApi.output.endpoint)
 myProject.display_output("Routes", DemoApi.output.endpoints)

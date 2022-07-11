@@ -7,16 +7,18 @@ from cdev.resources.simple.relational_db import RelationalDB, db_engine
 from cdev.resources.simple.xlambda import simple_function_annotation
 
 
+db_resource = "demo_db"
+username = "username"
+password ="pasword"
 db_name = "default_table"
 
 myDB = RelationalDB(
-  "demo_db",
+  db_resource,
   db_engine.aurora_postgresql,
-  "username",
-  "password",
+  username,
+  password,
   db_name
 )
-
 
 cluster_arn = os.environ.get("CLUSTER_ARN")
 secret_arn = os.environ.get("SECRET_ARN")
