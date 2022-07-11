@@ -21,7 +21,9 @@ Aurora Databases are designed to integrate with Serverless environments by execu
 {{<break 1>}}
 ## Creating a Relational DB
 {{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
-
+{{<tool_tip key="tip" summary="Database Info">}}
+If starting from the quick-start template place the code snippet from above in your `src/hello_world/resources.py` file.
+{{</tool_tip>}}
 
 {{<break 2>}}
 ## Accessing the DB from the CLI
@@ -29,6 +31,7 @@ Once you have created a DB, the fastest way to access the DB is through an inter
 ```bash
 cdev run relationaldb.shell <component_name>.<resource_name>
 ```
+`example: cdev run relationaldb.shell hello_world_comp.demo_db`
 {{<break 1>}}
 ### Create a Table
 **Mysql**
@@ -63,7 +66,10 @@ COMMIT
 ```sql
 ROLLBACK
 ```
-
+**Quit Transaction**
+```sql
+quit
+```
 
 {{<break 2>}}
 ## Connecting to a Relational DB with Python
@@ -132,7 +138,7 @@ cdev deploy
 ```bash
 pip install sqlalchemy_aurora_data_api
 ```
-Then, create a `src/hello_world/models.py` file and add the follow code
+Then, create a `src/hello_world/models.py` file and add the following code:
 
 {{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_models.py`>}}
 
@@ -151,7 +157,7 @@ alembic init src/alembic
 ```
 
 
-In the `src/alembic/eny.py` file, import the base declarative model from the `models.py` file, and set that as the `target_metadata` variable on line 20.
+In the `src/alembic/eny.py` file, import the base declarative model from the `models.py` file, and set that as the `target_metadata` variable on line 21.
 
 ```python
 from src.hello_world.models import Base
@@ -161,7 +167,7 @@ from src.hello_world.models import Base
 target_metadata = Base.metadata
 ```
 
-Then, change `line 59` to use `connect args` and our database engine.
+Then, change `line 62` to use `connect args` and our database engine.
 ```python
 connectable = create_engine(
         postgres_database_engine,
@@ -170,7 +176,7 @@ connectable = create_engine(
     )
 ```
 
-Above the `run_migrations_online` function declaration on `line 51`, add the follow lines and uncomment the database engine based on your type of db engine.
+Above the `run_migrations_online` function declaration on `line 55`, add the follow lines and uncomment the database engine based on your type of db engine.
 
 ```python
 import os
@@ -231,7 +237,7 @@ quit
 
 
 {{<break 1>}}
-Now we can updated our `src/hello_world/resources.py` to have our `Serverless Function` use the SqlAlchemy ORM to access our Database. Replace your `src/hello_world/resources.py` with the following code.
+Now we can update our `src/hello_world/resources.py` to have our `Serverless Function` use the SqlAlchemy ORM to access our Database. Replace your `src/hello_world/resources.py` with the following code.
 
 {{<codesnippet `/source_code/relationaldb_examples/sqlalchemy_orm_resources_updated.py`>}}
 
