@@ -76,7 +76,7 @@ Prepare the `React` application by creating a build folder with the following co
 npm run build
 ```
 {{<tool_tip key="info" summary="React Build">}}
-The command, `npm run build`, minifies files to create a production build of the `React` in order to reduce overall load and render times on the client-side. 
+The command, `npm run build`, minifies files to create a production build of the `React` app in order to reduce overall load and render times on the client-side. 
 {{</tool_tip>}}
 
 In the root directory, within the `src` folder, create a folder named `content`.
@@ -154,7 +154,7 @@ Use the command below to get the url of the `Static Site`.
 cdev output hello_world_comp.staticsite.demofrontend.site_url
 ```
 
-Copy and paste it into the browser to view the `Static Site`, `React` app.
+Copy and paste the url into the browser to view the `Static Site`, `React` app.
 {{<tutorial_image>}}
 /images/react_example/react_site.png
 {{</tutorial_image>}}
