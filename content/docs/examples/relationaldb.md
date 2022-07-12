@@ -21,7 +21,7 @@ Aurora Databases are designed to integrate with Serverless environments by execu
 {{<break 1>}}
 ## Creating a Relational DB
 {{<codesnippet `/source_code/relationaldb_examples/basic_db.py`>}}
-{{<tool_tip key="tip" summary="Database Info">}}
+{{<tool_tip key="tip" summary="Database Variables Tip">}}
 If starting from the quick-start template place the code snippet from above in your `src/hello_world/resources.py` file.
 {{</tool_tip>}}
 
@@ -66,7 +66,7 @@ COMMIT
 ```sql
 ROLLBACK
 ```
-**Quit Transaction**
+**Quit Interactive Shell**
 ```sql
 quit
 ```
