@@ -76,7 +76,7 @@ cdev run function -h
 
 {{<break 1>}}
 ## Responding to Events
-One of the most important aspects of Serverless Functions is that they can triggered by different `Events`. By passing an `Event` construct into the args of your `Serverless Function`, your deployed `Serverless Function` will be triggered by the event in the Cloud. The following demonstrates a `Serverless Function` being hooked up to an Api `Route Event`.
+One of the most important aspects of Serverless Functions is that they can be triggered by different `Events`. By passing an `Event` construct into the args of your `Serverless Function`, your deployed `Serverless Function` will be triggered by the event in the Cloud. The following demonstrates a `Serverless Function` being hooked up to an Api `Route Event`.
 {{<codesnippet `/source_code/function_examples/event_function.py`>}}
 
 You can now get the url of the created `Api` and execute your function by going to the `/hello` route.
