@@ -102,6 +102,16 @@ examples
 ```
 {{</tool_tip>}}
 
+{{<tool_tip key="output" summary="Output" closed="closed">}}
+Information about expected output from a command
+```
+output
+output
+examples
+```
+{{</tool_tip>}}
+
+
 
 ## Images
 {{<tutorial_image>}}
