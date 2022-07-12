@@ -93,6 +93,16 @@ Information about Cdev
 {{</tool_tip>}}
 
 
+{{<tool_tip key="output" summary="Output">}}
+Information about expected output from a command
+```
+output
+output
+examples
+```
+{{</tool_tip>}}
+
+
 ## Images
 {{<tutorial_image>}}
 /images/link_bot_tutorial/notion_share_db_with_integration.png
