@@ -10,15 +10,33 @@
         </div>
         <div class="col-md-6">
           <div class="bg-white p-4">
-            <h3>Sign up for updates!</h3>
-            <form action="{{ .Site.Params.form.formAction | safeURL }}">
-              <input type="text" id="first_name" name="first_name" class="form-control mb-4 px-0 name" placeholder="First name">
-              <input type="text" id="last_name" name="last_name" class="form-control mb-4 px-0 name" placeholder="Last name">
-              <input type="text" id="email" name="email" class="form-control mb-4 px-0 email" placeholder="Email address">
-              <input type="text" id="dob" name="date_of_birth" class="form-control mb-4 px-0 dob"  placeholder="date of birth">
-              <button class="btn btn-primary" type="submit" id='email-submit'>Submit</button>
-            </form>
-            <p class="email-message" id="email-message"></p>
+            <!-- Begin Mailchimp Signup Form -->
+            <!-- Edited to use our theme -->
+
+          <div id="mc_embed_signup">
+          <form action="https://cdevframework.us17.list-manage.com/subscribe/post?u=c2af03c0f8d1a664afab045a6&amp;id=ce0a9d0ddc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    
+          <h3>Sign up for updates!</h3>
+          
+          <input type="email" value="" name="EMAIL" class="required email form-control mb-4 px-0" id="mce-EMAIL" placeholder="Email">
+          <input type="text" value="" name="LNAME" class="email form-control mb-4 px-0" id="mce-LNAME" placeholder="First name">
+          <input type="text" value="" name="FNAME" class="email form-control mb-4 px-0" id="mce-FNAME" placeholder="Last name">
+          <div id="mce-responses" class="clear foot">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+          </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c2af03c0f8d1a664afab045a6_ce0a9d0ddc" tabindex="-1" value=""></div>
+                  <div class="optionalParent">
+                      <div class="clear foot">
+                          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+                        
+                      </div>
+                  </div>
+              </div>
+          </form>
+          </div>
+
+          <!--End mc_embed_signup-->
           </div>
         </div>
       </div>
