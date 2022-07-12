@@ -15,7 +15,11 @@
 User Authentication and Management is one of the most important aspects in application development.
 
 With the `Cdev API` resource, we can add granular [User Authorization](https://auth0.com/intro-to-iam/what-is-authorization/) and [Role-Based Access Control (RBAC)](https://auth0.com/docs/manage-users/access-control/rbac) to any backend. The `Cdev API` resource supports
-user authentication through [JSON Web Tokens(JWT)](https://jwt.io/introduction)(need more details on the specifics).
+user authentication through [JSON Web Tokens(JWT)](https://jwt.io/introduction).
+
+{{<tool_tip key="info" summary="JWT Authentication">}}
+You can learn more about JWT authentication [here](https://auth0.com/docs/secure/tokens/json-web-tokens).
+{{</tool_tip>}}
 
 For these examples, we will be using [Auth0](https://auth0.com/) as our User Authorization platform and integrating their service into our API's. Auth0 provides great tutorials and we based the following examples off their [official documentation](https://auth0.com/blog/securing-aws-http-apis-with-jwt-authorizers/) and a [helpful blog by Sandrino Di Mattia](https://sandrino.dev/blog/aws-api-gateway-jwt-auth0).
 
@@ -73,6 +77,7 @@ Or, by going to the url `https://<your_endpoint>/live/demo` in your browser.
 
 {{<break 1>}}
 ## Setting up Auth0
+[Auth0](https://auth0.com/docs/get-started/auth0-overview) is a cloud-based identity management service that uses `APIs` and data syncing to provide authentication and authorization services for applications. 
 You can create a [trial Auth0 account](https://auth0.com/signup) that has a free tier of 7,000 active users and unlimited logins with no required credit card. 
 
 
@@ -102,7 +107,17 @@ We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. 
 {{<break 2>}}
 
 ### Creating our Authorizer
-We can now create an `Authorizer` for our Cdev API. 
+We can now create an `Authorizer` for our Cdev API. An `Authorizer` is a function that adds an additional layer of access control to an API endpoint. For example, preventing an authenticated users from accessing data that requires admin authorization.
+
+{{<tool_tip key="info" summary="More About Authorizers">}}
+For more information about Authorizers you can:
+
+Get an understanding of the differences between **[Authentication and Authorization](https://auth0.com/docs/get-started/identity-fundamentals/authentication-and-authorization)**.
+
+Learn about **[AWS Lambda Authorizors](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)**.
+
+Learn how to  **[Controlling Access to HTTP APIs with JWT Authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html)**.
+{{</tool_tip>}}
 
 Update your `/src/resources.py` file to the follow, replacing the values on lines `13` and `14`. 
 
@@ -124,7 +139,18 @@ By setting the `default_authorizer` property on the `API`, all created routes wi
 curl -i https://<your_endpoint>/live/demo
 ```
 
-Now we must have the correct authorization to be able to access this endpoint. In the `Test` tab on the `API` page, `Auth0` provides a testing token that can be used to test that the authorization is working correctly.
+Now, we must have the correct authorization to be able to access this endpoint. In the `Test` tab on the `API` page, `Auth0` provides a testing token that can be used to test that the authorization is working correctly.
+{{<tool_tip key="info" summary="Test Your Authenticated API">}}
+You can use your preferred `API Development and Testing Tool` to test your `API` or, download and use one of the following:
+
+**[Insomnia](https://insomnia.rest/)**
+{{<break 1>}}
+**[Postman](https://www.postman.com/)**
+{{<break 1>}}
+**[Swagger](https://swagger.io/)**
+
+You can find more information about `API Development and Testing Tools`, in a **[collection of resources for building and maintaining RESTful APIs](https://github.com/yosriady/api-development-tools)** maintained by [Yos Raidy](https://github.com/yosriady).
+{{</tool_tip>}}
 
 {{<tutorial_image>}}
 /images/autho_examples/api_test_command.jpg
@@ -135,7 +161,7 @@ Now we must have the correct authorization to be able to access this endpoint. I
 We are now going to add a simple HTML page that demonstrates the general concepts of how to create a User Sign-up and Sign-in flow for your application. 
 
 ### Add Static Site Resource
-Update lines `7`, `37`, and `41` to add a static front end hosting resource.
+Update lines `7`, `37`, and `41` to add a `Static Site` resource to hour demo frontend content.
 
 {{<codesnippet `/source_code/userauth_examples/add_frontend_resource.py`>}}
 
