@@ -12,3 +12,4 @@ The project follows the general structure of a `hugo` project, and to work with 
 ### Developing 
 
 Once the live server is up, you can go to `/dev_playground/playground/` to see how the different components are currently rendered.
+
