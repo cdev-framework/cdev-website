@@ -10,11 +10,14 @@ The project follows the general structure of a `hugo` project, and to work with 
 ## Install steps
 ```
 wget https://github.com/gohugoio/hugo/releases/download/v0.93.3/hugo_0.93.3_Linux-64bit.deb
+```
+```
 sudo dpkg -i hugo_0.93.3_Linux-64bit.deb
+```
 then make your directory, clone cdev-website then cd into it
+```
 hugo server
 ```
-
 
 ### Developing 
 
