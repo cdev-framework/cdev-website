@@ -161,7 +161,7 @@ You can find more information about `API Development and Testing Tools`, in a **
 We are now going to add a simple HTML page that demonstrates the general concepts of how to create a User Sign-up and Sign-in flow for your application. 
 
 ### Add Static Site Resource
-Update lines `7`, `37`, and `41` to add a `Static Site` resource to hour demo frontend content.
+Update lines `7`, `37`, and `41` to add a `Static Site` resource to our demo frontend content.
 
 {{<codesnippet `/source_code/userauth_examples/add_frontend_resource.py`>}}
 
