@@ -32,7 +32,7 @@ WSL instructions can be found here: **[Install Node.js on Windows Subsystem for 
 {{</tool_tip>}}
 {{<break 1>}}
 
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Getting Started](/docs/gettingstarted)** section to initialize a `Cdev project` before continuing.
+The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted)** section to initialize a `Cdev project` before continuing.
 
 {{<tutorial_image>}}
 /images/react_example/init_structure.png
