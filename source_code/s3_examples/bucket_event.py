@@ -12,13 +12,13 @@ myBucket_event = myBucket.create_event_trigger(Bucket_Event_Type.Object_Created)
 s3_client = boto3.client('s3')
 
 
-@simple_function_annotation("read_function", events=[myBucket_event], environment={"BUCKET_NAME": myBucket.output.bucket_name}, permissions=[myBucket.available_permissions.READ_AND_WRITE_BUCKET, myBucket.available_permissions.READ_EVENTS])
+@simple_function_annotation("read_function", events=[myBucket_event], environment={"BUCKET_NAME": myBucket.output.bucket_name}, permissions=[myBucket.available_permissions.LIST_BUCKET])
 def read_object(event, context):
 
   bucket_name = os.environ.get('BUCKET_NAME')
 
-  print(
-    s3_client.list_objects(
-      Bucket=bucket_name
-    ).get('Contents')
-  )
+  result = s3_client.list_objects(Bucket=bucket_name).get('Contents')
+
+  print(result)
+
+  return {"message": str(result)}
