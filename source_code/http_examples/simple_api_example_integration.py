@@ -18,10 +18,10 @@ def hello_world(event, context):
     }
 
     return {
-        "isBase64Encoded": False,
-        "statusCode": 200,
-        "body": json.dumps(message),
-        "headers": {
-          "content-type": "application/json"
+            "isBase64Encoded": False,
+            "statusCode": 200,
+            "body": json.dumps(message),
+            "headers": {
+            "content-type": "application/json"
         } 
     }
