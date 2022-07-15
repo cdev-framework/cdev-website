@@ -32,7 +32,7 @@ Execute the function.
 ```bash
 cdev run function.execute hello_world_comp.email_adder --event-data "{\"body\":{\"first_name\":\"Paul\",\"last_name\":\"Atreides\",\"email\":\"Muaddib@dune.com\"}}"
 ```
-You can run the function above a few times after making changes to the email address (and other fields if you wish, but the email is mandatory as it is the primary key), to add more entries to your database and then excute the scan function with the command below:
+You can run the function above a few times after making changes to the email address (and other fields if you wish, but the email is mandatory as it is the primary key), to add more entries to your database and then execute the scan function with the command below:
 ```bash
 cdev run function.execute hello_world_comp.scan
 ```
