@@ -28,15 +28,12 @@ For these examples, we will be using [Auth0](https://auth0.com/) as our User Aut
 ## Set Up
 You will need to use the **[Getting Started](/docs/gettingstarted)** section and follow the instructions for installing the **[Cdev SDK](/docs/gettingstarted/installingcdev)** with the following **EXCEPTION**:
 
-Initialize the project with the `user_auth` template instead of the `quick-start` template by using the following command, 
+Use the `user_auth` template to initialize the project.
 
 ```bash 
 cdev init user-auth-demo --template user-auth
 ```
-instead of this command:
-```bash 
-cdev init demo-project --template quick-start
-```
+
 {{<tool_tip key="question" summary="Why use different templates?">}}
 The `user-auth` and `quick-start` templates differ in that each are initialized with a component, route, function and dependencies that are specific to the example in order to demonstrate the example with clarity.
 {{</tool_tip>}}
@@ -107,17 +104,9 @@ We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. 
 {{<break 2>}}
 
 ### Creating our Authorizer
-We can now create an `Authorizer` for our Cdev API. An `Authorizer` is a function that adds an additional layer of access control to an API endpoint. For example, preventing an authenticated users from accessing data that requires admin authorization.
+We can now create an `Authorizer` for our Cdev API. The `Authorizer` provides the information needed to configure a JWT authorizer that adds an additional layer of access control to an API endpoint. For example, preventing an authenticated users from accessing data that requires admin authorization.
 
-{{<tool_tip key="info" summary="More About Authorizers">}}
-For more information about Authorizers you can:
 
-Get an understanding of the differences between **[Authentication and Authorization](https://auth0.com/docs/get-started/identity-fundamentals/authentication-and-authorization)**.
-
-Learn about **[AWS Lambda Authorizors](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)**.
-
-Learn how to  **[Controlling Access to HTTP APIs with JWT Authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html)**.
-{{</tool_tip>}}
 
 Update your `/src/resources.py` file to the follow, replacing the values on lines `13` and `14`. 
 
