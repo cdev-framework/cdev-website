@@ -17,17 +17,6 @@ All of the following examples are available in the `power-tools` template projec
 ```bash
 cdev init demo --template power-tools
 ```
-Within the `src` folder, find the `__init__.py file` and copy and paste it into the `src/examples` sub-folder.
-{{<tutorial_image>}}
-/images/powertools_example/powertools_structure.png
-{{</tutorial_image>}}
-{{<break 1>}}
-
-The file structure will look like this:
-{{<tutorial_image>}}
-/images/powertools_example/powertools_add_init.png
-{{</tutorial_image>}}
-{{<break 2>}}
 
 ```bash
 cdev deploy
