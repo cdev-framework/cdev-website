@@ -37,16 +37,6 @@ Now, intergrate your route with a [Serverless Function](/docs/examples/functions
 
 
 {{<break 1>}}
-### Register your GET route
-Open the `src/cdev_project.py` file and register your `GET` route by replacing `lines 15-17` with the following:
-
-```bash
-myProject.add_component(
-    Cdev_FileSystem_Component(os.path.join("src", "hello_world"), "hello_world_get_route")
-)
-```
-
-{{<break 1>}}
 ### Get your endpoint
 Save and deploy your endpoint with the following commands:
 ```bash
@@ -103,14 +93,6 @@ def hello_world(event, context):
 The `src/hello_world/resources.py` now looks like:
 {{<codesnippet `/source_code/http_examples/simple_api_example_post_serverless.py`>}}
 
-### Register your POST route
-Open `src/cdev_project.py` file and register your `POST` route by replacing `lines 15-17` with the following:
-
-```bash
-myProject.add_component(
-    Cdev_FileSystem_Component(os.path.join("src", "hello_world"), "send_data_route")
-)
-```
 
 {{<break 1>}}
 ### Get your POST endpoint
