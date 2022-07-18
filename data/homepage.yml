@@ -2,7 +2,7 @@
 banner:
   bgImage : "images/banner/banner2.jpg"
   title : "Cdev"
-  subtitle: "Serverless development framework,
+  subtitle: "Python Serverless development framework,
   start building Serverless applications,
   or how I learned to stop worrying and love Serverless"
 
