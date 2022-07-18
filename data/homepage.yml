@@ -2,9 +2,9 @@
 banner:
   bgImage : "images/banner/banner2.jpg"
   title : "Cdev"
-  subtitle: "serverless development framework,
-  start building serverless applications,
-  or how I learned to stop worrying and love serverless"
+  subtitle: "Serverless development framework,
+  start building Serverless applications,
+  or how I learned to stop worrying and love Serverless"
 
 ########################### services ##################################
 service:
