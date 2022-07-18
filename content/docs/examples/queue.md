@@ -12,7 +12,7 @@
 # Message Queues
 {{<header_divider>}}
 
-Message Queue that allows for events to be transmitted
+`Message Queueing` is an archetecture technique for asynchronous communication across independent applications or services. There are many benefits to using message queues, for more information on message queues you can checkout [this article by IBM](https://www.ibm.com/cloud/learn/message-queues).  This example will show you how to create and integrate a message queue that allows for events to be transmitted.
 
 {{<break 1>}}
 ### Basic Queue
