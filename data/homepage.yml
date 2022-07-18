@@ -10,11 +10,8 @@ banner:
 service:
   enable : true
   title : "The Cdev Framework"
-  subtitle : "A framework that enables scalability and manageability for software projects 
-  of any size. By building on top of Serverless compute platforms, developers can start building projects without worrying about
-  setting up hosting configuration. As your project begins to outgrow the limits of the starting architecture, transition it
-  without having to start from scratch."
-  # service item comes from 'service.yml'
+  subtitle : "A Python based Serverless development framework that is designed to provide all the tools needed to effectively build applications. 
+  Cdev helps developers build projects without worrying about setting up hosting configuration by managing the deployment of projects onto cloud provider's Serverless platforms."
 
 pip:
   message: "pip install cdev"
