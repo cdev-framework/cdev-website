@@ -8,8 +8,8 @@
     "weight": "4"
 }
 
-# Aws Lambda Powertools
-[An open source set of utilities](https://awslabs.github.io/aws-lambda-powertools-python/latest/) managed by Aws that provide out of the box functionality for tracing, logging, custom metrics, middleware, etc for `Serverless Functions`. These tools help teams implement best practices around Serverless development with little overhead. You can install the tools using `pip`.
+# AWS Lambda Powertools
+[An open source set of utilities](https://awslabs.github.io/aws-lambda-powertools-python/latest/) managed by AWS that provide out of the box functionality for tracing, logging, custom metrics, middleware, etc., for `Serverless Functions`. These tools help teams implement best practices around Serverless development with little overhead. You can install the tools using `pip`.
 ```bash
 pip install aws-lambda-powertools
 ```
@@ -17,22 +17,33 @@ All of the following examples are available in the `power-tools` template projec
 ```bash
 cdev init demo --template power-tools
 ```
+Within the `src` folder, find the `__init__.py file` and copy and paste it into the `src/examples` sub-folder.
+{{<tutorial_image>}}
+/images/powertools_example/powertools_structure.png
+{{</tutorial_image>}}
+{{<break 1>}}
+
+The file structure will look like this:
+{{<tutorial_image>}}
+/images/powertools_example/powertools_add_init.png
+{{</tutorial_image>}}
+{{<break 2>}}
 
 ```bash
 cdev deploy
 ```
 
 {{<tool_tip key="tip" summary="More Information">}}
-To learn more about the tool you can read this [blog](https://aws.amazon.com/blogs/opensource/simplifying-serverless-best-practices-with-lambda-powertools/) from Aws. The [power tools library](https://awslabs.github.io/aws-lambda-powertools-python/latest) contains more constructs than listed here, and we are working hard on making the Cdev framework work with them.
+To learn more about the tool you can read this [blog](https://aws.amazon.com/blogs/opensource/simplifying-serverless-best-practices-with-lambda-powertools/) from AWS. The [power tools library](https://awslabs.github.io/aws-lambda-powertools-python/latest) contains more constructs than listed here, and we are working hard on making the Cdev framework work with them.
 {{</tool_tip>}}
 
 
 {{<break 1>}}
 ## Tracing
-The tracing library provides a wrapper over `AWS X-Ray` that allows you to quickly get started by using the `@tracer` annotation. To send traces to `AWS X-Ray`, you will need to give your function the correct permissions, which you can grant with the Aws Managed role `AWSXRayDaemonWriteAccess`. 
+The tracing library provides a wrapper over `AWS X-Ray` that allows you to quickly get started by using the `@tracer` annotation. To send traces to `AWS X-Ray`, you will need to give your function the correct permissions, which you can grant with the AWS Managed role `AWSXRayDaemonWriteAccess`. 
 
-{{<tool_tip key="tip" summary="Using Aws Managed Roles">}}
-You can use any Aws Managed IAM Role by wrapping it in a `PermissionArn` Object.
+{{<tool_tip key="tip" summary="Using AWS Managed Roles">}}
+You can use any AWS Managed IAM Role by wrapping it in a `PermissionArn` Object.
 ```python
 from cdev.resources.simple.iam import PermissionArn
 
@@ -101,7 +112,7 @@ cdev run function.logs power_tools.middleware_example
 
 {{<break 1>}}
 ## Data Classes
-Although all Aws `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help understand the structure of the data inside the function. The `powertools` library provides a set of classes to wrap a triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
+Although all AWS `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help you understand the structure of the data inside the function. The `powertools` library provides a set of classes that wrap the triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
 
 {{<codesnippet `/source_code/power_tools_examples/dataclass_example.py`>}}
 
@@ -118,7 +129,7 @@ cdev run function.logs power_tools.dataclass_example
 ```
 
 {{<tool_tip key="error" summary="Data Classes Limitations">}}
-The implementation of `Data Classes` do not provide any guarantees of data validation. If an event does not conform to the expect form of a certain `Data Class`, it will not throw an error until a non-existent property is accessed. For example, triggering the above function directly will lead to an error.
+The implementation of `Data Classes` do not provide any guarantees of data validation. If an event does not conform to the expected form of a certain `Data Class`, it will not throw an error until a non-existent property is accessed. For example, triggering the above function directly will lead to an error.
 
 ```bash
 cdev run function.execute power_tools.dataclass_example
