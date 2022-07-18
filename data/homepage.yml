@@ -2,8 +2,8 @@
 banner:
   bgImage : "images/banner/banner2.jpg"
   title : "Cdev"
-  subtitle: "dynamic software development framework,
-  start building scalable Serverless applications,
+  subtitle: "Serverless development framework,
+  start building Serverless applications,
   or how I learned to stop worrying and love Serverless"
 
 ########################### services ##################################
@@ -11,7 +11,7 @@ service:
   enable : true
   title : "The Cdev Framework"
   subtitle : "A framework that enables scalability and manageability for software projects 
-  of any size. By building on top of Serverless compute platforms, developers can start building projects faster without worrying about
+  of any size. By building on top of Serverless compute platforms, developers can start building projects without worrying about
   setting up hosting configuration. As your project begins to outgrow the limits of the starting architecture, transition it
   without having to start from scratch."
   # service item comes from 'service.yml'

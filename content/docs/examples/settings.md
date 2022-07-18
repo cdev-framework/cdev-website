@@ -130,13 +130,32 @@ Each Cdev `Environment` has it's own dedicated dynamic module in the `settings/`
 
 
 {{<tool_tip key="warning" summary="Settings Lifecycle">}}
-Note that the life cycle of a `Setting` class is that it is initialized as a child of the Pydantic `Base Settings` then the Dynamic Setting Modules are applied. This means if you have a required property that is only set via a Dynamic Setting Module, it will fail to initially create the class because of a `Pydantic` validation error. This can be avoided be either providing a default value when creating the `Custom Setting Class` or making the property as `Optional`.
+Note that the life cycle of a `Setting` class is that it is initialized as a child of the Pydantic `Base Settings` then the Dynamic Setting Modules are applied. This means if you have a required property that is only set via a Dynamic Setting Module, it will fail to initially create the class because of a `Pydantic` validation error. This can be avoided by either providing a default value when creating the `Custom Setting Class` or making the property as `Optional`.
 
 {{</tool_tip>}}
+{{<break 1>}}
 
+## Working In Teams
+When working on a project with a team of developers it is wise for each developer to have their own environment during development.  Creating a new environment is as simple as running the following command:
+```bash
+cdev environment create <name of your environment>
+```
+After you create your environment you can switch to it by running the following command:
+```bash
+cdev environment set <name of your environment>
+```
+Whenever you change environments you need to update your settings by running the following command:
+```bash
+cdev environment settings_information --key base_class --new-value src.project_settings.CustomSettings
+```
 
-
-
+{{<tool_tip key="tip" summary="Selecting Environments">}}
+At any point you can check what environments are available by running the following command:
+```bash
+cdev environment ls
+```
+There will be an arrow pointing to which environment is currently being used if one is set.
+{{</tool_tip>}}
 
 
 

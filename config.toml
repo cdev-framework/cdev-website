@@ -1,7 +1,7 @@
 ################################### Default Configuration ############################
 baseURL = "https://exampleSite.com"
 languageCode = "en-us"
-title = "Cdev | Dynamic Serverless Framework"
+title = "Cdev | Serverless Development Framework"
 
 
 

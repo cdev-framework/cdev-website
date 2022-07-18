@@ -61,3 +61,9 @@ def add_email_handler(event, context):
             "mode": "no-cors"
         }
     }
+@simple_function_annotation("scan", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
+def scan(event, context):
+    table = client.Table(table_name)
+    response=table.scan()
+    response['Items']
+    print(response)

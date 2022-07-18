@@ -4,7 +4,7 @@
     "title": "Powertools",
     "linktitle": "powertools",
     "card_icon": "ti-hummer",
-    "card_body": "Integrate Aws Lambda Powertools",
+    "card_body": "Integrate AWS Lambda Powertools",
     "weight": "4"
 }
 
@@ -31,7 +31,8 @@ To learn more about the tool you can read this [blog](https://aws.amazon.com/blo
 ## Tracing
 The tracing library provides a wrapper over `AWS X-Ray` that allows you to quickly get started by using the `@tracer` annotation. To send traces to `AWS X-Ray`, you will need to give your function the correct permissions, which you can grant with the AWS Managed role `AWSXRayDaemonWriteAccess`. 
 
-{{<tool_tip key="tip" summary="Using AWS Managed Roles">}}
+{{<tool_tip key="tip" summary="Using Aws Managed Roles">}}
+
 You can use any AWS Managed IAM Role by wrapping it in a `PermissionArn` Object.
 ```python
 from cdev.resources.simple.iam import PermissionArn
@@ -54,7 +55,7 @@ cdev run function.logs power_tools.tracer_example
 
 {{<break 1>}}
 ## Logging
-The logger libraries provides a standardized interface for logging information. By default, it outputs the logs as structured JSON.
+The logger libraries provide a standardized interface for logging information. By default, it outputs the logs as structured `JSON`.
 {{<codesnippet `/source_code/power_tools_examples/logging_example.py`>}}
 
 ```bash
@@ -101,7 +102,8 @@ cdev run function.logs power_tools.middleware_example
 
 {{<break 1>}}
 ## Data Classes
-Although all AWS `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help you understand the structure of the data inside the function. The `powertools` library provides a set of classes that wrap the triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
+
+Although all AWS `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help understand the structure of the data inside the function. The `powertools` library provides a set of classes to wrap a triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
 
 {{<codesnippet `/source_code/power_tools_examples/dataclass_example.py`>}}
 
