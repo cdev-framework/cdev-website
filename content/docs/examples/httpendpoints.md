@@ -26,7 +26,7 @@ Open the `src/hello_world/resources.py` file and start by importing the followin
 
 {{<break 1>}}
 ## Create a route
-Next, add lines `lines 8, 10 and 12` to define your project, `API` and create your route.
+Next, add `lines 8, 10 and 12` to define your project, `API` and create your route.
 {{<codesnippet `/source_code/http_examples/simple_api_example_create_route.py`>}}
 
 
@@ -35,16 +35,6 @@ Next, add lines `lines 8, 10 and 12` to define your project, `API` and create yo
 Now, intergrate your route with a [Serverless Function](/docs/examples/functions/) by adding `lines 10 - 35`.
 {{<codesnippet `/source_code/http_examples/simple_api_example_get_serverless.py`>}}
 
-
-{{<break 1>}}
-### Register your GET route
-Open the `src/cdev_project.py` file and register your `GET` route by replacing `lines 15-17` with the following:
-
-```bash
-myProject.add_component(
-    Cdev_FileSystem_Component(os.path.join("src", "hello_world"), "hello_world_get_route")
-)
-```
 
 {{<break 1>}}
 ### Get your endpoint
@@ -83,6 +73,7 @@ def hello_world(event, context):
 
     print(event)
 
+
     data = json.loads(event.get("body"))
 
     print(data)
@@ -103,14 +94,6 @@ def hello_world(event, context):
 The `src/hello_world/resources.py` now looks like:
 {{<codesnippet `/source_code/http_examples/simple_api_example_post_serverless.py`>}}
 
-### Register your POST route
-Open `src/cdev_project.py` file and register your `POST` route by replacing `lines 15-17` with the following:
-
-```bash
-myProject.add_component(
-    Cdev_FileSystem_Component(os.path.join("src", "hello_world"), "send_data_route")
-)
-```
 
 {{<break 1>}}
 ### Get your POST endpoint
