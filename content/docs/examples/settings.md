@@ -130,7 +130,7 @@ Each Cdev `Environment` has it's own dedicated dynamic module in the `settings/`
 
 
 {{<tool_tip key="warning" summary="Settings Lifecycle">}}
-Note that the life cycle of a `Setting` class is that it is initialized as a child of the Pydantic `Base Settings` then the Dynamic Setting Modules are applied. This means if you have a required property that is only set via a Dynamic Setting Module, it will fail to initially create the class because of a `Pydantic` validation error. This can be avoided be either providing a default value when creating the `Custom Setting Class` or making the property as `Optional`.
+Note that the life cycle of a `Setting` class is that it is initialized as a child of the Pydantic `Base Settings` then the Dynamic Setting Modules are applied. This means if you have a required property that is only set via a Dynamic Setting Module, it will fail to initially create the class because of a `Pydantic` validation error. This can be avoided by either providing a default value when creating the `Custom Setting Class` or making the property as `Optional`.
 
 {{</tool_tip>}}
 {{<break 1>}}
