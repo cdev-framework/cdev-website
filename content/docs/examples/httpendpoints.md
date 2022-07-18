@@ -26,7 +26,7 @@ Open the `src/hello_world/resources.py` file and start by importing the followin
 
 {{<break 1>}}
 ## Create a route
-Next, add lines `lines 8, 10 and 12` to define your project, `API` and create your route.
+Next, add `lines 8, 10 and 12` to define your project, `API` and create your route.
 {{<codesnippet `/source_code/http_examples/simple_api_example_create_route.py`>}}
 
 
