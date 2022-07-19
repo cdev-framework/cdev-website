@@ -9,6 +9,7 @@
 }
 
 # AWS Lambda Powertools
+{{<header_divider>}}
 [An open source set of utilities](https://awslabs.github.io/aws-lambda-powertools-python/latest/) managed by AWS that provide out of the box functionality for tracing, logging, custom metrics, middleware, etc., for `Serverless Functions`. These tools help teams implement best practices around Serverless development with little overhead. You can install the tools using `pip`.
 ```bash
 pip install aws-lambda-powertools
@@ -31,7 +32,8 @@ To learn more about the tool you can read this [blog](https://aws.amazon.com/blo
 ## Tracing
 The tracing library provides a wrapper over `AWS X-Ray` that allows you to quickly get started by using the `@tracer` annotation. To send traces to `AWS X-Ray`, you will need to give your function the correct permissions, which you can grant with the AWS Managed role `AWSXRayDaemonWriteAccess`. 
 
-{{<tool_tip key="tip" summary="Using Aws Managed Roles">}}
+{{<tool_tip key="tip" summary="Using AWS Managed Roles">}}
+
 You can use any AWS Managed IAM Role by wrapping it in a `PermissionArn` Object.
 ```python
 from cdev.resources.simple.iam import PermissionArn
@@ -101,7 +103,8 @@ cdev run function.logs power_tools.middleware_example
 
 {{<break 1>}}
 ## Data Classes
-Although all AWS `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help understand the structure of the data inside the function. The `powertools` library provides a set of classes to wrap a triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
+
+Although all AWS `Serverless Functions` by default should [conform to the same signature ](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html), it can be helpful to have `typing` information about the event that is triggering the function. This information can help you to understand the structure of the data inside the function. The `powertools` library provides a set of classes to wrap a triggering `Event` to provide this additional information. A list of all the available events can be found on the [official documentation pages](https://docs.aws.amazon.com/lambda/latest/dg/python-handler.html).
 
 {{<codesnippet `/source_code/power_tools_examples/dataclass_example.py`>}}
 

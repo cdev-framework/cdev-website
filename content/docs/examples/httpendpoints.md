@@ -73,6 +73,7 @@ def hello_world(event, context):
 
     print(event)
 
+
     data = json.loads(event.get("body"))
 
     print(data)
