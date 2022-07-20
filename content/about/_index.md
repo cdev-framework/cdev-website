@@ -8,7 +8,7 @@
 Overall page structure and ideas to convey
 
 # High level goals of cdev
-- Expand the amount of people that can create effectively software by themselves and within organizations
+- Expand the amount of people that can effectively create software by themselves and within organizations
 
 # current state
 - Public Python SDK 
