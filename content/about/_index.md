@@ -12,7 +12,7 @@ Overall page structure and ideas to convey
 
 # current state
 - Public Python SDK 
-- Use it to create Serverless applications on Aws
+- Use it to create Serverless applications on AWS
 - Rough edges
 
 # next steps 
