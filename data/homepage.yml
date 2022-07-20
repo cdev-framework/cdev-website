@@ -11,7 +11,7 @@ service:
   enable : true
   title : "The Cdev Framework"
   subtitle : "A Python based Serverless development framework that is designed to provide all the tools needed to effectively build applications. 
-  Cdev helps developers build projects without worrying about setting up hosting configuration by managing the deployment of projects onto cloud provider's Serverless platforms."
+  Cdev helps developers build projects without worrying about setting up hosting configurations by managing the deployment of projects onto cloud provider's Serverless platforms."
 
 pip:
   message: "pip install cdev"
