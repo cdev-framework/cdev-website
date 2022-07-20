@@ -13,8 +13,8 @@ def entries_serializer(obj_list):
 @simple_function_annotation("get_entries_function", events=[get_entries_route.event()], 
 environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN": myDB.output.secret_arn, "DB_NAME": myDB.database_name}, 
 permissions=[myDB.available_permissions.DATABASE_ACCESS, myDB.available_permissions.SECRET_ACCESS])
-def get_entriess(event, context):
-    print('Hello from inside your get entriess Function!')
+def get_entries(event, context):
+    print('Hello from inside your get entries Function!')
 
     session = Session(engine)
     try:
