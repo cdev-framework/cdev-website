@@ -6,11 +6,11 @@ function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [entries, setEntries] = useState([]);
-  
+  // const api_endpoint = <your endpoint here>
   useEffect(() => {
     const getEntries = async() => {
         const entry_Data = await fetch(
-            "<your-backend-api-endpoint-here>/entry/get",
+            api_endpoint + "/entry/get",
             {
             headers: {
                 "Content-Type": "application/json"
@@ -31,7 +31,7 @@ const handleSubmit = (e) => {
   const createEntry = async () => {
       try {
       const entryData = await fetch(
-          "<your-backend-api-endpoint-here>/entry/create",
+        api_endpoint + "/entry/create",
           {
           method: "POST",
           headers: {
