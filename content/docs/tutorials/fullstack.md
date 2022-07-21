@@ -218,7 +218,7 @@ We can then update our `App.js` file in the `src` folder of our `React` app to t
 
 {{<codesnippet `/source_code/diary_tutorial/app.js`>}}
 
-You will need to update the `app.js` file with your API enpoint.  You can retrieve your endpoint with the following command.
+You will need to update the `app.js` file with your API endpoint.  You can retrieve your endpoint with the following command.
 ```bash
 cdev output hello_world_comp.api.demoapi.endpoint
 ```
