@@ -6,7 +6,7 @@ function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [entries, setEntries] = useState([]);
-  // const api_endpoint = <your endpoint here>
+  // const api_endpoint = "your endpoint here"
   useEffect(() => {
     const getEntries = async() => {
         const entry_Data = await fetch(

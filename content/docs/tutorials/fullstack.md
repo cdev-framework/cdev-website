@@ -222,7 +222,7 @@ You will need to update the `app.js` file with your API enpoint.  You can retrie
 ```bash
 cdev output hello_world_comp.api.demoapi.endpoint
 ```
-You need to uncomment line 9 and replace the portion that says "<your endpoint here>" with the url you got from the command.  At this point you can test your functions on the live server.
+You need to uncomment line 9 and insert the url you got from the command.  At this point you can test your functions on the live server.
  {{<break 1>}}
 ### Connecting to the Frontend URL
 Prepare the `React` application by creating a build folder with the following command:
