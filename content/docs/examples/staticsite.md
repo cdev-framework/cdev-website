@@ -11,7 +11,7 @@
 
 # Connect a Static Frontend to the Static Site Resource
 {{<header_divider>}}
-Many websites are built using front-end libraries, frameworks and static site generators to improve performance, user experience, and reduce cost. Cdev can easily integrates these technologies with the `Static Site` resource to host your static front-end content.
+Many websites are built using front-end libraries, frameworks and static site generators to improve performance, user experience, and reduce cost. Cdev can easily integrate these technologies with the `Static Site` resource to host your static front-end content.
 
 {{<break 1>}}
 ## Sync React JS to the Static Site Resource
@@ -212,7 +212,7 @@ The file structure will now look like this:
 ### Add a Theme
 Using the terminal, navigate into the `quickstart` folder and run the following commands:
 {{<tool_tip key="warning" summary="Initializing a Repository">}}
-Ensure that a git repository(git init) from within the `quickstart` folder prior to adding the theme submodule.
+Ensure that a git repository(git init) is initialized from within the `quickstart` folder prior to adding the theme submodule.
 
 {{</tool_tip>}}
 
@@ -266,7 +266,7 @@ Use the command below to create a build folder of the `Hugo` site.
 hugo -D
 ```
 {{<tool_tip key="info" summary="Hugo Build">}}
-The command `hugo`, builds the Hugo site. For the purposes of this example the `-D` is utilized to include content marked as drafts in the build. To see where content is marked as a draft in this example, view the `quickstart/content/posts/my-first-post.md` file.
+The command `hugo`, builds the `Hugo` site. For the purposes of this example, the `-D` flag is utilized to include content marked as drafts in the build. To see where content is marked as a draft in this example, view the `quickstart/content/posts/my-first-post.md` file.
 
 {{</tool_tip>}}
 
@@ -277,7 +277,7 @@ In the root directory, within the `src` folder, create a folder named `content` 
 cp -r quickstart/public/* src/content
 ```
 {{<tool_tip key="info" summary="Public Folder">}}
-The `public folder` is created by the build command, `hugo`, and contains the files that can be uploaded to a web server for your Hugo site.
+The `public folder` is created by the build command, `hugo`, and contains the files that can be uploaded to a web server for your `Hugo` site.
 
 {{</tool_tip>}}
 The file structure should look like this:
