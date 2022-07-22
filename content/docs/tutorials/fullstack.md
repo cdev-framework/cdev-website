@@ -9,10 +9,11 @@
 }
 
 
-**Coming Soon (August 2022)**
+
 
 Create a site to create and keep diary entries to learn how Cdev can be used to create and manage full stack web applications.
 
+{{<youtube "https://www.youtube.com/embed/OasPGvluM50">}}
 
 In this tutorial, we will be going through the entire process of creating a full stack application with Cdev. We will be focusing on demonstrating how Cdev can integrate with standard Python tools and other development workflows. We will explain all the components and steps of this tutorial in depth, but it does help to have some familiarity with some of the technologies and concepts around full stack development.
 
@@ -105,7 +106,7 @@ export SECRET_ARN=$(cdev output --value hello_world_comp.relationaldb.demo_db.se
 export CLUSTER_ARN=$(cdev output --value hello_world_comp.relationaldb.demo_db.cluster_arn)
 ```
 ```bash
-export DB_NAME=<db_name>
+export DB_NAME=default_diaryDB
 ```
 {{<break 1>}}
 
@@ -130,16 +131,16 @@ cdev run relationaldb.shell hello_world_comp.demo_db
 ```
 Run the following commands to add a diary entry to your database.
 ```sql
-' (table_name) => ' BEGIN
+BEGIN
 ```
 ```sql
-' (table_name) => 'INSERT INTO entries(title, content) VALUES ('test entry','test our db connection');
+INSERT INTO entries(title, content) VALUES ('test entry','test our db connection');
 ```
 ```sql
-' (table_name) => 'COMMIT
+COMMIT
 ```
 ```bash
-' (table_name) => 'quit
+quit
 ```
 {{<break 2>}}
 ## Create Serverless Functions
@@ -217,7 +218,11 @@ We can then update our `App.js` file in the `src` folder of our `React` app to t
 
 {{<codesnippet `/source_code/diary_tutorial/app.js`>}}
 
-You will need to update the api calls with your API enpoint. At this point you can test your functions on the live server.
+You will need to update the `app.js` file with your API endpoint.  You can retrieve your endpoint with the following command.
+```bash
+cdev output hello_world_comp.api.demoapi.endpoint
+```
+You need to uncomment line 9 and insert the url you got from the command.  At this point you can test your functions on the live server.
  {{<break 1>}}
 ### Connecting to the Frontend URL
 Prepare the `React` application by creating a build folder with the following command:
