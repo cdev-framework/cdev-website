@@ -4,17 +4,17 @@
     "title": "Host a Static Frontend",
     "linktitle": "static sites",
     "card_icon": "ti-desktop",
-    "card_body": "Learn how to connect a static frontend to the Static Site Resource",
+    "card_body": "Learn how to host a static frontend with the Static Site Resource",
     "weight": "1"
 }
 
 
-# Connect a Static Frontend to the Static Site Resource
+# Host a Static Frontend with the Static Site Resource
 {{<header_divider>}}
 Many websites are built using front-end libraries, frameworks and static site generators to improve performance, user experience, and reduce cost. Cdev can easily integrate these technologies with the `Static Site` resource to host your static front-end content.
 
 {{<break 1>}}
-## Sync React JS to the Static Site Resource
+## Host React JS with the Static Site Resource
 
 `React(React.js or ReactJS)` is one of the most popular front-end libraries. This example will show how `Cdev` can easily integrate `React` with the `Static Site` resource. 
 
@@ -37,7 +37,14 @@ WSL instructions can be found here: **[Install Node.js on Windows Subsystem for 
 {{</tool_tip>}}
 {{<break 1>}}
 
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted)** section to initialize a `Cdev project` before continuing.
+Use the following command to start a new project. 
+```bash
+cdev init demo-project --template quick-start
+
+```
+
+The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted/installingcdev/)** section to initialize a Cdev project before continuing.
+
 
 {{<tutorial_image>}}
 /images/staticsite_examples/react_example/init_structure.png
@@ -86,7 +93,7 @@ The command, `npm run build`, minifies files to create a production build of the
 
 In the root directory, within the `src` folder, create a folder named `content`.
 {{<tutorial_image>}}
-/images/staticsite_examples/react_example/root_src_structure.png
+/images/staticsite_examples/react_example/react_src_structure.png
 {{</tutorial_image>}}
 {{<break 1>}}
 
@@ -138,7 +145,7 @@ myProject.display_output("Base API URL", DemoApi.output.endpoint)
 myProject.display_output("Routes", DemoApi.output.endpoints)
 myProject.display_output("Static Site URl", myFrontend.output.site_url)
 ```
-Now save and deploy the changes.
+Save and deploy the changes.
 ```bash
 cdev plan
 ```
@@ -168,12 +175,13 @@ Copy and paste the url into the browser to view the `Static Site`, `React` app.
 {{<break 1>}}
 
 ## Sync a Hugo Site to the Static Site Resource
-`Hugo` is a static website generator that converts content files, written in markdown, to static HTML and CSS pages. This example with show how Cdev integrates a Hugo site with the `Static Site` Resource.
+`Hugo` is a static website generator that converts content files, written in markdown, to static HTML and CSS pages. This example shows how Cdev hosts a Hugo site with the `Static Site` Resource.
 
 {{<tool_tip key="info" summary="Hugo Documentation">}}
 For more information about how to use `Hugo`, visit the **[official documentation](https:/https://gohugo.io/)**. 
 {{</tool_tip>}}
 
+{{<break 1>}}
 ### Requirements
 To generate a static site, you will need to have `Git` and `Hugo` installed. 
 {{<tool_tip key="info" summary="Hugo Installation Instructions">}}
@@ -182,12 +190,21 @@ To generate a static site, you will need to have `Git` and `Hugo` installed.
 Instructions for installing `Git` can be found **[here](https://git-scm.com/downloads)**
 
 #### Hugo
+
 You can find the instructions for installing `Hugo` on your system **[here](https://gohugo.io/getting-started/installing/)**.
 {{</tool_tip>}}
 
 {{<break 1>}}
 
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted)** section to initialize a Cdev project before continuing.
+Use the following command to start a new project. 
+```bash
+cdev init demo-project --template quick-start
+
+```
+
+{{<break 1>}}
+
+The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted/installingcdev/)** section to initialize a Cdev project before continuing.
 
 {{<tutorial_image>}}
 /images/staticsite_examples/hugo_example/hugo_init_structure.png
@@ -198,7 +215,7 @@ The initial file structure should resemble the image below. If this is not your 
 ### Generate a Hugo Site
 We will use the **[Hugo quickstart](https://gohugo.io/getting-started/quick-start/)** guide to generate a site. 
 
-In the root of the project folder initialize a new `Hugo` site with the following command:
+In the root of the project folder, initialize a new `Hugo` site with the following command:
 ```bash
 hugo new site quickstart
 ```
@@ -217,19 +234,19 @@ Ensure that a git repository(git init) is initialized from within the `quickstar
 {{</tool_tip>}}
 
 ```bash
-    git init
+git init
 ```
 ```bash
-    git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 ```
 {{<tool_tip key="info" summary="Hugo Themes">}}
 
-Hugo themes can be downloaded from **[the official documentation](themes.gohugo.io)**. It is accepted practice to add a theme as a git submodule. 
+Hugo themes can be downloaded from **[the official documentation](https://themes.gohugo.io/)**. It is accepted practice to add a theme as a `git submodule`. 
 {{</tool_tip>}}
 
 Next, use the command below to add the theme to the `quickstart/config.toml` file. 
 ```bash
-    echo theme = \"ananke\" >> config.toml
+echo theme = \"ananke\" >> config.toml
 ```
 The file structure will now look like this:
 {{<tutorial_image>}}
@@ -239,11 +256,11 @@ The file structure will now look like this:
 {{<break 1>}}
 Use the following command to add a sample blog post to the site.
 ```bash
-    hugo new posts/my-first-post.md
+hugo new posts/my-first-post.md
 ```
 Start the `hugo server`.
 ```bash
-    hugo server -D
+hugo server -D
 ```
 {{<tool_tip key="info" summary="Hugo Server">}}
 
@@ -256,7 +273,7 @@ View your site, locally, at `http://localhost:1313/`.
 {{</tutorial_image>}}
 
 {{<break 2>}}
-### Connect the Hugo Site to the Static Site Resource
+### Build Hugo Site
 {{<tool_tip key="warning" summary="Hugo Build">}}
 The build command must be executed from within the `quickstart` folder.
 
