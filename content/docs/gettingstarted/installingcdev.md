@@ -28,15 +28,12 @@ cdev -h
 
 {{<break 1>}}
 ## Create Your First Project
-{{<tool_tip key="tip" summary="Artifacts S3 Bucket">}}
-When creating a new project, you will be prompted to link to a `S3 Bucket` for your deployment artifacts.
+{{<tool_tip key="info" summary="Artifacts S3 Bucket">}}
+When creating a new project, you will be prompted to link to a `S3 Bucket` for your deployment artifacts. This bucket will be used internally by Cdev to help manage your deployment artifacts. 
 
-You will need to provide a `S3 Bucket` in your AWS Account. If you do not already have one, you can create a bucket with the following command.
-```bash
-aws s3 mb s3://<bucket-name>
-```
+If you have `S3 Buckets` in your AWS account, you will be prompted to select which bucket to use. If no bucket is present in the account, you will be prompted to create one. 
 
-This bucket can be used for managing the deployment artifacts for multiple projects.
+The same bucket can be used for managing the deployment artifacts for multiple projects.
 
 {{</tool_tip>}}
 
@@ -45,15 +42,11 @@ Now that we have the Cdev Sdk installed, we can use it to create a new `Project`
 cdev init demo-project --template quick-start
 ```
 
-```bash
-Name of bucket to store artifacts (): <bucket-name>
-```
-
 {{<break 1>}}
 
 ## Deploying Resources
 
-Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to the `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create an `API` and `Serveless Function`.
+Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to the `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create an `API` and `Serverless Function`.
 
 ```bash
 cdev plan
