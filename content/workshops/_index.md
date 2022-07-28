@@ -1,7 +1,10 @@
 {
-    "type": "workshops",
+    "type": "tutorial",
     "layout": "type",
-    "title": "Cdev FREE Workshops"
+    "title": "Workshops",
+    "Name": "workshops",
+    "linktitle": "workshops",
+    "weight": 5
 }
 
 <!-- 
@@ -20,54 +23,12 @@ Overall page structure and ideas to convey
 - Build a platform to make collaboration easier between teams
 
 -->
-## Introduction
 {{<break 1>}}
-Generally speaking, building an online application is not easy. Having to manage deployment and resources can take a big margin of your development power and slow down production. Cdev is created with production and easy deployment in mind. Once you have your development ambient setup and your program coded, it only takes one line of code and a few seconds to have your application up and running on AWS.
+# Workshops
+{{<break 1>}}
+Generally speaking, building an online application is not easy. Having to manage deployment and resources can take a lot of time and energy, slowing down production. Cdev is created with production and simple deployments in mind. Once you have your program written, it only takes one command in the terminal, and a small amount of time while you wait for the deployment to finish, and your program has a live deployment on the internet! 
+
+We have set up several different workshops to help get you started using Cdev and achieve your programming goals. Check out the available options below, and also feel free to contact us to set up a personalized workshop for your school or organization.  
 
 {{<break 1>}}
 
-## Goals of the Workshop
-
-{{<break 1>}}
-
-We have the following goals:
-- Create an API together.
-- Setup routes.
-- Setup Auth0 and have authentication working.
-- Test your API using Insomnia.
-- Use your API with a frontend template.
-
-
-{{<break >}}
-
-## Workshop Requirements
-{{<break 1>}}
-- Python
-- AWS account
-- WSL (If using windows)
-- VS Code
-- Zoom
-- Auth0 account
-- Have AWS CLI installed
-
->>> Warning: Amazon’s AWS service may charge you for using its service. Any cost related to the use of an AWS service is your responsibility.
-
-{{<break 1>}}
-## Who is this workshop for?
-{{<break 1>}}
-This workshop is recommended to developers of all levels of skill that are looking to deploy their application on an AWS server. Cdev is an easy-to-use tool that is focused on production, in a nutshell, we are going to show you how to use the framework, after that, you should be able to develop anything possible to be developed in a serverless environment.
-
-{{<break 1>}}
-## Details of our Workshop
-{{<break 1>}}
-- **Length:** 2h
-- **Style:** Code along
-- **Type:** Remote
-- **Cost: Free**
-
-{{<break 1>}}
-## How to participate
-Sign up for updates at the bottom of this page and you’ll receive an invitation to our next event! **It is free!!**
-{{<break 1>}}
-If you are an entity looking to expose your team to Cdev’s technology, contact us at contact@cdevframework.com.
-{{<break 1>}}

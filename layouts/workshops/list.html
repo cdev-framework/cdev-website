@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-{{- partial "head.html" . -}}
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "preloader.html" . -}}
+        {{- partial "static-header.html" . -}}
 
-<body>
-  {{- partial "preloader.html" . -}}
-  {{- partial "static-header.html" . -}}
-  <!-- service -->
-  <section class="section">
-    <div class="coding_section container">
-      <div class="row justify-content-center" style="text-align: center;">
-        <div class="content-section col-md-8 col-sm-12 ">
-          <h1>{{.Title}}</h1>
-          {{ partial "header_divider.html" .}}
 
-          <div class="content-section" style="text-align: justify;">
-            {{.Content}}
-          </div>
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container">
+    <div class="row">
+        
+        {{ partial "docs-side.html" .}}
+        <div class="content-section col-lg-9 col-md-8">
+            <div class="">
+                {{.Content}}
+                {{ partial "section-border.html" .}}
+            </div>
+            {{ partial "children-card-container.html" .}}
         </div>
-      </div>
     </div>
-  </section>
-  <!-- /service -->
-  {{- partial "footer.html" . -}}
-
+</div>
+{{- partial "footer.html" . -}}
 </body>
-
 </html>
