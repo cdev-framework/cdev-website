@@ -44,6 +44,7 @@ We have the following goals:
 {{<break 1>}}
 - Python
 - AWS account
+- WSL (If using windows)
 - VS Code
 - Zoom
 - Auth0 account
@@ -59,14 +60,14 @@ This workshop is recommended to developers of all levels of skill that are looki
 {{<break 1>}}
 ## Details of our Workshop
 {{<break 1>}}
-- **Length:** 3h
+- **Length:** 2h
 - **Style:** Code along
 - **Type:** Remote
 - **Cost: Free**
 
 {{<break 1>}}
 ## How to participate
-Sign up for updates at the bottom of this page and you’ll receive an invitation to our next event! It is free!!
+Sign up for updates at the bottom of this page and you’ll receive an invitation to our next event! **It is free!!**
 {{<break 1>}}
 If you are an entity looking to expose your team to Cdev’s technology, contact us at contact@cdevframework.com.
 {{<break 1>}}
