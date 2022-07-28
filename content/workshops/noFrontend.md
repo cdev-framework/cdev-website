@@ -1,5 +1,5 @@
 {
-    "type": "tutorial",
+    "type": "workshops",
     "layout": "type",
     "title": "Backend Workshop",
     "linktitle": "fullstack", 

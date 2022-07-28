@@ -1,5 +1,5 @@
 {
-    "type": "tutorial",
+    "type": "workshops",
     "layout": "type",
     "title": "Cdev Basics Workshop",
     "linktitle": "fullstack", 
