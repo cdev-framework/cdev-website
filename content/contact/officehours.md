@@ -5,7 +5,7 @@
     "linktitle": "officehours", 
     "weight": "3"
 }
-
+Office hours are a chance for you to get individualized help and/or get any questions you have about Cdev answered by one of our team members.
 We have set up office hours that occur each week on the following days/times:
 
 - Mondays 12-1
