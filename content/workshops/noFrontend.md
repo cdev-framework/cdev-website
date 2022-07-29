@@ -4,12 +4,12 @@
     "title": "Backend Workshop",
     "linktitle": "fullstack", 
     "card_icon": "ti-comments",
-    "card_body": "Learn how to create APIs using Cdev",
+    "card_body": "In this workshop we teach you how to build APIs using Cdev. This is great for any developer who doesn't want to deal with frontend development.",
     "weight": "2"
 }
 ## Who is this workshop for?
 {{<break 1>}}
-This workshop is for anyone who is familiar with the Python programming language (at least at a basic level), who is interested in serverless web-development.
+This workshop is for anyone who is familiar with the Python programming language and is interested in serverless web-development.
 {{<break 1>}}
 ## Goals of the Workshop
 In this workshop we will teach you how to build a Twilio bot that you can text to create, retrieve, and delete reminders
@@ -30,7 +30,9 @@ In this workshop we will teach you how to build a Twilio bot that you can text t
 - Twilio Trial Account
 
 
->>> Warning: Amazon’s AWS service may charge you for using its service. Any cost related to the use of an AWS service is your responsibility.
+{{<tool_tip key="warning" summary="AWS Fees">}}
+Warning: Amazon’s AWS service may charge you for using its service. Any cost related to the use of an AWS service is your responsibility.
+{{</tool_tip>}}
 
 {{<break 1>}}
 
