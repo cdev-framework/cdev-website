@@ -11,7 +11,7 @@
 
 
 <div class="coding_section container" >
-    <h1>{{.Title}}</h1>
+    <h1 style="text-align: center;">{{.Title}}</h1>
             {{ partial "header_divider.html" .}}
     <div class="row justify-content-center" > 
         <div class="content-section col-md-8">
@@ -28,12 +28,31 @@
                 {{ with .PrevInSection }}
                 <div style="margin-left: auto;">
 
-                  <a href="{{ .Permalink }}">{{ .Title }}</a>
-                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
                 </div>
                 {{ end }}
             </div>
-            
+            <div class="d-flex justify-content-around" >
+                <div class="text-center border border-dark  p-2">
+                    <h3>Daniel Sanchez</h3>
+                    <p>Founder of Cdev</p>
+                    <img src="" alt="Daniel Sanchez" class="rounded-circle">
+                    <a href="#" class="d-block mt-4">Calendly</a>
+                </div>
+                <div class="text-center border border-dark  p-3">
+                    <h3>Ian Magalhaes</h3>
+                    <p>Fullstack Developer</p>
+                    <img src="" alt="Ian Magalhaes" class="rounded-circle">
+                    <a href="https://calendly.com/ian-cdev" class="d-block mt-4">Calendly</a>
+                </div>
+                <div class="text-center border border-dark p-3">
+                    <h3>Jordan French</h3>
+                    <p>Fullstack Developer</p>
+                    <img src="static\images\cdev_logo.png" alt="Jordan French" class="rounded-circle">
+                    <a href="https://calendly.com/jordan-t-french/30min" class="d-block mt-4">Calendly</a>
+                </div>
+            </div>
         </div>
         
     </div>

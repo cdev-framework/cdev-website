@@ -19,20 +19,4 @@ If these times don't fit your schedule, or you would like to schedule a 1-on-1 m
 
 {{<break 1>}}
 
-**Daniel Sanchez**
-Founder of Cdev
-img
-calendly link
-{{<break 1>}}
-
-**Ian Magalhaes**
-Fullstack Developer
-img
-calendly link
-{{<break 1>}}
-
-**Jordan French**
-Fullstack Developer
-img
-calendly link
 
