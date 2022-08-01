@@ -11,7 +11,6 @@
     "Author": "Daniel Sanchez"
 }
 
-# Cold Starts
 
 {{<blockquote>}}
 "A computer seems infinitely fast, until it doesn't!"

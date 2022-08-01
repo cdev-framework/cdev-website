@@ -10,7 +10,7 @@
     "Author": "Daniel Sanchez"
 }
 
-# What is Serverless?
+
 {{<break>}}
 
 {{<blockquote>}}
