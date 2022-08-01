@@ -5,41 +5,24 @@
     {{- partial "preloader.html" . -}}
     {{- partial "static-header.html" . -}}
 
-
-<!--{{ partial "page-title.html" . }}-->
-
-
-
-<div class="coding_section container" >
-    <div class="row" >
-        <div class="col-md-4">
-            {{ partial "blog-side.html" .}}
+<!-- page-title -->
+  <!-- /page-title -->
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="font-tertiary mb-5">{{ .Title }}</h3>
+            {{ partial "header_divider.html" .}}
+          <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="img-fluid w-100 mb-3">
+          <p class="d-inline-block">Post by {{.Params.Author}}</p>
+          <time class="float-right">{{ .PublishDate.Format "January 02, 2006" }}</time>
+          <div class="content">
+            {{ .Content }}
+          </div>
         </div>
-
-        <div class="content-section col-md-8">
-            {{.Content}}
-
-            <div class="d-flex">
-                {{ with .NextInSection }}
-                <div>
-                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-                </div>
-                {{ end }}
-
-                {{ with .PrevInSection }}
-                <div style="margin-left: auto;">
-
-                  <a href="{{ .Permalink }}">{{ .Title }}</a>
-                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
-                </div>
-                {{ end }}
-            </div>
-
-        </div>
+      </div>
     </div>
-
-</div>
+  </section>
 
 
 

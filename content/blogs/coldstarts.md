@@ -5,7 +5,10 @@
     "linktitle": "coldstarts",
     "card_icon": "ti-zip",
     "card_body": "Learn how Cdev packages functions to reduce cold starts",
-    "weight": "2"
+    "weight": "2",
+    "Image":"/images/blog_thumbnails/pexels-pixabay-434259.jpg",
+    "date": "2022-05-01T16:19:26+06:00",
+    "Author": "Daniel Sanchez"
 }
 
 # Cold Starts
