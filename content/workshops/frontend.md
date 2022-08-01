@@ -49,5 +49,5 @@ Warning: Amazon’s AWS service may charge you for using its service. Any cost r
 ## How to participate
 Sign up for updates at the bottom of this page and you’ll receive an invitation to our next event! **It is free!!**
 {{<break 1>}}
-If you are an entity looking to expose your team to Cdev’s technology, contact us at workshop@cdevframework.com.
+If you are an entity looking to expose your team to Cdev’s technology, contact us at workshops@cdevframework.com.
 {{<break 1>}}
