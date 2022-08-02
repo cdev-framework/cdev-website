@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+    {{- partial "preloader.html" . -}}
+    {{- partial "static-header.html" . -}}
+
+
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container" >
+    <h1>{{.Title}}</h1>
+            {{ partial "header_divider.html" .}}
+    <div class="row justify-content-center" > 
+        <div class="content-section col-md-8">
+            {{.Content}}
+
+            <div class="d-flex">
+                {{ with .NextInSection }}
+                <div>
+                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                {{ end }}
+
+                {{ with .PrevInSection }}
+                <div style="margin-left: auto;">
+
+                  <a href="{{ .Permalink }}">{{ .Title }}</a>
+                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
+                </div>
+                {{ end }}
+            </div>
+            
+        </div>
+        {{ partial "table-of-content.html" .}}
+    </div>
+
+</div>
+
+
+
+{{- partial "footer.html" . -}}
+</body>
+</html>
