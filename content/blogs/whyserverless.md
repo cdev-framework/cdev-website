@@ -7,7 +7,8 @@
     "weight": "1",
     "Image":"/images/blog_thumbnails/pexels-kevin-ku-577585.jpg",
     "date": "2022-01-01T16:19:26+06:00",
-    "Author": "Daniel Sanchez"
+    "Author": "Daniel Sanchez",
+    "AuthorImage":"/images/headshots/daniel_headshot.jpg"
 }
 
 

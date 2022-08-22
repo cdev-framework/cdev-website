@@ -12,8 +12,9 @@
     <div class=" blog_section container">
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <h1 class="font-tertiary mb-5">{{ .Title }}</h3>
+          <h1 class="font-tertiary mb-5 text-center">{{ .Title }}</h3>
             {{ partial "header_divider.html" .}}
+<<<<<<< HEAD
           <div>
             <img src="{{ .Params.AuthorImage | absURL }}" alt="author headshot" class="rounded-circle" style="width: 50px;">
             <p class="d-inline-block">Post by {{.Params.Author}}</p>
@@ -33,6 +34,16 @@
               <script type="IN/Share" data-url="{{ .Permalink }}"></script>
             </div>
           </div>
+=======
+            <div>
+              <img src="{{ .Params.AuthorImage | absURL }}" alt="author headshot" class="rounded-circle" style="width: 50px;">
+              <p class="d-inline-block">Post by {{.Params.Author}}</p>
+              <time class="float-right pt-3">{{ .PublishDate.Format "January 02, 2006" }}</time>
+            </div>
+            
+          
+          
+>>>>>>> 5c51688c45f15e2d152de447e773aeedbb53d7e4
           <div class="content">
             {{ .Content }}
           </div>
