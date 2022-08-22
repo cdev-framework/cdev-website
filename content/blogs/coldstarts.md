@@ -8,7 +8,8 @@
     "weight": "2",
     "Image":"/images/blog_thumbnails/pexels-pixabay-434259.jpg",
     "date": "2022-05-01T16:19:26+06:00",
-    "Author": "Daniel Sanchez"
+    "Author": "Daniel Sanchez",
+    "AuthorImage":"/images/headshots/daniel_headshot.jpg"
 }
 
 

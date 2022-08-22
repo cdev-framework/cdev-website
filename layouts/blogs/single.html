@@ -14,9 +14,12 @@
         <div class="col-lg-10 mx-auto">
           <h1 class="font-tertiary mb-5">{{ .Title }}</h3>
             {{ partial "header_divider.html" .}}
+          <div>
+            <img src="{{ .Params.AuthorImage | absURL }}" alt="author headshot" class="rounded-circle" style="width: 50px;">
+            <p class="d-inline-block">Post by {{.Params.Author}}</p>
+            <time class="float-right">{{ .PublishDate.Format "January 02, 2006" }}</time>
+          </div>
           
-          <p class="d-inline-block">Post by {{.Params.Author}}</p>
-          <time class="float-right">{{ .PublishDate.Format "January 02, 2006" }}</time>
           <div class="content">
             {{ .Content }}
           </div>
