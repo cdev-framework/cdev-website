@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+    {{- partial "preloader.html" . -}}
+    {{- partial "static-header.html" . -}}
+
+
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container" >
+    <h1 style="text-align: center;">{{.Title}}</h1>
+            {{ partial "header_divider.html" .}}
+    <div class="row justify-content-center" > 
+        <div class="content-section col-md-8">
+            {{.Content}}
+
+            <div class="d-flex">
+                {{ with .NextInSection }}
+                <div>
+                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                {{ end }}
+
+                {{ with .PrevInSection }}
+                <div style="margin-left: auto;">
+
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
+                </div>
+                {{ end }}
+            </div>
+            
+            <div class="row d-flex justify-content-around" >
+                <div class="card hover-bg-secondary shadow py-4">
+                    <div class="card-body text-center">
+                        <div class="position-relative">
+                            <h3>Daniel Sanchez</h3>
+                            <p>Founder of Cdev</p>
+                            <img src="/images/headshots/daniel_headshot.jpg" width="150" height="200"  alt="Daniel Sanchez" class="rounded-circle mb-5 d-inline-block text-white">
+                            <a href="https://calendly.com/daniel-cdev/daniel-office-hours" class="d-block mt-4">Calendly</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card hover-bg-secondary shadow py-4">
+                    <div class="card-body text-center">
+                        <div class="position-relative">
+                            <h3>Ian Magalhaes</h3>
+                            <p>Fullstack Developer</p>
+                            <img src="/images/headshots/ian_headshot2.jpg" width="150" height="200" alt="Ian Magalhaes" class="rounded-circle mb-5 d-inline-block text-white">
+                            <a href="https://calendly.com/ian-cdev" class="d-block mt-4">Calendly</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card hover-bg-secondary shadow py-4">
+                    <div class="card-body text-center">
+                        <div class="position-relative">
+                            <h3>Jordan French</h3>
+                            <p>Fullstack Developer</p>
+                            <img src="/images/headshots/jordan_headshot.jpg"  width="150" height="200" alt="Jordan French" class="rounded-circle mb-5 d-inline-block text-white">
+                            <a href="https://calendly.com/jordan-t-french/30min" class="d-block mt-4">Calendly</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+{{- partial "footer.html" . -}}
+</body>
+</html>
