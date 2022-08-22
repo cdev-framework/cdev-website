@@ -19,7 +19,20 @@
             <p class="d-inline-block">Post by {{.Params.Author}}</p>
             <time class="float-right">{{ .PublishDate.Format "January 02, 2006" }}</time>
           </div>
-          
+          <div class="float-right d-flex flex-row-reverse justify-content-around w-25" style="margin-top: -20px;">
+            <div class="m1" style="vertical-align: bottom !important;">
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+            </div>
+            <div class="m1">
+              <div class="fb-share-button" 
+                data-href="{{ .Permalink }}"
+                data-layout="button_count">
+              </div>
+            </div>
+            <div class="m1">
+              <script type="IN/Share" data-url="{{ .Permalink }}"></script>
+            </div>
+          </div>
           <div class="content">
             {{ .Content }}
           </div>
@@ -33,3 +46,16 @@
 {{- partial "footer.html" . -}}
 </body>
 </html>
+<!-- Scripts for share tags -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
