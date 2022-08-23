@@ -41,3 +41,9 @@ cta2:
   
 pip:
   message: "pip install cdev"
+
+############################## blog ######################################
+blog:
+  enable : true
+  title : "Blogs"
+  # blog content comes from `content/blog` folder

@@ -5,44 +5,58 @@
     {{- partial "preloader.html" . -}}
     {{- partial "static-header.html" . -}}
 
-
-<!--{{ partial "page-title.html" . }}-->
-
-
-
-<div class="coding_section container" >
-    <div class="row" >
-        <div class="col-md-4">
-            {{ partial "blog-side.html" .}}
-        </div>
-
-        <div class="content-section col-md-8">
-            {{.Content}}
-
-            <div class="d-flex">
-                {{ with .NextInSection }}
-                <div>
-                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-                </div>
-                {{ end }}
-
-                {{ with .PrevInSection }}
-                <div style="margin-left: auto;">
-
-                  <a href="{{ .Permalink }}">{{ .Title }}</a>
-                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
-                </div>
-                {{ end }}
+<!-- page-title -->
+  <!-- /page-title -->
+  <section class="section">
+    <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="w-100" style="z-index: -1;position: fixed; margin-top:-20%; max-width: 100%;">
+    <div class=" blog_section container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="font-tertiary mb-5 text-center">{{ .Title }}</h3>
+            {{ partial "header_divider.html" .}}
+            <div>
+              <img src="{{ .Params.AuthorImage | absURL }}" alt="author headshot" class="rounded-circle" style="width: 50px;">
+              <p class="d-inline-block">Post by {{.Params.Author}}</p>
+              <time class="float-right pt-3">{{ .PublishDate.Format "January 02, 2006" }}</time>
             </div>
-
+          <div class="float-right d-flex flex-row-reverse justify-content-around col-sm-5 col-lg-4 pt-3" style="margin-top: -20px;">
+            <div class="m1 mt-1" style="vertical-align: bottom !important;">
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+            </div>
+            <div class="m1">
+              <div class="fb-share-button" 
+                data-href="{{ .Permalink }}"
+                data-layout="button_count">
+              </div>
+            </div>
+            <div class="m1">
+              <script type="IN/Share" data-url="{{ .Permalink }}"></script>
+            </div>
+          </div>
+            
+          <div class="content pt-4">
+            {{ .Content }}
+          </div>
         </div>
+      </div>
     </div>
-
-</div>
+  </section>
 
 
 
 {{- partial "footer.html" . -}}
 </body>
 </html>
+<!-- Scripts for share tags -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
