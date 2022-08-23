@@ -20,16 +20,15 @@ Follow the steps for the first module for creating your account on [the official
 
 When following the steps provided by the AWS documentation, you can select a `Personal Account` and the `Basic Support` plan. Although it does require a credit card to create an account, most of the services in AWS have a free tier that provide enough credit to experiment and run small scale projects. 
 
-<!--{{<tool_tip key="info" summary="Working with Aws">}}
-We understand that Aws can be an intimidating service to use, and we are working hard to make it easier to use by providing constructs that encompass best practices. 
-{{</tool_tip>}}-->
-
 {{<break 1>}}
 
 ## Secure Your Account
 Follow the steps for the second module for [creating an admin account and securing the root user of your account](https://aws.amazon.com/getting-started/guides/setup-environment/module-two/).
 
+{{<tool_tip key="tip" summary="Aws Security">}}
 Securing your AWS account by using an IAM User as opposed to the Root User is a best practice. Using IAM to manage user and resource access is one of the most important security concerns when using AWS, so it is important to follow these steps and use the created IAM user's credentials with the Cdev Sdk.  
+{{</tool_tip>}}
+
 
 {{<break 1>}}
 
