@@ -8,7 +8,7 @@
 <!-- page-title -->
   <!-- /page-title -->
   <section class="section">
-    <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="w-100" style="z-index: -1;position: fixed; margin-top:-20%">
+    <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="w-100" style="z-index: -1;position: fixed; margin-top:-20%; max-width: 100%;">
     <div class=" blog_section container">
       <div class="row">
         <div class="col-lg-10 mx-auto">
@@ -34,7 +34,7 @@
             </div>
           </div>
             
-          <div class="content">
+          <div class="content pt-4">
             {{ .Content }}
           </div>
         </div>

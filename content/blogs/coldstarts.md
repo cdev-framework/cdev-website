@@ -32,8 +32,7 @@ For a lot of people the limits of computers are most noticed when a server hosti
 Horizontal scaling is when a copy of an application is run on multiple different computers, and another computer runs a load balancing program to split the traffic to the different application computers. As traffic increases, more servers can be added to handle the traffic, and inversely if traffic decreases, unneeded servers can be removed. 
 
 
-![load balancer image](/diagrams/load_balancer.svg)
-
+{{<blog_image  img="/diagrams/load_balancer.svg" alt="load balancer image">}}
 
 Before the public cloud providers, developers had to buy and rack these servers themselves, which meant they had to attempt to forecast their future traffic. One of the early big impacts the public cloud providers was offering programmatic autoscaling, so that instead of having to physically rack a new server, developers only needed to click a few buttons on a website. Then cloud providers went a step further and created products that could monitor your application and add new instances based on customized triggers on different metrics such as cpu utilization, memory usage, network bandwidth or a range of other metrics so that scaling happened automatically. 
 
@@ -42,7 +41,7 @@ Before the public cloud providers, developers had to buy and rack these servers 
 ### So what is a Cold Start?
 Another time that people most likely notice the speed limitations of computers is when turning one on. We must sit waiting for the computer to power on and return to a usable state. Servers have a similar phenomenon where they must run initialization steps before they are ready to handle traffic. Some of this initialization is from the underlying system and some is code written by the developer. 
 
-**A Cold Start is the time that is takes for an autoscalled computing unit to be initialized and reach the state that it can begin handling requests.** 
+**A Cold Start is the time that is takes for an autoscaled computing unit to be initialized and reach the state that it can begin handling requests.** 
 
 For traditional applications, the Cold Start when adding another version of the application was in the range of powering on a computer (> 1 min) as the Cloud Provider was most likely providing a new Virtual Machine for that unit. This meant that the autoscaling trigger had to be set at a point that it was unlikely that the current machines would be overwhelmed before the new machine had finished the Cold Start. As long as the increase in traffic was not too rapid, the end users would not notice the cold start as the already provisioned machines would handle the requests. 
 
