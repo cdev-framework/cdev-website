@@ -10,6 +10,7 @@
 
 # AWS Lambda Powertools
 {{<header_divider>}}
+
 [An open source set of utilities](https://awslabs.github.io/aws-lambda-powertools-python/latest/) managed by AWS that provide out of the box functionality for tracing, logging, custom metrics, middleware, etc., for `Serverless Functions`. These tools help teams implement best practices around Serverless development with little overhead. You can install the tools using `pip`.
 ```bash
 pip install aws-lambda-powertools
