@@ -64,12 +64,11 @@ We can now set up our Bot to receive events from our Workspace. The general flow
 
 {{<break 1>}}
 ## Creating the Backend with Cdev
-**See getting started if you have not worked with a Cdev project before**
 
 
 ### Create a Cdev Project 
 
-We will be starting from a provided template for this template. You can create the template project by running:
+We will be starting this tutorial from the `slack-bot` template. 
 ```bash
 cdev init my-slack-bot --template slack-bot
 ```
@@ -91,7 +90,7 @@ This command updates your `Cdev Environment` to use the provided `SlackBotSettin
 {{</tool_tip>}}
 
 In the command line, you will be asked to confirm your settings change.  
-```bash
+```
 Are you sure you want to update base_class to src.project_settings.SlackBotSettings for the environment (dev) [y/n]?: y
 ```
 
@@ -129,12 +128,14 @@ Now we can deploy our backend.
 cdev deploy
 ```
 
-You should see that the deployment produced an API url as output.
-
+{{<tool_tip key="output" summary="Deploy Output">}}
+This step should output the live url of your webhook and route.
 ```
 Base API URL -> <your url>
 Routes -> FrozenDict({'/webhook POST': 'ca8ts2p'})
 ```
+{{</tool_tip>}}
+
 
 {{<break 1>}}
 ### Add our generated Webhook
@@ -168,7 +169,7 @@ Now you should be able to directly message your Bot in a Slack Channel and have 
 {{</tutorial_image>}}
 {{<break 1>}}
 
-Congratulations you have set up your Slack Bot!! Continue reading to learn how to add more functionality to your Slack Bot!
+Congratulations you have set up your Slack Bot!! {{<emoji>}}:tada:{{</emoji>}}
 
 
 <!---{{<break 1>}}
