@@ -12,7 +12,7 @@
 # Serverless Relational Databases
 {{<header_divider>}}
 
-Relational Databases have been a flagship part of software development for the past few decades. With [Aws Aurora Databases](https://aws.amazon.com/rds/aurora/), you can integrate a Relational DB with your `Serverless application`. You can create Postgres or MySql compatible databases that scale with your application
+Relational Databases have been a flagship part of software development for the past few decades. With [Aws Aurora Databases](https://aws.amazon.com/rds/aurora/), you can integrate a Relational DB with your `Serverless Application`. You can create Postgres or MySql compatible databases that scale with your application
 
 {{<tool_tip key="info" summary="Key Differences">}}
 Aurora Databases are designed to integrate with Serverless environments by executing SQL over a HTTP tunnel making it more accessible from a `Serverless Function`. You can use [third party libraries](https://github.com/cloud-utils/aurora-data-api) to access the DB from a `Serverless Function` using both the standard Python DB API and SlqAlchemy.
@@ -31,7 +31,7 @@ Once you have created a DB, the fastest way to access the DB is through an inter
 ```bash
 cdev run relationaldb.shell <component_name>.<resource_name>
 ```
-`example: cdev run relationaldb.shell hello_world_comp.demo_db`
+
 {{<break 1>}}
 ### Create a Table
 **Mysql**
@@ -117,9 +117,9 @@ cdev run function.logs hello_world_comp.db_handler
 
 {{<break 1>}}
 ### SqlAlchemy ORM
-One of the main benefits of SqlAlchemy is the option to use it's [powerful ORM](https://www.fullstackpython.com/sqlalchemy.html). To get the full use of the ORM, we are going to pair it with the [alembic](https://alembic.sqlalchemy.org) library to automatically generate the migration files when we update our models.
+One of the main benefits of SqlAlchemy is the option to use it's [powerful ORM](https://www.fullstackpython.com/sqlalchemy.html). To get the full use of the ORM, we can pair it with the [alembic](https://alembic.sqlalchemy.org) library to automatically generate the migration files when we update our models.
 
-Starting from the `quick-start` template, add a `relational db` to your resources.
+Starting from the `quick-start` template, add a `relational_db` to your resources.
 ```bash
 cdev init orm-demo --template quick-start
 ```
