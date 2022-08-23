@@ -15,7 +15,7 @@
 
 At the heart of Cdev is the `Serverless Function`. This is the most powerful resource available through the framework because it is where you have to freedom to create what you want. We have made many optimizations to create the best experience for creating and maintaining `Serverless Functions`.
 
-For a more in depth discussion about the capabilities and limits of `Serverless Functions` checkout our [architecture documentation](/docs/firstprinciples)
+For a more in depth discussion about the capabilities and limits of `Serverless Functions` checkout our [architecture documentation](/docs/firstprinciples).
 
 {{<break 1>}}
 
@@ -83,14 +83,14 @@ You can now get the url of the created `API` and execute your function by going 
 ```bash
 cdev output <component_name>.api.demo.endpoint
 ```
-You can use the command line tool `curl` to test your live url or
+You can use the command line tool `curl` to test your live url. 
 ```bash
 curl <api_endpoint>/hello
 ```
 
-You can even go to the url in your favorite web browser! 
+Or, you can even go to the url in your favorite web browser! 
 
-After visiting the url you can also checkout the logs of your `Function` to see the information that is passed to your `Function` about the `Event` that triggered it. 
+After visiting the url, you can also checkout the logs of your `Function` to see the information that is passed to your `Function` about the `Event` that triggered it. 
 
 ```bash
 cdev run function.logs <component_name>.hello_function
