@@ -17,9 +17,9 @@ The Cdev Sdk is a Python Library and CLI that helps developers with Serverless D
 
 {{<break 1>}}
 ## Installing Python
-There are many ways of installing Python depending on what Operating System you are using, but the [real python website has a fairly comprehensive guide](https://realpython.com/installing-python/) for installing Python.
+There are many ways of installing Python depending on what Operating System you are using, but the [realpython.com has a comprehensive guide](https://realpython.com/installing-python/) for installing Python.
 
-{{<tool_tip key="error" summary="No native windows support">}}
+{{<tool_tip key="error" summary="Native Windows Support">}}
 Cdev does not currently support Windows (Powershell or CMD). To use Cdev, Windows users can [install Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install) to gain access to a Linux development environment. Cdev will work with any major linux distribution, but we recommend using Ubuntu because it is the default distribution for WSL. 
 {{</tool_tip>}}
 
@@ -37,7 +37,7 @@ Your version should be 3.7, 3.8, 3.9, or 3.10.
 {{<break 1>}}
 ## Check For Pip
 Pip is the third party package management tool for Python. It will be how you install the Cdev Sdk and any other external libraries you need. It should come by default when you install Python.
-```
+```bash
 pip -h
 ```
 
