@@ -3,16 +3,17 @@
     <div class="container">
       <div class="row">
         {{ range .Pages }}
+        <a href="{{ .Permalink }}">
         <div class="col-lg-4 col-md-6 mb-4">
           <article class="card hover-bg-secondary shadow py-4 px-2" style="box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)!important;">
             <img src="{{ .Params.Image | absURL }}" alt="post-thumb" class="card-img-top mb-2" width="150px" height="150px">
             <div class="card-body p-0">
               <time>{{ .PublishDate.Format "January 02, 2006" }}</time>
-              <a href="{{ .Permalink }}" class="h4 card-title d-block my-3 text-dark hover-text-underline">{{ .Title }}</a>
-              <a href="{{ .Permalink }}" class="btn btn-transparent">Read more</a>
+              <h4 class="h4 card-title d-block my-3 text-dark ">{{ .Title }}</a>
             </div>
           </article>
         </div>
+        </a>
         {{ end }}
       </div>
     </div>
