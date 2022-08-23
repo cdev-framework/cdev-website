@@ -46,7 +46,7 @@ You can directly reference a property (`myProject.settings.SOME_KEY`) without st
 
 {{<break 1>}}
 ## Modifying a Custom Setting Class
-All the custom setting classes will derive from the Core Constructs `Settings` class, which itself derives from the Pydantic `BaseSettings` Model. Therefore, we can add additional settings by adding properties to the class with the defining type conditions. You must derive from the `Settings` class to make sure that the needed settings for the framework to work are available. 
+All the custom setting classes will derive from the `core.constructs.settings.Settings` class, which itself derives from the Pydantic `BaseSettings Model`. Therefore, we can add additional settings by adding properties to the class with the defining type conditions. You must derive from the `Settings` class to make sure that the needed settings for the framework to work are available. 
 
 
 {{<codesnippet `/source_code/settings_examples/basic_settings_properties.py`>}}
@@ -135,6 +135,7 @@ Note that the life cycle of a `Setting` class is that it is initialized as a chi
 {{</tool_tip>}}
 {{<break 1>}}
 
+<!--
 ## Working In Teams
 When working on a project with a team of developers it is wise for each developer to have their own environment during development.  Creating a new environment is as simple as running the following command:
 ```bash
@@ -158,7 +159,7 @@ There will be an arrow pointing to which environment is currently being used if 
 {{</tool_tip>}}
 
 
-
+-->
 
 
 
