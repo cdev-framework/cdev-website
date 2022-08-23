@@ -206,11 +206,6 @@ We can now update our web hook to use the `link_service`. Update your `handler.p
 {{<codesnippet "/source_code/link_bot_tutorial/handler_service_connected.py">}}
 
 
-{{<break 1>}}
-## Unit Tests
-**Coming Soon. Early April.**
-
-**Write Unit Test Cases**
 
 {{<break 1>}}
 ## Save Information Into Notion
