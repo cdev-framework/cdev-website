@@ -4,7 +4,8 @@
     "title": "Workshops",
     "Name": "workshops",
     "linktitle": "workshops",
-    "weight": 5
+    "weight": 5,
+    "draft": true
 }
 
 <!-- 

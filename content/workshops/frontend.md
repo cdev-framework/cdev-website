@@ -1,12 +1,15 @@
 {
     "type": "workshops",
+    "draft": "True",
     "layout": "type",
     "title": "Cdev Basics Workshop",
     "linktitle": "fullstack", 
     "card_icon": "ti-desktop",
     "card_body": "This workshop is a great option for any programmer wanting to host a static frontend website using AWS.",
-    "weight": "3"
+    "weight": "3",
+    "draft": true
 }
+
 ## Who is this workshop for?
 {{<break 1>}}
 This workshop is for anyone who has basic web-development knowledge and an interest in Serverless development.
