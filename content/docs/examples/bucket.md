@@ -12,7 +12,7 @@
 # Working with S3 Buckets
 {{<header_divider>}}
 
-The Amazon Simple Storage Service (S3) was one of the first offerings by Aws, and it has become perhaps their most well know service. Cdev makes it easy to quickly create and integrate S3 Buckets into your projects.
+The Amazon Simple Storage Service (S3) was one of the first offerings by Aws, and it has become perhaps their most well known service. Cdev makes it easy to quickly create and integrate S3 Buckets into your projects.
 
 
 {{<break 1>}}
