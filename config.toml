@@ -54,6 +54,9 @@ title = "Cdev | Serverless Development Framework"
   [[params.static.css]]
   URL = "css/mystyles.css"
 
+  [[params.static.css]]
+  URL = "css/terminal.css"
+
 ###################################### Navigation ######################################
 [menu]
     
