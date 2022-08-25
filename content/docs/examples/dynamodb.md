@@ -14,6 +14,8 @@
 
 Most applications will need a database for storing persistent data, and DynamoDB is the flagship Aws nosql database. It is the easiest to get setup and integrated with Serverless Functions. For more information about how use the database effectively visit the **[aws documentation](https://docs.aws.amazon.com/dynamodb/index.html)**.
 
+{{<youtube "https://www.youtube.com/embed/8N8kVIEhG1A">}}
+
 {{<break 1>}}
 ## Create a DynamoDB table for storing emails
 The following code snippet shows and example of how you can set the attributes and keys for a DynamoDB table and create the table.
