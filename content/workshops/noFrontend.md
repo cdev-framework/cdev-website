@@ -5,7 +5,8 @@
     "linktitle": "fullstack", 
     "card_icon": "ti-comments",
     "card_body": "In this workshop we teach you how to build APIs using Cdev. This is great for any developer who doesn't want to deal with frontend development.",
-    "weight": "2"
+    "weight": "2",
+    "draft": true
 }
 ## Who is this workshop for?
 {{<break 1>}}

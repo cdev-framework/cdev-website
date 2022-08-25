@@ -5,7 +5,8 @@
     "linktitle": "fullstack", 
     "card_icon": "ti-layout",
     "card_body": "This is our longest workshop and teaches you everything you need to know to build a fullstack web application using Cdev.",
-    "weight": "1"
+    "weight": "1",
+    "draft": true
 }
 ## Who is this workshop for?
 {{<break 1>}}

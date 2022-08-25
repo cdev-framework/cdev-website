@@ -109,10 +109,10 @@ title = "Cdev | Serverless Development Framework"
   URL = "contact"
   weight = 5
 
-  [[menu.main]]
-  name = "Workshops"
-  URL = "workshops"
-  weight = 5
+  ### [[menu.main]]
+  ### name = "Workshops"
+  ### URL = "workshops"
+  ### weight = 5
 
   ############################# Footer menu ################################
   [[menu.footer]]
