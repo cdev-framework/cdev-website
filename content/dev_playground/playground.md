@@ -135,3 +135,7 @@ Your bot can send DMs, it can be mentioned by users, it can post messages or upl
 {{<break 2>}}
 -Slack Documentation
 {{</blockquote>}}
+
+
+## Terminal
+{{<terminal>}}
