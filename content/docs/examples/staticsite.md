@@ -11,6 +11,7 @@
 
 # Host a Static Frontend with the Static Site Resource
 {{<header_divider>}}
+
 Many websites are built using front-end libraries, frameworks and static site generators to improve performance, user experience, and reduce cost. Cdev can easily integrate these technologies with the `Static Site` resource to host your static front-end content.
 
 {{<break 1>}}
@@ -39,17 +40,10 @@ WSL instructions can be found here: **[Install Node.js on Windows Subsystem for 
 
 Use the following command to start a new project. 
 ```bash
-cdev init demo-project --template quick-start
-
+cdev init react-project
 ```
 
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted/installingcdev/)** section to initialize a Cdev project before continuing.
-
-
-{{<tutorial_image>}}
-/images/staticsite_examples/react_example/init_structure.png
-{{</tutorial_image>}}
-{{<break 2>}}
+{{<break 1>}}
 
 ### Create a React Application
 In the root of your project folder, create a `React` app with the following command:
@@ -198,20 +192,10 @@ You can find the instructions for installing `Hugo` on your system **[here](http
 
 Use the following command to start a new project. 
 ```bash
-cdev init demo-project --template quick-start
-
+cdev init hugo-project
 ```
 
 {{<break 1>}}
-
-The initial file structure should resemble the image below. If this is not your starting point for this example, consult the **[Getting Started](/docs/gettingstarted/installingcdev/)** section to initialize a Cdev project before continuing.
-
-{{<tutorial_image>}}
-/images/staticsite_examples/hugo_example/hugo_init_structure.png
-{{</tutorial_image>}}
-
-
-{{<break 2>}}
 ### Generate a Hugo Site
 We will use the **[Hugo quickstart](https://gohugo.io/getting-started/quick-start/)** guide to generate a site. 
 

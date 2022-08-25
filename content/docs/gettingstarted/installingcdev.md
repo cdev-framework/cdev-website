@@ -11,7 +11,12 @@
 # Installing the Cdev Sdk
 {{<header_divider>}}
 
-The Cdev Sdk is currently distributed as a Python Package with PyPi, so you can install it using a single command with `pip`. **Note that it is always recommended working with a [python virtual environment](/docs/gettingstarted/python)**
+The Cdev Sdk is currently distributed as a Python Package with PyPi, so you can install it using a single command with `pip`. 
+
+
+{{<tool_tip key="tip" summary="Python Virtual Environments">}}
+It is consider a Python development best practice to always work with a [python virtual environment](/docs/gettingstarted/python). The virtual environment will help you avoid dependency conflicts when working with multiple projects. 
+{{</tool_tip>}}
 
 {{<break 1>}}
 
@@ -37,16 +42,25 @@ The same bucket can be used for managing the deployment artifacts for multiple p
 
 {{</tool_tip>}}
 
-Now that we have the Cdev Sdk installed, we can use it to create a new `Project`. We can start our `Project` from a template that will help us get started faster.
+{{<break 1>}}
+
+Now that we have the Cdev Sdk installed, we can use it to create a new `Project`.
 ```bash
-cdev init demo-project --template quick-start
+cdev init demo-project
 ```
+
+{{<break 1>}}
+
+{{<tool_tip key="tip" summary="Template Project">}}
+By default, Cdev will create your project with some boilerplate files setup to help you get started faster. 
+{{</tool_tip>}}
+
 
 {{<break 1>}}
 
 ## Deploying Resources
 
-Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to the `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create an `API` and `Serverless Function`.
+Cdev helps developers manage and deploy the changes to their `Project` onto the Cloud. You can use the `plan` command to check the current set of changes that would be deployed in the Cloud based on the changes you have made to your `Project`. Since we have not deployed anything in the Cloud for this `Project`, it will show that we want to create the resources defined in the `src/resources.py` file: an `API` and `Serverless Function`.
 
 ```bash
 cdev plan
@@ -62,7 +76,7 @@ cdev deploy
 
 ## Testing Serverless Function
 
-Now that we have deployed our `Serverless Function` and `API`, we can test that they have been created in the Cloud. We can use `Commands` to execute our function in the Cloud and then retrieve the logs of the `Serverless Function`.
+Now that we have deployed our `Serverless Function` and `API`, we can test that they have been created in the Cloud. We can execute our function in the Cloud and then retrieve the logs of the `Serverless Function`.
 
 ```bash
 cdev run function.execute hello_world_comp.hello_world_function

@@ -12,7 +12,7 @@
 # Integrating with DynamoDB 
 {{<header_divider>}}
 
-Most applications will need a database for storing persistent data, and DynamoDB is the flagship Aws nosql database. It is the easiest to get setup and integrated with Serverless Functions. For more information about how use the database effectively visit the **[aws documentation](https://docs.aws.amazon.com/dynamodb/index.html)**.
+Most applications will need a database for storing persistent data, and DynamoDB is the flagship Aws NoSql database. It is the easiest to get setup and integrated with Serverless Functions. For more information about how to structure and use the database visit the **[Aws documentation](https://docs.aws.amazon.com/dynamodb/index.html)**.
 
 {{<break 1>}}
 ## Create a DynamoDB table for storing emails

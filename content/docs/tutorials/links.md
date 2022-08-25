@@ -8,14 +8,12 @@
     "weight": "2"
 }
 
-Learn how to store a link by texting it to a [Twilio](https://www.twilio.com/) number and then save it in a [Notion](https://www.notion.so/) Database. 
-
 Twilio provides Api's to help developers integrate SMS into their applications. You can easily send automated text messages with Twilio, and also use webhooks to receive text messages. In this tutorial, we will be creating a `bot` with a SMS interface that allows us to text links to the bot and have those links saved in a Notion Database.
 
 {{<youtube "https://www.youtube.com/embed/uZny_gopwjU">}}
 
 {{<tool_tip key="tip" summary="Other Data Stores">}}
-In this tutorial, we are using Notion to store our links, but the way the tutorial is structured, you will only need to change the last step to send the links to a different service.
+In this tutorial, we are using Notion to store our links, but the tutorial is structured such that you will only need to change the last step to send the links to a different service.
 {{</tool_tip>}}
 
 {{<break 1>}}
@@ -34,7 +32,7 @@ Now that your trial account is set up, you can transition to creating your Cdev 
 
 {{<break 1>}}
 ## Create Cdev Project
-We will be starting this tutorial from the `quick-start-twilio` project. This is similar the standard `quick-start` template but with a few changes to help integrate with Twilio.
+We will be starting this tutorial from the `quick-start-twilio` template. 
 
 ```bash
 cdev init link-bot --template quick-start-twilio
@@ -49,10 +47,13 @@ Now we can deploy our project to get a live Webhook
 ```bash
 cdev deploy
 ```
+
+{{<tool_tip key="output" summary="Deploy Output">}}
 This step should output the live url of your webhook and look like
 ```
 Base API URL -> <your-endpoint>
 ```
+{{</tool_tip>}}
 
 We can check that the webhook is live and working by running
 ```bash
@@ -195,9 +196,10 @@ Now that we are able to understand the data provided to our webhook by Twilio, w
 
 Create a file called `link_service.py`, and add the following code. This code provides the business logic for taking a message and returning the `url`, `description`, and `list of tags`. It uses a [regular expression](https://www.w3schools.com/python/python_regex.asp) to parse the `url` from the beginning of the message, then parses the remaining part of the message into the `description` and `tags` based on the presence of the `#` character. If there is not a `url` present at the beginning of the message, it raises an exception. 
 
+<!--
 {{<tool_tip key="warning" summary="Using a service file">}}
-We created a seperate file for the business logic of parsing our message so that it is not directly tied to our `handler`. When using Cdev, all business level logic should be separated into a `service` file. This is the lowest hanging fruit for writing business logic that is agnostic to the underlying compute platform and development framework.
-{{</tool_tip>}}
+We created a separate file for the business logic of parsing our message so that it is not directly tied to our `handler`. When using Cdev, all business level logic should be separated into a `service` file. This is the lowest hanging fruit for writing business logic that is agnostic to the underlying compute platform and development framework.
+{{</tool_tip>}}-->
 
 {{<codesnippet "/source_code/link_bot_tutorial/basic_link_service.py">}}
 
@@ -206,11 +208,6 @@ We can now update our web hook to use the `link_service`. Update your `handler.p
 {{<codesnippet "/source_code/link_bot_tutorial/handler_service_connected.py">}}
 
 
-{{<break 1>}}
-## Unit Tests
-**Coming Soon. Early April.**
-
-**Write Unit Test Cases**
 
 {{<break 1>}}
 ## Save Information Into Notion

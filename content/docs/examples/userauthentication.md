@@ -26,26 +26,11 @@ For these examples, we will be using [Auth0](https://auth0.com/) as our User Aut
 {{<break 1>}}
 
 ## Set Up
-You will need to use the **[Getting Started](/docs/gettingstarted)** section and follow the instructions for installing the **[Cdev SDK](/docs/gettingstarted/installingcdev)** with the following **EXCEPTION**:
-
-Use the `user_auth` template to initialize the project.
+We will be starting this tutorial from the `user-auth` template. 
 
 ```bash 
 cdev init user-auth-demo --template user-auth
 ```
-
-{{<tool_tip key="question" summary="Why use different templates?">}}
-The `user-auth` and `quick-start` templates differ in that each are initialized with a component, route, function and dependencies that are specific to the example in order to demonstrate the example with clarity.
-{{</tool_tip>}}
-
-
-
-The initial file structure should resemble the image below: 
-
-{{<tutorial_image>}}
-/images/autho_examples/auth_file_structure.png
-{{</tutorial_image>}}
-{{<break 1>}}
 
 {{<break 1>}}
 ## Create a Basic API
@@ -59,11 +44,14 @@ To create the `API` and `Serverless Function` run
 cdev deploy
 ```
 
-You will get an output that looks like: 
+{{<tool_tip key="output" summary="Deploy Output">}}
+This step should output the live url of your webhook and look like
 ```
 Base API URL -> https://<your-endpoint>/live
 Routes -> FrozenDict({'/demo GET': 'ayhuxeb'})
 ```
+{{</tool_tip>}}
+
 
 You can check that this `API` is working correctly by using the `Curl` command
 ```bash
@@ -96,7 +84,9 @@ Note that you can set the `name` to whatever makes sense for your project. The v
 {{</tutorial_image>}}
 {{<break 2>}}
 
-We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. In the `Application` tab, there should be an auto generated `Application` for your API. When you open the auto generate app, you will see the `Domain` for your account. This `Domain` value will be the `issuer_url`.
+We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. 
+
+In the `Application` tab, there should be an auto generated `Application` for your API. When you open the auto generate app, you will see the `Domain` for your account. This `Domain` value will be the `issuer_url`.
 
 {{<tutorial_image>}}
 /images/autho_examples/issuer_location.jpg
@@ -104,9 +94,7 @@ We need one more value from Auth0: **the `issuer_url` for your Auth0 account**. 
 {{<break 2>}}
 
 ### Creating our Authorizer
-We can now create an `Authorizer` for our Cdev API. The `Authorizer` provides the information needed to configure a JWT authorizer that adds an additional layer of access control to an API endpoint. For example, preventing an authenticated users from accessing data that requires admin authorization.
-
-
+We can now create an `Authorizer` for our Cdev API. The `Authorizer` provides the information needed to configure a JWT authorizer that adds access control to your API endpoint.
 
 Update your `/src/resources.py` file to the follow, replacing the values on lines `13` and `14`. 
 

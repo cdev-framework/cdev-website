@@ -18,33 +18,17 @@ It is assumed that you have already installed the Cdev SDK, which has a pre-fill
 {{</tool_tip>}}
 
 {{<break 1>}}
-## Create an API
-
-Open the `src/hello_world/resources.py` file and start by importing the following resources:
-{{<codesnippet `/source_code/http_examples/simple_api_example_resources.py`>}}
-
-
-{{<break 1>}}
-## Create a route
-Next, add `lines 8, 10 and 12` to define your project, `API` and create your route.
+## Create an API and Route
 {{<codesnippet `/source_code/http_examples/simple_api_example_create_route.py`>}}
 
 
 {{<break 1>}}
 ## Integrate GET route with a Serverless Function
-Now, intergrate your route with a [Serverless Function](/docs/examples/functions/) by adding `lines 10 - 35`.
 {{<codesnippet `/source_code/http_examples/simple_api_example_get_serverless.py`>}}
 
 
 {{<break 1>}}
 ### Get your endpoint
-Save and deploy your endpoint with the following commands:
-```bash
-cdev plan
-```
-```bash
-cdev deploy
-```
 Get the live url for your endpoint:
 ```bash
 cdev output <component_name>.api.demoApi.endpoint
@@ -57,46 +41,11 @@ curl <your_endpoint>/hello_world
 
 {{<break 1>}}
 ## Integrate POST route with data to a Serverless function
-Using the same `src/hello_world/resources.py` file from the `GET` route example, make the following changes.
-
-Replace `lines 12 - 31` with:
-```bash
-send_data_route = myApi.route("/send_data", "POST")
-
-
-@simple_function_annotation("send_data_handler", events=[send_data_route.event()])
-def hello_world(event, context):
-    
-    """
-    This is an example function connected to an example POST API route that can receive data
-    """
-
-    print(event)
-
-
-    data = json.loads(event.get("body"))
-
-    print(data)
-    message = {
-        "message": "Handled Data"
-    }
-
-    return {
-        "isBase64Encoded": False,
-        "status_code": 200, 
-        "body": json.dumps(message),
-        "headers": {
-            "Content-Type": "application/json"
-        }
-    }
-```
-
-The `src/hello_world/resources.py` now looks like:
 {{<codesnippet `/source_code/http_examples/simple_api_example_post_serverless.py`>}}
 
 
 {{<break 1>}}
-### Get your POST endpoint
+### Test your POST endpoint
 Save and deploy your endpoint with the following commands:
 ```bash
 cdev plan

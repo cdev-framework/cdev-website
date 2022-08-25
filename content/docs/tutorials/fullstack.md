@@ -40,10 +40,10 @@ In this tutorial, we will be going through the entire process of creating a full
 {{<break 1>}}
 
 ## Create Cdev Project
-We will be starting this tutorial from the standard `quick-start` template.
+We will be starting this tutorial with the basic Cdev project setup. 
 
 ```bash
-cdev init diary-project --template quick-start
+cdev init diary-project
 ```
 
 Now we can deploy our project to get a live REST Api
@@ -51,10 +51,14 @@ Now we can deploy our project to get a live REST Api
 ```bash
 cdev deploy
 ```
+
+{{<tool_tip key="output" summary="Deploy Output">}}
 This step should output the live url of your webhook and look like
 ```
 Base API URL -> <your-endpoint>
 ```
+{{</tool_tip>}}
+
 
 {{<break>}}
 
@@ -70,10 +74,14 @@ cdev deploy
 ```
 
 {{<break 1>}}
-**Next, we are going to create our database models.** Install `sqlalchemy_aurora_data_api`.
+**Next, we are going to create our database models.** 
+
+
 {{<tool_tip key="tip" summary="Database models">}}
 `Database models` determine the logical structure of your database.  They determine how data can be stored, organized, and manipulated.
 {{</tool_tip>}}
+
+Install `sqlalchemy_aurora_data_api`.
 ```bash
 pip install sqlalchemy_aurora_data_api
 ```
@@ -81,7 +89,7 @@ Then, create a `src/hello_world/models.py` file and add the following code:
 
 {{<codesnippet `/source_code/diary_tutorial/models.py`>}}
 
-Now we are going to install and configure `alembic`.  Alembic is a database migration tool for usage with SQLAlchemy for Python.
+Now we are going to install and configure `alembic`.  Alembic is a database migration tool for usage with SQLAlchemy for Python. It will help us manage changes to our models throughout the development of the project. 
 
 ```bash
 pip install alembic
@@ -125,7 +133,9 @@ alembic upgrade head
 ```
 
 {{<break 1>}}
-Lets now connect to our DB and add an User. The following command will open an interactive session to the database that allows you to execute SQL statments.
+Lets now connect to our DB and add an User. 
+
+The following command will open an interactive session to the database that allows you to execute individual SQL statements.
 ```bash
 cdev run relationaldb.shell hello_world_comp.demo_db
 ```
@@ -145,7 +155,7 @@ quit
 {{<break 2>}}
 ## Create Serverless Functions
 Now that the database is set up, it is time to add some serverless functions.  We can start by uncommenting lines 5-6, 13, 43-44, and 53-58 of your `src/hello_world/resources.py` file.
-{{<break >}}
+{{<break 2>}}
 Then deploy the changes.
 ```bash
 cdev deploy
@@ -160,7 +170,9 @@ Check the logs from the function
 ```bash
 cdev run function.logs hello_world_comp.hello_world_function
 ```
-Next, we will add the routes and functions to create and retrieve our diary entries. First, we will need to add a `src/hello_world/utils.py` file and add the following code to it.
+Next, we will add the routes and functions to create and retrieve our diary entries. 
+
+First, we will need to add a `src/hello_world/utils.py` file and add the following code to it.
 
 {{<codesnippet `/source_code/diary_tutorial/utils.py`>}}
 
