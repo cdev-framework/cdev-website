@@ -5,10 +5,10 @@ import os
 # from sqlalchemy import select, create_engine
 # from sqlalchemy.orm import Session
 
-from cdev.resources.simple.api import Api
-from cdev.resources.simple.xlambda import simple_function_annotation
-from cdev.resources.simple.relational_db import RelationalDB, db_engine
-from cdev import Project as cdev_project
+from cdev.aws.api import Api
+from cdev.aws.lambda_function import ServerlessFunction
+from cdev.aws.relational_db import RelationalDB, db_engine
+from cdev import Project
 
 # from .models import Entry
 
@@ -16,7 +16,7 @@ from cdev import Project as cdev_project
 
 
 
-myProject = cdev_project.instance()
+myProject = Project.instance()
 
 ## Routes
 DemoApi = Api("demoapi")
@@ -44,7 +44,7 @@ database_name = os.environ.get("DB_NAME")
 #                     connect_args=dict(aurora_cluster_arn=cluster_arn, secret_arn=secret_arn))
 
 
-@simple_function_annotation("hello_world_function", events=[hello_route.event()], 
+@ServerlessFunction("hello_world_function", events=[hello_route.event()], 
 environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN": myDB.output.secret_arn, "DB_NAME": myDB.database_name}, 
 permissions=[myDB.available_permissions.DATABASE_ACCESS, myDB.available_permissions.SECRET_ACCESS])
 def hello_world(event, context):
