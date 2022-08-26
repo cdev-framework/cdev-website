@@ -5,7 +5,8 @@
     "linktitle": "linkaggregator", 
     "card_icon": "ti-link",
     "card_body": "Learn how to create a virtual assistant to collect links",
-    "weight": "2"
+    "weight": "2",
+    "tags":["Twilio", "Notion"]
 }
 
 # SMS Bot

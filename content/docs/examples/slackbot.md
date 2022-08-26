@@ -5,7 +5,8 @@
     "linktitle": "slackbot", 
     "card_icon": "ti-comments",
     "card_body": "Learn how to create a Slack bot",
-    "weight": "3"
+    "weight": "3",
+    "tags":["Slack"]
 }
 
 # Slack Bot

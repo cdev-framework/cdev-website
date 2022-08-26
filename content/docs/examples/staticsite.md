@@ -5,7 +5,8 @@
     "linktitle": "static sites",
     "card_icon": "ti-desktop",
     "card_body": "Learn how to host a static frontend with the Static Site Resource",
-    "weight": "1"
+    "weight": "1",
+    "tags":["React", "Frontend"]
 }
 
 
