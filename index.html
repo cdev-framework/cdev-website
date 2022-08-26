@@ -45,7 +45,7 @@ textarea, input, button {
 }
 
 .window {
-  /*animation: bounceIn 1s ease-in-out;*/
+  animation: bounceIn 1s ease-in-out;
   width: 640px;
 }
 .window .handle {
@@ -185,7 +185,7 @@ background-color: #ff6159;
                 </div>
                 <div class="terminal" id="landing-page-terminal"><p class="terminal-static">def hello_world(event, context):
     print("Hello from inside your Function!")
-    return {"status_code": 200, "message": "Hello World!🚀"</p>
+    return {"status_code": 200, "message": "Hello World!🚀"}</p>
                 </div>
         </div>
 </div>
@@ -248,13 +248,13 @@ function apply_animation(elem, anim_name){
         console.log(elem.style.animation)
     }
     else{
-        //console.log('-0-----')
-        //console.log(elem.style.animation)
-        //tmp = elem.style.animation + ","+template_string2;
-        //console.log(tmp)
-        //elem.style.animation = tmp
-        //console.log('another')
-        //console.log(elem.style.animation)
+        console.log('-0-----')
+        console.log(elem.style.animation)
+        tmp = elem.style.animation + ","+template_string2;
+        console.log(tmp)
+        elem.style.animation = tmp
+        console.log('another')
+        console.log(elem.style.animation)
     }
 
 
@@ -264,9 +264,9 @@ function apply_animation(elem, anim_name){
 $(document).ready(function() {
     
     lines = [
-        '@simple_function_annotation("hello_world_function")',
+        '@deploy_function("hello_world_function")',
         '\n',
-        'from cdev.resources.simple.xlambda import simple_function_annotation',
+        'from cdev import deploy_function',
     ]
 
     terminal  = document.getElementById('landing-page-terminal');
