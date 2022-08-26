@@ -199,7 +199,7 @@ function create_line(content){
 
     elem = document.createElement('p');
     elem.classList.add("terminal-line");
-    
+    elem.classList.add('anim-typewriter')
     elem.innerHTML = content
 
     return elem
@@ -255,10 +255,7 @@ function apply_animation(elem, anim_name){
         elem.style.animation = tmp
         console.log('another')
         console.log(elem.style.animation)
-    }
-
-
-    
+    }    
 }
 
 $(document).ready(function() {
@@ -278,8 +275,8 @@ $(document).ready(function() {
     
     for(i=0; i<lines.length; i++){
         created_line = create_line(lines[i])
-        apply_animation(created_line, create_typewrite_animation())
-        apply_animation(created_line, create_typewrite_animation())
+        //apply_animation(created_line, create_typewrite_animation())
+        //apply_animation(created_line, create_typewrite_animation())
         created_line.style.animationDelay = (lines.length-i) +'s'
         
         terminal.insertBefore(created_line, current_top);
