@@ -87,7 +87,8 @@ title = "Cdev | Serverless Development Framework"
     name = "Tutorials"
     URL = "docs/tutorials"
     weight = 1
-    
+    hasChildren = true
+
     [[menu.main]]
     parent = "Docs"
     name = "Examples"
@@ -102,8 +103,8 @@ title = "Cdev | Serverless Development Framework"
 
     [[menu.main]]
     parent = "Docs"
-    name = "API"
-    URL = "docs/api/cdev"
+    name = "Resources"
+    URL = "docs/resources"
     weight = 4
 
 
