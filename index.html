@@ -45,7 +45,7 @@ textarea, input, button {
 }
 
 .window {
-  animation: bounceIn 1s ease-in-out;
+  /*animation: bounceIn 1s ease-in-out;*/
   width: 640px;
 }
 .window .handle {
@@ -106,10 +106,7 @@ background-color: #ff6159;
   border-bottom-right-radius: 5px;
   overflow-y: auto;
 }
-.window .terminal::after {
-  content: "|";
-  animation: blink 2s steps(1) infinite;
-}
+
 
 .prompt {
   color: #bde371;
@@ -135,6 +132,43 @@ background-color: #ff6159;
     transform: translateY(0px);
   }
 }
+
+
+.terminal-line{
+    width: 100%;
+    border-right: 2px solid rgba(255,255,255,.75);
+    /*text-align: center;*/
+    white-space: pre;
+    overflow: hidden;
+    margin: 0;
+    /*transform: translateY(-50%);    */
+}
+
+.terminal-static{
+    width: 100%;
+    /*border-right: 2px solid rgba(255,255,255,.75);*/
+    /*text-align: center;*/
+    white-space: pre;
+    overflow: hidden;
+    margin: 0;
+    /*transform: translateY(-50%);    */
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: 
+    typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite forwards;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 100%;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
 </style></head><body>
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:200' rel='stylesheet' type='text/css'>
 <div class="container">
@@ -149,14 +183,96 @@ background-color: #ff6159;
                             </button>
                         </div>
                 </div>
-                <div class="terminal">Hello World</div>
+                <div class="terminal" id="landing-page-terminal"><p class="terminal-static">def hello_world(event, context):
+    print("Hello from inside your Function!")
+    return {"status_code": 200, "message": "Hello World!🚀"</p>
+                </div>
         </div>
 </div>
 
 <a href="http://devmuerto.com" class="devmuerto-logo-corner"></a>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<script >$(document).ready(function() {
+
+<script>
+function create_line(content){
+
+    elem = document.createElement('p');
+    elem.classList.add("terminal-line");
+    
+    elem.innerHTML = content
+
+    return elem
+}
+
+
+function create_blinking_animation(){
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    var keyFrames = '\
+    @-moz-keyframes blinkTextCursor {\
+        from{border-right-color: rgba(255,255,255,.75);}\
+        to{border-right-color: transparent;}\
+    }';
+    style.innerHTML = keyFrames//replace(/A_DYNAMIC_VALUE/g, "180deg");
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    return 'blinkTextCursor'
+}
+
+
+function create_typewrite_animation(){
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    var keyFrames = '\
+    @-webkit-keyframes typewriter {\
+        from{width: 0;}\
+        to{width: 100%;}\
+    }\
+    ';
+    style.innerHTML = keyFrames//replace(/A_DYNAMIC_VALUE/g, "180deg");
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    return 'typewriter'
+}
+
+
+function apply_animation(elem, anim_name){
+    template_string = "ANIM_NAME 4s steps(44) 1s 1 normal both"
+    console.log(elem.style.animation)
+
+    
+
+    elem.style.animation = template_string.replace('ANIM_NAME', anim_name);
+    console.log(elem.style.animation)
+}
+
+$(document).ready(function() {
+    
+    lines = [
+        '@simple_function_annotation("hello_world_function")',
+    ]
+
+    t = '@simple_function_annotation("hello_world_function")'
+
+
+    terminal  = document.getElementById('landing-page-terminal');
+
+    console.log("hello_worlds")
+    console.log(terminal)
+
+    
+    for(i=0; i<lines.length; i++){
+        created_line = create_line(lines[i])
+        apply_animation(created_line, create_typewrite_animation())
+        apply_animation(created_line, create_typewrite_animation())
+        terminal.insertBefore(created_line, terminal.firstChild);
+    }
+})
+</script>
+
+
+<!--<script >$(document).ready(function() {
         "use strict";
 
         // UTILITY
@@ -358,5 +474,7 @@ var date = new Date().toString(); date = date.substr(0, date.indexOf("GMT") - 1)
 terminal.append("Last login: " + date + "\n" + hintMessage + "\n"); displayPrompt();
 });
 //# sourceURL=pen.js
-</script>
+</script>-->
+
+
 </body></html>
