@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate Message Queues",
+    "title": "SQS Queue",
     "linktitle": "queue",
     "card_icon": "ti-direction",
     "card_body": "Learn to create and integrate a Message Queue",

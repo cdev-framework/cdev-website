@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate NoSql DBs",
+    "title": "Dynamodb Table",
     "linktitle": "dynamodb",
     "card_icon": "ti-server",
     "card_body": "Learn to connect to a Dynamodb database",

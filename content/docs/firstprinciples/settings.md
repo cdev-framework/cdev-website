@@ -1,5 +1,5 @@
 {
-    "type": "examples",
+    "type": "firstprinciples",
     "layout": "type",
     "title": "Project Settings",
     "linktitle": "settings",
@@ -8,9 +8,6 @@
     "weight": "3"
 }
 
-
-# Create and Update Project Settings
-{{<header_divider>}}
 
 Cdev provides a mechanism to manage settings per `Environment`. These settings can be used to provide different values to the framework for different `Environments`.
 
