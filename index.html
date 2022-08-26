@@ -136,7 +136,7 @@ background-color: #ff6159;
 
 .terminal-line{
     width: 100%;
-    border-right: 2px solid rgba(255,255,255,.75);
+    /*border-right: 2px solid rgba(255,255,255,.75);*/
     /*text-align: center;*/
     white-space: pre;
     overflow: hidden;
@@ -238,35 +238,53 @@ function create_typewrite_animation(){
 
 
 function apply_animation(elem, anim_name){
-    template_string = "ANIM_NAME 4s steps(44) 1s 1 normal both"
+    template_string = "ANIM_NAME 2s steps(44) 1s 1 normal both"
+    template_string2 = "blinkTextCursor 300ms steps(44) infinite forwards"
     console.log(elem.style.animation)
+
+    if (elem.style.animation.length == 0){
+        elem.style.animation = template_string.replace('ANIM_NAME', anim_name);
+        console.log('here')
+        console.log(elem.style.animation)
+    }
+    else{
+        //console.log('-0-----')
+        //console.log(elem.style.animation)
+        //tmp = elem.style.animation + ","+template_string2;
+        //console.log(tmp)
+        //elem.style.animation = tmp
+        //console.log('another')
+        //console.log(elem.style.animation)
+    }
+
 
     
-
-    elem.style.animation = template_string.replace('ANIM_NAME', anim_name);
-    console.log(elem.style.animation)
 }
 
 $(document).ready(function() {
     
     lines = [
         '@simple_function_annotation("hello_world_function")',
+        '\n',
+        'from cdev.resources.simple.xlambda import simple_function_annotation',
     ]
-
-    t = '@simple_function_annotation("hello_world_function")'
-
 
     terminal  = document.getElementById('landing-page-terminal');
 
     console.log("hello_worlds")
     console.log(terminal)
 
+    current_top = terminal.firstChild
     
     for(i=0; i<lines.length; i++){
         created_line = create_line(lines[i])
         apply_animation(created_line, create_typewrite_animation())
         apply_animation(created_line, create_typewrite_animation())
-        terminal.insertBefore(created_line, terminal.firstChild);
+        created_line.style.animationDelay = (lines.length-i) +'s'
+        
+        terminal.insertBefore(created_line, current_top);
+        current_top = created_line
+        
     }
 })
 </script>
