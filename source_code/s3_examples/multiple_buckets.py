@@ -1,4 +1,5 @@
-from cdev.resources.simple.object_store import Bucket
+from cdev.aws.s3 import Bucket
+
 
 
 myBucket = Bucket("demo_bucket")
