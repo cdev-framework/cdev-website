@@ -1,4 +1,4 @@
-from cdev.resources.simple.table import Table, AttributeDefinition, KeyDefinition, key_type, attribute_type
+from cdev.aws.dynamodb import Table, AttributeDefinition, KeyDefinition, key_type, attribute_type
 
 from .link_service import TABLE_VAR_NAME
 

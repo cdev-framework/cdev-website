@@ -1,6 +1,6 @@
 from twilio.twiml.messaging_response import MessagingResponse
 
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.lambda_function import ServerlessFunction
 from cdev import Project as cdev_project
 
 from .api import twilio_webhook_route
@@ -23,7 +23,7 @@ notion_env_vars = {
 twilio_webhook_permissions = []
 twilio_webhook_env_vars = {**notion_env_vars}
 
-@simple_function_annotation("twilio_handler", 
+@ServerlessFunction("twilio_handler", 
     events=[twilio_webhook_route.event("application/xml")], 
     environment=twilio_webhook_env_vars, 
     permissions=twilio_webhook_permissions
