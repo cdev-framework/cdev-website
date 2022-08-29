@@ -1,7 +1,7 @@
 import json
 
-from cdev.resources.simple.api import Api
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.api import Api
+from cdev.aws.lambda_function import ServerlessFunction
 
 from cdev import Project as cdev_project
 
@@ -12,7 +12,7 @@ myApi = Api("demoApi")
 hello_world_get_route = myApi.route("/hello_world", "GET")
 
 
-@simple_function_annotation("demo_function", events=[hello_world_get_route.event()])
+@ServerlessFunction("demo_function", events=[hello_world_get_route.event()])
 def hello_world(event, context):
     """
     This is an example function connected to an example API route
