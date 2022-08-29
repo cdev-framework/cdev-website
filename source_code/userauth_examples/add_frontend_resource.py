@@ -1,10 +1,10 @@
 # Generated as part of user-auth project template 
 import json
 
-from cdev.resources.simple.api import Api, Authorizer
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.api import Api, Authorizer
+from cdev.aws.lambda_function import ServerlessFunction
 
-from cdev.resources.simple.static_site import StaticSite
+from cdev.aws.frontend import Site
 
 from cdev import Project as cdev_project
 
@@ -20,7 +20,7 @@ DemoApi = Api("demoapi", authorizers=[demoAuthorizer], default_authorizer='defau
 demo_route = DemoApi.route("/demo", "GET")
 
 
-@simple_function_annotation("demo_handler", events=[demo_route.event()])
+@ServerlessFunction("demo_handler", events=[demo_route.event()])
 def hello_world(event, context):
     print('Hello from inside your Function!')
 
@@ -34,7 +34,7 @@ def hello_world(event, context):
     }
 
 
-myFrontend = StaticSite("demofrontend", content_folder="src/content")
+myFrontend = Site("demofrontend", content_folder="src/content")
 
 myProject.display_output("Base API URL", DemoApi.output.endpoint)
 myProject.display_output("Routes", DemoApi.output.endpoints)
