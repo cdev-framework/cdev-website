@@ -142,10 +142,10 @@ Go to `hello_world/resources.py` and add the code at `lines 6, 26 and 30`.
 ```bash
 # Generated as part of Quick Start project template 
  
-from cdev.resources.simple.api import Api
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.api import Api
+from cdev.aws.lambda_function import ServerlessFunction
  
-from cdev.resources.simple.static_site import StaticSite
+from cdev.aws.frontend import Site
  
 from cdev import Project as cdev_project
  
@@ -155,7 +155,7 @@ DemoApi = Api("demoapi")
  
 hello_route = DemoApi.route("/hello_world", "GET")
  
-@simple_function_annotation("hello_world_function", events=[hello_route.event()])
+@ServerlessFunction("hello_world_function", events=[hello_route.event()])
 def hello_world(event, context):
     print('Hello from inside your Function!')
  
@@ -165,7 +165,7 @@ def hello_world(event, context):
         "message": "Hello Outside World!"
     }
  
-myFrontend = StaticSite("demofrontend", content_folder="src/content", index_document='index.html')
+myFrontend = Site("demofrontend", content_folder="src/content", index_document='index.html')
  
 myProject.display_output("Base API URL", DemoApi.output.endpoint)
 myProject.display_output("Routes", DemoApi.output.endpoints)
