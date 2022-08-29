@@ -1,14 +1,14 @@
 import json
 
-from cdev.resources.simple.xlambda import simple_function_annotation
-from cdev.resources.simple.api import Api, route_verb
+from cdev.aws.lambda_function import ServerlessFunction
+from cdev.aws.api import Api, route_verb
 
 
 myApi = Api("demo")
 hello_route = myApi.route("/hello", route_verb.GET)
 
 
-@simple_function_annotation("hello_function", events=[hello_route.event()])
+@ServerlessFunction("hello_function", events=[hello_route.event()])
 def hello_world(event, context):
   print(event)
   message = "Hello!"
