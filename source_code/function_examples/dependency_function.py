@@ -1,11 +1,11 @@
 import pandas
 
-from cdev.resources.simple.xlambda import simple_function_annotation
-from cdev.resources.simple.object_store import Bucket
+from cdev.aws.lambda_function import ServerlessFunction
+from cdev.aws.s3 import Bucket
 
 
-@simple_function_annotation("hello_function")
+@ServerlessFunction("hello_function")
 def hello_world(event, context):
   print(pandas)
 
-  print("Hey friends")
+  print("Hey friends") 
