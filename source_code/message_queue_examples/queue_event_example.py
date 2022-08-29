@@ -1,10 +1,10 @@
-from cdev.resources.simple.queue import Queue
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.sqs import Queue
+from cdev.aws.lambda_function import ServerlessFunction
 
 
 myQueue = Queue('demo')
 queue_event_trigger = myQueue.create_event_trigger()
 
-@simple_function_annotation("demofunction", events=[queue_event_trigger], permissions=[myQueue.available_permissions.READ_EVENTS])
+@ServerlessFunction("demofunction", events=[queue_event_trigger], permissions=[myQueue.available_permissions.READ_EVENTS])
 def hello_world(event,context):
   print(event)
