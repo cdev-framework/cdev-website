@@ -1,3 +1,3 @@
-from cdev.resources.simple.topic import Topic
+from cdev.aws.sns import Topic
 
 myTopic = Topic("demo")
