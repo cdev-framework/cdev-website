@@ -1,12 +1,12 @@
 from aws_lambda_powertools import Logger
 
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.lambda_function import ServerlessFunction
 
 from src.examples.config import powertool_vars
 
 logger = Logger(service="payment")
 
-@simple_function_annotation("logger_example", environment=powertool_vars)
+@ServerlessFunction("logger_example", environment=powertool_vars)
 @logger.inject_lambda_context
 def handler(event, context):
     logger.info("Collecting payment")
