@@ -4,8 +4,8 @@ import time
 
 import boto3
 
-from cdev.resources.simple.table import Table, AttributeDefinition, KeyDefinition, key_type, attribute_type
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.dynamodb import Table, AttributeDefinition, KeyDefinition, key_type, attribute_type
+from cdev.aws.lambda_function import ServerlessFunction
 
 
 myAttributes = [
@@ -26,7 +26,7 @@ client = boto3.resource('dynamodb')
 table_name = os.environ.get("TABLENAME")
 
 
-@simple_function_annotation("email_adder", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
+@ServerlessFunction("email_adder", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
 def add_email_handler(event, context):
     print(event)
 
@@ -61,7 +61,7 @@ def add_email_handler(event, context):
             "mode": "no-cors"
         }
     }
-@simple_function_annotation("scan", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
+@ServerlessFunction("scan", environment={"TABLENAME": EmailTable.output.table_name}, permissions=[EmailTable.available_permissions.READ_AND_WRITE_TABLE])
 def scan(event, context):
     table = client.Table(table_name)
     response=table.scan()
