@@ -5,7 +5,8 @@
     "linktitle": "userauthentication",
     "card_icon": "ti-id-badge",
     "card_body": "Learn how to add User Authentication with Auth0",
-    "weight": "2"
+    "weight": "2",
+    "tags":["Auth0", "API"]
 }
 
 

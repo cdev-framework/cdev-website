@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Integrate S3 Buckets",
+    "title": "S3 Bucket",
     "linktitle": "bucket",
     "card_icon": "ti-paint-bucket",
     "card_body": "Learn to create a S3 Bucket to store objects",

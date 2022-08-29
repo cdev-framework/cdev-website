@@ -1,4 +1,4 @@
-@simple_function_annotation("create_entry_function", events=[create_entries_route.event()], 
+@ServerlessFunction("create_entry_function", events=[create_entries_route.event()], 
 environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN": myDB.output.secret_arn, "DB_NAME": myDB.database_name}, 
 permissions=[myDB.available_permissions.DATABASE_ACCESS, myDB.available_permissions.SECRET_ACCESS])
 def create_entry(event, context):

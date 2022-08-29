@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+    {{- partial "preloader.html" . -}}
+    {{- partial "static-header.html" . -}}
+
+
+<!--{{ partial "page-title.html" . }}-->
+
+
+
+<div class="coding_section container" >
+    <div class="row" >
+
+        {{ partial "docs-side.html" .}}
+
+
+        <div class="content-section col-md-7 col-sm-6"  data-bs-spy="scroll" data-bs-target="#navbar-spy">
+            {{.Content}}
+
+            <div class="d-flex">
+                {{ with .NextInSection }}
+                <div>
+                <a href="{{ .Permalink }}"><i class=" ti-arrow-left text-black"></i></a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                {{ end }}
+
+                {{ with .PrevInSection }}
+                <div style="margin-left: auto;">
+
+                  <a href="{{ .Permalink }}">{{ .Title }}</a>
+                  <a href="{{ .Permalink }}"><i class=" ti-arrow-right text-black"></i></a>
+                </div>
+                {{ end }}
+            </div>
+
+        </div>
+                   
+        {{ partial "table-of-content.html" .}}
+
+    </div>
+
+</div>
+
+
+
+{{- partial "footer.html" . -}}
+</body>
+</html>

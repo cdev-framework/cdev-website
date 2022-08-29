@@ -10,11 +10,11 @@ def entries_serializer(obj_list):
     print("data complete")
     return data
 
-@simple_function_annotation("get_entries_function", events=[get_entries_route.event()], 
+@ServerlessFunction("get_entries_function", events=[get_entries_route.event()], 
 environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN": myDB.output.secret_arn, "DB_NAME": myDB.database_name}, 
 permissions=[myDB.available_permissions.DATABASE_ACCESS, myDB.available_permissions.SECRET_ACCESS])
-def get_entries(event, context):
-    print('Hello from inside your get entries Function!')
+def get_entriess(event, context):
+    print('Hello from inside your get entriess Function!')
 
     session = Session(engine)
     try:

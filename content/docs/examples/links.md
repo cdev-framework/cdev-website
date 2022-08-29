@@ -1,12 +1,16 @@
 {
-    "type": "tutorial",
+    "type": "examples",
     "layout": "type",
-    "title": "Create a Link Aggregator",
+    "title": "Create a SMS Bot",
     "linktitle": "linkaggregator", 
     "card_icon": "ti-link",
     "card_body": "Learn how to create a virtual assistant to collect links",
-    "weight": "2"
+    "weight": "2",
+    "tags":["Twilio", "Notion"]
 }
+
+# SMS Bot
+{{<header_divider>}}
 
 Twilio provides Api's to help developers integrate SMS into their applications. You can easily send automated text messages with Twilio, and also use webhooks to receive text messages. In this tutorial, we will be creating a `bot` with a SMS interface that allows us to text links to the bot and have those links saved in a Notion Database.
 

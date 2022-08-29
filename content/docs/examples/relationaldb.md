@@ -5,7 +5,8 @@
     "linktitle": "relationaldb",
     "card_icon": "ti-server",
     "card_body": "Learn to create and integrate a Relational DB",
-    "weight": "4"
+    "weight": "4",
+    "tags":["SQL", "PostgreSQL", "Alembic", "SQL Alchemy", "ORM"]
 }
 
 

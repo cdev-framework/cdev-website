@@ -1,7 +1,7 @@
 {
     "type": "examples",
     "layout": "type",
-    "title": "Create Serverless Functions",
+    "title": "Serverless Function",
     "linktitle": "functions",
     "card_icon": "ti-infinite",
     "card_body": "Learn to create and integrate Serverless functions",

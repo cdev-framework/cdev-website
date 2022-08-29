@@ -1,27 +1,26 @@
 {
-    "type": "tutorial",
+    "type": "examples",
     "layout": "type",
     "title": "Build a Slack Bot",
     "linktitle": "slackbot", 
     "card_icon": "ti-comments",
     "card_body": "Learn how to create a Slack bot",
-    "weight": "3"
+    "weight": "3",
+    "tags":["Slack"]
 }
 
-{{<blockquote>}}
-What are bots? 
-{{<break 2>}}
-A bot is a type of Slack App designed to interact with users via conversation.
-{{<break 2>}}
-A bot is the same as a regular app: it can access the same range of APIs and do all of the magical things that a Slack App can do.
+# Slack Bot
+{{<header_divider>}}
+
+
+
+**What are Slack bots?**
 {{<break 1>}}
-But when you build a bot for your Slack App, you're giving that app a face, a name, and a personality, and encouraging users to talk to it.
+A bot is a type of Slack App designed to interact with users via conversation.
+
+A bot is the same as a regular app: it can access the same range of APIs and do all of the magical things that a Slack App can do, but when you build a bot for your Slack App, you're giving that app a face, a name, and a personality, and encouraging users to talk to it.
 {{<break 2>}}
 Your bot can send DMs, it can be mentioned by users, it can post messages or upload files, and it can be invited to channels - or kicked out.
-
-{{<break 2>}}
--Slack Documentation
-{{</blockquote>}}
 
 
 {{<break 1>}}
