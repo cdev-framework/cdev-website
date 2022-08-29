@@ -2,8 +2,8 @@ import os
 
 import aurora_data_api
 
-from cdev.resources.simple.relational_db import RelationalDB, db_engine
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.relational_db import RelationalDB, db_engine
+from cdev.aws.lambda_function import ServerlessFunction
 
 
 myDB = RelationalDB(
@@ -15,7 +15,7 @@ myDB = RelationalDB(
 )
 
 
-@simple_function_annotation("db_handler", environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN":myDB.output.secret_arn, "DB_NAME": db_name}, permissions=[myDB.available_permissions.DATABASE_ACCESS,myDB.available_permissions.SECRET_ACCESS])
+@ServerlessFunction("db_handler", environment={"CLUSTER_ARN": myDB.output.cluster_arn, "SECRET_ARN":myDB.output.secret_arn, "DB_NAME": db_name}, permissions=[myDB.available_permissions.DATABASE_ACCESS,myDB.available_permissions.SECRET_ACCESS])
 def connect_to_db(event, context):
 
     cluster_arn = os.environ.get("CLUSTER_ARN")

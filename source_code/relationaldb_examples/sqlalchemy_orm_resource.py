@@ -1,9 +1,9 @@
 # Generated as part of Quick Start project template 
 
-from cdev.resources.simple.api import Api
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.api import Api
+from cdev.aws.lambda_function import ServerlessFunction
 
-from cdev.resources.simple.relational_db import RelationalDB, db_engine
+from cdev.aws.relational_db import RelationalDB, db_engine
 
 from cdev import Project as cdev_project
 
@@ -13,7 +13,7 @@ DemoApi = Api("demoapi")
 
 hello_route = DemoApi.route("/hello_world", "GET")
 
-@simple_function_annotation("hello_world_function", events=[hello_route.event()])
+@ServerlessFunction("hello_world_function", events=[hello_route.event()])
 def hello_world(event, context):
     print('Hello from inside your Function!')
 

@@ -1,4 +1,4 @@
-from cdev.resources.simple.relational_db import RelationalDB, db_engine
+from cdev.aws.relational_db import RelationalDB, db_engine
 
 
 myDB = RelationalDB(
