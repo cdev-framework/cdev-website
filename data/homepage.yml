@@ -17,6 +17,17 @@ service:
   title : "The Cdev Framework"
   subtitle : "A Python based Serverless development framework that is designed to provide all the tools needed to effectively build applications. 
   Cdev helps developers build projects without worrying about setting up hosting configurations by managing the deployment of projects onto cloud provider's Serverless platforms."
+  cards :
+    - title: "Code"
+      icon : "ti-vector"
+      content: "Codingo woeimfdowiem woefmwolkefmn welfkmwelkf"
+    - title: "Deploy"
+      icon : "ti-user"
+      content: "powekfpokew wpoefmwpomk sldkmcslkm lwkmefdlk"
+    - title: "Execute"
+      icon : "ti-user"
+      content: "oisjkefpokpo oooo pppppp s;dlvc,sm;dlc, ;lm,"
+
 ############################ features #################################
 feature:
   enable : true
@@ -36,7 +47,7 @@ feature:
     # feature item
     - title : "Skills"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We teach you all the skills you need to start utilizing Cdev to acheive your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
+      content : "We teach you all the skills you need to start utilizing Cdev to achieve your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
 ################################## call to action ###########################
 cta2:
   enable : true

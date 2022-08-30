@@ -40,16 +40,37 @@
 <!-- service -->
 <section class="section">
   <div class="container">
+    {{ with .Site.Data.homepage.service }}
     <div class="row">
-      {{ with .Site.Data.homepage.service }}
+      
       <div class="col-lg-10 mx-auto text-center">
         <h2>{{ .title | markdownify }}</h2>
         <p class="lead">{{ .subtitle | markdownify}}</p>
-      {{ end }}
-
-        
+      
       </div>   
     </div>
+
+    <div class="row"> 
+      {{ range first 3 .cards}}
+      <div class="col-lg-4 mb-4 mb-lg-0">
+
+        <div class="card hover-bg-secondary shadow py-4" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
+          <div class="card-body text-center">
+            <div class="position-relative">
+              <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{ .icon }} mb-5 d-inline-block text-white"></i>
+              <i class="icon-lg icon-watermark text-white {{ .icon }}"></i>
+            </div>
+            <h4 class="mb-4">{{ .title | markdownify }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          </div>
+          </a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+
     {{ partial "section-border.html" .}}
     <div class="row">
       <div class="col-lg-12 " style="padding-bottom: 5em; display: flex; justify-content: center; overflow: hidden; align-items: center;">
@@ -79,28 +100,7 @@
       
       
     </div>
-    {{ partial "section-border.html" .}}
-    <div class= "col-12"><h1 style="text-align: center; padding-bottom: 1em; padding-top: 1em">Learn Cdev</h1></div>
-    <div class="row">
-     
-      {{ range first 3 .Site.Data.learn.methods }}
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        
-        <div class="card hover-bg-secondary shadow py-4" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
-          <a href="{{.url}}">
-          <div class="card-body text-center">
-            <div class="position-relative">
-              <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{ .icon }} mb-5 d-inline-block text-white"></i>
-              <i class="icon-lg icon-watermark text-white {{ .icon }}"></i>
-            </div>
-            <h4 class="mb-4">{{ .title | markdownify }}</h4>
-            <p>{{ .description | markdownify }}</p>
-          </div>
-        </a>
-        </div>
-      </div>
-      {{ end }}
-    </div>
+
   </div>
 
   </div>
