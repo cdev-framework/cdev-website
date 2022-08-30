@@ -1,11 +1,16 @@
 ############################## Banner ###################################
 banner:
-  bgImage : "images/banner/banner2.jpg"
+  bgImage : "images/banner/banner3.jpg"
   title : "Cdev"
-  subtitle: "Python Serverless development framework,
-  start building Serverless applications,
-  or how I learned to stop worrying and love Serverless"
-
+  dynamic-subtitle: "Code,Deploy,Execute"
+  subtitle: "Code Deploy Execute"
+  cta:
+    - label : "Get Started"
+      url: "/docs/gettingstarted/"
+    - label : "Book a Demo"
+      url: "/contact/officehours/"
+    - label : "Replit"
+      url: "https://google.com"
 ########################### services ##################################
 service:
   enable : true
