@@ -1,3 +1,3 @@
-from cdev.resources.simple.api import Api
+from cdev.aws.api import Api
 
 myApi = Api("demoApi")
