@@ -31,21 +31,26 @@ service:
 ############################ features #################################
 feature:
   enable : true
-  image : "images/pexels-jonathan-borba-3285203.jpg"
-  title : "What You Gain From Our Workshops"
+  image : "images/feature.jpg"
+  title : "Features"
   featureItem:
     # feature item
-    - title : "Knowledge"
+    - title : "Deployments"
       icon : "ti-vector" # themify icon pack https://themify.me/themify-icons
       content : "In all of our workshops you get to learn about Serverless development and how Cdev makes it easy."
       
     # feature item
-    - title : "Personalized Help"
+    - title : "Packaging"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
       content : "We help you get started using Cdev all the way from setting up your machine to building fully functional applications and answer any questions you have along the way!"
 
     # feature item
-    - title : "Skills"
+    - title : "Environments"
+      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
+      content : "We teach you all the skills you need to start utilizing Cdev to achieve your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
+
+    # feature item
+    - title : "Optimizations"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
       content : "We teach you all the skills you need to start utilizing Cdev to achieve your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
 ################################## call to action ###########################
