@@ -9,6 +9,51 @@
                 </button>
             </div>
     </div>
-    <div class="terminal">Hello World</div>
-</div>
+    <div class="terminal" id="landing-page-terminal">
+            <span class="type" style="--n:10000">
+from cdev import deploy_function
 
+@deploy_function("hello_world_function")
+def hello_world(event, context):
+return {"status_code": 200, "message": "Hello World!🚀 IAN"}</span>
+            
+    </div>
+</div>
+<div class="window" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 7.5s;" >
+    <div class="handle" style="transform: rotateY(270deg);">
+            <div class="buttons">
+                <button class="red">
+                </button>
+                <button class="yellow">
+                </button>
+                <button class="green">
+                </button>
+            </div>
+    </div>
+    <div class="terminal" id="landing-page-terminal" style="transform: rotateY(270deg);">
+            <span class="type" style="--n:100000; animation-delay: 5s;">
+cdev deploy
+
+Current State:
+
+hello_world_comp (component)
+  Resources:
+  hello_world_function (cdev::simple::function)
+  demoapi (cdev::simple::api)
+
+  No References
+
+Differences in State:
+    Create: hello_world_comp (component)
+        Create: hello_world_function (cdev::simple::function)
+        Create: demoapi (cdev::simple::api)
+
+Do you want to deploy differences? [y/n]: y
+  Create: hello_world_comp (component)                    ━━━━━━━━━━━━━━━━━━━━━━ 0:00:00 Completed ✅
+  Creating: demoapi (cdev::simple::api)                   ━━━━━━━━━━━━━━━━━━━━━━ 0:00:01 Completed ✅
+⠴ Creating: hello_world_function (cdev::simple::function) ━━━━━━━━━━━╺━━━━━━━━━━ 0:00:03 Waiting for role to finish
+
+</span>
+            
+    </div>
+</div>

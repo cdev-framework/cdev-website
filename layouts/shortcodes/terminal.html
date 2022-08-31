@@ -9,6 +9,13 @@
                 </button>
             </div>
     </div>
-    <div class="terminal">Hello World</div>
-</div>
+    <div class="terminal" id="landing-page-terminal">
+            <span class="type" style="--n:10000">
+from cdev import deploy_function
 
+@deploy_function("hello_world_function")
+def hello_world(event, context):
+return {"status_code": 200, "message": "Hello World!🚀"}</span>
+            
+    </div>
+</div>
