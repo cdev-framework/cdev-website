@@ -36,19 +36,19 @@
 {{ end }}
 <!-- /banner -->
 
+<!-- about? -->
 {{ if .Site.Data.homepage.service.enable }}
-<!-- service -->
 <section class="section">
   <div class="container">
     {{ with .Site.Data.homepage.service }}
-    <div class="row">
+    <!--<div class="row">
       
       <div class="col-lg-10 mx-auto text-center">
         <h2>{{ .title | markdownify }}</h2>
         <p class="lead">{{ .subtitle | markdownify}}</p>
       
       </div>   
-    </div>
+    </div>-->
 
     <div class="row"> 
       {{ range first 3 .cards}}
@@ -69,28 +69,101 @@
       {{ end }}
     </div>
     {{ end }}
-
-
-    {{ partial "section-border.html" .}}
-
-
     </div>
 
   </div>
 
   </div>
 </section>
+{{ end }}
 
+<!-- features -->
 {{ if .Site.Data.homepage.feature.enable }}
 {{ partial "feature.html" . }}
 {{ end }}
 
-
-<!-- /service -->
-{{ end }}
-
+<!-- call to action -->
 {{ if .Site.Data.homepage.cta.enable }}
 {{ partial "cta.html" . }}
+{{ end }}
+
+<!-- promo video -->
+{{ if .Site.Data.homepage.promo.enable }}
+{{ with .Site.Data.homepage.promo }}
+<section class="section-lg position-relative bg-cover" data-background="'{{ .bgImage | absURL }}'">
+  <img src="{{`images/backgrounds/about-bg-overlay.png` | absURL }}" alt="overlay" class="overlay-image img-fluid">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-6 col-md-8 col-sm-7 col-8">
+        <h2 class="text-white mb-4">{{ .title  | markdownify }}</h2>
+        <p class="text-light mb-4">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absURL }}" class="btn btn-primary">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-2 col-sm-4 col-4 text-right align-self-end">
+        <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ .videoURL | safeURL }}">
+          <i
+            class="text-center icon-sm icon-box rounded-circle text-white bg-gradient-primary d-block ti-control-play"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+<!-- examples -->
+{{ if .Site.Data.homepage.project.enable }}
+<!-- project -->
+<section class="section pb-0">
+  <div class="container-fluid px-0">
+    <div class="row">
+      {{ with .Site.Data.homepage.project }}
+
+      <div class="col-lg-10 mx-auto text-center">
+        
+        <h2>{{ .title | markdownify }}</h2>
+        {{ if ne .title "" }}
+        <div class="section-border"></div>
+        {{ end }}
+        
+      </div>
+      {{ end }}
+    </div>
+
+    <div class="row no-gutters shuffle-wrapper">
+      {{ range first 5 .Site.Data.project.projects }}
+
+      {{ $column := .column }}
+      {{ if eq $column 1 }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ else if eq $column 2 }}
+      {{ $column = "col-lg-8" }}
+      {{ else }}
+      {{ $column = "col-lg-4 col-md-6" }}
+      {{ end }}
+      <div class="{{$column}} shuffle-item">
+        <div class="project-item">
+          <img src="{{ .image | absURL }}" alt="project-image" class="img-fluid w-100">
+          <div class="project-hover bg-secondary px-4 py-3">
+            {{ if and ( ne .link "" ) ( ne .link "#" ) }}
+            <a href="{{ .link | safeURL }}" target="_blank" class="text-white h4">{{ .title | markdownify}}</a>
+            <a href="{{ .link | safeURL }}"><i class="ti-link icon-xs text-white"></i></a>
+            {{ else }}
+            <h4 class="text-white">{{ .title | markdownify }}</h4>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /project -->
 {{ end }}
 
 

@@ -1,0 +1,82 @@
+########################### projects ############################
+projects:
+  # project item
+  - title : "Project title"
+    image : "images/project/project-1.jpg"
+    column : 1 # column is for image width
+    link : "http://demo.url.com"
+    
+  # project item
+  - title : "Project title"
+    image : "images/project/project-2.jpg"
+    column : 1 # column is for image width
+    link : "#"
+    
+  # project item
+  - title : "Project title"
+    image : "images/project/project-3.jpg"
+    column : 1 # column is for image width
+    link : "http://demo.url.com"
+
+  # project item
+  - title : "Project title"
+    image : "images/project/project-1.jpg"
+    column : 1 # column is for image width
+    link : "#"
+    
+  # project item
+  - title : "Project title"
+    image : "images/project/project-3.jpg"
+    column : 1 # column is for image width
+    link : "#"
+
+
+  
+############################## call to action ############################
+cta:
+  enable: true
+  # cta content comes from 'hompage.yml'
+
+#################### clients logo ###############################
+clientsLogo:
+  enable : true
+  slider:
+    # slider item
+    - logo : "images/clients-logo/clients-logo-1.png"
+      link : "http://demo.link.url"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-2.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-3.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-4.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-5.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-1.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-2.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-3.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-4.png"
+      link : "#"
+      
+    # slider item
+    - logo : "images/clients-logo/clients-logo-5.png"
+      link : "#"

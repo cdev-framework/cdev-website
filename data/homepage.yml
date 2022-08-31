@@ -2,8 +2,8 @@
 banner:
   bgImage : "images/banner/banner3.jpg"
   title : "Cdev"
-  dynamic-subtitle: "Code,Deploy,Execute"
-  subtitle: "Code Deploy Execute"
+  dynamic-subtitle: "Code,  Deploy,Execute"
+  subtitle: "Code.    Deploy.    Share."
   cta:
     - label : "Get Started"
       url: "/docs/gettingstarted/"
@@ -15,18 +15,16 @@ banner:
 service:
   enable : true
   title : "The Cdev Framework"
-  subtitle : "A Python based Serverless development framework that is designed to provide all the tools needed to effectively build applications. 
-  Cdev helps developers build projects without worrying about setting up hosting configurations by managing the deployment of projects onto cloud provider's Serverless platforms."
   cards :
     - title: "Code"
-      icon : "ti-vector"
-      content: "Codingo woeimfdowiem woefmwolkefmn welfkmwelkf"
+      icon : "ti-wand"
+      content: "Write your code"
     - title: "Deploy"
-      icon : "ti-user"
-      content: "powekfpokew wpoefmwpomk sldkmcslkm lwkmefdlk"
-    - title: "Execute"
-      icon : "ti-user"
-      content: "oisjkefpokpo oooo pppppp s;dlvc,sm;dlc, ;lm,"
+      icon : "ti-package"
+      content: "Deploy to the cloud in a single command"
+    - title: "Share"
+      icon : "ti-heart"
+      content: "Share your project with the world!"
 
 ############################ features #################################
 feature:
@@ -37,34 +35,49 @@ feature:
     # feature item
     - title : "Deployments"
       icon : "ti-vector" # themify icon pack https://themify.me/themify-icons
-      content : "In all of our workshops you get to learn about Serverless development and how Cdev makes it easy."
+      content : "Deploy your project with a single command. Projects are deployed onto Aws, so you get the reliability and scalability of a platform used by the largest enterprises."
       
     # feature item
-    - title : "Packaging"
+    - title : "Resources"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We help you get started using Cdev all the way from setting up your machine to building fully functional applications and answer any questions you have along the way!"
+      content : "Cdev provides a framework to deploy and integrate all the resources (compute, storage, etc) needed to create applications. "
 
-    # feature item
-    - title : "Environments"
-      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We teach you all the skills you need to start utilizing Cdev to achieve your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
 
     # feature item
     - title : "Optimizations"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We teach you all the skills you need to start utilizing Cdev to achieve your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
+      content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
+
+        # feature item
+    - title : "Fourth item"
+      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
+      content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
+
+
 ################################## call to action ###########################
-cta2:
+cta:
   enable : true
-  title : "Find a Workshop For You!"
+  title : "Sign up for our Newsletter"
   bgImage : "images/backgrounds/cta-bg.jpg"
-  content : "Check out the available options below, and sign up for one today!  **They are free!**"
-  
-pip:
-  message: "pip install cdev"
+  content : "Lorem ipsum dolor sit amet, magna habemus ius ad"
+  button : 
+    enable : true
+    label : "Let's talk"
+    link : "contact"
+
+################################## promo ###########################
+promo:
+  enable : true
+  bgImage : "images/backgrounds/about-bg.jpg"
+  title : "Who We Are"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  videoURL : "https://www.youtube.com/watch?v=jrkvirglgaQ"
+  button:
+    enable : true
+    label : "Read More"
+    link : "about"
 
 ############################## blog ######################################
-blog:
+project:
   enable : true
-  title : "Blogs"
-  # blog content comes from `content/blog` folder
+  title: What can you build?
