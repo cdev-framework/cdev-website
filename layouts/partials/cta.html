@@ -1,7 +1,7 @@
 <!-- call to action -->
 {{ with .Site.Data.homepage.cta }}
-<section class="section">
-  <div class="container section-sm overlay-secondary-half bg-cover" data-background="{{ .bgImage | absURL }}">
+<section class="section col-12 ">
+  <div class="container section col-12 overlay-secondary-half bg-cover" data-background="{{ .bgImage | absURL }}">
     <div class="row">
       <div class="col-lg-8 offset-lg-1">
         <h2 class="text-white">{{ .title | markdownify }}</h2>
