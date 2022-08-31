@@ -7,7 +7,7 @@
         <h2 class="text-gradient-primary">{{ .title | markdownify }}</h2>
         <p class="h4 font-weight-bold text-white mb-4">{{ .content | markdownify }}</p>
         {{ with .button }}
-        <a href="/build" class="btn btn-md btn-primary">{{ .label }}</a>
+        <a href="{{.link}}" class="btn btn-md btn-primary">{{ .label }}</a>
         {{ end }}
       </div>
     </div>

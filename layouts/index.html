@@ -94,9 +94,9 @@
   <img src="{{`images/backgrounds/about-bg-overlay.png` | absURL }}" alt="overlay" class="overlay-image img-fluid">
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col-lg-6 col-md-8 col-sm-7 col-8">
+      <div class="col-lg-5 col-md-8 col-sm-7 col-8">
         <h2 class="text-white mb-4">{{ .title  | markdownify }}</h2>
-        <p class="text-light mb-4">{{ .content | markdownify }}</p>
+        <p class="text-white mb-4">{{ .content | markdownify }}</p>
         {{ if .button.enable }}
         {{ with .button }}
         <a href="{{ .link | absURL }}" class="btn btn-primary">{{ .label }}</a>

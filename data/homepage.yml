@@ -57,25 +57,20 @@ feature:
 ################################## call to action ###########################
 cta:
   enable : true
-  title : "Sign up for our Newsletter"
+  title : "Stay up to date with Cdev!"
   bgImage : "images/backgrounds/cta-bg.jpg"
-  content : "Lorem ipsum dolor sit amet, magna habemus ius ad"
   button : 
     enable : true
-    label : "Let's talk"
-    link : "contact"
+    label : "Contact Us"
+    link : "/contact"
 
 ################################## promo ###########################
 promo:
   enable : true
   bgImage : "images/backgrounds/about-bg.jpg"
-  title : "Who We Are"
-  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-  videoURL : "https://www.youtube.com/watch?v=jrkvirglgaQ"
-  button:
-    enable : true
-    label : "Read More"
-    link : "about"
+  title : "For pros. Not so pros. For you."
+  content : "We believe that everyone should be able to create and share their software with the world! Cdev is designed to help you get your ideas into the world, and also, grow with your project to any scale."
+  videoURL : "https://youtu.be/NufCQnt-y9Y"
 
 ############################## blog ######################################
 project:
