@@ -116,55 +116,41 @@
 {{ end }}
 
 
-<!-- examples -->
+
 {{ if .Site.Data.homepage.project.enable }}
-<!-- project -->
-<section class="section pb-0">
-  <div class="container-fluid px-0">
+<br>
+<!-- testimonial-slider -->
+{{ with .Site.Data.homepage.project }}
+<section class="section bg-secondary">
+  <div class="container">
     <div class="row">
-      {{ with .Site.Data.homepage.project }}
-
-      <div class="col-lg-10 mx-auto text-center">
-        
-        <h2>{{ .title | markdownify }}</h2>
-        {{ if ne .title "" }}
-        <div class="section-border"></div>
-        {{ end }}
-        
+      <div class="col-12 text-center">
+        <h2 class="text-white mb-5">{{ .title | markdownify }}</h2>
       </div>
-      {{ end }}
     </div>
-
-    <div class="row no-gutters shuffle-wrapper">
-      {{ range first 5 .Site.Data.project.projects }}
-
-      {{ $column := .column }}
-      {{ if eq $column 1 }}
-      {{ $column = "col-lg-4 col-md-6" }}
-      {{ else if eq $column 2 }}
-      {{ $column = "col-lg-8" }}
-      {{ else }}
-      {{ $column = "col-lg-4 col-md-6" }}
-      {{ end }}
-      <div class="{{$column}} shuffle-item">
-        <div class="project-item">
-          <img src="{{ .image | absURL }}" alt="project-image" class="img-fluid w-100">
-          <div class="project-hover bg-secondary px-4 py-3">
-            {{ if and ( ne .link "" ) ( ne .link "#" ) }}
-            <a href="{{ .link | safeURL }}" target="_blank" class="text-white h4">{{ .title | markdownify}}</a>
-            <a href="{{ .link | safeURL }}"><i class="ti-link icon-xs text-white"></i></a>
-            {{ else }}
-            <h4 class="text-white">{{ .title | markdownify }}</h4>
-            {{ end }}
+    <div class="row bg-contain" data-background="{{`images/banner/brush.png` | absURL }}">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div id="slider" class="ui-card-slider bg-contain">
+          {{ range .projects }}
+          <div class="slide">
+            <div class="card text-center">
+              <div class="card-body px-5 py-4">
+                <img src="{{ .image | absURL }}" alt="user-1" class="img-fluid rounded-circle mb-4">
+                <h4 class="text-secondary">{{ .name }}</h4>
+                <p>{{ .content | markdownify }}</p>
+              </div>
+            </div>
           </div>
+          {{ end }}
         </div>
       </div>
-      {{ end }}
     </div>
   </div>
 </section>
-<!-- /project -->
+{{ end }}
+<!-- /testimonial-slider -->
 {{ end }}
 
+<br>
 
 {{ end }}
