@@ -40,7 +40,7 @@ feature:
     # feature item
     - title : "Resources"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "Cdev provides a framework to deploy and integrate all the resources (compute, storage, etc) needed to create applications. "
+      content : "Deploy and integrate the cloud resources (compute, storage, etc) that your application needs. "
 
 
     # feature item
