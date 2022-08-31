@@ -4,11 +4,10 @@
   <div class="container section-sm overlay-secondary-half bg-cover" data-background="{{ .bgImage | absURL }}">
     <div class="row">
       <div class="col-lg-8 offset-lg-1">
-        <h2 class="text-gradient-primary">{{ .title | markdownify }}</h2>
+        <h2 class="text-white">{{ .title | markdownify }}</h2>
         <p class="h4 font-weight-bold text-white mb-4">{{ .content | markdownify }}</p>
         {{ with .button }}
-        <a href="/build" class="btn btn-md btn-primary">{{ .label }}</a>
-        <a href="/first-principles" class="btn btn-md btn-primary">{{ .label2 }}</a>
+        <a href="{{.link}}" class="btn btn-md btn-primary">{{ .label }}</a>
         {{ end }}
       </div>
     </div>

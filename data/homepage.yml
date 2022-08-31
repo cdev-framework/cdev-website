@@ -1,49 +1,122 @@
 ############################## Banner ###################################
 banner:
-  bgImage : "images/banner/banner2.jpg"
+  bgImage : "images/banner/banner3.jpg"
   title : "Cdev"
-  subtitle: "Python Serverless development framework,
-  start building Serverless applications,
-  or how I learned to stop worrying and love Serverless"
-
+  dynamic-subtitle: "Code,  Deploy,Execute"
+  subtitle: "Code.    Deploy.    Share."
+  cta:
+    - label : "Get Started"
+      url: "/docs/gettingstarted/"
+    - label : "Book a Demo"
+      url: "/contact/officehours/"
+    - label : "Replit"
+      url: "https://google.com"
 ########################### services ##################################
 service:
   enable : true
   title : "The Cdev Framework"
-  subtitle : "A Python based Serverless development framework that is designed to provide all the tools needed to effectively build applications. 
-  Cdev helps developers build projects without worrying about setting up hosting configurations by managing the deployment of projects onto cloud provider's Serverless platforms."
+  cards :
+    - title: "Code"
+      icon : "ti-wand"
+      content: "Write your code"
+    - title: "Deploy"
+      icon : "ti-package"
+      content: "Deploy to the cloud in a single command"
+    - title: "Share"
+      icon : "ti-heart"
+      content: "Share your project with the world!"
+
 ############################ features #################################
 feature:
   enable : true
-  image : "images/pexels-jonathan-borba-3285203.jpg"
-  title : "What You Gain From Our Workshops"
+  image : "images/feature.jpg"
+  title : "Features"
   featureItem:
     # feature item
-    - title : "Knowledge"
+    - title : "Deployments"
       icon : "ti-vector" # themify icon pack https://themify.me/themify-icons
-      content : "In all of our workshops you get to learn about Serverless development and how Cdev makes it easy."
+      content : "Deploy your project with a single command. Projects are deployed onto Aws, so you get the reliability and scalability of a platform used by the largest enterprises."
       
     # feature item
-    - title : "Personalized Help"
+    - title : "Resources"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We help you get started using Cdev all the way from setting up your machine to building fully functional applications and answer any questions you have along the way!"
+      content : "Deploy and integrate the cloud resources (compute, storage, etc) that your application needs. "
+
 
     # feature item
-    - title : "Skills"
+    - title : "Optimizations"
       icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "We teach you all the skills you need to start utilizing Cdev to acheive your development goals, whether that be simply deploying a static site or building and deploying fullstack web applications."
-################################## call to action ###########################
-cta2:
-  enable : true
-  title : "Find a Workshop For You!"
-  bgImage : "images/backgrounds/cta-bg.jpg"
-  content : "Check out the available options below, and sign up for one today!  **They are free!**"
-  
-pip:
-  message: "pip install cdev"
+      content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
 
-############################## blog ######################################
-blog:
+        # feature item
+    - title : "Fourth item"
+      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
+      content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
+
+
+################################## call to action ###########################
+cta:
   enable : true
-  title : "Blogs"
-  # blog content comes from `content/blog` folder
+  title : "Stay up to date with Cdev!"
+  bgImage : "images/backgrounds/cta-bg.jpg"
+  button : 
+    enable : true
+    label : "Contact Us"
+    link : "/contact"
+
+################################## promo ###########################
+promo:
+  enable : true
+  bgImage : "images/backgrounds/about-bg.jpg"
+  title : "For pros. Not so pros. For you."
+  content : "We believe that everyone should be able to create and share their software with the world! Cdev is designed to help you get your ideas into the world, and also, grow with your project to any scale."
+  videoURL : "https://youtu.be/NufCQnt-y9Y"
+
+
+################ testimonial ##################
+project :
+  enable : true
+  title : "What Can You Build?"
+  projects:
+    # testimonial item
+    - name : "Full Stack Application"
+      image : "images/testimonial/user-1.jpg" # size 115px * 115px
+      content : "Build a diary website using React sodfjvoiwejfo woiejfoiwejf woeifjwoiej"
+      
+    # testimonial item
+    - name : "Lara Cherris"
+      image : "images/testimonial/user-2.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Devid Json"
+      image : "images/testimonial/user-3.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Rocky Roy"
+      image : "images/testimonial/user-4.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Mellissa Christine"
+      image : "images/testimonial/user-1.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Lara Cherris"
+      image : "images/testimonial/user-2.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Devid Json"
+      image : "images/testimonial/user-3.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+      
+    # testimonial item
+    - name : "Rocky Roy"
+      image : "images/testimonial/user-4.jpg" # size 115px * 115px
+      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+
+
+

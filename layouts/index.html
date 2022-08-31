@@ -5,92 +5,152 @@
 <section class="banner bg-cover position-relative d-flex justify-content-center align-items-center"
   data-background="{{ .bgImage | absURL }}">
   <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1 class="display-1 text-white font-weight-bold font-primary">{{ .title | markdownify }}</h1>
-        <h3 class="text-white font-weight-bold font-primary dynamic-text" data-info={{ .subtitle | markdownify }}></h3>
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-1 text-white font-weight-bold font-primary">{{ .title | markdownify }}</h1>
+          <!--<h3 class="text-white font-weight-bold font-primary dynamic-text" data-info={{ .subtitle | markdownify }}></h3>-->
+          <h3 class="text-white font-weight-bold font-primary">{{ .subtitle}}</h3>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="col-12 justify-content-center pt-5">
+          {{partial "terminal.html" . }}
+        </div>
+      </div>
+
+      
+      <div class="row justify-content-center">
+        <div class="col-12 pt-5">
+          {{ range .cta }}
+          <a href = '{{.url}}'>
+            <button class="btn btn-primary"> {{.label}} </button>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      
     </div>
-  </div>
+  
 </section>
 {{ end }}
 <!-- /banner -->
 
+<!-- about? -->
 {{ if .Site.Data.homepage.service.enable }}
-<!-- service -->
 <section class="section">
   <div class="container">
-    <div class="row">
-      {{ with .Site.Data.homepage.service }}
+    {{ with .Site.Data.homepage.service }}
+    <!--<div class="row">
+      
       <div class="col-lg-10 mx-auto text-center">
         <h2>{{ .title | markdownify }}</h2>
         <p class="lead">{{ .subtitle | markdownify}}</p>
-      {{ end }}
-
-        
+      
       </div>   
-    </div>
-    {{ partial "section-border.html" .}}
-    <div class="row">
-      <div class="col-lg-12 " style="padding-bottom: 5em; display: flex; justify-content: center; overflow: hidden; align-items: center;">
-        <iframe width="1080" height="630" src="https://www.youtube.com/embed/cM-lp7fP3gI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    
-    {{ partial "section-border.html" .}}
-    <div class= "col-12"><h1 style="text-align: center; padding-bottom: 1em;">Install Cdev using Pip</h1></div>
-    <div class="row">
-      
+    </div>-->
 
-      {{ with .Site.Data.homepage.pip}}
-      <div class="col-lg-8 mx-auto" style="background-color: #272822; border-radius: 5px; padding-top: 1em; padding-bottom: 1em; text-align:center;">
-        <code class='col-11 code-block' style="font-size: large; padding-top: 5px; padding-bottom: 5px;">
-          <span class='code-snippet' style="color: #adbac7; padding-left: 2em">{{ .message | markdownify}}</span>
-          <div class="bode-btn-group btn-group btn-group-sm" role="group" aria-label="..." style=" float: right; margin-left: 0px; padding-top: 0px; margin-bottom: 0px; padding-bottom: 0px;">
-            <button class="btn btn-dark copy-code">
-                <i class="icon-xs ti-clipboard text-white "></i>
-            </button>    
-          </div>
-        </code>
-      </div>
-      <div class="col-lg-12 " style="padding-bottom: 5em;"></div>
-    
-    {{end}}    
-      
-      
-    </div>
-    {{ partial "section-border.html" .}}
-    <div class= "col-12"><h1 style="text-align: center; padding-bottom: 1em; padding-top: 1em">Learn Cdev</h1></div>
-    <div class="row">
-     
-      {{ range first 3 .Site.Data.learn.methods }}
+    <div class="row"> 
+      {{ range first 3 .cards}}
       <div class="col-lg-4 mb-4 mb-lg-0">
-        
+
         <div class="card hover-bg-secondary shadow py-4" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
-          <a href="{{.url}}">
           <div class="card-body text-center">
             <div class="position-relative">
               <i class="icon-lg icon-box bg-gradient-primary rounded-circle {{ .icon }} mb-5 d-inline-block text-white"></i>
               <i class="icon-lg icon-watermark text-white {{ .icon }}"></i>
             </div>
             <h4 class="mb-4">{{ .title | markdownify }}</h4>
-            <p>{{ .description | markdownify }}</p>
+            <p>{{ .content | markdownify }}</p>
           </div>
-        </a>
+          </a>
         </div>
       </div>
       {{ end }}
     </div>
+    {{ end }}
+    </div>
+
   </div>
 
   </div>
 </section>
-<!-- /service -->
 {{ end }}
 
+<!-- features -->
+{{ if .Site.Data.homepage.feature.enable }}
+{{ partial "feature.html" . }}
+{{ end }}
+
+<!-- call to action -->
 {{ if .Site.Data.homepage.cta.enable }}
 {{ partial "cta.html" . }}
 {{ end }}
 
+<!-- promo video -->
+{{ if .Site.Data.homepage.promo.enable }}
+{{ with .Site.Data.homepage.promo }}
+<section class="section-lg position-relative bg-cover" data-background="'{{ .bgImage | absURL }}'">
+  <img src="{{`images/backgrounds/about-bg-overlay.png` | absURL }}" alt="overlay" class="overlay-image img-fluid">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5 col-md-8 col-sm-7 col-8">
+        <h2 class="text-white mb-4">{{ .title  | markdownify }}</h2>
+        <p class="text-white mb-4">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absURL }}" class="btn btn-primary">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-2 col-sm-4 col-4 text-right align-self-end">
+        <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ .videoURL | safeURL }}">
+          <i
+            class="text-center icon-sm icon-box rounded-circle text-white bg-gradient-primary d-block ti-control-play"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+
+{{ if .Site.Data.homepage.project.enable }}
+<br>
+<!-- testimonial-slider -->
+{{ with .Site.Data.homepage.project }}
+<section class="section bg-secondary">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="text-white mb-5">{{ .title | markdownify }}</h2>
+      </div>
+    </div>
+    <div class="row bg-contain" data-background="{{`images/banner/brush.png` | absURL }}">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div id="slider" class="ui-card-slider bg-contain">
+          {{ range .projects }}
+          <div class="slide">
+            <div class="card text-center">
+              <div class="card-body px-5 py-4">
+                <img src="{{ .image | absURL }}" alt="user-1" class="img-fluid rounded-circle mb-4">
+                <h4 class="text-secondary">{{ .name }}</h4>
+                <p>{{ .content | markdownify }}</p>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /testimonial-slider -->
+{{ end }}
+
+<br>
 
 {{ end }}
