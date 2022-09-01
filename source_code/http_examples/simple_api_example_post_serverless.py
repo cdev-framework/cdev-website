@@ -1,7 +1,7 @@
 import json
 
-from cdev.resources.simple.api import Api
-from cdev.resources.simple.xlambda import simple_function_annotation
+from cdev.aws.api import Api
+from cdev.aws.lambda_function import ServerlessFunction
 
 from cdev import Project as cdev_project
 
@@ -12,7 +12,7 @@ myApi = Api("demoApi")
 send_data_route = myApi.route("/send_data", "POST")
 
 
-@simple_function_annotation("send_data_handler", events=[send_data_route.event()])
+@ServerlessFunction("send_data_handler", events=[send_data_route.event()])
 def hello_world(event, context):
     
     """
