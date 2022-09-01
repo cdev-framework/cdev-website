@@ -80,43 +80,43 @@ project :
   projects:
     # testimonial item
     - name : "Full Stack Application"
-      image : "images/testimonial/user-1.jpg" # size 115px * 115px
-      content : "Build a diary website using React sodfjvoiwejfo woiejfoiwejf woeifjwoiej"
+      image : "images/testimonial/react1.png" # size 115px * 115px
+      content : "Build a diary website using React in our Fullstack Application Tutorial."
       
     # testimonial item
-    - name : "Lara Cherris"
-      image : "images/testimonial/user-2.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    - name : "SMS Bot"
+      image : "images/testimonial/twilio.png" # size 115px * 115px
+      content : "Create a link aggregator following our Create a SMS Bot guide in the Examples section."
       
     # testimonial item
-    - name : "Devid Json"
-      image : "images/testimonial/user-3.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    - name : "Slack Bot"
+      image : "images/testimonial/slack.png" # size 115px * 115px
+      content : "Build a Slack Bot following our Build a Slack Bot guide in the Examples section."
       
-    # testimonial item
-    - name : "Rocky Roy"
-      image : "images/testimonial/user-4.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    # # testimonial item
+    # - name : "Rocky Roy"
+    #   image : "images/testimonial/user-4.jpg" # size 115px * 115px
+    #   content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
       
-    # testimonial item
-    - name : "Mellissa Christine"
-      image : "images/testimonial/user-1.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    # # testimonial item
+    # - name : "Mellissa Christine"
+    #   image : "images/testimonial/user-1.jpg" # size 115px * 115px
+    #   content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
       
-    # testimonial item
-    - name : "Lara Cherris"
-      image : "images/testimonial/user-2.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    # # testimonial item
+    # - name : "Lara Cherris"
+    #   image : "images/testimonial/user-2.jpg" # size 115px * 115px
+    #   content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
       
-    # testimonial item
-    - name : "Devid Json"
-      image : "images/testimonial/user-3.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    # # testimonial item
+    # - name : "Devid Json"
+    #   image : "images/testimonial/user-3.jpg" # size 115px * 115px
+    #   content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
       
-    # testimonial item
-    - name : "Rocky Roy"
-      image : "images/testimonial/user-4.jpg" # size 115px * 115px
-      content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
+    # # testimonial item
+    # - name : "Rocky Roy"
+    #   image : "images/testimonial/user-4.jpg" # size 115px * 115px
+    #   content : "Great work I got a lot more than what I ordered, they are very legítimas and catchy. I went for one of them for my brand but is always better to have more options."
 
 
 
