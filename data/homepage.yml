@@ -5,12 +5,13 @@ banner:
   dynamic-subtitle: "Code,  Deploy,Execute"
   subtitle: "Code.    Deploy.    Share."
   cta:
-    - label : "Get Started"
-      url: "/docs/gettingstarted/"
+    # - label : "Get Started"
+    #   url: "/docs/gettingstarted/"
+    - label : "Launch Project"
+      url: "https://google.com"
     - label : "Book a Demo"
       url: "/contact/officehours/"
-    - label : "Replit"
-      url: "https://google.com"
+    
 ########################### services ##################################
 service:
   enable : true
