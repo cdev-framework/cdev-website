@@ -67,7 +67,7 @@ cta:
 ################################## promo ###########################
 promo:
   enable : true
-  bgImage : "images/backgrounds/about-bg.jpg"
+  bgImage : "images/blog_thumbnails/pexels-kevin-ku-577585.jpg"
   title : "For pros. Not so pros. For you."
   content : "We believe that everyone should be able to create and share their software with the world! Cdev is designed to help you get your ideas into the world, and also, grow with your project to any scale."
   videoURL : "https://youtu.be/pDlFKMPSa9k"
