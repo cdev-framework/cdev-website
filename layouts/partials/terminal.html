@@ -1,5 +1,5 @@
-<div style="position: relative;">
-<div class="window" style="position: absolute;">
+
+<div class="window" >
     <div class="handle">
             <div class="buttons">
                 <button class="red">
@@ -12,9 +12,9 @@
     </div>
     <div class="terminal" id="landing-page-terminal">
             <span class="type" style="--n:10000">
-from cdev import deploy_function
+from cdev.aws.lambda_function import ServerlessFunction
 
-@deploy_function("hello_world_function")
+@ServerlessFunction("hello_world_function")
 def hello_world(event, context):
 return {"status_code": 200, "message": "Hello World!🚀 IAN"}</span>
             
@@ -76,4 +76,3 @@ Do you want to deploy differences? [y/n]: y
     </div>
 </div>
 
-</div>
