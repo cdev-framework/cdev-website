@@ -7,7 +7,7 @@ banner:
   cta:
     # - label : "Get Started"
     #   url: "/docs/gettingstarted/"
-    - label : "Launch Project"
+    - label : "Launch a Project 🚀"
       url: "https://google.com"
     - label : "Book a Demo"
       url: "/contact/officehours/"
@@ -87,12 +87,12 @@ project :
     # testimonial item
     - name : "SMS Bot"
       image : "images/testimonial/twilio.png" # size 115px * 115px
-      content : "Create a link aggregator following our Create a SMS Bot guide in the Examples section."
+      content : "Create a link aggregator following our guide in the Examples section."
       
     # testimonial item
     - name : "Slack Bot"
       image : "images/testimonial/slack.png" # size 115px * 115px
-      content : "Build a Slack Bot following our Build a Slack Bot guide in the Examples section."
+      content : "Build a Slack Bot following our guide in the Examples section."
       
     # # testimonial item
     # - name : "Rocky Roy"
