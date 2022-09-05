@@ -1,5 +1,5 @@
-<div style="position: relative;">
-<div class="window" style="position: absolute;">
+
+<div class="window col-10 col-lg-6" >
     <div class="handle">
             <div class="buttons">
                 <button class="red">
@@ -11,16 +11,16 @@
             </div>
     </div>
     <div class="terminal" id="landing-page-terminal">
-            <span class="type" style="--n:10000">
-from cdev import deploy_function
+<span class="type" style="--n:10000">from cdev.aws.lambda_function import ServerlessFunction
 
-@deploy_function("hello_world_function")
+@ServerlessFunction("hello_world_function")
 def hello_world(event, context):
-return {"status_code": 200, "message": "Hello World!🚀 IAN"}</span>
+    return {"status_code": 200, "message": "Hello World!"}
+</span>
             
     </div>
 </div>
-<div class="window" style="animation: rotation_out_mid 10s ease-in-out forwards; animation-delay: 7.5s; position: absolute;" >
+<div class="window col-10" style="animation: rotation_out_mid 10s ease-in-out forwards; animation-delay: 7.5s; position: absolute;" >
     <div class="handle" style="transform: rotateY(270deg);">
             <div class="buttons">
                 <button class="red">
@@ -59,7 +59,7 @@ Do you want to deploy differences? [y/n]: y
     </div>
 </div>
 
-<div class="window" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;" >
+<div class="window col-10" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;" >
     <div class="handle" style="transform: rotateY(270deg); bottom: 0;">
         <div class="buttons">
             <button class="red">
@@ -76,4 +76,3 @@ Do you want to deploy differences? [y/n]: y
     </div>
 </div>
 
-</div>

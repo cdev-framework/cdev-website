@@ -19,20 +19,20 @@ Within Cdev, a `cloud` is defined as a system that provides on demand computing 
 ## Resources
 Within the Cdev framework, a `resource` is a logical representation of a defined computing resource or service provided by a `Cloud`. Although this is an abstract definition, it encapsulates the flexibility of the `resource` model. 
 
-An important aspect to note is that the resource is only a **logical representation** of an actual `Cloud` service. This means that the properties of the resource do not need to map one to one to the actual properties in the `Cloud`. This allows a `resource` to be shaped to meet the ergonomically needs of different projects. Although the properties of a `resource` can be defined arbitrarily, the definitions must have a logically relationship to the final deployed `cloud` services. 
+An important aspect to note is that the resource is only a **logical representation** of an actual `Cloud` service. This means that the properties of the resource do not need to map one to one to the actual properties in the `Cloud`. This allows a `resource` to be shaped to meet the needs of different projects. Although the properties of a `resource` can be defined arbitrarily, the definitions must have a logically relationship to the final deployed `cloud` services. 
 
 {{<tool_tip key="info" summary="Default Resources">}}
 You can see that the default resources provided with Cdev do not map one to one to the resources they deploy in Aws. For example, the `simple::bucket` resource does not provide all the properties that are available to an `Aws S3 bucket`. 
 
-This definition also allows for higher abstracted resources like the Cdev `Serverless Function` that require tying together multiple services in the `cloud`.
+This definition also allows for higher abstracted resources like the Cdev `Serverless Function` that require tying together multiple services in the `Cloud`.
 {{</tool_tip>}}
 
 {{<break 1>}}
-A resource must have three values: `name`, `resource id`, and `hash`. 
+A resource must have three values: `name`, `resource_id`, and `hash`. 
 
 
 ### Resource Id
-The `resource id (ruuid)` is used to categorize resource that are of the same type (`cdev::simple::bucket`, etc). The structure of the `ruuid` is `<organization>::<package>::<resource>`. The `organization` is the highest level information about who created and maintains that resource. The `package` allows the `organization` to group and categorize different resources together. The `resource` is a logically appropriate name for the resource. 
+The `resource_id (ruuid)` is used to categorize resource that are of the same type (`cdev::simple::bucket`, etc). The structure of the `ruuid` is `<organization>::<package>::<resource>`. The `organization` is the highest level information about who created and maintains that resource. The `package` allows the `organization` to group and categorize different resources together. The `resource` is a logically appropriate name for the resource. 
 
 
 ### Name
@@ -43,14 +43,14 @@ When creating a `resource` it must be given a `name` that will be used to refere
 A `resource` can have any number of properties that define how the `resource` should be deployed. The `hash` is the identification of a specific configuration of the properties of a resource. If you change one of the properties of the resource, it should result in a change in the `hash`. This means that the `hash` can be used to track the desired state of the `resource`.
 
 {{<tool_tip key="error" summary="Name as Property">}}
-The `name` of a resource should never affect the `hash` of the resource. This differentiation between the `name` and properties is a core principle of how Cdev tracks changes in resources. 
+The `name` of a resource should never affect the `hash` of the resource. This differentiation between the `name` and properties is a core principle of how `Cdev Core` tracks changes in resources. 
 {{</tool_tip>}}
 
 
 
 {{<break 2>}}
 ## Components
-A `component` is a collection of `resources` that share a namespace. The `component` provides a limit on the naming conventions for a set of resources. Within a component, a `resource` must be uniquely identified by both the pairs: (`ruuid`,`name`) and (`ruuid`, `hash`). The following demonstrate different scenarios with components:
+A `component` is a collection of `resources` that share a namespace. The `component` provides a limit on the naming conventions for a set of resources. Within a component, a `resource` must be uniquely identified by both the pairs: <`ruuid`,`name`> and <`ruuid`, `hash`>. The following demonstrates different scenarios with components:
 ```
 Bad (conflicting names in same component)
 - Component A 
@@ -87,12 +87,12 @@ bucket2 = Bucket("b2", nonce='1')
 ```
 {{</tool_tip>}}
 
-On top of providing defined namespaces for resources, `components` also define the bounds by which resources can provide output information to each other. When a `resource` is deployed onto the `cloud`, the `cloud` provides back information about how what was created. This information can then be passed to other `resources` (for example: a `database name` can be passed to a `serverless function` to define what `database` the `serverless function` should connect to). 
+On top of providing defined namespaces for resources, `components` also define the bounds by which resources can provide output information to each other. When a `resource` is deployed onto the `cloud`, the `cloud` provides back information about what was created. This information can then be passed to other `resources`. For example, a `database name` can be passed to a `serverless function` to define what `database` the `serverless function` should connect to.
 
-By default, `resources` defined within the same component are able to freely pass their outputs between themselves, but `resources` in different components can **not** share output. To share information between `components`, you can create a `reference` to a `resource` or store the needed data in an outside system. 
+`Resources` defined within the same component are able to freely pass their outputs between themselves, but `resources` in different components can **not** share output. To share information between `components`, you can create a `reference` to a `resource` or store the needed data in an outside system. 
 
 {{<tool_tip key="warning" summary="References are in early Beta">}}
-Currently, the implementations of these systems do not provide all the features that the architecture is designed to enable. One of the core reasons for the `component` system is to integrate with an IAM layer for who can create resources/references and manage components. With a full IAM layer, this architecture will allow teams to explicitly define the ownership and management of different resources. Since these features are not fully integrated, it is best practice to use a single component to define your resources. 
+Currently, the implementations of these systems do not provide all the features that the architecture is designed to enable. One of the core reasons for the `component` system is to integrate with an IAM layer that determines who can create resources/references and manage components. With a full IAM layer, this architecture will allow teams to explicitly define the ownership and management of different resources. Since these features are not fully integrated, it is best practice to use a single component to define your resources. 
 {{</tool_tip>}}
 
 
