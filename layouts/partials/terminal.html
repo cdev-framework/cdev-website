@@ -15,7 +15,7 @@
 
 @ServerlessFunction("hello_world_function")
 def hello_world(event, context):
-    return {"status_code": 200, "message": "Hello World!"}
+    return {"status_code": 200, "message": "Hello outside world!"}
 </span>
             
     </div>
@@ -59,7 +59,7 @@ Do you want to deploy differences? [y/n]: y
     </div>
 </div>
 
-<div class="window col-10" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;" >
+<!-- <div class="window col-10" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;" >
     <div class="handle" style="transform: rotateY(270deg); bottom: 0;">
         <div class="buttons">
             <button class="red">
@@ -70,9 +70,44 @@ Do you want to deploy differences? [y/n]: y
             </button>
         </div>
 </div>
+    <div style="height: 30px; background-color: rgb(56, 56, 56);transform: rotateY(270deg); overflow: hidden; top: 0;">
+        <i class="fa-sharp fa-solid fa-arrow-left"></i>
+    </div>
+    <div style="height: 100%; background-color: rgb(255, 255, 255);transform: rotateY(270deg); overflow: hidden; top: 0;">
+        {
+            "status_code" : 200,
+            "message" : "Hello Outside World"
+        }
+    </div>
     <div class="terminal" id="landing-page-terminal" style="transform: rotateY(270deg); overflow: hidden; top: 0;">
         <img src="{{`images/browser.png` | absURL }}"  width="650">
             
     </div>
-</div>
+</div> -->
 
+<div class="acontainer" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;transform: rotateY(270deg);">
+    <div class="arow">
+      <div class="column left">
+        <span class="dot" style="background:#ED594A;"></span>
+        <span class="dot" style="background:#FDD800;"></span>
+        <span class="dot" style="background:#5AC05A;"></span>
+      </div>
+      <div class="column middle">
+        <input type="text" value="http://www.w3schools.com">
+      </div>
+      <div class="column right">
+        <div style="float:right">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="content">
+      <p>{
+        "status_code" : 200,
+        "message" : "Hello outside world!"    
+    }</p>
+    </div>
+</div>
