@@ -35,24 +35,9 @@ def hello_world(event, context):
             <span class="type" style="--n:100000; animation-delay: 7s;">
 cdev deploy
 
-Current State:
-
-hello_world_comp (component)
-  Resources:
-  hello_world_function (cdev::simple::function)
-  demoapi (cdev::simple::api)
-
-  No References
-
-Differences in State:
-    Create: hello_world_comp (component)
-        Create: hello_world_function (cdev::simple::function)
-        Create: demoapi (cdev::simple::api)
-
-Do you want to deploy differences? [y/n]: y
-  Create: hello_world_comp (component)                    ━━━━━━━━━━━━━━━━━━━━━━ 0:00:00 Completed ✅
-  Creating: demoapi (cdev::simple::api)                   ━━━━━━━━━━━━━━━━━━━━━━ 0:00:01 Completed ✅
-⠴ Creating: hello_world_function (cdev::simple::function) ━━━━━━━━━━━╺━━━━━━━━━━ 0:00:03 Waiting for role to finish
+Generated Cloud Output:                          
+Base API URL: http://myserverlessapp.com/
+Routes:  {'/hello_world GET': 'yq0g4v5'}
 
 </span>
             
