@@ -77,8 +77,8 @@
     overflow-y: auto;
   }
   .window .terminal::after {
-    content: "|";
-    animation: blink 2s steps(1) infinite;
+    /* content: "|";
+    animation: blink 2s steps(1) infinite; */
   }
   
   .prompt {
