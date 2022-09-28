@@ -8,7 +8,7 @@ banner:
     # - label : "Get Started"
     #   url: "/docs/gettingstarted/"
     - label : "Launch a Project 🚀"
-      url: "https://google.com"
+      url: "https://replit.com/@CdevFramework/Cdev-Template"
     - label : "Book a Demo"
       url: "/contact/officehours/"
     
