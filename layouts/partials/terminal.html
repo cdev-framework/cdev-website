@@ -15,7 +15,7 @@
 
 @ServerlessFunction("hello_world_function")
 def hello_world(event, context):
-    return {"status_code": 200, "message": "Hello outside world!"}
+    return "Hello World!"
 </span>
             
     </div>
@@ -32,43 +32,17 @@ def hello_world(event, context):
             </div>
     </div>
     <div class="terminal" id="landing-page-terminal" style="transform: rotateY(270deg);">
-            <span class="type" style="--n:100000; animation-delay: 7.6s;">
-cdev deploy
+<span class="type" style="--n:100000; animation-delay: 7.6s;">> cdev deploy
 
 Generated Cloud Output:                          
-Base API URL: http://myserverlessapp.com/
-Routes:  {'/hello_world GET': 'yq0g4v5'}
+Base API URL: https://apigateway.com/hello_world
+Routes:  /hello_world [GET]
 
 </span>
             
     </div>
 </div>
 
-<!-- <div class="window col-10" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;" >
-    <div class="handle" style="transform: rotateY(270deg); bottom: 0;">
-        <div class="buttons">
-            <button class="red">
-            </button>
-            <button class="yellow">
-            </button>
-            <button class="green">
-            </button>
-        </div>
-</div>
-    <div style="height: 30px; background-color: rgb(56, 56, 56);transform: rotateY(270deg); overflow: hidden; top: 0;">
-        <i class="fa-sharp fa-solid fa-arrow-left"></i>
-    </div>
-    <div style="height: 100%; background-color: rgb(255, 255, 255);transform: rotateY(270deg); overflow: hidden; top: 0;">
-        {
-            "status_code" : 200,
-            "message" : "Hello Outside World"
-        }
-    </div>
-    <div class="terminal" id="landing-page-terminal" style="transform: rotateY(270deg); overflow: hidden; top: 0;">
-        <img src="{{`images/browser.png` | absURL }}"  width="650">
-            
-    </div>
-</div> -->
 
 <div class="acontainer" style="animation: rotation_out 10s ease-in-out forwards; animation-delay: 17.5s; position: absolute;transform: rotateY(270deg);">
     <div class="arow">
@@ -78,7 +52,7 @@ Routes:  {'/hello_world GET': 'yq0g4v5'}
         <span class="dot" style="background:#5AC05A;"></span>
       </div>
       <div class="column middle">
-        <input type="text" value="http://myserverlessapp.com/hello_world">
+        <input type="text" value="https://apigateway.com/hello_world">
       </div>
       <div class="column right">
         <div style="float:right">
@@ -90,9 +64,6 @@ Routes:  {'/hello_world GET': 'yq0g4v5'}
     </div>
   
     <div class="content">
-      <p>{
-        "status_code" : 200,
-        "message" : "Hello outside world!"    
-    }</p>
+      <p>"Hello outside world!"</p>
     </div>
 </div>
