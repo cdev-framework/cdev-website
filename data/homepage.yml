@@ -46,12 +46,7 @@ feature:
 
     # feature item
     - title : "Optimizations"
-      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
-      content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
-
-        # feature item
-    - title : "Fourth item"
-      icon : "ti-user" # themify icon pack https://themify.me/themify-icons
+      icon : "ti-cut" # themify icon pack https://themify.me/themify-icons
       content : "Cdev was built from scratch to tackle the challenges of Serverless Development."
 
 
