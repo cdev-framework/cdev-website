@@ -10,7 +10,7 @@ banner:
     - label : "Launch a Project 🚀"
       url: "https://replit.com/@CdevFramework/Cdev-Template"
     - label : "Book a Demo"
-      url: "/contact/officehours/"
+      url: "https://calendly.com/daniel-cdev/cdev-demo"
     
 ########################### services ##################################
 service:
