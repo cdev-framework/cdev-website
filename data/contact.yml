@@ -20,11 +20,11 @@ methods:
     icon: "slack"
     link: "https://join.slack.com/t/cdev-org/shared_invite/zt-13wmt546c-KXrwUFrCB76_KT5LIx7rAg"
 
-  - OfficeHour:
-    title: "Office Hours"
-    description: "Join us in our open office hours"
-    icon: "ti-help"
-    link: "officehours/"
+  #- OfficeHour:
+  #  title: "Office Hours"
+  #  description: "Join us in our open office hours"
+  #  icon: "ti-help"
+  #  link: "officehours/"
 
   - Newsletter:
     title: "Newsletter"
