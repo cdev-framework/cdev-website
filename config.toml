@@ -65,10 +65,10 @@ title = "Cdev | Serverless Development Framework"
   URL = "about"
   weight = 4
 
-  [[menu.main]]
-  name = "Blogs"
-  URL = "blogs"
-  weight = 3
+  #[[menu.main]]
+  #name = "Blogs"
+  #URL = "blogs"
+  #weight = 3
   
   [[menu.main]]
   name = "Docs"
@@ -108,10 +108,10 @@ title = "Cdev | Serverless Development Framework"
     weight = 4
 
 
-  [[menu.main]]
-  name = "Contact"
-  URL = "contact"
-  weight = 5
+  #[[menu.main]]
+  #name = "Contact"
+  #URL = "contact"
+  #weight = 5
 
   ### [[menu.main]]
   ### name = "Workshops"
