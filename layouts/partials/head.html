@@ -26,8 +26,11 @@
   {{ end }}
 
   {{ "<!--Favicon-->" | safeHTML }}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "images/BrowserFavicon-16x16.png" | absURL }} ">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "images/BrowserFavicon-32x32.png" | absURL }} ">
+  <link rel="shortcut icon" href="{{ "images/BrowserFavicon.ico" | absURL }} ">
   <link rel="icon" type="image/svg+xml" href="{{ "images/BrowserFavicon.svg" | absURL }}">
-  <link rel="icon" href="{{ "images/BrowserFavicon.png" | absURL }} " type="image/x-icon" sizes="16x16">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "images/BrowserFaviconApple.png" | absURL }}">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark-dimmed.min.css">

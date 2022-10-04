@@ -1,7 +1,7 @@
 ################################### Default Configuration ############################
 baseURL = "https://exampleSite.com"
 languageCode = "en-us"
-title = "Cdev | Serverless Development Framework"
+title = "Cdev | Code. Deploy. Share."
 
 
 
