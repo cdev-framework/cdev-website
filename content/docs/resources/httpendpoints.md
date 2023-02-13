@@ -13,9 +13,6 @@
 
 `HTTP` endpoints have become one of the most ubiquitous ways of delivering software to end users. Cdev provides a simple interface for creating `HTTP APIs` and connecting them to `Serverless Functions`. You can find more information about `HTTP` in the **[official documentation](https://httpwg.org/)**.
 
-{{<tool_tip key="info" summary="Set Up">}}
-It is assumed that you have already installed the Cdev SDK, which has a pre-filled src/hello_world/resources.py file. This example starts with an empty src/hello_world/resources.py file. You can empty the contents of your file or replace the neccessary lines of code as you go along.
-{{</tool_tip>}}
 
 {{<break 1>}}
 ## Create an API and Route

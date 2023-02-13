@@ -12,10 +12,11 @@
 # Serverless Functions
 {{<header_divider>}}
 
+At the heart of Cdev is the `Serverless Function`. This is the most powerful resource available through the framework because it is where you have the freedom to create and deploy custom code. We have made many optimizations to improve the experience for creating and maintaining `Serverless Functions`.
 
-At the heart of Cdev is the `Serverless Function`. This is the most powerful resource available through the framework because it is where you have to freedom to create what you want. We have made many optimizations to create the best experience for creating and maintaining `Serverless Functions`.
-
-For a more in depth discussion about the capabilities and limits of `Serverless Functions` checkout our [architecture documentation](/docs/firstprinciples).
+{{<tool_tip key="tip" summary="Basic Function">}}
+For a more in depth discussion about the optimizations of `Serverless Functions` checkout our [optimization documentation](/docs/firstprinciples/serverless_optimizations/).
+{{</tool_tip>}}
 
 {{<break 1>}}
 

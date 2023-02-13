@@ -1,13 +1,36 @@
 {
     "type": "firstprinciples",
     "layout": "type",
-    "title": "Project Settings",
-    "linktitle": "settings",
-    "card_icon": "ti-settings",
-    "card_body": "Learn to create and modify your Project Settings",
-    "weight": "3"
+    "title": "Project Management",
+    "linktitle": "resources", 
+    "card_icon": "ti-package",
+    "card_body": "Learn how to manage a Cdev Project",
+    "weight": "2"
 }
 
+Cdev provides abstractions to manage `resource graphs` as `projects`. 
+
+{{<break 1>}}
+## Projects
+A `project` is a representation that provides a more natural way of conceptualizing a `resource graph`. The `Cdev Sdk` provides a [singleton object](/docs/api/cdev/constructs/project.html) representing the information available for a `project` such as the settings, components, and resource output. You can create a new project using the `cdev init` command. 
+
+{{<tool_tip key="tip" summary="Accessing the Project Object">}}
+You can access the `Project` object using the singleton. 
+```python
+from cdev import Project as cdev_project
+
+myProject = cdev_project.instance()
+```
+{{</tool_tip>}}
+
+
+{{<break 1>}}
+## Environments
+An `Environment` is an isolated version of a `project` in the `Cloud`. By default, a project comes with three environments: `prod`, `stage`, and `dev`. You can create more environments using the `cdev environment create` command.
+
+{{<break>}}
+
+## Settings
 
 Cdev provides a mechanism to manage settings per `Environment`. These settings can be used to provide different values to the framework for different `Environments`.
 
@@ -15,7 +38,7 @@ We built our settings starting from the [Pydantic Settings module](https://pydan
 
 
 {{<break 1>}}
-## Creating and Setting a Custom Settings Class
+### Creating and Setting a Custom Settings Class
 In your `src` folder, create a new file called `project_settings.py`. Then copy the following code into the file.
 {{<codesnippet `/source_code/settings_examples/basic_settings.py`>}}
 
@@ -32,7 +55,7 @@ Note that the structure of the `--new-value` parameter is `<python_module>.<clas
 
 
 {{<break 1>}}
-## Using your Setting
+### Using your Setting
 You can access the Settings via the `Global Project` object.
 
 {{<codesnippet `/source_code/settings_examples/using_settings.py`>}}
@@ -42,7 +65,7 @@ You can directly reference a property (`myProject.settings.SOME_KEY`) without st
 {{</tool_tip>}}
 
 {{<break 1>}}
-## Modifying a Custom Setting Class
+### Modifying a Custom Setting Class
 All the custom setting classes will derive from the `core.constructs.settings.Settings` class, which itself derives from the Pydantic `BaseSettings Model`. Therefore, we can add additional settings by adding properties to the class with the defining type conditions. You must derive from the `Settings` class to make sure that the needed settings for the framework to work are available. 
 
 
@@ -54,7 +77,7 @@ All properties should be all uppercase with '_' to separate words
 
 
 {{<break 1>}}
-## Setting the Values 
+### Setting the Values 
 
 The ordering of the precedent for settings values is (from lowest to highest):
 1. The default field values for the Settings model.
@@ -132,33 +155,4 @@ Note that the life cycle of a `Setting` class is that it is initialized as a chi
 {{</tool_tip>}}
 {{<break 1>}}
 
-<!--
-## Working In Teams
-When working on a project with a team of developers it is wise for each developer to have their own environment during development.  Creating a new environment is as simple as running the following command:
-```bash
-cdev environment create <name of your environment>
-```
-After you create your environment you can switch to it by running the following command:
-```bash
-cdev environment set <name of your environment>
-```
-Whenever you change environments you need to update your settings by running the following command:
-```bash
-cdev environment settings_information --key base_class --new-value src.project_settings.CustomSettings
-```
-
-{{<tool_tip key="tip" summary="Selecting Environments">}}
-At any point you can check what environments are available by running the following command:
-```bash
-cdev environment ls
-```
-There will be an arrow pointing to which environment is currently being used if one is set.
-{{</tool_tip>}}
-
-
--->
-
-
-
-
-
+{{<break 2>}}
