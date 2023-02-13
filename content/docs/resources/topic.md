@@ -25,3 +25,5 @@ A Pub/Sub Topic that allows for events to be transmitted in a Fan Out fashion.
 You can use a Serverless Function to respond to the events from a Queue
 
 {{<codesnippet `/source_code/topic_examples/topic_event_example.py`>}}
+
+{{<break>}}
