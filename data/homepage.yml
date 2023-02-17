@@ -9,8 +9,8 @@ banner:
     #   url: "/docs/gettingstarted/"
     - label : "Launch a Project 🚀"
       url: "https://replit.com/@CdevFramework/Cdev-Template"
-    - label : "Book a Demo"
-      url: "https://calendly.com/daniel-cdev/cdev-demo"
+    - label : "Learn More"
+      url: "/docs/gettingstarted/"
     
 ########################### services ##################################
 service:
