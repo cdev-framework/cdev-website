@@ -85,4 +85,9 @@ Local dependencies should be reference using the dot notion and be contained wit
 {{</tool_tip>}}
 
 
+{{<break>}}
+### Additional Documentations
+To learn more about the capabilities of Serverless Functions checkout our [resource guide](/docs/resources/functions/).
+
 {{<break 2>}}
+

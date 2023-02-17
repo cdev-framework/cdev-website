@@ -8,14 +8,12 @@
     "weight": "2"
 }
 
-Cdev provides abstractions to manage `resource graphs` as `projects`. 
-
 {{<break 1>}}
 ## Projects
-A `project` is a representation that provides a more natural way of conceptualizing a `resource graph`. The `Cdev Sdk` provides a [singleton object](/docs/api/cdev/constructs/project.html) representing the information available for a `project` such as the settings, components, and resource output. You can create a new project using the `cdev init` command. 
+You can create a new project using the `cdev init` command. 
 
 {{<tool_tip key="tip" summary="Accessing the Project Object">}}
-You can access the `Project` object using the singleton. 
+The `Cdev Sdk` provides a singleton object representing the information available for a `project` such as the settings, components, and resource output. You can access the `Project` object using the singleton. 
 ```python
 from cdev import Project as cdev_project
 

@@ -14,6 +14,7 @@
 Create a site to create and keep diary entries to learn how Cdev can be used to create and manage full stack web applications.
 
 {{<youtube "https://www.youtube.com/embed/OasPGvluM50">}}
+{{<break>}}
 
 In this tutorial, we will be going through the entire process of creating a full stack application with Cdev. We will be focusing on demonstrating how Cdev can integrate with standard Python tools and other development workflows. We will explain all the components and steps of this tutorial in depth, but it does help to have some familiarity with some of the technologies and concepts around full stack development.
 
@@ -26,7 +27,7 @@ In this tutorial, we will be going through the entire process of creating a full
 
 {{<break 1>}}
 
-### Technologies
+**Technologies**
 - Backend
     - Serverless Functions
 - Database 
