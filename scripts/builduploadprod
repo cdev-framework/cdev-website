@@ -4,11 +4,11 @@ echo "---------BUILD HUGO------------"
 hugo -b https://cdevframework.io/ --environment prod
 
 echo "------PDOC DOCUMENTATION-------"
-here=$(pwd)
-cd $cdevprojectpath
-. ./scripts/activate
-./scripts/make_documentation
-cd $here
+#here=$(pwd)
+#cd $cdevprojectpath
+#. ./scripts/activate
+#./scripts/make_documentation
+#cd $here
 
 echo "-------UPLOAD TO STAGE-----------"
 

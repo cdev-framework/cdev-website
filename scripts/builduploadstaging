@@ -4,11 +4,11 @@ echo "---------BUILD HUGO------------"
 hugo -b https://staging.cdevframework.io --environment staging
 
 echo "------PDOC DOCUMENTATION-------"
-here=$(pwd)
-cd $cdevprojectpath
-. ./scripts/activate
-./scripts/make_documentation
-cd $here
+#here=$(pwd)
+#cd $cdevprojectpath
+#. ./scripts/activate
+#./scripts/make_documentation
+#cd $here
 
 echo "-------UPLOAD TO STAGE-----------"
 
